@@ -1,7 +1,8 @@
-<script setup lang="ts">
+<script setup>
 // import { RouterLink, RouterView } from 'vue-router'
 // import HelloWorld from './components/HelloWorld.vue'
 import LandingPage from './components/LandingPage.vue';
+import AuthPage from './components/AuthPage.vue'
 </script>
 
 <template>
@@ -19,7 +20,10 @@ import LandingPage from './components/LandingPage.vue';
   </header>
 
   <RouterView /> -->
-  <LandingPage />
+
+
+  <!-- <LandingPage /> -->
+  <AuthPage />
 </template>
 
 <style scoped>
