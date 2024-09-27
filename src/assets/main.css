@@ -30,6 +30,16 @@
     src: url(/TT-Firs-Neue-Trial-Regular.ttf);
   }
 
+  @font-face {
+    font-family: InterNormal;
+    src: url(./fonts/Inter/static/Inter_18pt-Regular.ttf);
+  }
+
+  @font-face {
+    font-family: InterMedium;
+    src: url(./fonts/Inter/static/Inter_18pt-Medium.ttf);
+  }
+
   .tt-firs-neue-medium {
     font-family: ttFirsNeueMedium;
   }
@@ -48,6 +58,14 @@
 
   .tt-firs-neue-normal {
     font-family: ttFirsNeueNormal;
+  }
+
+  .inter-normal {
+    font-family: InterNormal;
+  }
+
+  .inter-medium {
+    font-family: InterMedium;
   }
 }
 
