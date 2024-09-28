@@ -40,6 +40,11 @@
     src: url(./fonts/Inter/static/Inter_18pt-Medium.ttf);
   }
 
+  @font-face {
+    font-family: InterBold;
+    src: url(./fonts/Inter/static/Inter_18pt-Bold.ttf);
+  }
+
   .tt-firs-neue-medium {
     font-family: ttFirsNeueMedium;
   }
@@ -66,6 +71,10 @@
 
   .inter-medium {
     font-family: InterMedium;
+  }
+
+  .inter-bold {
+    font-family: InterBold;
   }
 }
 

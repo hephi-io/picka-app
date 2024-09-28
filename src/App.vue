@@ -1,15 +1,9 @@
 <script setup>
-// import { RouterLink, RouterView } from 'vue-router'
-// import HelloWorld from './components/HelloWorld.vue'
-import LandingPage from './components/LandingPage.vue';
-import AuthPage from './components/AuthPage.vue'
-import NewAuthPage from './components/NewAuthPage.vue';
+import { RouterView } from 'vue-router'
 </script>
 
 <template>
-  <!-- <LandingPage /> -->
-  <!-- <AuthPage /> -->
-  <NewAuthPage />
+  <RouterView></RouterView>
 </template>
 
 <style scoped>
