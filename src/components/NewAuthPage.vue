@@ -1,10 +1,12 @@
 <script setup>
-import { ref } from 'vue';
+import { ref, onMounted } from 'vue';
 
 import ZipkodLogo from '@/assets/svgs/ZipkodLogo.vue';
 import CheckIcon from '@/assets/svgs/CheckIcon.vue';
 import UncheckedIcon from '@/assets/svgs/UncheckedIcon.vue';
+import ArrowDown from '@/assets/svgs/ArrowDown.vue';
 
+// RADIO BUTTONS
 let isBusinessAccount = ref(true);
 let isPersonalAccount = ref(false);
 
@@ -24,6 +26,29 @@ const handleClickForPersonal = () => {
 const handleSubmit = (event) => {
   event.preventDefault();
 }
+
+// FLAG DROPDOWN
+const isDropDownOpen = ref(false);
+const selectedOptionIcon = ref(null);
+const selectedOptionNumber = ref(null);
+const options = ref([{icon: '/src/assets/svgs/nigerian-flag.svg', number: '+234'}]);
+
+const toggleDropdown = () => {
+  isDropDownOpen.value = !isDropDownOpen.value
+};
+
+const selectOptionAndCloseDropdown = (option) => {
+  selectedOptionIcon.value = option.icon;
+  selectedOptionNumber.value = option.number;
+  isDropDownOpen.value = false;
+};
+
+const closeDropdownOnScreenClick = () => {
+  isDropDownOpen.value = false;
+};
+
+// FOR SELECT BUSINESS TYPE
+const selectedBusinessType = ref("");
 
 </script>
 
@@ -77,14 +102,14 @@ const handleSubmit = (event) => {
                 <div>
                   <label for="first-name" class="inter-medium font-medium text-base leading-[19.36px] text-[#26203B] mb-2">First name</label>
                 </div>  
-                <input type="text" name="first-name" class="w-full h-12 rounded-xl border border-[#9F9F9F] px-4 py-2 inter-normal font-normal text-sm leading-[16.94px] text-[#9C9AA5]">
+                <input type="text" name="first-name" class="w-full h-12 rounded-xl border border-[#9F9F9F] outline-none focus:border-[#E3573E] px-4 py-2 inter-normal font-normal text-sm leading-[16.94px] text-[#9C9AA5]">
               </section>
               
               <section class="w-[48.2%]">
                 <div>
                   <label for="last-name" class="inter-medium font-medium text-base leading-[19.36px] text-[#26203B] mb-2">Last name</label>
                 </div>
-                <input type="text" name="last-name" class="w-full h-12 rounded-xl border border-[#9F9F9F] px-4 py-2 inter-normal font-normal text-sm leading-[16.94px] text-[#9C9AA5]">
+                <input type="text" name="last-name" class="w-full h-12 rounded-xl border border-[#9F9F9F] outline-none focus:border-[#E3573E] px-4 py-2 inter-normal font-normal text-sm leading-[16.94px] text-[#9C9AA5]">
               </section>
             
             </section>
@@ -93,14 +118,16 @@ const handleSubmit = (event) => {
               <div>
                 <label for="business-name" class="inter-medium font-medium text-base leading-[19.36px] text-[#26203B] mb-2">Business name</label>
               </div>
-              <input type="text" name="business-name" placeholder="Enter business name" class="w-full h-12 rounded-xl border border-[#9F9F9F] px-4 py-2 inter-normal font-normal text-sm leading-[16.94px] text-[#9C9AA5]">
+              <input type="text" name="business-name" placeholder="Enter business name" class="w-full h-12 rounded-xl border border-[#9F9F9F] outline-none focus:border-[#E3573E] px-4 py-2 inter-normal font-normal text-sm leading-[16.94px] text-[#9C9AA5]">
             </section>
 
             <section :class="[isBusinessAccount ? 'mb-8' : 'hidden']">
               <div>
                 <label for="business-type" class="inter-medium font-medium text-base leading-[19.36px] text-[#26203B] mb-2">Type of business</label>
               </div>
-              <input type="text" name="business-type" placeholder="Select an option" class="w-full h-12 rounded-xl border border-[#9F9F9F] px-4 py-2 inter-normal font-normal text-sm leading-[16.94px] text-[#9C9AA5]">
+              <select name="business-type" class="w-full h-12 rounded-xl border border-[#9F9F9F] outline-none focus:border-[#E3573E] px-4 py-2 inter-normal font-normal text-sm leading-[16.94px] text-[#9C9AA5] appearance-none" v-model="selectedBusinessType">
+                <option disabled value="">Select an option</option>
+              </select>
             </section>
 
             <section class="mb-8">
@@ -111,12 +138,41 @@ const handleSubmit = (event) => {
 
               <section class="flex justify-between">
 
-                <section class="w-[31.4%]">
-                  <div class="h-12 rounded-xl border border-[#9F9F9F]"></div>
+                <section class="w-[31.4%] relative">
+
+                  <div tabindex="0" class="h-full px-4 py-[10px] rounded-lg border border-[#9F9F9F] outline-none focus:border-[#E3573E] cursor-pointer" @click="toggleDropdown">
+
+                    <div class="flex items-center justify-between">
+
+                      <img v-if="selectedOptionIcon" :src="selectedOptionIcon">
+
+                      <section>
+                        <span class="inter-normal font-normal text-sm leading-[21px] text-[#ABAFB1]">
+                          {{ selectedOptionNumber || '' }}
+                        </span>
+                      </section>
+
+                      <ArrowDown :class="{'mt-1' : !selectedOptionIcon}" />
+
+                    </div>
+
+                  </div>
+
+                  <ul v-if="isDropDownOpen" class="bg-white w-full px-4 py-[10px] absolute z-10 list-none border border-[#9F9F9F] rounded-lg">
+
+                    <li v-for="(option, index) in options" :key="index" class="cursor-pointer hover:bg-[#F0F0F0] flex" @click="selectOptionAndCloseDropdown(option)">
+                      <img :src="option.icon" class="mr-1"> 
+                      <span class="inter-normal font-normal text-sm leading-[21px] text-[#ABAFB1]">
+                        {{ option.number }}
+                      </span>
+                    </li>
+
+                  </ul>
+
                 </section>
 
                 <section class="w-[67.3%]">
-                  <input type="number" name="phone-number" placeholder="1234567890" class="w-full h-12 rounded-xl border border-[#9F9F9F] px-4 py-2 inter-normal font-normal text-sm leading-[16.94px] text-[#9C9AA5]">
+                  <input type="number" name="phone-number" placeholder="1234567890" class="w-full h-12 rounded-xl border border-[#9F9F9F] outline-none focus:border-[#E3573E] px-4 py-2 inter-normal font-normal text-sm leading-[16.94px] text-[#9C9AA5]">
                 </section>
 
               </section>

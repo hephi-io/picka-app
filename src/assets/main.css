@@ -76,6 +76,10 @@
   .inter-bold {
     font-family: InterBold;
   }
+
+  .form:focus-within {
+    border-color: #E3573E;
+  }
 }
 
 /* #app {
