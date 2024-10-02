@@ -45,6 +45,11 @@
     src: url(./fonts/Inter/static/Inter_18pt-Bold.ttf);
   }
 
+  @font-face {
+    font-family: InterSemiBold;
+    src: url(./fonts/Inter/static/Inter_18pt-SemiBold.ttf);
+  }
+
   .tt-firs-neue-medium {
     font-family: ttFirsNeueMedium;
   }
@@ -75,6 +80,10 @@
 
   .inter-bold {
     font-family: InterBold;
+  }
+
+  .inter-semibold {
+    font-family: InterSemiBold;
   }
 
   .form:focus-within {
