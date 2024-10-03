@@ -9,8 +9,10 @@ const handleSubmit = (event) => {
 
 <template>
   <div class="p-8">
+
     <main class="flex justify-center">
       <section class="w-[36.3%]">
+
         <header class="flex justify-center mb-[60px]">
           <ZipkodLogo />
         </header>
@@ -20,17 +22,19 @@ const handleSubmit = (event) => {
           @submit="handleSubmit"
         >
           <header class="mb-10">
+
             <h1
-              class="tt-firs-neue-semibold font-semibold text-2xl leading-[32.25px] text-[#1B1B1B] mb-1"
+              class="space-mono-bold font-semibold text-2xl leading-[32.25px] text-[#1B1B1B] mb-1"
             >
               Verification
             </h1>
 
             <p
-              class="inter-normal font-normal text-base leading-[19.36px] text-[#26203B]"
+              class="outfit-normal font-normal text-base leading-[19.36px] text-[#26203B]"
             >
               Verification successful. Experience the efficiency of Zipkod. Click 'Login' to access your dashboard.
             </p>
+
           </header>
 
           <section class="h-[183.63px] flex justify-center mb-10">
@@ -44,18 +48,19 @@ const handleSubmit = (event) => {
             class="w-full h-12 rounded-full px-5 py-[10px] bg-gradient-to-r from-[#FF7C33] to-[#FA3105]"
           >
             <span
-              class="inter-bold font-bold text-base leading-[19.36px] text-white"
+              class="outfit-bold font-bold text-base leading-[19.36px] text-white"
               >Login</span
             >
           </button>
         </form>
+
       </section>
     </main>
 
     <footer class="h-[53px] mt-5 flex justify-between items-end">
       <div>
         <span
-          class="inter-normal font-normal text-sm leading-[21px] text-[#4F4D55]"
+          class="outfit-normal font-normal text-sm leading-[21px] text-[#4F4D55]"
           >©2024 Zipkod.ng</span
         >
       </div>
@@ -63,11 +68,12 @@ const handleSubmit = (event) => {
       <div>
         <a
           href="#"
-          class="inter-normal font-normal text-sm leading-[21px] text-[#4F4D55]"
+          class="outfit-normal font-normal text-sm leading-[21px] text-[#4F4D55]"
           >Privacy policy</a
         >
       </div>
     </footer>
+    
   </div>
 </template>
 

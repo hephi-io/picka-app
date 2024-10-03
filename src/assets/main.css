@@ -89,6 +89,37 @@
   .form:focus-within {
     border-color: #E3573E;
   }
+
+  /* <uniquifier>: Use a unique and descriptive class name
+  <weight>: Use a value from 100 to 900 */
+
+  .outfit-normal {
+    font-family: "Outfit", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 400;
+    font-style: normal;
+  }
+
+  .outfit-medium {
+    font-family: "Outfit", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 500;
+    font-style: normal;
+  }
+
+  .outfit-semibold {
+    font-family: "Outfit", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 600;
+    font-style: normal;
+  }
+
+  .outfit-bold {
+    font-family: "Outfit", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 700;
+    font-style: normal;
+  }
 }
 
 /* #app {

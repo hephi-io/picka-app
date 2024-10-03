@@ -140,6 +140,7 @@ const width = ref('100%')
         <main class="w-[92.81%] pt-[45.38px] pl-[24px]">
 
           <div>
+
             <header class="flex justify-between mb-[52px]">
 
               <section>
@@ -202,7 +203,7 @@ const width = ref('100%')
 
             <section>
 
-              <section class="h-[142px] flex justify-between">
+              <section class="h-[142px] flex justify-between mb-6">
 
                 <section class="w-[23.58%] rounded-lg px-5 py-[22px] bg-[#F9F9F9]">
                   <div>
@@ -333,8 +334,70 @@ const width = ref('100%')
 
               </section>
 
-              <section>
+              <section class="rounded-xl border border-[#E4E7EC] bg-white">
                 
+                <section>
+                  <div class="h-[79px] px-6 py-5">
+                    <div class="flex h-full">
+
+                      <section class="w-[45.67%] h-full flex items-center mr-4">
+                        <span class="inter-semibold font-semibold text-lg text-[#101828]">
+                          Recent Orders
+                        </span>
+                      </section>
+
+                      <section class="flex w-[46.44%] mr-4">
+
+                        <section class="w-[45.33%] mr-[53px]">
+                          <input type="search" placeholder="Search..." class="h-[38px] w-full rounded border border-[#D4D4D4] p-[10px]">
+                        </section>
+
+                        <section class="flex">
+
+                          <button class="flex rounded border border-[#E4E4E4EE] mr-4 px-3 py-2">
+
+                            <section class="h-full flex items-center mr-2">
+                              <img src="/src/assets/svgs/FunnelSimple.svg">
+                            </section>
+
+                            <section class="inter-medium font-medium text-sm leading-[21px] text-[#404D61]">
+                              <span>
+                                Sort By
+                              </span>
+                            </section>
+
+                          </button>
+
+                          <button class="flex rounded border border-[#E4E4E4EE] px-3 py-2">
+
+                            <section class="h-full flex items-center mr-2">
+                              <img src="/src/assets/svgs/upload-03.svg">
+                            </section>
+
+                            <section class="inter-medium font-medium text-sm leading-[21px] text-[#404D61]">
+                              <span>
+                                Export csv
+                              </span>
+                            </section>
+
+                          </button>
+
+                        </section>
+
+                      </section>
+
+                      <button class="h-full flex items-center">
+                        <img src="/src/assets/svgs/dots-vertical.svg">
+                      </button>
+                      
+                    </div>
+                  </div>
+                </section>
+
+                <section></section>
+
+                <section></section>
+
               </section>
 
             </section>

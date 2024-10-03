@@ -68,11 +68,11 @@ const selectedBusinessType = ref("");
 
           <header class="mb-[60px]">
 
-            <h1 class="tt-firs-neue-semibold font-semibold text-2xl leading-[32.25px] text-[#1B1B1B] mb-1">
+            <h1 class="space-mono-bold font-semibold text-2xl leading-[32.25px] text-[#1B1B1B] mb-1">
               Account setup
             </h1>
 
-            <p class="inter-normal font-normal text-base leading-[19.36px] text-[#26203B]">
+            <p class="outfit-normal font-normal text-base leading-[19.36px] text-[#26203B]">
               To proceed with your account setup, we require additional information to complete the verification process.
             </p>
 
@@ -85,13 +85,13 @@ const selectedBusinessType = ref("");
               <button :class="[ isBusinessAccount ? checkedStyle : uncheckedStyle]" @click="handleClickForBusiness">
                 <CheckIcon class="mr-4" v-if="isBusinessAccount"></CheckIcon>
                 <UncheckedIcon class="mr-4" v-else></UncheckedIcon>
-                <span class="inter-medium font-medium text-sm leading-[22px] text-[#262626]">Business account</span>
+                <span class="outfit-medium font-medium text-sm leading-[22px] text-[#262626]">Business account</span>
               </button>
 
               <button :class="[ isPersonalAccount ? checkedStyle : uncheckedStyle]" @click="handleClickForPersonal">
                 <CheckIcon class="mr-4" v-if="isPersonalAccount"></CheckIcon>
                 <UncheckedIcon class="mr-4" v-else></UncheckedIcon>
-                <span class="inter-medium font-medium text-sm leading-[22px] text-[#262626]">Personal account</span>
+                <span class="outfit-medium font-medium text-sm leading-[22px] text-[#262626]">Personal account</span>
               </button>
 
             </section>
@@ -99,33 +99,35 @@ const selectedBusinessType = ref("");
             <section class="flex justify-between mb-8">
 
               <section class="w-[48.2%]">
+
                 <div>
-                  <label for="first-name" class="inter-medium font-medium text-base leading-[19.36px] text-[#26203B] mb-2">First name</label>
+                  <label for="first-name" class="outfit-medium font-medium text-base leading-[19.36px] text-[#26203B] mb-2">First name</label>
                 </div>  
-                <input type="text" name="first-name" class="w-full h-12 rounded-xl border border-[#9F9F9F] outline-none focus:border-[#E3573E] px-4 py-2 inter-normal font-normal text-sm leading-[16.94px] text-[#9C9AA5]">
+
+                <input type="text" name="first-name" class="w-full h-12 rounded-xl border border-[#9F9F9F] outline-none focus:border-[#E3573E] px-4 py-2 outfit-normal font-normal text-sm leading-[16.94px] text-[#9C9AA5]">
               </section>
               
               <section class="w-[48.2%]">
                 <div>
-                  <label for="last-name" class="inter-medium font-medium text-base leading-[19.36px] text-[#26203B] mb-2">Last name</label>
+                  <label for="last-name" class="outfit-medium font-medium text-base leading-[19.36px] text-[#26203B] mb-2">Last name</label>
                 </div>
-                <input type="text" name="last-name" class="w-full h-12 rounded-xl border border-[#9F9F9F] outline-none focus:border-[#E3573E] px-4 py-2 inter-normal font-normal text-sm leading-[16.94px] text-[#9C9AA5]">
+                <input type="text" name="last-name" class="w-full h-12 rounded-xl border border-[#9F9F9F] outline-none focus:border-[#E3573E] px-4 py-2 outfit-normal font-normal text-sm leading-[16.94px] text-[#9C9AA5]">
               </section>
             
             </section>
 
             <section :class="[isBusinessAccount ? 'mb-8' : 'hidden']">
               <div>
-                <label for="business-name" class="inter-medium font-medium text-base leading-[19.36px] text-[#26203B] mb-2">Business name</label>
+                <label for="business-name" class="outfit-medium font-medium text-base leading-[19.36px] text-[#26203B] mb-2">Business name</label>
               </div>
-              <input type="text" name="business-name" placeholder="Enter business name" class="w-full h-12 rounded-xl border border-[#9F9F9F] outline-none focus:border-[#E3573E] px-4 py-2 inter-normal font-normal text-sm leading-[16.94px] text-[#9C9AA5]">
+              <input type="text" name="business-name" placeholder="Enter business name" class="w-full h-12 rounded-xl border border-[#9F9F9F] outline-none focus:border-[#E3573E] px-4 py-2 outfit-normal font-normal text-sm leading-[16.94px] text-[#9C9AA5]">
             </section>
 
             <section :class="[isBusinessAccount ? 'mb-8' : 'hidden']">
               <div>
-                <label for="business-type" class="inter-medium font-medium text-base leading-[19.36px] text-[#26203B] mb-2">Type of business</label>
+                <label for="business-type" class="outfit-medium font-medium text-base leading-[19.36px] text-[#26203B] mb-2">Type of business</label>
               </div>
-              <select name="business-type" class="w-full h-12 rounded-xl border border-[#9F9F9F] outline-none focus:border-[#E3573E] px-4 py-2 inter-normal font-normal text-sm leading-[16.94px] text-[#9C9AA5] appearance-none" v-model="selectedBusinessType">
+              <select name="business-type" class="w-full h-12 rounded-xl border border-[#9F9F9F] outline-none focus:border-[#E3573E] px-4 py-2 outfit-normal font-normal text-sm leading-[16.94px] text-[#9C9AA5] appearance-none" v-model="selectedBusinessType">
                 <option disabled value="">Select an option</option>
               </select>
             </section>
@@ -133,7 +135,7 @@ const selectedBusinessType = ref("");
             <section class="mb-8">
 
               <section>
-                <label for="phone-number" class="inter-medium font-medium text-base leading-[19.36px] text-[#26203B] mb-2">Phone Number</label>
+                <label for="phone-number" class="outfit-medium font-medium text-base leading-[19.36px] text-[#26203B] mb-2">Phone Number</label>
               </section>
 
               <section class="flex justify-between">
@@ -147,7 +149,7 @@ const selectedBusinessType = ref("");
                       <img v-if="selectedOptionIcon" :src="selectedOptionIcon">
 
                       <section>
-                        <span class="inter-normal font-normal text-sm leading-[21px] text-[#ABAFB1]">
+                        <span class="outfit-normal font-normal text-sm leading-[21px] text-[#ABAFB1]">
                           {{ selectedOptionNumber || '' }}
                         </span>
                       </section>
@@ -162,7 +164,7 @@ const selectedBusinessType = ref("");
 
                     <li v-for="(option, index) in options" :key="index" class="cursor-pointer hover:bg-[#F0F0F0] flex" @click="selectOptionAndCloseDropdown(option)">
                       <img :src="option.icon" class="mr-1"> 
-                      <span class="inter-normal font-normal text-sm leading-[21px] text-[#ABAFB1]">
+                      <span class="outfit-normal font-normal text-sm leading-[21px] text-[#ABAFB1]">
                         {{ option.number }}
                       </span>
                     </li>
@@ -172,7 +174,7 @@ const selectedBusinessType = ref("");
                 </section>
 
                 <section class="w-[67.3%]">
-                  <input type="number" name="phone-number" placeholder="1234567890" class="w-full h-12 rounded-xl border border-[#9F9F9F] outline-none focus:border-[#E3573E] px-4 py-2 inter-normal font-normal text-sm leading-[16.94px] text-[#9C9AA5]">
+                  <input type="number" name="phone-number" placeholder="1234567890" class="w-full h-12 rounded-xl border border-[#9F9F9F] outline-none focus:border-[#E3573E] px-4 py-2 outfit-normal font-normal text-sm leading-[16.94px] text-[#9C9AA5]">
                 </section>
 
               </section>
@@ -182,7 +184,7 @@ const selectedBusinessType = ref("");
           </section>
 
           <button type="submit" class="w-full h-12 rounded-full px-5 py-[10px] bg-gradient-to-r from-[#FF7C33] to-[#FA3105]">
-            <span class="inter-bold font-bold text-base leading-[19.36px] text-white">Finish Setup</span>
+            <span class="outfit-bold font-bold text-base leading-[19.36px] text-white">Finish Setup</span>
           </button>
 
         </form>
@@ -194,11 +196,11 @@ const selectedBusinessType = ref("");
     <footer class="h-[53px] mt-5 flex justify-between items-end">
 
       <div>
-        <span class="inter-normal font-normal text-sm leading-[21px] text-[#4F4D55]">©2024 Zipkod.ng</span>
+        <span class="outfit-normal font-normal text-sm leading-[21px] text-[#4F4D55]">©2024 Zipkod.ng</span>
       </div>
 
       <div>
-        <a href="#" class="inter-normal font-normal text-sm leading-[21px] text-[#4F4D55]">Privacy policy</a>
+        <a href="#" class="outfit-normal font-normal text-sm leading-[21px] text-[#4F4D55]">Privacy policy</a>
       </div>
 
     </footer>
