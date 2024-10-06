@@ -5,6 +5,7 @@ import ZipkodLogo from '@/assets/svgs/ZipkodLogo.vue';
 import CheckIcon from '@/assets/svgs/CheckIcon.vue';
 import UncheckedIcon from '@/assets/svgs/UncheckedIcon.vue';
 import ArrowDown from '@/assets/svgs/ArrowDown.vue';
+import { Button } from './ui/button';
 
 // RADIO BUTTONS
 let isBusinessAccount = ref(true);
