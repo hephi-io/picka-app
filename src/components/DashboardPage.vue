@@ -1,19 +1,31 @@
-<script setup>
-import { ref } from 'vue';
-import ZipkodLogo from "@/assets/svgs/ZipkodLogo.vue";
+<script setup lang="ts">
+import { onMounted, ref } from 'vue'
+import ZipkodLogo from "@/assets/svgs/ZipkodLogo.vue"
+import { columns } from './dashboard/column'
+import { type Shipping, shippings } from '../services/index'
+import DataTable from './dashboard/data-table.vue'
 
-const height = ref('27.62');
+const height = ref('27.62')
 const width = ref('100%')
+
+const data = ref<Shipping[]>([])
+
+async function getData(): Promise<Shipping[]> {
+  return shippings
+}
+
+onMounted(
+  async () => {
+    data.value = await getData()
+  }
+)
 </script>
 
 <template>
-
   <div class="p-6">
-
     <div>
 
       <header class="h-16 mb-2 rounded-lg border border-[#E4E9EE] pr-8 pl-6 py-3 bg-white">
-
         <div class="h-full flex justify-between items-center">
 
           <section class="w-[6.7%] flex justify-start">
@@ -56,7 +68,6 @@ const width = ref('100%')
           </section>
 
         </div>
-
       </header>
 
       <div class="flex justify-between">
@@ -138,7 +149,6 @@ const width = ref('100%')
         </aside>
 
         <main class="w-[92.81%] pt-[45.38px] pl-[24px]">
-
           <div>
 
             <header class="flex justify-between mb-[52px]">
@@ -334,7 +344,7 @@ const width = ref('100%')
 
               </section>
 
-              <section class="rounded-xl border border-[#E4E7EC] bg-white">
+              <section class="rounded-xl rounded-b-none border border-[#E4E7EC] bg-white">
                 
                 <section>
                   <div class="h-[79px] px-6 py-5">
@@ -349,7 +359,7 @@ const width = ref('100%')
                       <section class="flex w-[46.44%] mr-4">
 
                         <section class="w-[45.33%] mr-[53px]">
-                          <input type="search" placeholder="Search..." class="h-[38px] w-full rounded border border-[#D4D4D4] p-[10px]">
+                          <!-- <input type="search" placeholder="Search..." class="h-[38px] w-full rounded border border-[#D4D4D4] p-[10px]"> -->
                         </section>
 
                         <section class="flex">
@@ -394,24 +404,21 @@ const width = ref('100%')
                   </div>
                 </section>
 
-                <section></section>
-
-                <section></section>
+                <section>
+                  <DataTable :columns="columns" :data="data" />
+                </section>
 
               </section>
 
             </section>
 
           </div>
-
         </main>
 
       </div>
 
     </div>
-
   </div>
-
 </template>
 
 <style scoped></style>
