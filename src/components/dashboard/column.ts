@@ -36,31 +36,31 @@ export const columns: ColumnDef<Shipping>[] = [
   },
   {
     accessorKey: 'name',
-    header: () => h('div', { class: 'text-left' }, 'Status'),
+    header: () => h('div', { class: 'text-left' }, 'Name'),
   },
   {
     accessorKey: 'emailAddress',
-    // header: () => h('div', { class: 'text-right' }, 'Amount'),
+    header: () => h('div', { class: 'text-left' }, 'Email Address'),
   },
   {
     accessorKey: 'category',
-    // header: () => h('div', { class: 'text-right' }, 'Amount'),
+    header: () => h('div', { class: 'text-left' }, 'Category'),
   },
   {
     accessorKey: 'weight',
-    // header: () => h('div', { class: 'text-right' }, 'Amount'),
+    header: () => h('div', { class: 'text-left' }, 'Weight'),
   },
   {
     accessorKey: 'fee',
-    // header: () => h('div', { class: 'text-right' }, 'Amount'),
+    header: () => h('div', { class: 'text-left' }, 'Fee'),
   },
   {
     accessorKey: 'status',
-    // header: () => h('div', { class: 'text-right' }, 'Amount'),
+    header: () => h('div', { class: 'text-left' }, 'Status'),
   },
   {
     accessorKey: 'date',
-    // header: () => h('div', { class: 'text-right' }, 'Amount'),
+    header: () => h('div', { class: 'text-left' }, 'Date'),
   },
   {
     id: 'actions',

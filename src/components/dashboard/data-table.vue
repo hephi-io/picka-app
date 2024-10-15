@@ -6,18 +6,18 @@ import type {
   ExpandedState, 
 } from '@tanstack/vue-table'
 
-import {
-  DropdownMenu,
-  DropdownMenuCheckboxItem,
-  DropdownMenuContent,
-  DropdownMenuTrigger,
-} from '@/components/ui/dropdown-menu'
+// import {
+//   DropdownMenu,
+//   DropdownMenuCheckboxItem,
+//   DropdownMenuContent,
+//   DropdownMenuTrigger,
+// } from '@/components/ui/dropdown-menu'
 
-import { valueUpdater } from '@/lib/utils'
+// import { valueUpdater } from '@/lib/utils'
 
-import { ChevronDown } from 'lucide-vue-next'
-import { Input } from '@/components/ui/input'
-import { Button } from '@/components/ui/button'
+// import { ChevronDown } from 'lucide-vue-next'
+// import { Input } from '@/components/ui/input'
+// import { Button } from '@/components/ui/button'
 import { h, ref } from 'vue'
 
 import {
@@ -29,6 +29,7 @@ import {
   useVueTable,
 } from '@tanstack/vue-table'
 
+// Basic Table
 import {
   Table,
   TableBody,
@@ -55,10 +56,10 @@ const table = useVueTable({
   getPaginationRowModel: getPaginationRowModel(),
   getFilteredRowModel: getFilteredRowModel(),
   getExpandedRowModel: getExpandedRowModel(),
-  onColumnFiltersChange: updaterOrValue => valueUpdater(updaterOrValue, columnFilters),
-  onColumnVisibilityChange: updaterOrValue => valueUpdater(updaterOrValue, columnVisibility),
-  onRowSelectionChange: updaterOrValue => valueUpdater(updaterOrValue, rowSelection),
-  onExpandedChange: updaterOrValue => valueUpdater(updaterOrValue, expanded),
+  // onColumnFiltersChange: updaterOrValue => valueUpdater(updaterOrValue, columnFilters),
+  // onColumnVisibilityChange: updaterOrValue => valueUpdater(updaterOrValue, columnVisibility),
+  // onRowSelectionChange: updaterOrValue => valueUpdater(updaterOrValue, rowSelection),
+  // onExpandedChange: updaterOrValue => valueUpdater(updaterOrValue, expanded),
   state: {
     get columnFilters() { return columnFilters.value },
     get columnVisibility() { return columnVisibility.value },
@@ -71,13 +72,13 @@ const table = useVueTable({
 <template>
   <div>
 
-    <div class="flex items-center py-4">
+    <!-- <div class="flex items-center py-4">
 
       <Input 
         class="max-w-sm ml-1"
         placeholder="Filter emails..."
         :model-value="table.getColumn('emailAddress')?.getFilterValue() as string"
-        @update:model-value="table.getColumn('email')?.setFilterValue($event)"
+        @update:model-value="table.getColumn('emailAddress')?.setFilterValue($event)"
       />
 
       <DropdownMenu>
@@ -107,7 +108,7 @@ const table = useVueTable({
 
       </DropdownMenu>
 
-    </div>
+    </div> -->
 
     <div class="border">
       <Table>
