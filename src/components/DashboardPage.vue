@@ -1,7 +1,8 @@
 <script setup lang="ts">
 import { ref } from 'vue'
 import ZipkodLogo from "@/assets/svgs/ZipkodLogo.vue"
-import MainSection from '@/components/dashboard-components/MainSection.vue'
+// import ShipmentsSection from '@/components/dashboard-components/ShipmentsSection.vue'
+import MainSection from './dashboard-components/MainSection.vue';
 
 
 const height = ref('27.62')
@@ -135,7 +136,10 @@ const width = ref('100%')
 
         </aside>
 
-        <MainSection />
+        <main class="w-[91.66%]">
+          <!-- <ShipmentsSection /> -->
+          <MainSection />
+        </main>
 
       </div>
 
