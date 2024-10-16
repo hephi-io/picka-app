@@ -7,6 +7,7 @@ import { onMounted, ref } from "vue";
 import { columns } from "@/components/dashboard/column";
 import { type Shipping, shippings } from "@/services/index";
 import DataTable from "@/components/dashboard/data-table.vue";
+import ZPagination from "@/components/shared/z-pagination.vue";
 
 const data = ref<Shipping[]>([]);
 
@@ -177,12 +178,16 @@ onMounted(async () => {
     </section>
 
     <section class="mt-9 rounded-xl border border-[#E4E7EC]">
-      <section class="h-[78px] flex items-center px-5">
+      <section class="h-[78px] flex items-center px-4">
         <div>Recent Orders</div>
       </section>
 
       <section>
         <DataTable :columns="columns" :data="data" />
+      </section>
+
+      <section class="h-[68px] flex items-center justify-center border-t px-4">
+        <z-pagination />
       </section>
     </section>
   </main>
