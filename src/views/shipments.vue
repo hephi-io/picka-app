@@ -3,6 +3,8 @@ import { onMounted, ref } from "vue";
 import { columns } from "@/components/dashboard/column";
 import { type Shipping, shippings } from "@/services/index";
 import DataTable from "@/components/dashboard/data-table.vue";
+import WeekButton from "@/components/dashboard-components/shipments-components/week-button.vue"
+import NewShipment from "@/components/dashboard-components/mainsection-components/NewShipment.vue";
 
 const data = ref<Shipping[]>([]);
 
@@ -18,58 +20,40 @@ onMounted(async () => {
 <template>
   <main class="">
     <div>
+
       <header class="flex justify-between items-center mb-[52px]">
+
         <h1 class="space-mono font-semibold text-2xl">Shippings</h1>
 
         <section class="flex">
-          <section class="flex mr-4">
-            <button
-              class="h-[59px] flex rounded-md border border-[#D8D8D8] px-4 py-3"
-            >
-              <section class="flex h-full items-center mr-2">
-                <img src="/src/assets/svgs/Arrow---Down-2.svg" />
-              </section>
 
-              <section class="h-full flex items-center">
-                <span
-                  class="font-medium text-[15px] leading-[18.15px] text-[#404D61]"
-                >
-                  Week
-                </span>
-              </section>
-            </button>
+          <section class="flex mr-4">
+            <WeekButton />
           </section>
 
           <section>
-            <button
-              class="h-[59px] flex rounded-md border border-[#D8D8D8] px-4 py-3 bg-[#FF7830]"
-            >
-              <section class="flex h-full items-center mr-2">
-                <img src="/src/assets/svgs/plus-sign.svg" />
-              </section>
-
-              <section class="h-full flex items-center">
-                <span
-                  class="inter-medium font-medium text-[15px] leading-[18.15px] text-white"
-                >
-                  Create New Order
-                </span>
-              </section>
-            </button>
+            <NewShipment />
           </section>
+
         </section>
+
       </header>
 
       <section>
+
         <section class="h-[142px] flex justify-between mb-6">
+
           <section class="w-[23.58%] rounded-lg px-5 py-[22px] bg-[#F9F9F9]">
             <div>
+
               <section class="mb-[30px]">
                 <img src="/src/assets/svgs/package.svg" />
               </section>
 
               <section class="flex">
+
                 <section class="mr-[15px]">
+
                   <section class="mb-2">
                     <span
                       class="inter-medium font-medium text-xs leading-3 tracking-[-3%] text-[#8B9293]"
@@ -85,15 +69,18 @@ onMounted(async () => {
                       19,329
                     </span>
                   </section>
+
                 </section>
 
                 <section class="flex items-end pb-[3px]">
+
                   <section class="h-[45%] flex items-center mr-[6px]">
                     <img src="/src/assets/svgs/arrow-up.svg" />
                   </section>
 
                   <section class="flex items-center">
                     <div>
+
                       <span
                         class="inter-semibold font-semibold text-xs leading-3 text-[#307AE4]"
                       >
@@ -104,20 +91,26 @@ onMounted(async () => {
                       >
                         Items
                       </span>
+
                     </div>
                   </section>
+
                 </section>
+
               </section>
+
             </div>
           </section>
 
           <section class="w-[23.58%] rounded-lg px-5 py-[22px] bg-[#F9F9F9]">
             <div>
+
               <section class="mb-[30px]">
                 <img src="/src/assets/svgs/delivery-truck-01.svg" />
               </section>
 
               <section class="mr-[15px]">
+
                 <section class="mb-2">
                   <span
                     class="inter-medium font-medium text-xs leading-3 tracking-[-3%] text-[#8B9293]"
@@ -133,17 +126,21 @@ onMounted(async () => {
                     12,000
                   </span>
                 </section>
+
               </section>
+
             </div>
           </section>
 
           <section class="w-[23.58%] rounded-lg px-5 py-[22px] bg-[#F9F9F9]">
             <div>
+
               <section class="mb-[30px]">
                 <img src="/src/assets/svgs/package-process.svg" />
               </section>
 
               <section class="mr-[15px]">
+
                 <section class="mb-2">
                   <span
                     class="inter-medium font-medium text-xs leading-3 tracking-[-3%] text-[#8B9293]"
@@ -159,17 +156,21 @@ onMounted(async () => {
                     800
                   </span>
                 </section>
+
               </section>
+
             </div>
           </section>
 
           <section class="w-[23.58%] rounded-lg px-5 py-[22px] bg-[#F9F9F9]">
             <div>
+
               <section class="mb-[30px]">
                 <img src="/src/assets/svgs/delivery-box-02.svg" />
               </section>
 
               <section class="mr-[15px]">
+
                 <section class="mb-2">
                   <span
                     class="inter-medium font-medium text-xs leading-3 tracking-[-3%] text-[#8B9293]"
@@ -185,17 +186,22 @@ onMounted(async () => {
                     657
                   </span>
                 </section>
+
               </section>
+
             </div>
           </section>
+
         </section>
 
         <section
           class="rounded-xl rounded-b-none border border-[#E4E7EC] bg-white"
         >
+
           <section>
             <div class="h-[79px] px-6 py-5">
               <div class="flex h-full">
+
                 <section class="w-[45.67%] h-full flex items-center mr-4">
                   <span
                     class="inter-semibold font-semibold text-lg text-[#101828]"
@@ -205,14 +211,17 @@ onMounted(async () => {
                 </section>
 
                 <section class="flex w-[46.44%] mr-4">
+
                   <section class="w-[45.33%] mr-[53px]">
                     <!-- <input type="search" placeholder="Search..." class="h-[38px] w-full rounded border border-[#D4D4D4] p-[10px]"> -->
                   </section>
 
                   <section class="flex">
+
                     <button
                       class="flex rounded border border-[#E4E4E4EE] mr-4 px-3 py-2"
                     >
+
                       <section class="h-full flex items-center mr-2">
                         <img src="/src/assets/svgs/FunnelSimple.svg" />
                       </section>
@@ -222,11 +231,13 @@ onMounted(async () => {
                       >
                         <span> Sort By </span>
                       </section>
+
                     </button>
 
                     <button
                       class="flex rounded border border-[#E4E4E4EE] px-3 py-2"
                     >
+
                       <section class="h-full flex items-center mr-2">
                         <img src="/src/assets/svgs/upload-03.svg" />
                       </section>
@@ -236,13 +247,17 @@ onMounted(async () => {
                       >
                         <span> Export csv </span>
                       </section>
+
                     </button>
+
                   </section>
+
                 </section>
 
                 <button class="h-full flex items-center">
                   <img src="/src/assets/svgs/dots-vertical.svg" />
                 </button>
+
               </div>
             </div>
           </section>
@@ -250,8 +265,11 @@ onMounted(async () => {
           <section>
             <DataTable :columns="columns" :data="data" />
           </section>
+
         </section>
+
       </section>
+
     </div>
   </main>
 </template>
