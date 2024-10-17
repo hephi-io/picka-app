@@ -4,17 +4,19 @@ import { columns } from "@/components/dashboard/column";
 import { type Shipping, shippings } from "@/services/index";
 import DataTable from "@/components/dashboard/data-table.vue";
 import WeekButton from "@/components/dashboard-components/shipments-components/week-button.vue"
-import NewShipment from "@/components/dashboard-components/mainsection-components/NewShipment.vue";
+import NewShipment from "@/components/dashboard-components/mainsection-components/NewShipment.vue"
+import ShipmentCard from "@/components/dashboard-components/shipments-components/shipment-card.vue"
+import ZPagination from "@/components/shared/z-pagination.vue";
 
-const data = ref<Shipping[]>([]);
+const data = ref<Shipping[]>([])
 
 async function getData(): Promise<Shipping[]> {
-  return shippings;
+  return shippings
 }
 
 onMounted(async () => {
   data.value = await getData();
-});
+})
 </script>
 
 <template>
@@ -41,162 +43,78 @@ onMounted(async () => {
 
       <section>
 
-        <section class="h-[142px] flex justify-between mb-6">
+        <section class="flex justify-between mb-6">
 
-          <section class="w-[23.58%] rounded-lg px-5 py-[22px] bg-[#F9F9F9]">
-            <div>
+          <shipment-card 
+            image-url="/src/assets/svgs/package.svg" 
+            title="Total shipment"
+          >
+            <div class="flex">
 
-              <section class="mb-[30px]">
-                <img src="/src/assets/svgs/package.svg" />
+              <section class="mr-[15px]">
+                <span
+                  class="font-bold text-2xl leading-6 tracking-[-3%] text-[#242424]"
+                >
+                  19,329
+                </span>
               </section>
 
-              <section class="flex">
+              <section class="flex items-center">
 
-                <section class="mr-[15px]">
+                <section class="h-[41%] flex items-center mr-[6px]">
+                  <img src="/src/assets/svgs/arrow-up.svg" />
+                </section>
 
-                  <section class="mb-2">
+                <section class="flex items-center">
+                  <div>
                     <span
-                      class="inter-medium font-medium text-xs leading-3 tracking-[-3%] text-[#8B9293]"
+                      class="font-semibold text-xs leading-3 text-[#307AE4]"
                     >
-                      Total shipment
+                      758
                     </span>
-                  </section>
-
-                  <section>
                     <span
-                      class="tt-firs-neue-bold font-bold text-2xl leading-6 tracking-[-3%] text-[#242424]"
+                      class="font-normal text-[11px] leading-[11px] text-[#8B9293]"
                     >
-                      19,329
+                      Items
                     </span>
-                  </section>
-
-                </section>
-
-                <section class="flex items-end pb-[3px]">
-
-                  <section class="h-[45%] flex items-center mr-[6px]">
-                    <img src="/src/assets/svgs/arrow-up.svg" />
-                  </section>
-
-                  <section class="flex items-center">
-                    <div>
-
-                      <span
-                        class="inter-semibold font-semibold text-xs leading-3 text-[#307AE4]"
-                      >
-                        758
-                      </span>
-                      <span
-                        class="inter-normal font-normal text-[11px] leading-[11px] text-[#8B9293]"
-                      >
-                        Items
-                      </span>
-
-                    </div>
-                  </section>
-
+                  </div>
                 </section>
 
               </section>
 
             </div>
-          </section>
+          </shipment-card>
 
-          <section class="w-[23.58%] rounded-lg px-5 py-[22px] bg-[#F9F9F9]">
-            <div>
+          <shipment-card
+            image-url="/src/assets/svgs/delivery-truck-01.svg"
+            title="In transit"
+          >
+            <span class="font-bold text-2xl leading-6 tracking-[-3%] text-[#242424]">
+              12,000
+            </span>
+          </shipment-card>
 
-              <section class="mb-[30px]">
-                <img src="/src/assets/svgs/delivery-truck-01.svg" />
-              </section>
+          <shipment-card
+            image-url="/src/assets/svgs/package-process.svg"
+            title="Pending packages"
+          >
+            <span class="font-bold text-2xl leading-6 tracking-[-3%] text-[#242424]">
+              800
+            </span>
+          </shipment-card>
 
-              <section class="mr-[15px]">
-
-                <section class="mb-2">
-                  <span
-                    class="inter-medium font-medium text-xs leading-3 tracking-[-3%] text-[#8B9293]"
-                  >
-                    In transit
-                  </span>
-                </section>
-
-                <section>
-                  <span
-                    class="tt-firs-neue-bold font-bold text-2xl leading-6 tracking-[-3%] text-[#242424]"
-                  >
-                    12,000
-                  </span>
-                </section>
-
-              </section>
-
-            </div>
-          </section>
-
-          <section class="w-[23.58%] rounded-lg px-5 py-[22px] bg-[#F9F9F9]">
-            <div>
-
-              <section class="mb-[30px]">
-                <img src="/src/assets/svgs/package-process.svg" />
-              </section>
-
-              <section class="mr-[15px]">
-
-                <section class="mb-2">
-                  <span
-                    class="inter-medium font-medium text-xs leading-3 tracking-[-3%] text-[#8B9293]"
-                  >
-                    Pending packages
-                  </span>
-                </section>
-
-                <section>
-                  <span
-                    class="tt-firs-neue-bold font-bold text-2xl leading-6 tracking-[-3%] text-[#242424]"
-                  >
-                    800
-                  </span>
-                </section>
-
-              </section>
-
-            </div>
-          </section>
-
-          <section class="w-[23.58%] rounded-lg px-5 py-[22px] bg-[#F9F9F9]">
-            <div>
-
-              <section class="mb-[30px]">
-                <img src="/src/assets/svgs/delivery-box-02.svg" />
-              </section>
-
-              <section class="mr-[15px]">
-
-                <section class="mb-2">
-                  <span
-                    class="inter-medium font-medium text-xs leading-3 tracking-[-3%] text-[#8B9293]"
-                  >
-                    Delivered
-                  </span>
-                </section>
-
-                <section>
-                  <span
-                    class="tt-firs-neue-bold font-bold text-2xl leading-6 tracking-[-3%] text-[#242424]"
-                  >
-                    657
-                  </span>
-                </section>
-
-              </section>
-
-            </div>
-          </section>
+          <shipment-card
+            image-url="/src/assets/svgs/delivery-box-02.svg"
+            title="Delivered"
+          >
+            <span class="font-bold text-2xl leading-6 tracking-[-3%] text-[#242424]">
+              657
+            </span>
+          </shipment-card>
 
         </section>
 
-        <section
-          class="rounded-xl rounded-b-none border border-[#E4E7EC] bg-white"
-        >
+        <section class="rounded-xl rounded-b-none border border-[#E4E7EC] bg-white">
 
           <section>
             <div class="h-[79px] px-6 py-5">
@@ -263,7 +181,10 @@ onMounted(async () => {
           </section>
 
           <section>
+
             <DataTable :columns="columns" :data="data" />
+            <z-pagination />
+            
           </section>
 
         </section>
