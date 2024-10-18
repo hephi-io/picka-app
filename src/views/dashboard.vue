@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import { animate, stagger } from "motion";
 import NewShipment from "@/components/dashboard-components/mainsection-components/NewShipment.vue";
 import AccountBalance from "@/components/dashboard-components/mainsection-components/AccountBalance.vue";
 
@@ -17,12 +18,18 @@ async function getData(): Promise<Shipping[]> {
 
 onMounted(async () => {
   data.value = await getData();
+
+  animate(
+    ".animation-slide-up",
+    { y: [20, 0], opacity: [0, 1] },
+    { duration: 0.5, delay: stagger(0.1) }
+  );
 });
 </script>
 
 <template>
   <main>
-    <header class="flex justify-between mb-10 pt-6">
+    <header class="flex justify-between mb-10 pt-6 animation-slide-up">
       <div>
         <div
           class="text-sm leading-[14px] tracking-[-3%] text-[#676767] mb-2.5"
@@ -40,7 +47,7 @@ onMounted(async () => {
       <NewShipment />
     </header>
 
-    <section class="w-[420px]">
+    <section class="w-[420px] animation-slide-up">
       <section
         class="flex flex-col rounded-lg border border-[#E5E5E5] px-5 pt-4 pb-5 bg-[#F9F9F9]"
       >
@@ -174,7 +181,7 @@ onMounted(async () => {
       </section>
     </section>
 
-    <section class="mt-9 rounded-xl border border-[#E4E7EC]">
+    <section class="mt-9 rounded-xl border border-[#E4E7EC] animation-slide-up">
       <section class="px-6 py-6 flex items-center">
         <div class="font-semibold">Recent Orders</div>
       </section>
