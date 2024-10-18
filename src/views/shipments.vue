@@ -9,6 +9,10 @@ import WeekButton from "@/components/dashboard-components/shipments-components/w
 import NewShipment from "@/components/shared/NewShipment.vue";
 import ShipmentCard from "@/components/dashboard-components/shipments-components/shipment-card.vue";
 import ZPagination from "@/components/shared/z-pagination.vue";
+import ArrowUp from "@/assets/svgs/arrow-up.svg";
+import FunnelSimple from "@/assets/svgs/FunnelSimple.svg";
+import Upload from "@/assets/svgs/upload-03.svg";
+import VerticalDots from "@/assets/svgs/dots-vertical.svg";
 
 const data = ref<Shipping[]>([]);
 
@@ -61,7 +65,7 @@ onMounted(async () => {
 
           <section class="flex items-center">
             <section class="h-[41%] flex items-center mr-[6px]">
-              <img src="/src/assets/svgs/arrow-up.svg" />
+              <ArrowUp />
             </section>
 
             <section class="flex items-center">
@@ -115,8 +119,56 @@ onMounted(async () => {
     </section>
 
     <section class="rounded-xl border border-[#E4E7EC] animation-slide-up">
-      <section class="px-6 py-6 flex items-center">
-        <div class="font-semibold">Recent Orders</div>
+      <section>
+        <div class="h-[79px] px-6 py-5">
+          <div class="flex h-full">
+            <section class="w-[45.67%] h-full flex items-center mr-4">
+              <span class="font-semibold text-lg text-[#101828]">
+                Recent Orders
+              </span>
+            </section>
+
+            <section class="flex w-[46.44%] mr-4">
+              <section class="w-[45.33%] mr-[53px]">
+                <!-- <input type="search" placeholder="Search..." class="h-[38px] w-full rounded border border-[#D4D4D4] p-[10px]"> -->
+              </section>
+
+              <section class="flex">
+                <button
+                  class="flex rounded border border-[#E4E4E4EE] mr-4 px-3 py-2"
+                >
+                  <section class="h-full flex items-center mr-2">
+                    <FunnelSimple />
+                  </section>
+
+                  <section
+                    class="font-medium text-sm leading-[21px] text-[#404D61]"
+                  >
+                    <span> Sort By </span>
+                  </section>
+                </button>
+
+                <button
+                  class="flex rounded border border-[#E4E4E4EE] px-3 py-2"
+                >
+                  <section class="h-full flex items-center mr-2">
+                    <Upload />
+                  </section>
+
+                  <section
+                    class="font-medium text-sm leading-[21px] text-[#404D61]"
+                  >
+                    <span> Export csv </span>
+                  </section>
+                </button>
+              </section>
+            </section>
+
+            <button class="h-full flex items-center">
+              <VerticalDots />
+            </button>
+          </div>
+        </div>
       </section>
 
       <section>
