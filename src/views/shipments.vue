@@ -1,12 +1,16 @@
 <script setup lang="ts">
-import { onMounted, ref } from "vue"
-import { columns } from "@/components/dashboard/column"
-import { type Shipping, shippings } from "@/services/index"
-import DataTable from "@/components/dashboard/data-table.vue"
-import WeekButton from "@/components/dashboard-components/shipments-components/week-button.vue"
-import NewShipment from "@/components/shared/NewShipment.vue"
-import ShipmentCard from "@/components/dashboard-components/shipments-components/shipment-card.vue"
-import ZPagination from "@/components/shared/z-pagination.vue"
+import { onMounted, ref } from "vue";
+import { columns } from "@/components/dashboard/column";
+import { type Shipping, shippings } from "@/services/index";
+import DataTable from "@/components/dashboard/data-table.vue";
+import WeekButton from "@/components/dashboard-components/shipments-components/week-button.vue";
+import NewShipment from "@/components/shared/NewShipment.vue";
+import ShipmentCard from "@/components/dashboard-components/shipments-components/shipment-card.vue";
+import ZPagination from "@/components/shared/z-pagination.vue";
+import ArrowUp from "@/assets/svgs/arrow-up.svg";
+import FunnelSimple from "@/assets/svgs/FunnelSimple.svg";
+import Upload from "@/assets/svgs/upload-03.svg";
+import VerticalDots from "@/assets/svgs/dots-vertical.svg";
 
 const data = ref<Shipping[]>([]);
 
@@ -53,7 +57,7 @@ onMounted(async () => {
 
               <section class="flex items-center">
                 <section class="h-[41%] flex items-center mr-[6px]">
-                  <img src="/src/assets/svgs/arrow-up.svg" />
+                  <ArrowUp />
                 </section>
 
                 <section class="flex items-center">
@@ -108,16 +112,12 @@ onMounted(async () => {
           </shipment-card>
         </section>
 
-        <section
-          class="rounded-xl rounded-b-none border border-[#E4E7EC] bg-white"
-        >
+        <section class="rounded-xl border border-[#E4E7EC] bg-white">
           <section>
             <div class="h-[79px] px-6 py-5">
               <div class="flex h-full">
                 <section class="w-[45.67%] h-full flex items-center mr-4">
-                  <span
-                    class="inter-semibold font-semibold text-lg text-[#101828]"
-                  >
+                  <span class="font-semibold text-lg text-[#101828]">
                     Recent Orders
                   </span>
                 </section>
@@ -132,11 +132,11 @@ onMounted(async () => {
                       class="flex rounded border border-[#E4E4E4EE] mr-4 px-3 py-2"
                     >
                       <section class="h-full flex items-center mr-2">
-                        <img src="/src/assets/svgs/FunnelSimple.svg" />
+                        <FunnelSimple />
                       </section>
 
                       <section
-                        class="inter-medium font-medium text-sm leading-[21px] text-[#404D61]"
+                        class="font-medium text-sm leading-[21px] text-[#404D61]"
                       >
                         <span> Sort By </span>
                       </section>
@@ -146,11 +146,11 @@ onMounted(async () => {
                       class="flex rounded border border-[#E4E4E4EE] px-3 py-2"
                     >
                       <section class="h-full flex items-center mr-2">
-                        <img src="/src/assets/svgs/upload-03.svg" />
+                        <Upload />
                       </section>
 
                       <section
-                        class="inter-medium font-medium text-sm leading-[21px] text-[#404D61]"
+                        class="font-medium text-sm leading-[21px] text-[#404D61]"
                       >
                         <span> Export csv </span>
                       </section>
@@ -159,7 +159,7 @@ onMounted(async () => {
                 </section>
 
                 <button class="h-full flex items-center">
-                  <img src="/src/assets/svgs/dots-vertical.svg" />
+                  <VerticalDots />
                 </button>
               </div>
             </div>
@@ -167,6 +167,11 @@ onMounted(async () => {
 
           <section>
             <DataTable :columns="columns" :data="data" />
+          </section>
+
+          <section
+            class="h-[68px] flex items-center justify-center border-t px-4"
+          >
             <z-pagination />
           </section>
         </section>

@@ -1,7 +1,6 @@
 <script setup lang="ts">
 import { animate, stagger } from "motion";
 import NewShipment from "@/components/shared/NewShipment.vue"
-import AccountBalance from "@/components/dashboard-components/mainsection-components/AccountBalance.vue";
 
 import { Button } from "@/components/ui/button";
 import { onMounted, ref } from "vue";
@@ -9,6 +8,7 @@ import { columns } from "@/components/dashboard/column";
 import { type Shipping, shippings } from "@/services/index";
 import DataTable from "@/components/dashboard/data-table.vue";
 import ZPagination from "@/components/shared/z-pagination.vue";
+import Money from "@/assets/svgs/money-02.svg" 
 
 const data = ref<Shipping[]>([]);
 
@@ -52,7 +52,7 @@ onMounted(async () => {
         class="flex flex-col rounded-lg border border-[#E5E5E5] px-5 pt-4 pb-5 bg-[#F9F9F9]"
       >
         <section class="mb-[30px] flex items-center justify-between">
-          <img src="@/assets/svgs/money-02.svg" />
+          <Money />
 
           <svg
             width="46"
