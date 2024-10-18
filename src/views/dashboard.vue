@@ -1,6 +1,6 @@
 <script setup lang="ts">
-import NewShipment from "@/components/dashboard-components/mainsection-components/NewShipment.vue";
-import AccountBalance from "@/components/dashboard-components/mainsection-components/AccountBalance.vue";
+import NewShipment from "@/components/shared/NewShipment.vue"
+import AccountBalance from "@/components/dashboard-components/mainsection-components/AccountBalance.vue"
 
 import { Button } from "@/components/ui/button";
 import { onMounted, ref } from "vue";

@@ -1,12 +1,12 @@
 <script setup lang="ts">
-import { onMounted, ref } from "vue";
-import { columns } from "@/components/dashboard/column";
-import { type Shipping, shippings } from "@/services/index";
-import DataTable from "@/components/dashboard/data-table.vue";
+import { onMounted, ref } from "vue"
+import { columns } from "@/components/dashboard/column"
+import { type Shipping, shippings } from "@/services/index"
+import DataTable from "@/components/dashboard/data-table.vue"
 import WeekButton from "@/components/dashboard-components/shipments-components/week-button.vue"
-import NewShipment from "@/components/dashboard-components/mainsection-components/NewShipment.vue"
+import NewShipment from "@/components/shared/NewShipment.vue"
 import ShipmentCard from "@/components/dashboard-components/shipments-components/shipment-card.vue"
-import ZPagination from "@/components/shared/z-pagination.vue";
+import ZPagination from "@/components/shared/z-pagination.vue"
 
 const data = ref<Shipping[]>([])
 
