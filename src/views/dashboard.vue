@@ -22,22 +22,19 @@ onMounted(async () => {
 
 <template>
   <main>
-    <header class="flex justify-between mb-9">
+    <header class="flex justify-between mb-10 pt-6">
       <div>
-        <section class="mb-1">
-          <!-- <span>{{ `Hi ${person.firstName}` }}</span> -->
-          <span class="text-sm leading-[14px] tracking-[-3%] text-[#676767]">
-            Hello Melody,
-          </span>
-        </section>
+        <div
+          class="text-sm leading-[14px] tracking-[-3%] text-[#676767] mb-2.5"
+        >
+          Hello Melody,
+        </div>
 
-        <section>
-          <span
-            class="space-mono font-semibold text-[26px] leading-[26px] tracking-[-3%] text-[#242424]"
-          >
-            Good Morning
-          </span>
-        </section>
+        <h1
+          class="space-mono font-semibold text-[26px] leading-[26px] tracking-[-3%] text-[#242424]"
+        >
+          Good Morning
+        </h1>
       </div>
 
       <NewShipment />
@@ -178,8 +175,8 @@ onMounted(async () => {
     </section>
 
     <section class="mt-9 rounded-xl border border-[#E4E7EC]">
-      <section class="h-[78px] flex items-center px-4">
-        <div>Recent Orders</div>
+      <section class="px-6 py-6 flex items-center">
+        <div class="font-semibold">Recent Orders</div>
       </section>
 
       <section>
