@@ -6,7 +6,7 @@
       <section class="mb-4">
         <section class="flex justify-center mb-2">
           <span
-            class="inter-medium font-medium text-[10px] leading-3 tracking-[0.4px] text-[#757575]"
+            class="font-medium text-[10px] leading-3 tracking-[0.4px] text-[#757575]"
           >
             MAIN
           </span>
