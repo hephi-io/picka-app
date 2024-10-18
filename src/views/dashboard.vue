@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { animate, stagger } from "motion";
-import NewShipment from "@/components/shared/NewShipment.vue"
+import NewShipment from "@/components/shared/NewShipment.vue";
 
 import { Button } from "@/components/ui/button";
 import { onMounted, ref } from "vue";
@@ -8,7 +8,7 @@ import { columns } from "@/components/dashboard/column";
 import { type Shipping, shippings } from "@/services/index";
 import DataTable from "@/components/dashboard/data-table.vue";
 import ZPagination from "@/components/shared/z-pagination.vue";
-import Money from "@/assets/svgs/money-02.svg" 
+import Money from "@/assets/svgs/money-02.svg";
 
 const data = ref<Shipping[]>([]);
 
