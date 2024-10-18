@@ -1,6 +1,6 @@
 <template>
   <main>
-    <header class="flex justify-between mb-10 pt-6">
+    <header class="flex justify-between mb-10 pt-6 animation-slide-up">
       <h1
         class="space-mono font-semibold text-[26px] leading-[26px] tracking-[-3%] text-[#242424]"
       >
@@ -8,7 +8,7 @@
       </h1>
     </header>
 
-    <section class="flex gap-x-6">
+    <section class="flex gap-x-6 animation-slide-up">
       <div
         class="w-[359px] border border-[#e4e7ec] rounded-lg h-[437px] px-6 py-5"
       >
@@ -546,7 +546,9 @@
       </div>
     </section>
 
-    <section class="mt-10 rounded-xl border border-[#E4E7EC]">
+    <section
+      class="mt-10 rounded-xl border border-[#E4E7EC] animation-slide-up"
+    >
       <section class="px-6 py-5">
         <div class="mb-5 font-semibold">Recent Transaction History</div>
 
@@ -634,7 +636,8 @@
 </template>
 
 <script setup lang="ts">
-import { h } from "vue";
+import { h, onMounted } from "vue";
+import { animate, stagger } from "motion";
 
 import { Button } from "@/components/ui/button";
 import DataTable from "@/components/dashboard/data-table.vue";
@@ -745,6 +748,14 @@ const columns: ColumnDef<Shipping>[] = [
     },
   },
 ];
+
+onMounted(() => {
+  animate(
+    ".animation-slide-up",
+    { y: [20, 0], opacity: [0, 1] },
+    { duration: 0.5, delay: stagger(0.1) }
+  );
+});
 </script>
 
 <style scoped>

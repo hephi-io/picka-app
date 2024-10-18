@@ -17,6 +17,7 @@
     "class-variance-authority": "^0.7.0",
     "clsx": "^2.1.1",
     "lucide-vue-next": "^0.447.0",
+    "motion": "^10.18.0",
     "pinia": "^2.1.7",
     "radix-vue": "^1.9.6",
     "tailwind-merge": "^2.5.3",
