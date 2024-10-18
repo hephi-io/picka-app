@@ -8,27 +8,24 @@ import NewShipment from "@/components/shared/NewShipment.vue"
 import ShipmentCard from "@/components/dashboard-components/shipments-components/shipment-card.vue"
 import ZPagination from "@/components/shared/z-pagination.vue"
 
-const data = ref<Shipping[]>([])
+const data = ref<Shipping[]>([]);
 
 async function getData(): Promise<Shipping[]> {
-  return shippings
+  return shippings;
 }
 
 onMounted(async () => {
   data.value = await getData();
-})
+});
 </script>
 
 <template>
   <main class="">
     <div>
-
       <header class="flex justify-between items-center mb-[52px]">
-
         <h1 class="space-mono font-semibold text-2xl">Shippings</h1>
 
         <section class="flex">
-
           <section class="flex mr-4">
             <WeekButton />
           </section>
@@ -36,21 +33,16 @@ onMounted(async () => {
           <section>
             <NewShipment />
           </section>
-
         </section>
-
       </header>
 
       <section>
-
         <section class="flex justify-between mb-6">
-
-          <shipment-card 
-            image-url="/src/assets/svgs/package.svg" 
+          <shipment-card
+            image-url="/src/assets/svgs/package.svg"
             title="Total shipment"
           >
             <div class="flex">
-
               <section class="mr-[15px]">
                 <span
                   class="font-bold text-2xl leading-6 tracking-[-3%] text-[#242424]"
@@ -60,7 +52,6 @@ onMounted(async () => {
               </section>
 
               <section class="flex items-center">
-
                 <section class="h-[41%] flex items-center mr-[6px]">
                   <img src="/src/assets/svgs/arrow-up.svg" />
                 </section>
@@ -79,9 +70,7 @@ onMounted(async () => {
                     </span>
                   </div>
                 </section>
-
               </section>
-
             </div>
           </shipment-card>
 
@@ -89,7 +78,9 @@ onMounted(async () => {
             image-url="/src/assets/svgs/delivery-truck-01.svg"
             title="In transit"
           >
-            <span class="font-bold text-2xl leading-6 tracking-[-3%] text-[#242424]">
+            <span
+              class="font-bold text-2xl leading-6 tracking-[-3%] text-[#242424]"
+            >
               12,000
             </span>
           </shipment-card>
@@ -98,7 +89,9 @@ onMounted(async () => {
             image-url="/src/assets/svgs/package-process.svg"
             title="Pending packages"
           >
-            <span class="font-bold text-2xl leading-6 tracking-[-3%] text-[#242424]">
+            <span
+              class="font-bold text-2xl leading-6 tracking-[-3%] text-[#242424]"
+            >
               800
             </span>
           </shipment-card>
@@ -107,19 +100,20 @@ onMounted(async () => {
             image-url="/src/assets/svgs/delivery-box-02.svg"
             title="Delivered"
           >
-            <span class="font-bold text-2xl leading-6 tracking-[-3%] text-[#242424]">
+            <span
+              class="font-bold text-2xl leading-6 tracking-[-3%] text-[#242424]"
+            >
               657
             </span>
           </shipment-card>
-
         </section>
 
-        <section class="rounded-xl rounded-b-none border border-[#E4E7EC] bg-white">
-
+        <section
+          class="rounded-xl rounded-b-none border border-[#E4E7EC] bg-white"
+        >
           <section>
             <div class="h-[79px] px-6 py-5">
               <div class="flex h-full">
-
                 <section class="w-[45.67%] h-full flex items-center mr-4">
                   <span
                     class="inter-semibold font-semibold text-lg text-[#101828]"
@@ -129,17 +123,14 @@ onMounted(async () => {
                 </section>
 
                 <section class="flex w-[46.44%] mr-4">
-
                   <section class="w-[45.33%] mr-[53px]">
                     <!-- <input type="search" placeholder="Search..." class="h-[38px] w-full rounded border border-[#D4D4D4] p-[10px]"> -->
                   </section>
 
                   <section class="flex">
-
                     <button
                       class="flex rounded border border-[#E4E4E4EE] mr-4 px-3 py-2"
                     >
-
                       <section class="h-full flex items-center mr-2">
                         <img src="/src/assets/svgs/FunnelSimple.svg" />
                       </section>
@@ -149,13 +140,11 @@ onMounted(async () => {
                       >
                         <span> Sort By </span>
                       </section>
-
                     </button>
 
                     <button
                       class="flex rounded border border-[#E4E4E4EE] px-3 py-2"
                     >
-
                       <section class="h-full flex items-center mr-2">
                         <img src="/src/assets/svgs/upload-03.svg" />
                       </section>
@@ -165,32 +154,23 @@ onMounted(async () => {
                       >
                         <span> Export csv </span>
                       </section>
-
                     </button>
-
                   </section>
-
                 </section>
 
                 <button class="h-full flex items-center">
                   <img src="/src/assets/svgs/dots-vertical.svg" />
                 </button>
-
               </div>
             </div>
           </section>
 
           <section>
-
             <DataTable :columns="columns" :data="data" />
             <z-pagination />
-            
           </section>
-
         </section>
-
       </section>
-
     </div>
   </main>
 </template>

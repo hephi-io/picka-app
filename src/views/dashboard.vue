@@ -1,6 +1,7 @@
 <script setup lang="ts">
+import { animate, stagger } from "motion";
 import NewShipment from "@/components/shared/NewShipment.vue"
-import AccountBalance from "@/components/dashboard-components/mainsection-components/AccountBalance.vue"
+import AccountBalance from "@/components/dashboard-components/mainsection-components/AccountBalance.vue";
 
 import { Button } from "@/components/ui/button";
 import { onMounted, ref } from "vue";
@@ -17,33 +18,36 @@ async function getData(): Promise<Shipping[]> {
 
 onMounted(async () => {
   data.value = await getData();
+
+  animate(
+    ".animation-slide-up",
+    { y: [20, 0], opacity: [0, 1] },
+    { duration: 0.5, delay: stagger(0.1) }
+  );
 });
 </script>
 
 <template>
   <main>
-    <header class="flex justify-between mb-9">
+    <header class="flex justify-between mb-10 pt-6 animation-slide-up">
       <div>
-        <section class="mb-1">
-          <!-- <span>{{ `Hi ${person.firstName}` }}</span> -->
-          <span class="text-sm leading-[14px] tracking-[-3%] text-[#676767]">
-            Hello Melody,
-          </span>
-        </section>
+        <div
+          class="text-sm leading-[14px] tracking-[-3%] text-[#676767] mb-2.5"
+        >
+          Hello Melody,
+        </div>
 
-        <section>
-          <span
-            class="space-mono font-semibold text-[26px] leading-[26px] tracking-[-3%] text-[#242424]"
-          >
-            Good Morning
-          </span>
-        </section>
+        <h1
+          class="space-mono font-semibold text-[26px] leading-[26px] tracking-[-3%] text-[#242424]"
+        >
+          Good Morning
+        </h1>
       </div>
 
       <NewShipment />
     </header>
 
-    <section class="w-[420px]">
+    <section class="w-[420px] animation-slide-up">
       <section
         class="flex flex-col rounded-lg border border-[#E5E5E5] px-5 pt-4 pb-5 bg-[#F9F9F9]"
       >
@@ -177,9 +181,9 @@ onMounted(async () => {
       </section>
     </section>
 
-    <section class="mt-9 rounded-xl border border-[#E4E7EC]">
-      <section class="h-[78px] flex items-center px-4">
-        <div>Recent Orders</div>
+    <section class="mt-9 rounded-xl border border-[#E4E7EC] animation-slide-up">
+      <section class="px-6 py-6 flex items-center">
+        <div class="font-semibold">Recent Orders</div>
       </section>
 
       <section>
