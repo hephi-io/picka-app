@@ -1,8 +1,21 @@
 <script setup>
 import { ref } from "vue";
+import { Loader2 } from "lucide-vue-next";
+import { useRouter } from "vue-router";
+
+import { login } from "@/services";
+import { token } from "@/utils";
+
+const router = useRouter();
 
 const isSignup = ref(true);
 const isSignin = ref(false);
+const user = ref({
+  email: "",
+  password: "",
+});
+
+const isSubmitting = ref(false);
 
 const activeButtonStyle = ref("w-1/2 rounded-lg py-2 bg-[#FF7C33]");
 const inactiveButtonStyle = ref("w-1/2 rounded-lg py-2");
@@ -31,6 +44,19 @@ const imageList = ref([
 ]);
 
 const imageUrl = imageList.value[2];
+
+const handleLogin = async () => {
+  try {
+    isSubmitting.value = true;
+    const response = await login(user.value);
+    token.login(response.data.data.token);
+    router.push("/");
+  } catch (error) {
+    console.log(error);
+  } finally {
+    isSubmitting.value = false;
+  }
+};
 </script>
 
 <template>
@@ -106,6 +132,7 @@ const imageUrl = imageList.value[2];
                       name="email"
                       placeholder="Email"
                       class="w-full rounded-xl px-4 py-2 border border-[#0F0F0F40] shadow-sm"
+                      v-model="user.email"
                     />
                   </div>
                 </div>
@@ -132,6 +159,7 @@ const imageUrl = imageList.value[2];
                         name="password"
                         placeholder="Enter Password"
                         class="w-full rounded-xl px-4 py-2 border border-[#0F0F0F40] shadow-sm"
+                        v-model="user.password"
                       />
                     </div>
                   </div>
@@ -191,11 +219,16 @@ const imageUrl = imageList.value[2];
                 <!-- Create account -->
                 <div class="mb-4">
                   <button
-                    class="w-full rounded-full py-[10px] bg-gradient-to-r from-[#FF7C33] to-[#FA3105]"
-                    @click="$router.push('/dashboard')"
+                    class="w-full rounded-full py-[10px] bg-gradient-to-r from-[#FF7C33] to-[#FA3105] flex items-center justify-center"
+                    @click="handleLogin"
                   >
+                    <Loader2
+                      class="w-5 h-5 mr-2 animate-spin text-white"
+                      v-if="isSubmitting"
+                    />
+
                     <span
-                      class="font-bold text-base leading-[19.36px] text-white text-center"
+                      class="font-bold text-base leading-[19.36px] text-white"
                     >
                       {{ isSignup ? "Create Account" : "Login" }}
                     </span>
