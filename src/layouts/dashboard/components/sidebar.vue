@@ -1,17 +1,13 @@
 <template>
   <aside
-    class="w-[92px] h-[850px] rounded-lg border border-[#E5E5E5] bg-white p-6"
+    class="w-[92px] h-[850px] rounded-lg border border-[#E5E5E5] bg-white py-6 flex flex-col justify-between"
   >
-    <section class="mb-4">
-      <section class="mb-4">
-        <section class="flex justify-center mb-2">
-          <span
-            class="font-medium text-[10px] leading-3 tracking-[0.4px] text-[#757575]"
-          >
-            MAIN
-          </span>
-        </section>
-      </section>
+    <section class="mb-2 flex flex-col items-center">
+      <div
+        class="font-medium text-[10px] leading-3 tracking-[0.4px] text-[#757575] text-center mb-2"
+      >
+        MAIN
+      </div>
 
       <div class="relative flex flex-col gap-y-3">
         <div
@@ -39,49 +35,50 @@
           />
         </button>
       </div>
+
+      <div class="border-b border-b-[#E5E5E5] mb-5 mt-5 w-[44px]"></div>
+
+      <div
+        class="font-medium text-[10px] tracking-[0.4px] text-[#757575] text-center mb-2"
+      >
+        SETTINGS
+      </div>
+
+      <button class="z-10 h-[44px] w-[44px] flex items-center justify-center">
+        <Settings />
+      </button>
     </section>
 
-    <div class="border-b border-b-[#E5E5E5] mb-4" v-if="false"></div>
+    <section class="flex flex-col items-center">
+      <button
+        class="z-10 h-[44px] w-[44px] flex items-center justify-center text-[#757575] hover:text-[#FF7830] mb-3"
+      >
+        <MessageQuestion />
+      </button>
 
-    <div class="flex flex-col justify-between border flex-grow" v-if="false">
-      <section>
-        <section class="flex justify-center mb-2">
-          <span
-            class="inter-medium font-medium text-[10px] leading-3 tracking-[0.4px] text-[#757575]"
-          >
-            SETTINGS
-          </span>
-        </section>
-
-        <section>
-          <button class="rounded-lg p-3">
-            <img src="/src/assets/svgs/setting-01.svg" />
-          </button>
-        </section>
-      </section>
-
-      <section>
-        <section class="mb-[26px]">
-          <button class="rounded-lg p-3">
-            <img src="/src/assets/svgs/message-question.svg" />
-          </button>
-        </section>
-
-        <section>
-          <button class="rounded-lg p-3">
-            <img src="/src/assets/svgs/logout-03.svg" />
-          </button>
-        </section>
-      </section>
-    </div>
+      <button
+        class="z-10 h-[44px] w-[44px] flex items-center justify-center text-[#757575] hover:text-[#FF7830]"
+        @click="handleLogout"
+      >
+        <Logout />
+      </button>
+    </section>
   </aside>
 </template>
 
 <script setup lang="ts">
 import { ref } from "vue";
+import { useRouter } from "vue-router";
+
 import Category from "@/assets/svgs/Category.svg";
 import Wallet from "@/assets/svgs/wallet-02.svg";
 import Shipments from "@/assets/svgs/shipments.svg";
+import Settings from "@/assets/svgs/setting-01.svg";
+import Logout from "@/assets/svgs/logout-03.svg";
+import MessageQuestion from "@/assets/svgs/message-question.svg";
+import { token } from "@/utils";
+
+const router = useRouter();
 
 const selectedNavItemOffset = ref(0);
 
@@ -90,6 +87,11 @@ const mainNavItems = [
   { name: "Wallet", icon: Wallet, href: "/wallets", offset: 56 },
   { name: "Shipments", icon: Shipments, href: "/shipments", offset: 112 },
 ];
+
+const handleLogout = () => {
+  token.logout();
+  router.push("/auth");
+};
 </script>
 
 <style scoped></style>

@@ -25,7 +25,22 @@ const radioGroupValue = ref("single-shipment");
   <Dialog>
     <DialogTrigger>
       <Button class="px-4 py-3 gap-x-2">
-        <PlusSign />
+        <!-- <PlusSign /> -->
+        <svg
+          width="16"
+          height="17"
+          viewBox="0 0 16 17"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            d="M8.00033 2.86979V13.5365M13.3337 8.20312H2.66699"
+            stroke="white"
+            stroke-width="1.5"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          />
+        </svg>
 
         <div>
           <span

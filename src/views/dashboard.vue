@@ -76,7 +76,7 @@ onMounted(async () => {
           Available balance
         </div>
 
-        <div class="font-bold text-2xl text-[#101828]">
+        <div class="space-mono font-bold text-2xl text-[#101828]">
           40,000 <span class="text-[#9098A3] font-medium text-xs">NGN</span>
         </div>
       </section>

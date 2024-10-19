@@ -100,8 +100,8 @@
               <small class="text-white text-opacity-80 text-xs font-medium"
                 >Available balance</small
               >
-              <div class="space-mono text-white text-2xl">
-                40,000 <span class="text-xs">NGN</span>
+              <div class="space-mono font-bold text-white text-2xl">
+                40,000 <span class="text-xs font-medium">NGN</span>
               </div>
             </div>
 

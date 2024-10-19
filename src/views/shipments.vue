@@ -57,7 +57,7 @@ onMounted(async () => {
         <div class="flex">
           <section class="mr-[15px]">
             <span
-              class="font-bold text-2xl leading-6 tracking-[-3%] text-[#242424]"
+              class="space-mono font-bold text-2xl leading-6 tracking-[-3%] text-[#242424]"
             >
               19,329
             </span>
@@ -70,7 +70,9 @@ onMounted(async () => {
 
             <section class="flex items-center">
               <div>
-                <span class="font-semibold text-xs leading-3 text-[#307AE4]">
+                <span
+                  class="space-mono font-semibold text-xs leading-3 text-[#307AE4]"
+                >
                   758
                 </span>
                 <span
@@ -89,7 +91,7 @@ onMounted(async () => {
         title="In transit"
       >
         <span
-          class="font-bold text-2xl leading-6 tracking-[-3%] text-[#242424]"
+          class="space-mono font-bold text-2xl leading-6 tracking-[-3%] text-[#242424]"
         >
           12,000
         </span>
@@ -100,7 +102,7 @@ onMounted(async () => {
         title="Pending packages"
       >
         <span
-          class="font-bold text-2xl leading-6 tracking-[-3%] text-[#242424]"
+          class="space-mono font-bold text-2xl leading-6 tracking-[-3%] text-[#242424]"
         >
           800
         </span>
@@ -111,7 +113,7 @@ onMounted(async () => {
         title="Delivered"
       >
         <span
-          class="font-bold text-2xl leading-6 tracking-[-3%] text-[#242424]"
+          class="space-mono font-bold text-2xl leading-6 tracking-[-3%] text-[#242424]"
         >
           657
         </span>
