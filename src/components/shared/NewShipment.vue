@@ -16,9 +16,21 @@ import { Label } from "../ui/label";
 import { ChevronRightIcon } from "lucide-vue-next";
 import Package from "@/assets/svgs/package-black.svg";
 import PackageAdd from "@/assets/svgs/package-add.svg";
-import PlusSign from "@/assets/svgs/plus-sign.svg";
+import { useRouter } from "vue-router";
+// import PlusSign from "@/assets/svgs/plus-sign.svg";
 
-const radioGroupValue = ref("single-shipment");
+const router = useRouter();
+const radioGroupValue = ref("single");
+
+const handlePath = () => {
+
+  router.push(
+    { 
+      name: "payment", 
+      params: { name: radioGroupValue.value },
+    },
+  );
+}
 </script>
 
 <template>
@@ -69,19 +81,19 @@ const radioGroupValue = ref("single-shipment");
 
       <div>
         <RadioGroup
-          default-value="single-shipment"
+          default-value="single"
           class="mb-12"
           v-model="radioGroupValue"
         >
           <section class="mb-2">
             <Button
               :variant="
-                radioGroupValue === 'single-shipment' ? 'outline' : 'ghost'
+                radioGroupValue === 'single' ? 'outline' : 'ghost'
               "
               class="w-full justify-between"
             >
               <div class="flex items-center gap-x-4">
-                <RadioGroupItem id="single-shipment" value="single-shipment" />
+                <RadioGroupItem id="single-shipment" value="single" />
 
                 <div class="flex gap-x-2 items-center">
                   <Package class="w-6 h-6 text-[#09090B]" />
@@ -102,12 +114,12 @@ const radioGroupValue = ref("single-shipment");
           <section>
             <Button
               :variant="
-                radioGroupValue === 'bulk-shipment' ? 'outline' : 'ghost'
+                radioGroupValue === 'bulk' ? 'outline' : 'ghost'
               "
               class="w-full justify-between"
             >
               <div class="flex items-center gap-x-4">
-                <RadioGroupItem id="bulk-shipment" value="bulk-shipment" />
+                <RadioGroupItem id="bulk-shipment" value="bulk" />
 
                 <div class="flex gap-x-2 items-center">
                   <PackageAdd class="w-6 h-6" />
@@ -126,7 +138,7 @@ const radioGroupValue = ref("single-shipment");
           </section>
         </RadioGroup>
 
-        <Button class="w-full">
+        <Button class="w-full" @click="handlePath">
           <span class="font-medium text-[15px] leading-[18.15px] text-left">
             Continue
           </span>

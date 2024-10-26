@@ -8,6 +8,9 @@ import AuthPage from "@/components/AuthPage.vue";
 import DashboardLayout from "@/layouts/dashboard/index.vue";
 import Shipments from "@/views/shipments.vue";
 import Wallets from "@/views/wallets.vue";
+import PaymentLayout from "@/layouts/payment/index.vue";
+import SingleShipment from "@/views/single-shipment.vue";
+import BulkShipment from "@/views/bulk-shipment.vue";
 import { token } from "@/utils";
 
 const router = createRouter({
@@ -45,7 +48,7 @@ const router = createRouter({
     {
       path: "/",
       component: DashboardLayout,
-      meta: { requiresAuth: true },
+      // meta: { requiresAuth: true },
 
       // route level code-splitting
       // this generates a separate chunk (About.[hash].js) for this route
@@ -54,6 +57,23 @@ const router = createRouter({
         { name: "dashboard", path: "", component: DashboardPage },
         { name: "shipments", path: "shipments", component: Shipments },
         { name: "wallets", path: "wallets", component: Wallets },
+      ],
+    },
+    {
+      path: "/shipments/order/:name",
+      component: PaymentLayout,
+      name: "payment",
+      children: [
+        { 
+          name: "single-shipment",
+          path: "/single-shipment", 
+          component: SingleShipment, 
+        },
+        { 
+          name: "bulk-shipment",
+          path: "/bulk-shipment", 
+          component: BulkShipment, 
+        },
       ],
     },
   ],
