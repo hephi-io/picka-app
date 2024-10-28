@@ -3,6 +3,7 @@ import { Button } from '@/components/ui/button';
 import ChevronLeft from "@/assets/svgs/chevron-down-sharp.svg";
 import ArrowForward from "@/assets/svgs/arrow-forward.svg";
 import Delete from "@/assets/svgs/delete-03.svg";
+import OrderSummary from '@/components/shared/order-summary.vue';
 
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Label } from "@/components/ui/label";
@@ -334,40 +335,7 @@ import { Checkbox } from '@/components/ui/checkbox';
 
       </section>
 
-      <section class="w-[28.85%]">
-
-        <div class="rounded-xl border border-[#E4E7EC] shadow-sm shadow-[#1018280D] mb-4 px-6 pt-4 pb-6">
-
-          <section class="mb-6">
-            <span class="font-semibold text-base leading-7 text-[#101828]">
-              Summary
-            </span>
-          </section>
-
-          <div class="border-t border-t-[#E8EAEA] mb-6"></div>
-
-          <section class="rounded border border-[#E4E7EC] p-4 mb-6">
-
-            <section class="mb-6">
-              
-            </section>
-
-            <section>
-            </section>
-
-          </section>
-
-          <section></section>
-
-        </div>
-
-        <Button 
-          variant="outline"
-          class="w-full"
-        >
-        </Button>
-
-      </section>
+      <order-summary />
 
     </main>
 
