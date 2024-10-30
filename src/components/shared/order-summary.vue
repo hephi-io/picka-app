@@ -33,13 +33,13 @@ import PlusSign from "@/assets/svgs/plus-sign-(1).svg";
           class="rounded border border-[#E4E7EC] p-4"
         >
 
-          <AccordionTrigger class="p-0 mb-6">
+          <AccordionTrigger class="p-0 m-0">
             <span class="font-semibold text-base leading-[19.2px] text-[#101828]">
               Shipment item 1
             </span>
           </AccordionTrigger>
 
-          <AccordionContent class="p-0 m-0">
+          <AccordionContent class="p-0 mt-6">
 
             <ScrollArea class="h-[248px] mb-6">
               
