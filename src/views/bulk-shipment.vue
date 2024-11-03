@@ -3,6 +3,12 @@ import ChevronLeft from "@/assets/svgs/chevron-down-sharp.svg";
 import ArrowForward from "@/assets/svgs/arrow-forward.svg";
 import DotsVertical from "@/assets/svgs/dots-vertical.svg";
 import UploadIcon from "@/assets/svgs/upload-03.svg";
+import TwoDotsVertical from "@/assets/svgs/two-dots-vertical.svg";
+import Link from "@/assets/svgs/link-02.svg";
+import Trash from "@/assets/svgs/trash-01.svg";
+import ParcelBox from "@/assets/svgs/parcel-box-package-icon.svg";
+import MediumBox from "@/assets/svgs/medium-size-box.svg";
+import MiniBox from "@/assets/svgs/mini-size-box.svg";
 
 import { Button } from '@/components/ui/button';
 import { Label } from "@/components/ui/label";
@@ -32,6 +38,45 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu';
+import {
+  Table,
+  TableBody,
+  TableCaption,
+  TableCell,
+  TableHead,
+  TableHeader,
+  TableRow,
+} from '@/components/ui/table';
+import { ToggleGroup, ToggleGroupItem } from '@/components/ui/toggle-group';
+
+const recipientInfos = [
+
+  {
+    recipientName: "Olivia Rhye",
+    deliveryEmail: "olivia@untitledui.com",
+  },
+
+  {
+    recipientName: "Phoenix Baker",
+    deliveryEmail: "phoenix@untitledui.com",
+  },
+
+  {
+    recipientName: "Lana Steiner",
+    deliveryEmail: "lana@untitledui.com",
+  },
+
+  {
+    recipientName: "Phoenix Baker",
+    deliveryEmail: "phoenix@untitledui.com",
+  },
+
+  {
+    recipientName: "Lana Steiner",
+    deliveryEmail: "lana@untitledui.com",
+  },
+
+]
 </script>
 
 <template>
@@ -179,11 +224,11 @@ import {
       </section>
 
       <Tabs 
-        default-value="account"
+        default-value="recipient-info"
         class="rounded-xl border border-[#E4E7EC] shadow-sm shadow-[#1018280D]"
       >
 
-        <div class="px-6 pt-4">
+        <div class="px-6 pt-4 mb-4">
 
           <span class="font-semibold text-base leading-7 text-[#101828]">
             Bulk Shipment Info
@@ -194,17 +239,21 @@ import {
             <TabsList class="w-[373.99px] h-[42px] rounded-lg p-[5px] bg-[#F5F7FA]">
 
               <TabsTrigger
-                class="" 
-                value="account"
+                class="w-[183.99px] rounded-[3px] px-3 py-[6px] active:bg-white active:shadow-[0px_3px_1px_0px_#0000000A,_0px_3px_8px_0px_#0000001F]" 
+                value="recipient-info"
               >
-                Account
+                <span class="font-medium text-sm text-[#0F172A]">
+                  Recipient Info
+                </span>
               </TabsTrigger>
 
               <TabsTrigger
-                class="" 
-                value="password"
+                class="w-[183.99px] rounded-[3px] px-3 py-[6px] active:bg-white active:shadow-[0px_3px_1px_0px_#0000000A,_0px_3px_8px_0px_#0000001F]" 
+                value="item-details"
               >
-                Password
+                <span class="font-medium text-sm text-[#0F172A]">
+                  Item details
+                </span>
               </TabsTrigger>
 
             </TabsList>
@@ -249,12 +298,293 @@ import {
 
         </div>
 
-        <TabsContent value="account">
-          Make changes to your account here.
+        <div class="border-t border-t-[#E4E7EC]"></div>
+
+        <TabsContent 
+          value="recipient-info"
+          class="m-0 p-0"
+        >
+          <Table>
+
+            <TableHeader>
+              <TableRow class="bg-[#F9FAFB]">
+
+                <TableHead class="w-[5.18%]"></TableHead>
+                <TableHead class="w-[12.72%] py-3">Recipient Name</TableHead>
+                <TableHead class="w-[5.75%] py-3">Parcel No</TableHead>
+                <TableHead class="w-[15.53%] py-3">Delivery Email</TableHead>
+                <TableHead class="w-[11.14%] py-3">Phone Number</TableHead>
+                <TableHead class="w-[17.33%] py-3">Drop-Off Address</TableHead>
+                <TableHead class="w-[22%] py-3">Delivery Notes</TableHead>
+                <TableHead class="w-[5.18%]"></TableHead>
+                <TableHead class="w-[5.18%]"></TableHead>
+
+              </TableRow>
+            </TableHeader>
+
+            <TableBody>
+
+              <TableRow v-for="(recipientInfo, index) in recipientInfos" :key="index">
+
+                <TableCell>
+                  <button class="px-4 py-3">
+                    <TwoDotsVertical />
+                  </button>
+                </TableCell>
+
+                <TableCell>
+                  <div class="rounded-md border border-[#E4E7EC] px-4 py-3">
+                    <span class="font-normal text-sm leading-[18.2px] text-[#101828]">{{ recipientInfo.recipientName }}</span>
+                  </div>
+                </TableCell>
+
+                <TableCell>
+                  <div class="rounded-md border border-[#E4E7EC] px-4 py-3">
+                    <span class="font-normal text-sm leading-[18.2px] text-[#101828]">2</span>
+                  </div>
+                </TableCell>
+
+                <TableCell>
+                  <div class="rounded-md border border-[#E4E7EC] px-4 py-3">
+                    <span class="font-normal text-sm leading-[18.2px] text-[#101828]">{{ recipientInfo.deliveryEmail }}</span>
+                  </div>
+                </TableCell>
+
+                <TableCell>
+                  <div class="rounded-md border border-[#E4E7EC] px-4 py-3">
+                    <span class="font-normal text-sm leading-[18.2px] text-[#101828]">08136869641</span>
+                  </div>
+                </TableCell>
+
+                <TableCell>
+                  <div class="rounded-md border border-[#E4E7EC] px-4 py-3">
+                    <span class="font-normal text-sm leading-[18.2px] text-[#101828]">17, Ogunyemi strt, Magodo</span>
+                  </div>
+                </TableCell>
+
+                <TableCell>
+                  <div class="rounded-md border border-[#E4E7EC] px-4 py-3">
+                    <span class="font-normal text-sm leading-[18.2px] text-[#101828]">Tell the gateman that package is...</span>
+                  </div>
+                </TableCell>
+
+                <TableCell>
+                  <button class="px-4 py-3">
+                    <Link />
+                  </button>
+                </TableCell>
+
+                <TableCell>
+                  <button class="px-4 py-3">
+                    <Trash />
+                  </button>
+                </TableCell>
+
+              </TableRow>
+
+            </TableBody>
+
+          </Table>
         </TabsContent>
 
-        <TabsContent value="password">
-          Change your password here.
+        <TabsContent 
+          value="item-details"
+          class="p-6"
+        >
+          <div class="w-[60.09%]">
+
+            <section class="flex justify-between items-center mb-4">
+
+              <section class="w-[49.01%]">
+
+                <Label class="font-normal text-xs leading-[14.4px] mb-1">
+                  Item Category <span class="text-red-600">*</span>
+                </Label>
+
+                <Select>
+
+                  <SelectTrigger>
+                    <SelectValue 
+                      class="font-normal text-sm leading-[18.2px] text-[#999999] focus:outline"
+                      placeholder="Select an option" 
+                    />
+                  </SelectTrigger>
+
+                  <SelectContent>
+                    <!-- <SelectGroup>
+
+                      <SelectLabel>Fruits</SelectLabel>
+
+                      <SelectItem value="apple">
+                        Apple
+                      </SelectItem>
+
+                    </SelectGroup> -->
+                  </SelectContent>
+
+                </Select>
+
+              </section>
+
+              <section class="w-[49.01%]">
+
+                <Label class="font-normal text-xs leading-[14.4px] mb-1">
+                  Package Weight (kg) <span class="text-red-600">*</span>
+                </Label>
+
+                <Input
+                  class="rounded-md border border-[#E4E7EC] px-4 py-3 outline-none font-normal text-sm leading-[18.2px] text-[#999999]"
+                  type="text"
+                  placeholder="2"
+                />
+
+              </section>
+
+            </section>
+
+            <section class="mb-4">
+
+              <Label class="font-normal text-xs leading-[14.4px] text-[#313644]">
+                Choose your package size or type your package size in the L x W x H custom field below
+              </Label>
+
+              <ToggleGroup 
+                type="single"
+                class="justify-start gap-x-6 mt-4"
+              >
+
+                <ToggleGroupItem 
+                  value="standard-size"
+                  class="w-[253px] h-[178.01px] rounded-xl border border-[#D9D9D9] py-4 bg-[#F7F8FA] focus:bg-[#FFFBF8] focus:border-[#F1C49B]"
+                >
+                  <div>
+
+                    <section>
+
+                      <div>
+                        <span class="font-semibold text-xs leading-[15.6px] text-center text-[#101828]">
+                          Standard size
+                        </span>
+                      </div>
+
+                      <span class="font-normal text-xs leading-[15.6px] text-[#101828]">
+                        38cm x 33cm x 20cm
+                      </span>
+
+                    </section>
+
+                    <section class="flex justify-center items-center mt-7">
+                      <parcel-box />
+                    </section>
+
+                  </div>
+                </ToggleGroupItem>
+
+                <ToggleGroupItem 
+                  value="medium-size"
+                  class="w-[253px] h-[178.01px] rounded-xl border border-[#D9D9D9] py-4 bg-[#F7F8FA] focus:bg-[#FFFBF8] focus:border-[#F1C49B]"
+                >
+                  <div>
+
+                    <section>
+
+                      <div>
+                        <span class="font-semibold text-xs leading-[15.6px] text-center text-[#101828]">
+                          Medium size
+                        </span>
+                      </div>
+
+                      <span class="font-normal text-xs leading-[15.6px] text-[#101828]">
+                        32cm x 24cm x 16cm
+                      </span>
+
+                    </section>
+
+                    <section class="flex justify-center items-center mt-7">
+                      <medium-box />
+                    </section>
+
+                  </div>
+                </ToggleGroupItem>
+
+                <ToggleGroupItem 
+                  value="mini-size"
+                  class="w-[253px] h-[178.01px] rounded-xl border border-[#D9D9D9] py-4 bg-[#F7F8FA] focus:bg-[#FFFBF8] focus:border-[#F1C49B]"
+                >
+                  <div>
+
+                    <section>
+
+                      <div>
+                        <span class="font-semibold text-xs leading-[15.6px] text-center text-[#101828]">
+                          Mini size
+                        </span>
+                      </div>
+
+                      <span class="font-normal text-xs leading-[15.6px] text-[#101828]">
+                        12 cm x 24cm x 16cm
+                      </span>
+
+                    </section>
+
+                    <section class="flex justify-center items-center mt-7">
+                      <mini-box />
+                    </section>
+
+                  </div>
+                </ToggleGroupItem>
+
+              </ToggleGroup>
+
+            </section>
+
+            <section class="flex justify-between items-center">
+
+              <section class="w-[32.01]">
+
+                <Label class="font-normal text-xs leading-[14.4px] mb-1">
+                  Length(cm) <span class="text-red-600">*</span>
+                </Label>
+
+                <Input
+                  class="rounded-md border border-[#E4E7EC] px-4 py-3 outline-none font-normal text-sm leading-[18.2px] text-[#999999]"
+                  type="text"
+                  placeholder="38"
+                />
+
+              </section>
+
+              <section class="w-[32.01]">
+
+                <Label class="font-normal text-xs leading-[14.4px] mb-1">
+                  Width(cm) <span class="text-red-600">*</span>
+                </Label>
+
+                <Input
+                  class="rounded-md border border-[#E4E7EC] px-4 py-3 outline-none font-normal text-sm leading-[18.2px] text-[#999999]"
+                  type="text"
+                  placeholder="33"
+                />
+
+              </section>
+
+              <section class="w-[32.01]">
+
+                <Label class="font-normal text-xs leading-[14.4px] mb-1">
+                  Height(cm) <span class="text-red-600">*</span>
+                </Label>
+
+                <Input
+                  class="rounded-md border border-[#E4E7EC] px-4 py-3 outline-none font-normal text-sm leading-[18.2px] text-[#999999]"
+                  type="text"
+                  placeholder="20"
+                />
+
+              </section>
+
+            </section>
+
+          </div>
         </TabsContent>
 
       </Tabs>
@@ -266,9 +596,11 @@ import {
 
 <style lang="css" scoped>
 /* 
-box-shadow: 0px 3px 1px 0px #0000000A;
-
-box-shadow: 0px 3px 8px 0px #0000001F;
-
+width: Hug (72px)px;
+height: Fixed (72px)px;
+padding: 16px 0px 0px 0px;
+gap: 4px;
+border: 0px 0px 1px 0px;
+opacity: 0px;
 */
 </style>
