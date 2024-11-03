@@ -455,7 +455,7 @@ const recipientInfos = [
 
                 <ToggleGroupItem 
                   value="standard-size"
-                  class="w-[253px] h-[178.01px] rounded-xl border border-[#D9D9D9] py-4 bg-[#F7F8FA] focus:bg-[#FFFBF8] focus:border-[#F1C49B]"
+                  class="w-[253px] h-[178.01px] rounded-xl border border-[#D9D9D9] py-4 bg-[#F7F8FA] toggle-focus"
                 >
                   <div>
 
@@ -482,7 +482,7 @@ const recipientInfos = [
 
                 <ToggleGroupItem 
                   value="medium-size"
-                  class="w-[253px] h-[178.01px] rounded-xl border border-[#D9D9D9] py-4 bg-[#F7F8FA] focus:bg-[#FFFBF8] focus:border-[#F1C49B]"
+                  class="w-[253px] h-[178.01px] rounded-xl border border-[#D9D9D9] py-4 bg-[#F7F8FA] toggle-focus"
                 >
                   <div>
 
@@ -509,7 +509,7 @@ const recipientInfos = [
 
                 <ToggleGroupItem 
                   value="mini-size"
-                  class="w-[253px] h-[178.01px] rounded-xl border border-[#D9D9D9] py-4 bg-[#F7F8FA] focus:bg-[#FFFBF8] focus:border-[#F1C49B]"
+                  class="w-[253px] h-[178.01px] rounded-xl border border-[#D9D9D9] py-4 bg-[#F7F8FA] toggle-focus"
                 >
                   <div>
 
@@ -595,12 +595,8 @@ const recipientInfos = [
 </template>
 
 <style lang="css" scoped>
-/* 
-width: Hug (72px)px;
-height: Fixed (72px)px;
-padding: 16px 0px 0px 0px;
-gap: 4px;
-border: 0px 0px 1px 0px;
-opacity: 0px;
-*/
+.toggle-focus:focus {
+  background-color: #FFFBF8;
+  border-color: #F1C49B;
+}
 </style>
