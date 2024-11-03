@@ -23,7 +23,6 @@ const router = useRouter();
 const radioGroupValue = ref("single");
 
 const handlePath = () => {
-
   router.push(
     { 
       name: "payment", 

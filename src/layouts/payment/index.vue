@@ -7,9 +7,11 @@ const router = useRouter();
 const path = route.params.name;
 
 if (path === "single") {
-  router.push("/single-shipment");
+  router.push("/single-shipment")
 } else if (path === "bulk") {
-  router.push("/bulk-shipment");
+  router.push("/bulk-shipment")
+} else if (path === "checkout") {
+  router.push("/checkout")
 }
 </script>
 

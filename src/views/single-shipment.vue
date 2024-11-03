@@ -1,4 +1,6 @@
 <script setup lang="ts">
+import { useRouter } from "vue-router";
+
 import ChevronLeft from "@/assets/svgs/chevron-down-sharp.svg";
 import ArrowForward from "@/assets/svgs/arrow-forward.svg";
 import Delete from "@/assets/svgs/delete-03.svg";
@@ -37,6 +39,17 @@ import {
 } from '@/components/ui/accordion';
 import { Checkbox } from '@/components/ui/checkbox';
 import { ToggleGroup, ToggleGroupItem } from '@/components/ui/toggle-group';
+
+const router = useRouter();
+
+const handleSubmit = () => {
+  router.push(
+    {
+      name: "payment",
+      params: { name: "checkout" }
+    }
+  )
+}
 </script>
 
 <template>
@@ -69,7 +82,7 @@ import { ToggleGroup, ToggleGroupItem } from '@/components/ui/toggle-group';
           </span>
         </Button>
 
-        <Button disabled>
+        <Button @click="handleSubmit">
           Submit
           <ArrowForward class="ml-2" />
         </Button>
