@@ -54,11 +54,9 @@ const selectedBusinessType = ref("");
 </script>
 
 <template>
-
   <div class="p-8">
 
     <main class="flex justify-center">
-
       <section class="w-[36.3%]">
 
         <header class="flex justify-center mb-[60px]">
@@ -144,7 +142,6 @@ const selectedBusinessType = ref("");
                 <section class="w-[31.4%] relative">
 
                   <div tabindex="0" class="h-full px-4 py-[10px] rounded-lg border border-[#9F9F9F] outline-none focus:border-[#E3573E] cursor-pointer" @click="toggleDropdown">
-
                     <div class="flex items-center justify-between">
 
                       <img v-if="selectedOptionIcon" :src="selectedOptionIcon">
@@ -158,18 +155,15 @@ const selectedBusinessType = ref("");
                       <ArrowDown :class="{'mt-1' : !selectedOptionIcon}" />
 
                     </div>
-
                   </div>
 
                   <ul v-if="isDropDownOpen" class="bg-white w-full px-4 py-[10px] absolute z-10 list-none border border-[#9F9F9F] rounded-lg">
-
                     <li v-for="(option, index) in options" :key="index" class="cursor-pointer hover:bg-[#F0F0F0] flex" @click="selectOptionAndCloseDropdown(option)">
                       <img :src="option.icon" class="mr-1"> 
                       <span class="outfit-normal font-normal text-sm leading-[21px] text-[#ABAFB1]">
                         {{ option.number }}
                       </span>
                     </li>
-
                   </ul>
 
                 </section>
@@ -191,7 +185,6 @@ const selectedBusinessType = ref("");
         </form>
 
       </section>
-
     </main>
 
     <footer class="h-[53px] mt-5 flex justify-between items-end">
@@ -207,7 +200,6 @@ const selectedBusinessType = ref("");
     </footer>
 
   </div>
-
 </template>
 
 <style scoped>
