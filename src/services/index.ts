@@ -20,7 +20,7 @@ export const shippings: Shipping[] = [
     weight: "4kg",
     fee: 4000,
     status: "Delivered",
-    date: "09-sept-24",
+    date: "09-Sept-24",
   },
   {
     orderId: "#POS5TIJY",
@@ -30,7 +30,7 @@ export const shippings: Shipping[] = [
     weight: "50kg",
     fee: 24000,
     status: "Pending",
-    date: "13-sept-24",
+    date: "13-Sept-24",
   },
   {
     orderId: "#HQY56H1W",
