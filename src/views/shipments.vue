@@ -13,6 +13,11 @@ import ArrowUp from "@/assets/svgs/arrow-up.svg";
 import FunnelSimple from "@/assets/svgs/FunnelSimple.svg";
 import Upload from "@/assets/svgs/upload-03.svg";
 import VerticalDots from "@/assets/svgs/dots-vertical.svg";
+import ZSearchInput from "@/components/shared/z-search-input.vue";
+import Package from "@/assets/svgs/package.svg";
+import DeliveryTruck from "@/assets/svgs/delivery-truck-01.svg";
+import PackageProcess from "@/assets/svgs/delivery-box-02.svg";
+import DeliveryBox from "@/assets/svgs/delivery-box-02.svg";
 
 const data = ref<Shipping[]>([]);
 
@@ -50,10 +55,7 @@ onMounted(async () => {
     </header>
 
     <section class="flex justify-between mb-10 animation-slide-up">
-      <shipment-card
-        image-url="/src/assets/svgs/package.svg"
-        title="Total shipment"
-      >
+      <shipment-card :icon="Package" title="Total shipment">
         <div class="flex">
           <section class="mr-[15px]">
             <span
@@ -86,10 +88,7 @@ onMounted(async () => {
         </div>
       </shipment-card>
 
-      <shipment-card
-        image-url="/src/assets/svgs/delivery-truck-01.svg"
-        title="In transit"
-      >
+      <shipment-card :icon="DeliveryTruck" title="In transit">
         <span
           class="space-mono font-bold text-2xl leading-6 tracking-[-3%] text-[#242424]"
         >
@@ -97,10 +96,7 @@ onMounted(async () => {
         </span>
       </shipment-card>
 
-      <shipment-card
-        image-url="/src/assets/svgs/package-process.svg"
-        title="Pending packages"
-      >
+      <shipment-card :icon="PackageProcess" title="Pending packages">
         <span
           class="space-mono font-bold text-2xl leading-6 tracking-[-3%] text-[#242424]"
         >
@@ -108,10 +104,7 @@ onMounted(async () => {
         </span>
       </shipment-card>
 
-      <shipment-card
-        image-url="/src/assets/svgs/delivery-box-02.svg"
-        title="Delivered"
-      >
+      <shipment-card :icon="DeliveryBox" title="Delivered">
         <span
           class="space-mono font-bold text-2xl leading-6 tracking-[-3%] text-[#242424]"
         >
@@ -121,63 +114,17 @@ onMounted(async () => {
     </section>
 
     <section class="rounded-xl border border-[#E4E7EC] animation-slide-up">
-      <section>
-        <div class="h-[79px] px-6 py-5">
-          <div class="flex h-full">
-            <section class="w-[45.67%] h-full flex items-center mr-4">
-              <span class="font-semibold text-lg text-[#101828]">
-                Recent Orders
-              </span>
-            </section>
+      <section class="px-6 py-5 flex items-center justify-between">
+        <div class="font-semibold text-lg text-[#101828]">Recent Shipments</div>
 
-            <section class="flex w-[46.44%] mr-4">
-              <section class="w-[45.33%] mr-[53px]">
-                <!-- <input type="search" placeholder="Search..." class="h-[38px] w-full rounded border border-[#D4D4D4] p-[10px]"> -->
-              </section>
-
-              <section class="flex">
-                <button
-                  class="flex rounded border border-[#E4E4E4EE] mr-4 px-3 py-2"
-                >
-                  <section class="h-full flex items-center mr-2">
-                    <FunnelSimple />
-                  </section>
-
-                  <section
-                    class="font-medium text-sm leading-[21px] text-[#404D61]"
-                  >
-                    <span> Sort By </span>
-                  </section>
-                </button>
-
-                <button
-                  class="flex rounded border border-[#E4E4E4EE] px-3 py-2"
-                >
-                  <section class="h-full flex items-center mr-2">
-                    <Upload />
-                  </section>
-
-                  <section
-                    class="font-medium text-sm leading-[21px] text-[#404D61]"
-                  >
-                    <span> Export csv </span>
-                  </section>
-                </button>
-              </section>
-            </section>
-
-            <button class="h-full flex items-center">
-              <VerticalDots />
-            </button>
-          </div>
-        </div>
+        <z-search-input />
       </section>
 
       <section>
         <DataTable :columns="columns" :data="data" />
       </section>
 
-      <section class="h-[68px] flex items-center justify-center border-t px-4">
+      <section class="h-[68px] flex items-center justify-center border-t px-6">
         <z-pagination />
       </section>
     </section>

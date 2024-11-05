@@ -59,12 +59,12 @@ const router = createRouter({
   ],
 });
 
-router.beforeEach((to, from, next) => {
-  if (to.meta.requiresAuth && !token.isAuthenticated()) {
-    next("/auth"); // Redirect to login if the route requires authentication
-  } else {
-    next(); // Proceed to route
-  }
-});
+// router.beforeEach((to, from, next) => {
+//   if (to.meta.requiresAuth && !token.isAuthenticated()) {
+//     next("/auth"); // Redirect to login if the route requires authentication
+//   } else {
+//     next(); // Proceed to route
+//   }
+// });
 
 export default router;
