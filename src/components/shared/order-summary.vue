@@ -8,6 +8,18 @@ import {
 import { Button } from '@/components/ui/button';
 import { ScrollArea } from '@/components/ui/scroll-area';
 import PlusSign from "@/assets/svgs/plus-sign-(1).svg";
+
+const props = defineProps(
+  {
+    component: {
+      type: String,
+      default: "shipment",
+    },
+  },
+);
+
+const shipmentStyle = "rounded-md flex justify-between items-center px-2 py-3 opacity-60";
+const checkoutStyle = "rounded-md flex justify-between items-center py-3 opacity-60";
 </script>
 
 <template>
@@ -126,23 +138,56 @@ import PlusSign from "@/assets/svgs/plus-sign-(1).svg";
         </AccordionItem>
       </Accordion>
 
-      <div class="rounded-md flex justify-between items-center px-2 py-3 opacity-60">
+      <div>
 
-        <span class="font-semibold text-base leading-[19.2px] text-[#101828]">
-          Total Amount
-        </span>
+        <section v-if="component === 'checkout'">
 
-        <span class="font-semibold text-sm leading-[16.8px] text-[#101828]">
-          $300.80
-        </span>
+          <section class="rounded-md flex justify-between items-center py-3 opacity-60">
+
+            <span class="font-normal text-sm leading-[16.8px] text-[#4B5368]">
+              Subtotal
+            </span>
+
+            <span class="font-normal text-sm leading-[16.8px] text-[#101828]">
+              $300.80
+            </span>
+
+          </section>
+
+          <section class="rounded-md flex justify-between items-center py-3 opacity-60">
+
+            <span class="font-normal text-sm leading-[16.8px] text-[#4B5368]">
+              VAT (20%)
+            </span>
+
+            <span class="font-normal text-sm leading-[16.8px] text-[#101828]">
+              $24.80
+            </span>
+
+          </section>
+
+        </section>
+
+        <section :class="[component === 'checkout' ? checkoutStyle : shipmentStyle ]">
+
+          <span class="font-semibold text-base leading-[19.2px] text-[#101828]">
+            Total Amount
+          </span>
+
+          <span class="font-semibold text-sm leading-[16.8px] text-[#101828]">
+            $300.80
+          </span>
+
+        </section>
 
       </div>
 
     </div>
 
-    <Button 
+    <Button
+      class="w-full rounded-md border border-[#D8D8D8] px-4 py-[14px] gap-x-2" 
       variant="outline"
-      class="w-full rounded-md border border-[#D8D8D8] px-4 py-[14px] gap-x-2"
+      v-if="component !== 'checkout'"
     >
 
       <plus-sign />
