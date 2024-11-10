@@ -5,7 +5,6 @@ import ChevronLeft from "@/assets/svgs/chevron-down-sharp.svg";
 import Lock from "@/assets/svgs/ai-lock.svg";
 import View from "@/assets/svgs/view.svg";
 import AddCreditCard from "@/assets/svgs/credit-card-add.svg";
-import CreditCard from "@/assets/svgs/credit-card.svg";
 
 import OrderSummary from "@/components/shared/order-summary.vue";
 
@@ -13,6 +12,17 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { Button } from "@/components/ui/button";
 import { Label } from "@/components/ui/label";
 import { Input } from "@/components/ui/input";
+import {
+  AlertDialog,
+  AlertDialogAction,
+  AlertDialogCancel,
+  AlertDialogContent,
+  AlertDialogDescription,
+  AlertDialogFooter,
+  AlertDialogHeader,
+  AlertDialogTitle,
+  AlertDialogTrigger,
+} from '@/components/ui/alert-dialog';
 
 const isAddNewCard = ref(false)
 
@@ -374,11 +384,40 @@ const addNewCard = () => {
 
         <div class="rounded-xl rounded-t-none border border-t-0 border-[#E4E7EC] px-6 pb-6">
 
-          <Button class="w-full rounded-md border border-[#D8D8D8] px-4 py-3 bg-[#1E1E1E] mb-4">
-            <span class="font-semibold text-sm leading-[16.8px] text-white">
-              Pay $340.80
-            </span>
-          </Button>
+          <AlertDialog>
+
+            <AlertDialogTrigger class="w-full">
+              <Button class="w-full rounded-md border border-[#D8D8D8] px-4 py-3 bg-[#1E1E1E] mb-4">
+                <span class="font-semibold text-sm leading-[16.8px] text-white">
+                  Pay $340.80
+                </span>
+              </Button>
+            </AlertDialogTrigger>
+
+            <AlertDialogContent class="w-[500px] rounded-2xl border border-[#DFDFDF] p-12">
+
+              <AlertDialogHeader>
+
+                <AlertDialogTitle class="mb-4">
+                  Shipment Confirmed!
+                </AlertDialogTitle>
+
+                <AlertDialogDescription>
+                  Your order has been successfully shipped. You’ll receive tracking details shortly. Thank you for choosing us!
+                </AlertDialogDescription>
+
+              </AlertDialogHeader>
+
+              <AlertDialogFooter>
+
+                <AlertDialogCancel>Cancel</AlertDialogCancel>
+                <AlertDialogAction>Continue</AlertDialogAction>
+
+              </AlertDialogFooter>
+
+            </AlertDialogContent>
+
+          </AlertDialog>
 
           <div class="flex justify-center gap-x-2 items-center px-4 py-3">
 
