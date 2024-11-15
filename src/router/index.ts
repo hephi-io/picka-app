@@ -11,7 +11,7 @@ import Wallets from "@/views/wallets.vue";
 import PaymentLayout from "@/layouts/payment/index.vue";
 import SingleShipment from "@/views/single-shipment.vue";
 import BulkShipment from "@/views/bulk-shipment.vue";
-import Checkout from "@/views/checkout.vue";
+import CheckoutComponent from "@/views/checkout-component.vue";
 import { token } from "@/utils";
 
 const router = createRouter({
@@ -80,8 +80,8 @@ const router = createRouter({
 
         { 
           name: "checkout",
-          path: "/checkout", 
-          component: Checkout, 
+          path: "/checkout/:name", 
+          component: CheckoutComponent, 
         },
 
       ],

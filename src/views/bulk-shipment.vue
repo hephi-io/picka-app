@@ -1,4 +1,6 @@
 <script setup lang="ts">
+import { useRouter } from "vue-router"; 
+
 import ChevronLeft from "@/assets/svgs/chevron-down-sharp.svg";
 import ArrowForward from "@/assets/svgs/arrow-forward.svg";
 import DotsVertical from "@/assets/svgs/dots-vertical.svg";
@@ -76,7 +78,18 @@ const recipientInfos = [
     deliveryEmail: "lana@untitledui.com",
   },
 
-]
+];
+
+const router = useRouter();
+
+const handleSubmit = () => {
+  router.push(
+    {
+      name: "checkout",
+      params: { name: "bulk" },
+    },
+  );
+}
 </script>
 
 <template>
@@ -110,7 +123,7 @@ const recipientInfos = [
           </span>
         </Button>
 
-        <Button disabled>
+        <Button @click="handleSubmit">
           Submit
           <ArrowForward class="ml-2" />
         </Button>

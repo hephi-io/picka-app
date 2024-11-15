@@ -45,8 +45,8 @@ const router = useRouter();
 const handleSubmit = () => {
   router.push(
     {
-      name: "payment",
-      params: { name: "checkout" }
+      name: "checkout",
+      params: { name: "single" }
     }
   )
 }

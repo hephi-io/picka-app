@@ -1,18 +1,18 @@
 <script setup lang="ts">
+import { ref } from "vue";
+
 import { useRoute, useRouter } from "vue-router";
 import AppBar from '@/layouts/dashboard/components/appbar.vue';
 
 const route = useRoute();
 const router = useRouter();
-const path = route.params.name;
+const path = ref(route.params.name);
 
-if (path === "single") {
-  router.push("/single-shipment")
-} else if (path === "bulk") {
-  router.push("/bulk-shipment")
-} else if (path === "checkout") {
-  router.push("/checkout")
-}
+if (path.value === "single") {
+  router.push("/single-shipment");
+} else if (path.value === "bulk") {
+  router.push("/bulk-shipment");
+} 
 </script>
 
 <template>

@@ -1,10 +1,12 @@
 <script setup lang="js">
 import { ref } from "vue";
+import { useRoute, useRouter } from "vue-router";
 
 import ChevronLeft from "@/assets/svgs/chevron-down-sharp.svg";
 import Lock from "@/assets/svgs/ai-lock.svg";
 import View from "@/assets/svgs/view.svg";
 import AddCreditCard from "@/assets/svgs/credit-card-add.svg";
+import ArrowForward from "@/assets/svgs/arrow-forward-2.svg";
 
 import OrderSummary from "@/components/shared/order-summary.vue";
 
@@ -24,11 +26,18 @@ import {
   AlertDialogTrigger,
 } from '@/components/ui/alert-dialog';
 
+
 const isAddNewCard = ref(false)
 
 const addNewCard = () => {
   isAddNewCard.value = true;
 }
+
+
+const route = useRoute();
+const router = useRouter();
+
+const checkoutType = ref(route.params.name);
 </script>
 
 <template>
@@ -166,9 +175,9 @@ const addNewCard = () => {
             class="px-6 pt-6" 
             value="card"
           >
-
-            <div 
-              class="mb-20"
+            
+            <div
+              class="pb-20"
               v-if="!isAddNewCard"
             >
 
@@ -274,8 +283,8 @@ const addNewCard = () => {
             </div>
 
             <div
-              class="mb-12" 
-              v-if="isAddNewCard"
+              class="pb-12" 
+              v-else
             >
 
               <div class="mb-12">
@@ -396,23 +405,54 @@ const addNewCard = () => {
 
             <AlertDialogContent class="w-[500px] rounded-2xl border border-[#DFDFDF] p-12">
 
-              <AlertDialogHeader>
+              <AlertDialogHeader class="m-0 p-0">
 
-                <AlertDialogTitle class="mb-4">
-                  Shipment Confirmed!
+                <AlertDialogTitle class="text-center font-semibold text-xl leading-[26.88px] text-[#1B1B1B] mb-4">
+
+                  <span v-if="checkoutType === 'single'">
+                    Shipment Confirmed!
+                  </span>
+
+                  <span v-if="checkoutType === 'bulk'">
+                    Bulk Shipment Confirmed!
+                  </span>
+
                 </AlertDialogTitle>
 
-                <AlertDialogDescription>
+                <AlertDialogDescription class="text-center font-normal text-base leading-[19.36px] text-[#26203BCC]">
                   Your order has been successfully shipped. You’ll receive tracking details shortly. Thank you for choosing us!
                 </AlertDialogDescription>
 
               </AlertDialogHeader>
 
-              <AlertDialogFooter>
+              <div class="flex justify-center items-center">
+                <div class="w-[236px] h-[261px]">
+                  <img
+                    class="w-full h-full object-cover" 
+                    src="@/assets/gifs/success.gif" 
+                  />
+                </div>
+              </div>
 
-                <AlertDialogCancel>Cancel</AlertDialogCancel>
-                <AlertDialogAction>Continue</AlertDialogAction>
+              <AlertDialogFooter class="m-0 p-0 block">
 
+                <AlertDialogAction class="w-full block rounded px-5 py-[10px] bg-[#1E1E1E]">
+                  <span class="font-medium text-base leading-[19.36px] text-white">
+                    Track your shipment
+                  </span>
+                </AlertDialogAction>
+
+                <Button 
+                  class="w-full rounded px-5 py-[10px]"
+                  variant="ghost"
+                  @click="$router.push('/')"
+                >
+                  <span class="font-medium text-base leading-[19.36px] text-[#1E1E1E] mr-2">
+                    Go Home
+                  </span>
+                  <arrow-forward />
+                </Button>
+   
               </AlertDialogFooter>
 
             </AlertDialogContent>
