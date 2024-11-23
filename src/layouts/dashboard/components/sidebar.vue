@@ -2,7 +2,9 @@
   <aside
     class="w-[92px] h-[850px] rounded-lg border border-[#E5E5E5] bg-white py-6 flex flex-col justify-between"
   >
+
     <section class="mb-2 flex flex-col items-center">
+
       <div
         class="font-medium text-[10px] leading-3 tracking-[0.4px] text-[#757575] text-center mb-2"
       >
@@ -10,6 +12,7 @@
       </div>
 
       <div class="relative flex flex-col gap-y-3">
+
         <div
           :class="`absolute h-[44px] w-[44px] border border-[#F1C49B] bg-[#FFF5EC] rounded-lg transition-all duration-300`"
           :style="`top: ${selectedNavItemOffset}px`"
@@ -34,6 +37,7 @@
             ]"
           />
         </button>
+
       </div>
 
       <div class="border-b border-b-[#E5E5E5] mb-5 mt-5 w-[44px]"></div>
@@ -47,9 +51,11 @@
       <button class="z-10 h-[44px] w-[44px] flex items-center justify-center">
         <Settings />
       </button>
+
     </section>
 
     <section class="flex flex-col items-center">
+
       <button
         class="z-10 h-[44px] w-[44px] flex items-center justify-center text-[#757575] hover:text-[#FF7830] mb-3"
       >
@@ -62,7 +68,9 @@
       >
         <Logout />
       </button>
+
     </section>
+
   </aside>
 </template>
 
@@ -73,6 +81,7 @@ import { useRouter } from "vue-router";
 import Category from "@/assets/svgs/Category.svg";
 import Wallet from "@/assets/svgs/wallet-02.svg";
 import Shipments from "@/assets/svgs/shipments.svg";
+import Tracking from "@/assets/svgs/delivery-tracking-01.svg";
 import Settings from "@/assets/svgs/setting-01.svg";
 import Logout from "@/assets/svgs/logout-03.svg";
 import MessageQuestion from "@/assets/svgs/message-question.svg";
@@ -86,6 +95,7 @@ const mainNavItems = [
   { name: "Dashboard", icon: Category, href: "/", offset: 0 },
   { name: "Wallet", icon: Wallet, href: "/wallets", offset: 56 },
   { name: "Shipments", icon: Shipments, href: "/shipments", offset: 112 },
+  { name: "Tracking", icon: Tracking, href: "/tracking", offset: 168 },
 ];
 
 const handleLogout = () => {
