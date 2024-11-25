@@ -12,6 +12,7 @@ import { Button } from "@/components/ui/button";
 import { ToggleGroup, ToggleGroupItem } from "@/components/ui/toggle-group";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { Badge } from '@/components/ui/badge';
+import { ScrollArea } from '@/components/ui/scroll-area';
 
 import MagnifyingGlassIcon from "@/assets/svgs/magnifying-glass-icon.svg";
 import ArrowDataTransfer from "@/assets/svgs/arrow-data-transfer-vertical-round.svg";
@@ -24,6 +25,13 @@ import PinLocation from "@/assets/svgs/pin-location-03.svg";
 import VerticalDivider from "@/assets/svgs/vertical-divider.svg";
 import LocationIcon from "@/assets/svgs/location-icon.svg";
 import Ellipse from "@/assets/svgs/ellipse-icon.svg";
+import OrderInfoIcon from "@/assets/svgs/order-info-icon.svg";
+import DriverInfoIcon from "@/assets/svgs/driver-info-icon.svg";
+import CustomerInfoIcon from "@/assets/svgs/customer-info-icon.svg";
+import RectangleIcon from "@/assets/svgs/rectangle-icon.svg";
+import PlusSign from "@/assets/svgs/plus-sign-1.svg";
+import MinusSign from "@/assets/svgs/minus-sign.svg";
+import LocationOrange from "@/assets/svgs/location-orange.svg";
 
 const people = [
   { value: "coco", name: "Coco's Bespoke" },
@@ -46,6 +54,7 @@ const people = [
     <section class="flex gap-x-6 items-start">
 
       <section class="w-[299px]">
+
         <section class="flex gap-x-2 items-center mb-4">
           <div class="relative w-[129px] items-center">
             <Input
@@ -110,6 +119,7 @@ const people = [
         </section>
 
         <ToggleGroup type="single" class="block">
+
           <ToggleGroupItem
             :value="person.value"
             class="w-full h-[200px] rounded-lg border border-[#E4E7EC] p-4 mb-6 toggle"
@@ -183,13 +193,15 @@ const people = [
               </section>
             </div>
           </ToggleGroupItem>
+
         </ToggleGroup>
+
       </section>
 
-      <section class="min-w-[74.67%]">
-        <Tabs default-value="account">
+      <section class="min-w-[74.67%] rounded-xl border border-[#E4E7EC] shadow-sm shadow-[#1018280D]">
+        <Tabs default-value="map-based-tracking">
 
-          <div class="rounded-t-lg px-6 py-5 border border-[#E4E7EC]">
+          <div class="px-6 py-5">
 
             <section class="flex justify-between items-center mb-4">
 
@@ -211,7 +223,7 @@ const people = [
             <TabsList class="w-[373.99px] rounded-lg p-[5px] bg-[#F5F7FA]">
 
               <TabsTrigger 
-                value="account"
+                value="map-based-tracking"
                 class="w-[181.99px] rounded px-3 py-[6px] tabs-trigger"
               >
                 <span class="font-medium text-sm text-[#878FA1]">
@@ -220,7 +232,7 @@ const people = [
               </TabsTrigger>
 
               <TabsTrigger 
-                value="password"
+                value="status-based-tracking"
                 class="w-[181.99px] rounded px-3 py-[6px] tabs-trigger"
               >
                 <span class="font-medium text-sm text-[#878FA1]">
@@ -232,11 +244,299 @@ const people = [
 
           </div>
 
-          <TabsContent value="account">
-            Make changes to your account here.
+          <TabsContent value="map-based-tracking">
+            <div class="relative">
+
+              <img 
+                src="../assets/pngs/mapsicle-map.png" 
+                class="object-cover border-t"
+              />
+
+              <Tabs 
+                default-value="order-info" 
+                class="absolute left-4 bottom-4 w-[528px] h-[280px] flex gap-x-4 rounded-lg p-4 bg-white"
+                orientation="vertical"
+              >
+
+                <TabsList class="w-[159px] block bg-white pr-4 border-r rounded-none">
+
+                  <TabsTrigger value="order-info" class="w-full block rounded p-2 info">
+                    <div class="flex gap-x-2 items-center">
+                      <order-info-icon />
+                      <span class="font-medium text-sm text-[#757575]">
+                        Order Info
+                      </span>
+                    </div>
+                  </TabsTrigger>
+
+                  <TabsTrigger value="driver-info" class="w-full block rounded p-2 mt-4 info">
+                    <div class="flex gap-x-2 items-center">
+                      <driver-info-icon />
+                      <span class="font-medium text-sm text-[#757575]">
+                        Driver Info
+                      </span>
+                    </div>
+                  </TabsTrigger>
+
+                  <TabsTrigger value="customer-info" class="w-full block rounded p-2 mt-4 info">
+                    <div class="flex gap-x-2 items-center">
+                      <customer-info-icon />
+                      <span class="font-medium text-sm text-[#757575]">
+                        Customer Info
+                      </span>
+                    </div>
+                  </TabsTrigger>
+
+                </TabsList>
+
+                <TabsContent 
+                  value="order-info"
+                  class="m-0"
+                >
+                  <ScrollArea class="w-[321px] h-[248px]" >
+
+                    <section>
+
+                      <div class="font-normal text-sm leading-[16.8px] text-[#999999] mb-2">
+                        Order ID
+                      </div>
+
+                      <span class="font-normal text-sm leading-[16.8px] text-[#101828]">
+                        #DR3E4478
+                      </span>
+
+                    </section>
+
+                    <section class="mt-6">
+
+                      <div class="font-normal text-sm leading-[16.8px] text-[#999999] mb-2">
+                        Pickup address:
+                      </div>
+
+                      <span class="font-normal text-sm leading-[16.8px] text-[#101828]">
+                        17, Ogunyemi strt, Magodo.
+                      </span>
+
+                    </section>
+
+                    <section class="mt-6">
+
+                      <div class="font-normal text-sm leading-[16.8px] text-[#999999] mb-2">
+                        Drop-off address:
+                      </div>
+
+                      <span class="font-normal text-sm leading-[16.8px] text-[#101828]">
+                        Shop 10/644 GorgerSt, Sydney NSW 2000
+                      </span>
+
+                    </section>
+
+                    <section class="mt-6">
+
+                      <div class="font-normal text-sm leading-[16.8px] text-[#999999] mb-2">
+                        Item category:
+                      </div>
+
+                      <span class="font-normal text-sm leading-[16.8px] text-[#101828]">
+                        Grossery
+                      </span>
+
+                    </section>
+
+                    <section class="mt-6">
+
+                      <div class="font-normal text-sm leading-[16.8px] text-[#999999] mb-2">
+                        Weight of items:
+                      </div>
+
+                      <span class="font-normal text-sm leading-[16.8px] text-[#101828]">
+                        2kg
+                      </span>
+
+                    </section>
+
+                    <section class="mt-6">
+
+                      <div class="font-normal text-sm leading-[16.8px] text-[#999999] mb-2">
+                        Weight of items:
+                      </div>
+
+                      <span class="font-normal text-sm leading-[16.8px] text-[#101828]">
+                        2kg
+                      </span>
+
+                    </section>
+
+                    <section class="mt-6">
+
+                      <div class="font-normal text-sm leading-[16.8px] text-[#999999] mb-2">
+                        Drop-Off Notes
+                      </div>
+
+                      <span class="font-normal text-sm leading-[16.8px] text-[#101828]">
+                        Kindly leave package with the gateman
+                      </span>
+
+                    </section>
+
+                  </ScrollArea>
+                </TabsContent>
+
+                <TabsContent 
+                  value="driver-info"
+                  class="m-0 p-0"
+                >
+                  <ScrollArea class="w-[321px] h-[248px]" >
+
+                    <section>
+
+                      <span class="font-normal text-sm leading-[16.8px] text-[#999999]">
+                        Driver’s Name:
+                      </span>
+
+                      <div class="flex gap-x-3 items-center mt-2">
+                        <img 
+                          src="../assets/pngs/baker-avatar.png"
+                          class="rounded-full border-[0.75px] border-[#000000] border-opacity-[0.08]"
+                        >
+                        <span class="font-medium text-sm text-[#101828]">
+                          Phoenix Baker
+                        </span>
+                      </div>
+
+                    </section>
+
+                    <section class="mt-6">
+
+                      <div class="font-normal text-sm leading-[16.8px] text-[#999999] mb-2">
+                        Experience
+                      </div>
+
+                      <span class="font-normal text-sm leading-[16.8px] text-[#101828]">
+                        12 years
+                      </span>
+
+                    </section>
+
+                    <section class="mt-6">
+
+                      <div class="font-normal text-sm leading-[16.8px] text-[#999999] mb-2">
+                        Phone Number
+                      </div>
+
+                      <span class="font-normal text-sm leading-[16.8px] text-[#101828]">
+                        Shop 10/644 GorgerSt, Sydney NSW 2000
+                      </span>
+
+                    </section>
+
+                    <section class="mt-6">
+
+                      <div class="font-normal text-sm leading-[16.8px] text-[#999999] mb-2">
+                        Item category:
+                      </div>
+
+                      <span class="font-normal text-sm leading-[16.8px] text-[#101828]">
+                        Grossery
+                      </span>
+
+                    </section>
+
+                    <section class="mt-6">
+
+                      <div class="font-normal text-sm leading-[16.8px] text-[#999999] mb-2">
+                        Weight of items:
+                      </div>
+
+                      <span class="font-normal text-sm leading-[16.8px] text-[#101828]">
+                        2kg
+                      </span>
+
+                    </section>
+
+                    <section class="mt-6">
+
+                      <div class="font-normal text-sm leading-[16.8px] text-[#999999] mb-2">
+                        Weight of items:
+                      </div>
+
+                      <span class="font-normal text-sm leading-[16.8px] text-[#101828]">
+                        2kg
+                      </span>
+
+                    </section>
+
+                    <section class="mt-6">
+
+                      <div class="font-normal text-sm leading-[16.8px] text-[#999999] mb-2">
+                        Drop-Off Notes
+                      </div>
+
+                      <span class="font-normal text-sm leading-[16.8px] text-[#101828]">
+                        Kindly leave package with the gateman
+                      </span>
+
+                    </section>
+
+                  </ScrollArea>
+                </TabsContent>
+
+                <TabsContent value="customer-info">
+                  Change your password here.
+                </TabsContent>
+
+              </Tabs>
+
+              <div class="absolute right-[89.56px] bottom-4 w-[155.66px] h-[54px] flex gap-x-[10px] items-center rounded-lg border border-[#F4F4F4] p-2 bg-white box box-content">
+                <location-orange class="m-0 p-0 rounded-full" />
+                <div>
+
+                  <span class="font-semibold text-[11px] leading-[13.31px] tracking-[0.01em] text-[#232323]">
+                    8502 Preston 
+                  </span>
+
+                  <div class="font-normal text-[10px] leading-[12.1px] tracking-[0.01em] text-[#B0B0B0] mt-[1px]">
+                    Rd. Inglewood, Maine 98380
+                  </div>
+
+                </div>
+              </div>
+
+              <div class="absolute right-4 bottom-4 w-[34.51px] h-[115.63px]">
+
+                <section class="w-[33px] h-[70.13px] flex flex-col items-center bg-white rounded">
+
+                  <Button 
+                    variant="ghost"
+                    class="w-full h-1/2 m-0 p-0"   
+                  >
+                    <plus-sign />
+                  </Button>
+
+                  <div class="w-[70%] border-b"></div>
+
+                  <Button 
+                    variant="ghost"
+                    class="w-full h-1/2 m-0 p-0"
+                  >
+                    <minus-sign />
+                  </Button>
+
+                </section>
+
+                <Button
+                  variant="ghost" 
+                  class="w-[34.51px] h-[34.51px] flex justify-center items-center rounded-full border border-[#F4F4F4] bg-white mt-[11px] p-0"
+                >
+                  <rectangle-icon />
+                </Button>
+
+              </div>
+
+            </div>
           </TabsContent>
 
-          <TabsContent value="password">
+          <TabsContent value="status-based-tracking">
             Change your password here.
           </TabsContent>
 
@@ -271,7 +571,27 @@ const people = [
     color: #0F172A;
   }
 }
+
+.info:focus {
+  background-color: #F0F0F0;
+
+  span {
+    color: #060E1F;
+  }
+}
+
+.box {
+  box-shadow: 0px 13px 34px 0px #FFD1C04D;
+}
+
 /* 
- 
+font-family: Inter;
+font-size: 11px;
+font-weight: 600;
+line-height: 13.31px;
+letter-spacing: 0.01em;
+text-align: left;
+text-underline-position: from-font;
+text-decoration-skip-ink: none;
 */
 </style>
