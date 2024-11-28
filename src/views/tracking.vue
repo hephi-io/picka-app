@@ -32,6 +32,7 @@ import RectangleIcon from "@/assets/svgs/rectangle-icon.svg";
 import PlusSign from "@/assets/svgs/plus-sign-1.svg";
 import MinusSign from "@/assets/svgs/minus-sign.svg";
 import LocationOrange from "@/assets/svgs/location-orange.svg";
+import CopyTwo from "@/assets/svgs/copy-02.svg";
 
 const people = [
   { value: "coco", name: "Coco's Bespoke" },
@@ -43,6 +44,7 @@ const people = [
 
 <template>
   <div>
+
     <header class="py-3 mb-9">
       <span
         class="space-mono font-semibold text-2xl leading-6 tracking-[-0.03em] text-[#060E1F]"
@@ -56,7 +58,9 @@ const people = [
       <section class="w-[299px]">
 
         <section class="flex gap-x-2 items-center mb-4">
+
           <div class="relative w-[129px] items-center">
+
             <Input
               id="search"
               type="text"
@@ -69,14 +73,17 @@ const people = [
             >
               <MagnifyingGlassIcon class="text-muted-foreground" />
             </span>
+
           </div>
 
           <DropdownMenu>
+
             <DropdownMenuTrigger>
               <Button
                 variant="outline"
                 class="rounded border border-[#D4D4D4] px-3 py-2 gap-x-2 bg-white"
               >
+
                 <ArrowDataTransfer />
 
                 <span class="font-medium text-sm leading-[21px] text-[#404D61]">
@@ -84,20 +91,25 @@ const people = [
                 </span>
 
                 <ChevronDown class="-rotate-90" />
+
               </Button>
             </DropdownMenuTrigger>
 
             <DropdownMenuContent>
+
               <DropdownMenuLabel>My Account</DropdownMenuLabel>
               <DropdownMenuSeparator />
               <DropdownMenuItem>Profile</DropdownMenuItem>
               <DropdownMenuItem>Billing</DropdownMenuItem>
               <DropdownMenuItem>Team</DropdownMenuItem>
               <DropdownMenuItem>Subscription</DropdownMenuItem>
+
             </DropdownMenuContent>
+
           </DropdownMenu>
 
           <DropdownMenu>
+
             <DropdownMenuTrigger>
               <Button
                 variant="outline"
@@ -108,14 +120,18 @@ const people = [
             </DropdownMenuTrigger>
 
             <DropdownMenuContent>
+
               <DropdownMenuLabel>My Account</DropdownMenuLabel>
               <DropdownMenuSeparator />
               <DropdownMenuItem>Profile</DropdownMenuItem>
               <DropdownMenuItem>Billing</DropdownMenuItem>
               <DropdownMenuItem>Team</DropdownMenuItem>
               <DropdownMenuItem>Subscription</DropdownMenuItem>
+
             </DropdownMenuContent>
+
           </DropdownMenu>
+
         </section>
 
         <ToggleGroup type="single" class="block">
@@ -127,7 +143,9 @@ const people = [
             :key="index"
           >
             <div class="w-full h-full">
+
               <section class="flex justify-between items-center mb-2">
+
                 <div
                   class="rounded border border-[#E4E7EC] p-1 bg-[#F9FAFB] flex gap-x-2 items-center tag"
                 >
@@ -138,14 +156,17 @@ const people = [
                 </div>
 
                 <LocationShare class="icon" />
+
               </section>
 
               <section>
+
                 <section class="mb-4">
+
                   <section class="flex justify-between items-center mb-4">
+
                     <div class="flex gap-x-2 items-center">
                       <Navigation />
-
                       <span class="font-medium text-sm text-[#475467]">
                         {{ person.name }}
                       </span>
@@ -154,9 +175,11 @@ const people = [
                     <span class="font-normal text-xs leading-5 text-[#475467]">
                       91km
                     </span>
+
                   </section>
 
                   <section>
+
                     <div class="flex gap-x-2 items-center mb-1">
                       <PinLocation />
                       <span
@@ -176,21 +199,23 @@ const people = [
                         Shop 10/644 GorgerSt, Sydney NSW 2000
                       </span>
                     </div>
+
                   </section>
+
                 </section>
 
                 <section class="flex gap-x-2 items-center">
                   <span class="font-normal text-xs leading-5 text-[#37404D80]">
                     2h 23m
                   </span>
-
                   <Ellipse />
-
                   <span class="font-normal text-xs leading-5 text-[#37404D80]">
                     34km
                   </span>
                 </section>
+
               </section>
+
             </div>
           </ToggleGroupItem>
 
@@ -418,14 +443,37 @@ const people = [
 
                     </section>
 
+                    <section class="flex gap-x-[10px] items-end mt-6">
+
+                      <div>
+
+                        <div class="font-normal text-sm leading-[16.8px] text-[#999999] mb-2">
+                          Phone Number
+                        </div>
+
+                        <span class="font-normal text-sm leading-[16.8px] text-[#101828]">
+                          +2348023456789
+                        </span>
+
+                      </div>
+                      
+                      <Button 
+                        variant="outline" 
+                        class="w-7 h-7 rounded-md border-[1.5px] border-[#3FA0FB] bg-white copy m-0 p-0"
+                      >
+                        <copy-two />
+                      </Button>
+
+                    </section>
+
                     <section class="mt-6">
 
                       <div class="font-normal text-sm leading-[16.8px] text-[#999999] mb-2">
-                        Phone Number
+                        ID Number
                       </div>
 
                       <span class="font-normal text-sm leading-[16.8px] text-[#101828]">
-                        Shop 10/644 GorgerSt, Sydney NSW 2000
+                        24156-65-0096
                       </span>
 
                     </section>
@@ -433,47 +481,11 @@ const people = [
                     <section class="mt-6">
 
                       <div class="font-normal text-sm leading-[16.8px] text-[#999999] mb-2">
-                        Item category:
+                        License Plate
                       </div>
 
                       <span class="font-normal text-sm leading-[16.8px] text-[#101828]">
-                        Grossery
-                      </span>
-
-                    </section>
-
-                    <section class="mt-6">
-
-                      <div class="font-normal text-sm leading-[16.8px] text-[#999999] mb-2">
-                        Weight of items:
-                      </div>
-
-                      <span class="font-normal text-sm leading-[16.8px] text-[#101828]">
-                        2kg
-                      </span>
-
-                    </section>
-
-                    <section class="mt-6">
-
-                      <div class="font-normal text-sm leading-[16.8px] text-[#999999] mb-2">
-                        Weight of items:
-                      </div>
-
-                      <span class="font-normal text-sm leading-[16.8px] text-[#101828]">
-                        2kg
-                      </span>
-
-                    </section>
-
-                    <section class="mt-6">
-
-                      <div class="font-normal text-sm leading-[16.8px] text-[#999999] mb-2">
-                        Drop-Off Notes
-                      </div>
-
-                      <span class="font-normal text-sm leading-[16.8px] text-[#101828]">
-                        Kindly leave package with the gateman
+                        TY9096
                       </span>
 
                     </section>
@@ -481,14 +493,74 @@ const people = [
                   </ScrollArea>
                 </TabsContent>
 
-                <TabsContent value="customer-info">
-                  Change your password here.
+                <TabsContent 
+                  value="customer-info"
+                  class="m-0 p-0"
+                >
+                  <ScrollArea class="w-[321px] h-[248px]" >
+
+                    <section>
+
+                      <span class="font-normal text-sm leading-[16.8px] text-[#999999]">
+                        Reciever’s Name:
+                      </span>
+
+                      <div class="flex gap-x-2 items-center mt-2">
+                        <img 
+                          src="../assets/pngs/baker-avatar.png"
+                          class="rounded-full border-[0.75px] border-[#000000] border-opacity-[0.08]"
+                        >
+                        <span class="font-medium text-sm text-[#101828]">
+                          Daniel Nwachuwu
+                        </span>
+                      </div>
+
+                    </section>
+
+                    <section class="flex gap-x-[10px] items-end mt-6">
+
+                      <div>
+
+                        <div class="font-normal text-sm leading-[16.8px] text-[#999999] mb-2">
+                          Reciever’s Number:
+                        </div>
+
+                        <span class="font-normal text-sm leading-[16.8px] text-[#101828]">
+                          +2348023456789
+                        </span>
+
+                      </div>
+                      
+                      <Button 
+                        variant="outline" 
+                        class="w-7 h-7 rounded-md border-[1.5px] border-[#3FA0FB] bg-white copy m-0 p-0"
+                      >
+                        <copy-two />
+                      </Button>
+
+                    </section>
+
+                    <section class="mt-6">
+
+                      <div class="font-normal text-sm leading-[16.8px] text-[#999999] mb-2">
+                        Reciever’s Email:
+                      </div>
+
+                      <span class="font-normal text-sm leading-[16.8px] text-[#101828]">
+                        Johndoe@email.com
+                      </span>
+
+                    </section>
+
+                  </ScrollArea>
                 </TabsContent>
 
               </Tabs>
 
               <div class="absolute right-[89.56px] bottom-4 w-[155.66px] h-[54px] flex gap-x-[10px] items-center rounded-lg border border-[#F4F4F4] p-2 bg-white box box-content">
+
                 <location-orange class="m-0 p-0 rounded-full" />
+
                 <div>
 
                   <span class="font-semibold text-[11px] leading-[13.31px] tracking-[0.01em] text-[#232323]">
@@ -500,6 +572,7 @@ const people = [
                   </div>
 
                 </div>
+
               </div>
 
               <div class="absolute right-4 bottom-4 w-[34.51px] h-[115.63px]">
@@ -544,6 +617,7 @@ const people = [
       </section>
 
     </section>
+
   </div>
 </template>
 
@@ -584,14 +658,11 @@ const people = [
   box-shadow: 0px 13px 34px 0px #FFD1C04D;
 }
 
+.copy {
+  box-shadow: 0px 4px 12px 0px #3FA0FB40;
+}
+
 /* 
-font-family: Inter;
-font-size: 11px;
-font-weight: 600;
-line-height: 13.31px;
-letter-spacing: 0.01em;
-text-align: left;
-text-underline-position: from-font;
-text-decoration-skip-ink: none;
+box-shadow: 0px 4px 12px 0px #3FA0FB40;
 */
 </style>
