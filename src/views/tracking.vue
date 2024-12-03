@@ -1,4 +1,6 @@
 <script setup>
+import { ref } from "vue";
+
 import { Input } from "@/components/ui/input";
 import {
   DropdownMenu,
@@ -34,12 +36,50 @@ import MinusSign from "@/assets/svgs/minus-sign.svg";
 import LocationOrange from "@/assets/svgs/location-orange.svg";
 import CopyTwo from "@/assets/svgs/copy-02.svg";
 
+
+// TOGGLE
 const people = [
   { value: "coco", name: "Coco's Bespoke" },
   { value: "damien-01", name: "Damien Smith" },
   { value: "damien-02", name: "Damien Smith" },
   { value: "damien-03", name: "Damien Smith" },
 ];
+
+const notSelectedToggleTabStyle = "w-full h-[200px] rounded-lg border border-[#E4E7EC] p-4 mb-6";
+const selectedToggleTabStyle = "w-full h-[200px] rounded-lg border border-[#F1C49B] p-4 mb-6 toggle";
+
+const selectedToggleTab = ref("coco");
+
+const selectToggleTab = (value) => {
+  selectedToggleTab.value = value;
+  console.log(selectedToggleTab.value);
+}
+
+
+// HORIZONTAL TAB
+const selectedHorizontalTab = ref("map-based-tracking");
+const horizontalTabValues = [ "map-based-tracking", "status-based-tracking" ]
+const [ horizontalTabValue1, horizontalTabValue2 ] = horizontalTabValues;
+const selectedHorizontalTabStyle = "w-[181.99px] rounded px-3 py-[6px] tabs-trigger";
+const notSelectedHorizontalTabStyle = "w-[181.99px] rounded px-3 py-[6px]";
+
+const selectHorizotalTab = (value) => {
+  selectedHorizontalTab.value = value;
+  console.log(selectedHorizontalTab.value);
+}
+
+
+// VERTICAL TAB
+const selectedVerticalTab = ref("order-info");
+const verticalTabValues = [ "order-info", "driver-info", "customer-info" ];
+const [ verticalTabValue1, verticalTabValue2, verticalTabValue3 ] = verticalTabValues;
+const selectedVerticalTabStyle = "w-full block rounded p-2 mt-4 info";
+const notSelectedVerticalTabStyle = "w-full block rounded p-2 mt-4";
+
+const selectVerticalTab = (value) => {
+  selectedVerticalTab.value = value;
+  console.log(selectedVerticalTab.value);
+}
 </script>
 
 <template>
@@ -138,9 +178,10 @@ const people = [
 
           <ToggleGroupItem
             :value="person.value"
-            class="w-full h-[200px] rounded-lg border border-[#E4E7EC] p-4 mb-6 toggle"
+            :class="[selectedToggleTab === person.value ?selectedToggleTabStyle :notSelectedToggleTabStyle]"
             v-for="(person, index) in people"
             :key="index"
+            @click="selectToggleTab(person.value)"
           >
             <div class="w-full h-full">
 
@@ -224,7 +265,7 @@ const people = [
       </section>
 
       <section class="min-w-[74.67%] rounded-xl border border-[#E4E7EC] shadow-sm shadow-[#1018280D]">
-        <Tabs default-value="map-based-tracking">
+        <Tabs :default-value="horizontalTabValue1">
 
           <div class="px-6 py-5">
 
@@ -248,8 +289,9 @@ const people = [
             <TabsList class="w-[373.99px] rounded-lg p-[5px] bg-[#F5F7FA]">
 
               <TabsTrigger 
-                value="map-based-tracking"
-                class="w-[181.99px] rounded px-3 py-[6px] tabs-trigger"
+                :value="horizontalTabValue1"
+                :class="selectedHorizontalTab === horizontalTabValue1 ? selectedHorizontalTabStyle : notSelectedHorizontalTabStyle"
+                @click="selectHorizotalTab(horizontalTabValue1)"
               >
                 <span class="font-medium text-sm text-[#878FA1]">
                   Map-Based Tracking
@@ -257,8 +299,9 @@ const people = [
               </TabsTrigger>
 
               <TabsTrigger 
-                value="status-based-tracking"
-                class="w-[181.99px] rounded px-3 py-[6px] tabs-trigger"
+                :value="horizontalTabValue2"
+                :class="selectedHorizontalTab === horizontalTabValue2 ? selectedHorizontalTabStyle : notSelectedHorizontalTabStyle"
+                @click="selectHorizotalTab(horizontalTabValue2)"
               >
                 <span class="font-medium text-sm text-[#878FA1]">
                   Status-Based Tracking
@@ -278,14 +321,18 @@ const people = [
               />
 
               <Tabs 
-                default-value="order-info" 
+                :default-value="verticalTabValue1" 
                 class="absolute left-4 bottom-4 w-[528px] h-[280px] flex gap-x-4 rounded-lg p-4 bg-white"
                 orientation="vertical"
               >
 
                 <TabsList class="w-[159px] block bg-white pr-4 border-r rounded-none">
 
-                  <TabsTrigger value="order-info" class="w-full block rounded p-2 info">
+                  <TabsTrigger 
+                    :value="verticalTabValue1" 
+                    :class="selectedVerticalTab === verticalTabValue1 ? selectedVerticalTabStyle : notSelectedVerticalTabStyle"
+                    @click="selectVerticalTab(verticalTabValue1)"
+                  >
                     <div class="flex gap-x-2 items-center">
                       <order-info-icon />
                       <span class="font-medium text-sm text-[#757575]">
@@ -294,7 +341,11 @@ const people = [
                     </div>
                   </TabsTrigger>
 
-                  <TabsTrigger value="driver-info" class="w-full block rounded p-2 mt-4 info">
+                  <TabsTrigger 
+                    :value="verticalTabValue2" 
+                    :class="selectedVerticalTab === verticalTabValue2 ? selectedVerticalTabStyle : notSelectedVerticalTabStyle"
+                    @click="selectVerticalTab(verticalTabValue2)"
+                  >
                     <div class="flex gap-x-2 items-center">
                       <driver-info-icon />
                       <span class="font-medium text-sm text-[#757575]">
@@ -303,7 +354,11 @@ const people = [
                     </div>
                   </TabsTrigger>
 
-                  <TabsTrigger value="customer-info" class="w-full block rounded p-2 mt-4 info">
+                  <TabsTrigger 
+                    :value="verticalTabValue3" 
+                    :class="selectedVerticalTab === verticalTabValue3 ? selectedVerticalTabStyle : notSelectedVerticalTabStyle"
+                    @click="selectVerticalTab(verticalTabValue3)"
+                  >
                     <div class="flex gap-x-2 items-center">
                       <customer-info-icon />
                       <span class="font-medium text-sm text-[#757575]">
@@ -622,9 +677,8 @@ const people = [
 </template>
 
 <style lang="css" scoped>
-.toggle:focus {
+.toggle {
   background: #fffbf8;
-  border-color: #f1c49b;
 
   .tag {
     background: white;
@@ -635,7 +689,7 @@ const people = [
   }
 }
 
-.tabs-trigger:focus {
+.tabs-trigger {
   border-radius: 3px;
   background-color: white;
   box-shadow: 0px 3px 1px 0px #0000000A;
@@ -646,7 +700,7 @@ const people = [
   }
 }
 
-.info:focus {
+.info {
   background-color: #F0F0F0;
 
   span {
