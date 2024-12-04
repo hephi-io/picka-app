@@ -360,7 +360,11 @@ const selectHorizotalTab = (value) => {
 
           <TabsContent value="status-based-tracking">
             <div class="h-[636px] relative">
+
+              <div></div>
+
               <info-tab-component class="border border-[#E4E7EC] info-tab-shadow" />
+              
             </div>
           </TabsContent>
 
