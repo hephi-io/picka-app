@@ -14,7 +14,11 @@
       <div class="relative flex flex-col gap-y-3">
 
         <div
-          :class="`absolute h-[44px] w-[44px] border border-[#F1C49B] bg-[#FFF5EC] rounded-lg transition-all duration-300`"
+          :class="[
+            selectedNavSection === 'main-section'
+              ? 'absolute h-[44px] w-[44px] border border-[#F1C49B] bg-[#FFF5EC] rounded-lg transition-all duration-300'
+              : 'hidden'
+          ]"
           :style="`top: ${selectedNavItemOffset}px`"
         ></div>
 
@@ -22,6 +26,7 @@
           @click="
             $router.push(item.href);
             selectedNavItemOffset = item.offset;
+            selectedNavSection = 'main-section';
           "
           v-for="item in mainNavItems"
           :key="item.name"
@@ -31,7 +36,7 @@
           <component
             :is="item.icon"
             :class="[
-              selectedNavItemOffset !== item.offset
+              selectedNavItemOffset !== item.offset || selectedNavSection !== 'main-section'
                 ? 'text-[#757575]'
                 : 'text-[#FF7830]',
             ]"
@@ -48,8 +53,22 @@
         SETTINGS
       </div>
 
-      <button class="z-10 h-[44px] w-[44px] flex items-center justify-center">
-        <Settings />
+      <button
+        @click="
+          $router.push('./settings');
+          selectedNavSection = 'settings'
+        " 
+        :class="[
+          selectedNavSection === 'settings'
+            ? 'z-10 h-[44px] w-[44px] flex items-center justify-center border border-[#F1C49B] bg-[#FFF5EC] rounded-lg transition-all duration-300'
+            : 'z-10 h-[44px] w-[44px] flex items-center justify-center'
+        ]"
+      >
+        <Settings :class="[
+          selectedNavSection === 'settings'
+            ? 'text-[#FF7830]'
+            : 'text-[#757575]'
+        ]" />
       </button>
 
     </section>
@@ -97,6 +116,9 @@ const mainNavItems = [
   { name: "Shipments", icon: Shipments, href: "/shipments", offset: 112 },
   { name: "Tracking", icon: Tracking, href: "/tracking", offset: 168 },
 ];
+
+const selectedNavSection = ref("main-section");
+const navSections = [ "main-section", "settings" ];
 
 const handleLogout = () => {
   token.logout();

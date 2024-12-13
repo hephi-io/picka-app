@@ -13,6 +13,7 @@ import PaymentLayout from "@/layouts/payment/index.vue";
 import SingleShipment from "@/views/single-shipment.vue";
 import BulkShipment from "@/views/bulk-shipment.vue";
 import CheckoutComponent from "@/views/checkout-component.vue";
+import Settings from "@/views/settings.vue";
 import { token } from "@/utils";
 
 const router = createRouter({
@@ -60,6 +61,7 @@ const router = createRouter({
         { name: "shipments", path: "shipments", component: Shipments },
         { name: "wallets", path: "wallets", component: Wallets },
         { name: "tracking", path: "tracking", component: Tracking },
+        { name: "settings", path: "settings", component: Settings },
       ],
     },
     {
