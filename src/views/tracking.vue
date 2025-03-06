@@ -24,9 +24,9 @@ import LocationIcon from '@/assets/svgs/location-icon.svg';
 import Ellipse from '@/assets/svgs/ellipse-icon.svg';
 
 const people = [
-  { value: "coco", name: "Coco's Bespoke" }, 
-  { value: "damien-01", name: "Damien Smith" }, 
-  { value: "damien-02", name: "Damien Smith" }, 
+  { value: "coco", name: "Coco's Bespoke" },
+  { value: "damien-01", name: "Damien Smith" },
+  { value: "damien-02", name: "Damien Smith" },
   { value: "damien-03", name: "Damien Smith" }
 ];
 </script>
@@ -34,27 +34,22 @@ const people = [
 <template>
   <div>
 
-    <header class="py-3 mb-9">
+    <header class="py-3 mb-9 hidden md:block">
       <span class="space-mono font-semibold text-2xl leading-6 tracking-[-0.03em] text-[#060E1F]">
         Tracking
       </span>
     </header>
 
-    <section class="flex gap-x-6 items-start">
+    <section class="lg:flex gap-x-6 lg:items-start">
+      <section>
 
-      <section class="w-[299px]">
-
-        <section class="flex gap-x-2 items-center mb-4">
+        <section class=" hidden md:flex gap-x-2 items-center mb-4 ">
 
           <div class="relative w-[129px] items-center">
 
-            <Input 
-              id="search" 
-              type="text" 
-              placeholder="Search..." 
-              class="rounded border border-[#D4D4D4] pl-8 pr-[10px] py-[10px] font-normal text-sm leading-[14px] tracking-[-0.03em] text-[#C9C8CF]" 
-            />
-            
+            <Input id="search" type="text" placeholder="Search..."
+              class="rounded border border-[#D4D4D4] pl-8 pr-[10px] py-[10px] font-normal text-sm leading-[14px] tracking-[-0.03em] text-[#C9C8CF]" />
+
             <span class="absolute start-0 inset-y-0 flex items-center justify-center pl-2">
               <MagnifyingGlassIcon class="text-muted-foreground" />
             </span>
@@ -64,10 +59,7 @@ const people = [
           <DropdownMenu>
 
             <DropdownMenuTrigger>
-              <Button 
-                variant="outline"
-                class="rounded border border-[#D4D4D4] px-3 py-2 gap-x-2 bg-white"
-              >
+              <Button variant="outline" class="rounded border border-[#D4D4D4] px-3 py-2 gap-x-2 bg-white">
 
                 <ArrowDataTransfer />
 
@@ -96,10 +88,7 @@ const people = [
           <DropdownMenu>
 
             <DropdownMenuTrigger>
-              <Button 
-                variant="outline"
-                class="rounded border border-[#D4D4D4] px-3 py-2 bg-white"
-              >
+              <Button variant="outline" class="rounded border border-[#D4D4D4] px-3 py-2 bg-white">
                 <FunnelSimple />
               </Button>
             </DropdownMenuTrigger>
@@ -119,20 +108,54 @@ const people = [
 
         </section>
 
-        <ToggleGroup 
-          type="single"
-          class="block"
-        >
-          
-          <ToggleGroupItem 
-            :value="person.value"
-            class="w-full h-[200px] rounded-lg border border-[#E4E7EC] p-4 mb-6 toggle"
-            v-for="(person, index) in people"
-            :key="index"
-          >
+        <section class="flex justify-between   gap-x-2 items-center mb-4 md:hidden">
+       
+          <header class="py-3">
+            <span class="space-mono font-semibold text-lg  tracking-[-0.03em] text-[#060E1F]">
+              Tracking
+            </span>
+          </header>
+          <section class="flex  gap-x-2">
+          <div class="relative w-[129px] items-center">
+            <Input id="search" type="text" placeholder="Search..."
+              class="rounded border border-[#D4D4D4] pl-8 pr-[10px] py-[10px] font-normal text-sm leading-[14px] tracking-[-0.03em] text-[#C9C8CF]" />
+
+            <span class="absolute start-0 inset-y-0 flex items-center justify-center pl-2">
+              <MagnifyingGlassIcon class="text-muted-foreground" />
+            </span>
+
+          </div>
+
+
+          <DropdownMenu>
+            <DropdownMenuTrigger>
+              <Button variant="outline" class="rounded border border-[#D4D4D4] px-3 py-2 bg-white">
+                <FunnelSimple />
+              </Button>
+            </DropdownMenuTrigger>
+
+            <DropdownMenuContent>
+
+              <DropdownMenuLabel>My Account</DropdownMenuLabel>
+              <DropdownMenuSeparator />
+              <DropdownMenuItem>Profile</DropdownMenuItem>
+              <DropdownMenuItem>Billing</DropdownMenuItem>
+              <DropdownMenuItem>Team</DropdownMenuItem>
+              <DropdownMenuItem>Subscription</DropdownMenuItem>
+
+            </DropdownMenuContent>
+
+          </DropdownMenu>
+           </section>
+        </section> 
+        <!-- border-[#E4E7EC] inline-block w-[100%] overflow-x-auto  md:block -->
+        <ToggleGroup type="single" class="flex gap-5 w-full justify-start overflow-x-scroll lg:overflow-x-hidden scroll-snap-x mandatory  lg:block hide-scrollbar" >
+          <ToggleGroupItem :value="person.value"
+            class="lg:w-full h-[200px] rounded-lg border border-[#E4E7EC] p-4 mb-6 toggle   scroll-snap-center box-border   flex-shrink-0 w-[300px]"
+            v-for="(person, index) in people" :key="index">
             <div class="w-full h-full">
 
-              <section class="flex justify-between items-center mb-2">
+              <section class="flex justify-between items-center mb-2  text-cen">
 
                 <div class="rounded border border-[#E4E7EC] p-1 bg-[#F9FAFB] flex gap-x-2 items-center tag">
                   <span class="font-normal text-xs leading-5 text-[#475467]">
@@ -209,7 +232,6 @@ const people = [
           </ToggleGroupItem>
 
         </ToggleGroup>
-
       </section>
 
       <section class="min-w-[74.67%]"></section>

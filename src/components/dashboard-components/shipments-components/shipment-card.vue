@@ -4,7 +4,7 @@ defineProps<{ imageUrl?: string; title: string; icon: any }>();
 
 <template>
   <div
-    class="w-[23.58%] rounded-lg px-5 py-[22px] bg-[#F9F9F9] border border-[#E4E7EC]"
+    class="w-[173.5%] md:w-[23.58%] rounded-lg px-5 py-[22px] bg-[#F9F9F9] border border-[#E4E7EC]"
   >
     <section class="mb-[30px]">
       <component :is="icon" />

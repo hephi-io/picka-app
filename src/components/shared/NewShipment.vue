@@ -63,7 +63,7 @@ const handlePath = () => {
       </Button>
     </DialogTrigger>
 
-    <DialogContent class="w-[448px]">
+    <DialogContent class="w-[90%] md:w-[448px]">
       <DialogHeader class="mb-9">
         <DialogTitle
           class="font-semibold text-xl leading-[26px] text-[#101828] text-left"
