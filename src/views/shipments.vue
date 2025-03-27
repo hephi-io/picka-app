@@ -54,7 +54,7 @@ onMounted(async () => {
       </section>
     </header>
 
-    <section class="flex justify-between  mb-10 animation-slide-up  gap-2 md:gap-4 flex-wrap md:flex-nowrap">
+    <section class="flex justify-between  mb-10 animation-slide-up  gap-3.5 md:gap-4 flex-wrap md:flex-nowrap">
       <shipment-card :icon="Package" title="Total shipment" class=" flex-1 shrink-0 relative">
         <div class="flex">
           <section class="mr-[15px]">

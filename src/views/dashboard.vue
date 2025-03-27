@@ -103,8 +103,8 @@ onMounted(async () => {
           <z-pagination />
         </section>
       </section>
-      <section class="">
-        <NewShipment />
+      <section class="hidden">
+        <NewShipment class="" />
       </section>
       
     </section>

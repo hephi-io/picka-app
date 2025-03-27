@@ -23,7 +23,7 @@ const checkoutStyle = "rounded-md flex justify-between items-center py-3 opacity
 </script>
 
 <template>
-  <div class="w-[28.85%]">
+  <div class="flex-grow  lg:w-[28.85%] lg:flex-grow-0 ">
 
     <div class="rounded-xl border border-[#E4E7EC] shadow-sm shadow-[#1018280D] mb-4 px-6 pt-4 pb-6">
 

@@ -547,7 +547,7 @@
     </section>
 
     <section
-      class="mt-10 rounded-xl  animation-slide-up "
+      class="mt-10 rounded-xl  animation-slide-up  "
     >
       <section class="px-6 py-5">
         <div class="mb-5 font-semibold">Recent Transaction History</div>

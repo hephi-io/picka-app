@@ -31,11 +31,11 @@ import {
   NumberFieldIncrement,
   NumberFieldInput,
 } from '@/components/ui/number-field';
-import { 
-  Accordion, 
-  AccordionContent, 
-  AccordionItem, 
-  AccordionTrigger 
+import {
+  Accordion,
+  AccordionContent,
+  AccordionItem,
+  AccordionTrigger
 } from '@/components/ui/accordion';
 import { Checkbox } from '@/components/ui/checkbox';
 import { ToggleGroup, ToggleGroupItem } from '@/components/ui/toggle-group';
@@ -60,8 +60,7 @@ const handleSubmit = () => {
       <section>
 
         <button
-          class="w-11 h-11 rounded-md border border-[#E5E5E5] p-[14px] transition-all duration-75 ease-in hover:bg-[#E5E5E5] mr-4"
-        >
+          class="w-11 h-11 rounded-md border border-[#E5E5E5] p-[14px] transition-all duration-75 ease-in hover:bg-[#E5E5E5] mr-4">
           <ChevronLeft />
         </button>
 
@@ -71,18 +70,15 @@ const handleSubmit = () => {
 
       </section>
 
-      <section>
+      <section class="hidden md:block">
 
-        <Button 
-          variant="outline" 
-          class="mr-4"
-        >
-          <span class="font-medium text-sm leading-[16.94px] text-left text-[#404D61]">
+        <Button variant="outline" class="mr-4 ">
+          <span class="font-medium text-sm leading-[16.94px] text-left text-[#404D61] px-3">
             Cancel
           </span>
         </Button>
 
-        <Button @click="handleSubmit">
+        <Button @click="handleSubmit" class="px-3 py-2">
           Submit
           <ArrowForward class="ml-2" />
         </Button>
@@ -91,30 +87,26 @@ const handleSubmit = () => {
 
     </header>
 
-    <main class="flex justify-between">
+    <main class="flex flex-col md:flex-row    gap-4 justify-between lg:gap-0        ">
 
-      <div class="w-[70%]">
+      <div class="flex-grow lg:w-[70%]  lg:flex-grow-0                ">
         <div class="rounded-xl shadow-sm shadow-[#1018280D]">
 
-          <Accordion 
-            type="single" 
-            collapsible
-            class="rounded-xl rounded-b-none border border-[#E4E7EC] border-b-0"
-          >
+          <Accordion type="single" collapsible class="rounded-xl rounded-b-none border border-[#E4E7EC] border-b-0">
             <AccordionItem value="item-1">
-              
+
               <AccordionTrigger class="px-6 pt-4 pb-0 mb-4">
                 <span class="font-semibold text-base leading-7 text-[#101828] text-left">
                   Shipment item 1
-                </span> 
+                </span>
               </AccordionTrigger>
 
               <AccordionContent>
                 <Tabs default-value="delivery-info">
 
                   <div class="p-6 pt-0">
-                    <TabsList class="w-[373.99px] justify-start rounded-lg p-[5px] bg-[#F5F7FA]">
-                      
+                    <TabsList class="w-full lg:w-[373.99px] justify-start rounded-lg p-[5px] bg-[#F5F7FA]">
+
                       <TabsTrigger value="delivery-info" class="w-1/2">
                         Delivery Info
                       </TabsTrigger>
@@ -128,63 +120,44 @@ const handleSubmit = () => {
 
                   <TabsContent value="delivery-info">
 
-                    <section class="p-6 pt-2 flex justify-between">
+                    <section class=" flex-col  p-6 pt-2 flex justify-between lg:flex-row">
 
-                      <section class="w-[46.71%]">
+                      <section class="w-full lg:w-[46.71%]">
 
                         <section class="mb-4">
 
-                          <Label
-                            for="pickup-address" 
-                            class="font-normal text-xs leading-[14.4px] mb-1"
-                          >
+                          <Label for="pickup-address" class="font-normal text-xs leading-[14.4px] mb-1">
                             Pickup Address <span class="text-red-600">*</span>
                           </Label>
 
-                          <Input 
-                            id="pickup-address" 
-                            type="text" 
-                            placeholder="e.g. 17, Ogunyemi strt, Magodo."
-                            class="font-normal text-sm leading-[18.2px]" 
-                          />
+                          <Input id="pickup-address" type="text" placeholder="e.g. 17, Ogunyemi strt, Magodo."
+                            class="font-normal text-sm leading-[18.2px]" />
 
                         </section>
 
                         <section>
 
-                          <Label 
-                            for="booking-notes"
-                            class="font-normal text-xs leading-[14.4px] mb-1"
-                          >
+                          <Label for="booking-notes" class="font-normal text-xs leading-[14.4px] mb-1">
                             Booking Notes <span class="text-red-600">*</span>
                           </Label>
 
-                          <Input 
-                            id="booking-notes" 
-                            type="text" 
-                            placeholder="e.g. Kindly pickup from the gateman"
-                            class="font-normal text-sm leading-[18.2px]" 
-                          />
+                          <Input id="booking-notes" type="text" placeholder="e.g. Kindly pickup from the gateman"
+                            class="mb-4 font-normal text-sm leading-[18.2px] lg:mb-0" />
 
                         </section>
 
                       </section>
 
-                      <section class="w-[46.71%]">
+                      <section class="w-full lg:w-[46.71%]">
 
-                        <Label
-                          class="font-normal text-xs leading-[14.4px] mb-1"
-                        >
+                        <Label class="font-normal text-xs leading-[14.4px] mb-1">
                           Pickup Option <span class="text-red-600">*</span>
                         </Label>
 
                         <Select>
 
                           <SelectTrigger>
-                            <SelectValue 
-                            placeholder="Choose an option" 
-                            class="text-[#999999]" 
-                          />
+                            <SelectValue placeholder="Choose an option" class="text-[#999999]" />
                           </SelectTrigger>
 
                           <SelectContent>
@@ -196,83 +169,55 @@ const handleSubmit = () => {
 
                     </section>
 
-                    <section class="p-6 pt-2 flex justify-between">
+                    <section class="p-6 pt-2 flex-col lg:flex-row flex justify-between">
 
-                      <section class="w-[46.71%]">
+                      <section class="w-full lg:w-[46.71%]">
 
                         <section class="mb-4">
 
-                          <Label
-                            for="receiver-name" 
-                            class="font-normal text-xs leading-[14.4px] mb-1"
-                          >
+                          <Label for="receiver-name" class="font-normal text-xs leading-[14.4px] mb-1">
                             Receiver's Name <span class="text-red-600">*</span>
                           </Label>
 
-                          <Input 
-                            id="receiver-name" 
-                            type="text" 
-                            placeholder="e.g. John"
-                            class="font-normal text-sm leading-[18.2px]" 
-                          />
+                          <Input id="receiver-name" type="text" placeholder="e.g. John"
+                            class="font-normal text-sm leading-[18.2px]" />
 
                         </section>
 
                         <section class="mb-4">
 
-                          <Label 
-                            for="drop-off"
-                            class="font-normal text-xs leading-[14.4px] mb-1"
-                          >
+                          <Label for="drop-off" class="font-normal text-xs leading-[14.4px] mb-1">
                             Drop-Off <span class="text-red-600">*</span>
                           </Label>
 
-                          <Input 
-                            id="drop-off" 
-                            type="text" 
-                            placeholder="e.g. 17, Ogunyemi strt, Magodo."
-                            class="font-normal text-sm leading-[18.2px]" 
-                          />
+                          <Input id="drop-off" type="text" placeholder="e.g. 17, Ogunyemi strt, Magodo."
+                            class="font-normal text-sm leading-[18.2px]" />
 
                         </section>
 
                         <section>
 
-                          <Label 
-                            for="delivery-notes"
-                            class="font-normal text-xs leading-[14.4px] mb-1"
-                          >
+                          <Label for="delivery-notes" class="font-normal text-xs leading-[14.4px] mb-1">
                             Delivery Notes <span class="text-red-600">*</span>
                           </Label>
 
-                          <Input 
-                            id="delivery-notes" 
-                            type="text" 
-                            placeholder="e.g. Kindly pickup from the gateman"
-                            class="font-normal text-sm leading-[18.2px]" 
-                          />
+                          <Input id="delivery-notes" type="text" placeholder="e.g. Kindly pickup from the gateman"
+                            class="mb-4 font-normal text-sm leading-[18.2px] lg:mb-0" />
 
                         </section>
 
                       </section>
 
-                      <section class="w-[46.71%]">
+                      <section class="w-full lg:w-[46.71%]">
 
                         <div class="mb-4">
 
-                          <Label 
-                            for="delivery-email"
-                            class="font-normal text-xs leading-[14.4px] mb-1"
-                          >
+                          <Label for="delivery-email" class="font-normal text-xs leading-[14.4px] mb-1">
                             Delivery Email <span class="text-red-600">*</span>
                           </Label>
 
-                          <Input 
-                            id="delivery-email" 
-                            type="email" 
-                            placeholder="e.g. Johndoe@email.com"
-                            class="font-normal text-sm leading-[18.2px]" 
-                          />
+                          <Input id="delivery-email" type="email" placeholder="e.g. Johndoe@email.com"
+                            class="font-normal text-sm leading-[18.2px]" />
 
                         </div>
 
@@ -319,10 +264,7 @@ const handleSubmit = () => {
 
                   </TabsContent>
 
-                  <TabsContent 
-                    value="item-details"
-                    class="p-6"
-                  >
+                  <TabsContent value="item-details" class="p-6">
 
                     <section class="flex justify-between items-center mb-4">
 
@@ -335,10 +277,8 @@ const handleSubmit = () => {
                         <Select>
 
                           <SelectTrigger>
-                            <SelectValue 
-                              placeholder="Select an Option"
-                              class="font-normal text-sm leading-[18.2px] placeholder:text-[#999999]" 
-                            />
+                            <SelectValue placeholder="Select an Option"
+                              class="font-normal text-sm leading-[18.2px] placeholder:text-[#999999]" />
                           </SelectTrigger>
 
                           <SelectContent>
@@ -356,19 +296,12 @@ const handleSubmit = () => {
 
                       <section class="w-[49.14%]">
 
-                        <Label
-                          for="package-weight" 
-                          class="font-normal text-xs leading-[14.4px]"
-                        >
+                        <Label for="package-weight" class="font-normal text-xs leading-[14.4px]">
                           Package Weight (kg)<span class="text-red-600"> *</span>
                         </Label>
 
-                        <Input
-                          id="package-weight"
-                          class="font-normal text-sm leading-[18.2px] text-[#999999] mt-1" 
-                          type="text"
-                          placeholder="2"
-                        />
+                        <Input id="package-weight" class="font-normal text-sm leading-[18.2px] text-[#999999] mt-1"
+                          type="text" placeholder="2" />
 
                       </section>
 
@@ -380,15 +313,10 @@ const handleSubmit = () => {
                         Choose your package size or type your package size in the L x W x H custom field below
                       </Label>
 
-                      <ToggleGroup 
-                        type="single"
-                        class="justify-start gap-x-6 mt-4"
-                      >
+                      <ToggleGroup type="single" class="flex-wrap gap-2 justify-start lg:gap-x-6 mt-4">
 
-                        <ToggleGroupItem 
-                          value="standard-size"
-                          class="w-[253px] h-[178.01px] rounded-xl border border-[#D9D9D9] py-4 bg-[#F7F8FA]"
-                        >
+                        <ToggleGroupItem value="standard-size"
+                          class="w-[130.67px] md:w-[178.67px] lg:w-[253px] h-[178.01px] rounded-xl border border-[#D9D9D9] py-4 bg-[#F7F8FA]">
                           <div>
 
                             <section>
@@ -412,10 +340,8 @@ const handleSubmit = () => {
                           </div>
                         </ToggleGroupItem>
 
-                        <ToggleGroupItem 
-                          value="medium-size"
-                          class="w-[253px] h-[178.01px] rounded-xl border border-[#D9D9D9] py-4 bg-[#F7F8FA]"
-                        >
+                        <ToggleGroupItem value="medium-size"
+                          class="w-[130.67px] md:w-[178.67px]  lg:w-[253px] h-[178.01px] rounded-xl border border-[#D9D9D9] py-4 bg-[#F7F8FA]">
                           <div>
 
                             <section>
@@ -439,10 +365,8 @@ const handleSubmit = () => {
                           </div>
                         </ToggleGroupItem>
 
-                        <ToggleGroupItem 
-                          value="mini-size"
-                          class="w-[253px] h-[178.01px] rounded-xl border border-[#D9D9D9] py-4 bg-[#F7F8FA]"
-                        >
+                        <ToggleGroupItem value="mini-size"
+                          class="w-[130.67px] md:w-[178.67px]  lg:w-[253px] h-[178.01px] rounded-xl border border-[#D9D9D9] py-4 bg-[#F7F8FA]">
                           <div>
 
                             <section>
@@ -474,55 +398,34 @@ const handleSubmit = () => {
 
                       <section class="w-[32.18%]">
 
-                        <Label 
-                          for="length"
-                          class="font-normal text-xs leading-[14.4px]"
-                        >
+                        <Label for="length" class="font-normal text-xs leading-[14.4px]">
                           Length(cm) <span class="text-red-600">*</span>
                         </Label>
 
-                        <Input 
-                          id="length"
-                          class="font-normal text-sm leading-[18.2px] text-[#999999]"
-                          type="text"
-                          placeholder="38"
-                        />
+                        <Input id="length" class="font-normal text-sm leading-[18.2px] text-[#999999]" type="text"
+                          placeholder="38" />
 
                       </section>
 
                       <section class="w-[32.18%]">
 
-                        <Label 
-                          for="width"
-                          class="font-normal text-xs leading-[14.4px]"
-                        >
+                        <Label for="width" class="font-normal text-xs leading-[14.4px]">
                           Width(cm) <span class="text-red-600">*</span>
                         </Label>
 
-                        <Input 
-                          id="length"
-                          class="font-normal text-sm leading-[18.2px] text-[#999999]"
-                          type="text"
-                          placeholder="33"
-                        />
+                        <Input id="length" class="font-normal text-sm leading-[18.2px] text-[#999999]" type="text"
+                          placeholder="33" />
 
                       </section>
 
                       <section class="w-[32.18%]">
 
-                        <Label 
-                          for="length"
-                          class="font-normal text-xs leading-[14.4px]"
-                        >
+                        <Label for="length" class="font-normal text-xs leading-[14.4px]">
                           Height(cm) <span class="text-red-600">*</span>
                         </Label>
 
-                        <Input 
-                          id="height"
-                          class="font-normal text-sm leading-[18.2px] text-[#999999]"
-                          type="text"
-                          placeholder="12"
-                        />
+                        <Input id="height" class="font-normal text-sm leading-[18.2px] text-[#999999]" type="text"
+                          placeholder="12" />
 
                       </section>
 
@@ -530,19 +433,12 @@ const handleSubmit = () => {
 
                     <section>
 
-                      <Label 
-                        for="booking-notes-1"
-                        class="font-normal text-xs leading-[14.4px]"
-                      >
+                      <Label for="booking-notes-1" class="font-normal text-xs leading-[14.4px]">
                         Booking Notes <span class="text-red-600">*</span>
                       </Label>
 
-                      <Input 
-                        id="booking-notes-1"
-                        class="font-normal text-sm leading-[18.2px] text-[#999999]"
-                        type="text"
-                        placeholder="e.g. Kindly drop-off with the gateman"
-                      />
+                      <Input id="booking-notes-1" class="font-normal text-sm leading-[18.2px] text-[#999999]"
+                        type="text" placeholder="e.g. Kindly drop-off with the gateman" />
 
                     </section>
 
@@ -554,30 +450,25 @@ const handleSubmit = () => {
             </AccordionItem>
           </Accordion>
 
-          <div class="rounded-xl rounded-t-none border border-[#E4E7EC] border-t-0 px-6 pt-3 pb-4 flex justify-between items-center">
+          <div
+            class="rounded-xl rounded-t-none border border-[#E4E7EC] border-t-0 px-3 md:px-6 pt-3 pb-4 flex justify-between items-center">
 
             <section class="flex gap-x-2 items-center">
 
-              <Checkbox 
-                id="save"
-                class="border border-[#DEE1E1]" 
-              />
+              <Checkbox id="save" class="border border-[#DEE1E1]" />
 
-              <Label
-                for="save"
-                class="font-normal text-xs leading-5 text-[#8E9798]"
-              >
+              <Label for="save" class="hidden md:block font-normal text-xs leading-5 text-[#8E9798]">
                 Save This Contact Info.
+              </Label>
+              <Label for="save" class="font-normal text-xs leading-5 text-[#8E9798]">
+                Save Info.
               </Label>
 
             </section>
 
             <section class="flex gap-x-2 items-center">
 
-              <Button 
-                variant="ghost"
-                class="gap-x-1"
-              >
+              <Button variant="ghost" class="gap-x-1">
 
                 <Delete />
 
@@ -587,10 +478,8 @@ const handleSubmit = () => {
 
               </Button>
 
-              <Button 
-                variant="secondary"
-                class="px-6 py-2 bg-[#E8EAEA] border border-[#D0D5DD] shadow-sm shadow-[#1018280D]"  
-              >
+              <Button variant="secondary"
+                class="px-6 py-2 bg-[#E8EAEA] border border-[#D0D5DD] shadow-sm shadow-[#1018280D]">
                 <span class="font-semibold text-[13px] leading-5 text-[#344054]">
                   Next
                 </span>
@@ -601,6 +490,12 @@ const handleSubmit = () => {
           </div>
 
         </div>
+        <Button class="md:hidden w-full rounded-md border border-[#D8D8D8] px-4 py-3 gap-x-2 bg-[#1E1E1E] my-4">
+          <span class="font-semibold text-sm leading-[16.8px] text-white">
+            Continue
+          </span>
+        </Button>
+
       </div>
 
       <order-summary />
@@ -610,5 +505,4 @@ const handleSubmit = () => {
   </div>
 </template>
 
-<style lang="css" scoped>
-</style>
+<style lang="css" scoped></style>
