@@ -26,7 +26,7 @@ const selectVerticalTab = (value) => {
 <template>
   <Tabs 
     :default-value="verticalTabValue1" 
-    class="absolute w-full bottom-3 md:left-4  md:bottom-4 md:w-[500px] lg:w-[528px] md:ml-0  h-[280px] flex gap-x-4 p-4  rounded-lg  bg-white"
+    class=" w-full bottom-0 md:left-4  absolute  md:bottom-4   md:w-[500px] lg:w-[528px] ml-0  h-[280px] flex gap-x-4 p-4  rounded-lg  bg-white"
     orientation="vertical"
   >
 

@@ -1,4 +1,5 @@
 <script setup>
+
 import { ref } from "vue";
 
 import { Input } from "@/components/ui/input";
@@ -14,6 +15,7 @@ import { Button } from "@/components/ui/button";
 import { ToggleGroup, ToggleGroupItem } from "@/components/ui/toggle-group";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { Badge } from '@/components/ui/badge';
+import Map from '@/components/shared/Map.vue';
 import {
   Stepper,
   StepperDescription,
@@ -45,6 +47,8 @@ import OrderConfirmedIcon from "@/assets/svgs/order-confirmed-icon.svg";
 import PickedUpIcon from "@/assets/svgs/picked-up-icon.svg";
 import InTransitIcon from "@/assets/svgs/in-transit-icon.svg";
 import PackageDelivered from "@/assets/svgs/package-delivered.svg";
+
+
 
 
 // TOGGLE
@@ -98,10 +102,10 @@ const selectStepperValue = (value) => {
       </span>
     </header>
 
-    <section class="lg:flex gap-x-6 lg:items-start">
-      <section>
+    <section class="lg:flex gap-x-6 items-center ">
+      <section class="lg:flex-1">
 
-        <section class=" hidden md:flex gap-x-2 items-center mb-4 ">
+        <section class=" hidden md:flex gap-x-2 items-center mb-4  ">
 
           <div class="relative w-[129px] items-center">
 
@@ -291,7 +295,7 @@ const selectStepperValue = (value) => {
 
       </section>
 
-      <section class="flex-grow rounded-xl border border-[#E4E7EC] shadow-sm shadow-[#1018280D]">
+      <section class="flex-grow  rounded-xl border border-[#E4E7EC] shadow-sm shadow-[#1018280D]">
         <Tabs :default-value="horizontalTabValue1">
 
           <div class="px-2 md:px-6 py-5">
@@ -335,31 +339,16 @@ const selectStepperValue = (value) => {
 
           <TabsContent value="map-based-tracking">
             <div class="relative">
+              <!-- <img src="../assets/pngs/mapsicle-map.png" class="object-cover border-t min-h-[70vh]" /> -->
+               <div class="lg:min-w-[34rem]">
 
-              <img src="../assets/pngs/mapsicle-map.png" class="object-cover border-t min-h-[70vh]" />
+                 <Map />
+               </div>
 
-              <info-tab-component class="absolute " />
+               <info-tab-component />
 
-              <div
-                class=" hidden absolute md:right-4 lg:right-[89.56px] bottom-4 w-[155.66px] h-[54px] md:flex gap-x-[10px] items-center rounded-lg border border-[#F4F4F4] p-2 bg-white box box-content">
 
-                <location-orange class="m-0 p-0 rounded-full" />
-
-                <div class="hidden md:block">
-
-                  <span class="font-semibold text-[11px] leading-[13.31px] tracking-[0.01em] text-[#232323]">
-                    8502 Preston
-                  </span>
-
-                  <div class="font-normal text-[10px] leading-[12.1px] tracking-[0.01em] text-[#B0B0B0] mt-[1px]">
-                    Rd. Inglewood, Maine 98380
-                  </div>
-
-                </div>
-
-              </div>
-
-              <div class="absolute right-4 bottom-4 w-[34.51px] h-[115.63px] hidden md:block">
+              <!-- <div class="absolute right-4 bottom-4 w-[34.51px] h-[115.63px] hidden md:block">
 
                 <section class="w-[33px] h-[70.13px] flex flex-col items-center bg-white rounded">
 
@@ -388,7 +377,7 @@ const selectStepperValue = (value) => {
                   <rectangle-icon />
                 </Button>
 
-              </div>
+              </div> -->
 
             </div>
           </TabsContent>
@@ -400,7 +389,8 @@ const selectStepperValue = (value) => {
                 <Stepper class="flex  lg:items-start flex-col gap-x-0  lg:flex-row">
 
                   <StepperItem :step="1" class="w-full lg:w-[25%]">
-                    <StepperTrigger @click="selectStepperValue(stepperValueOne)" class="p-0 flex flex-row  items-start gap-x-5 lg:block">
+                    <StepperTrigger @click="selectStepperValue(stepperValueOne)"
+                      class="p-0 flex flex-row  items-start gap-x-5 lg:block">
 
                       <div class="flex flex-col lg:flex-row lg:w-full justify-start">
 
@@ -411,7 +401,8 @@ const selectStepperValue = (value) => {
                           </div>
                         </StepperIndicator>
 
-                        <div class="h-[70px] flex flex-col justify-start items-center flex-grow lg:flex-row lg:justify-center lg:h-auto">
+                        <div
+                          class="h-[70px] flex flex-col justify-start items-center flex-grow lg:flex-row lg:justify-center lg:h-auto">
 
                           <div
                             :class="[selectedStepperValue === stepperValueOne || selectedStepperValue === stepperValueTwo || selectedStepperValue === stepperValueThree || selectedStepperValue === stepperValueFour ? 'flex-grow border border-[#13BD96]' : 'flex-grow border']">
@@ -424,31 +415,32 @@ const selectStepperValue = (value) => {
                         </div>
 
                       </div>
-                        <div>
-                      <StepperTitle class="w-full text-left">
-                        <span class="font-medium text-sm text-[#060E1F]">
-                          Order Confirmed
-                        </span>
-                      </StepperTitle>
+                      <div>
+                        <StepperTitle class="w-full text-left">
+                          <span class="font-medium text-sm text-[#060E1F]">
+                            Order Confirmed
+                          </span>
+                        </StepperTitle>
 
-                      <StepperDescription class="w-full lg:w-[83%]">
+                        <StepperDescription class="w-full lg:w-[83%]">
 
-                        <section class="font-normal text-xs leading-5 text-[#475467] text-left">
-                          The order has been successfully placed and confirmed
-                        </section>
+                          <section class="font-normal text-xs leading-5 text-[#475467] text-left">
+                            The order has been successfully placed and confirmed
+                          </section>
 
-                        <section class="mt-1 font-normal text-xs leading-5 text-[#37404D80] text-left">
-                          23 July, 12:00pm
-                        </section>
+                          <section class="mt-1 font-normal text-xs leading-5 text-[#37404D80] text-left">
+                            23 July, 12:00pm
+                          </section>
 
-                      </StepperDescription>
-                       </div>
+                        </StepperDescription>
+                      </div>
                     </StepperTrigger>
                   </StepperItem>
 
 
                   <StepperItem :step="2" class="w-full lg:w-[25%]">
-                    <StepperTrigger @click="selectStepperValue(stepperValueTwo)" class="p-0 flex flex-row  items-start gap-x-5 lg:block">
+                    <StepperTrigger @click="selectStepperValue(stepperValueTwo)"
+                      class="p-0 flex flex-row  items-start gap-x-5 lg:block">
 
                       <div class="flex flex-col lg:flex-row lg:w-full justify-start">
 
@@ -459,7 +451,8 @@ const selectStepperValue = (value) => {
                           </div>
                         </StepperIndicator>
 
-                        <div class="h-[70px] flex flex-col justify-start items-center flex-grow lg:flex-row lg:justify-center lg:h-auto">
+                        <div
+                          class="h-[70px] flex flex-col justify-start items-center flex-grow lg:flex-row lg:justify-center lg:h-auto">
 
                           <div
                             :class="[selectedStepperValue === stepperValueTwo || selectedStepperValue === stepperValueThree || selectedStepperValue === stepperValueFour ? 'flex-grow border border-[#13BD96]' : 'flex-grow border']">
@@ -472,35 +465,36 @@ const selectStepperValue = (value) => {
                         </div>
 
                       </div>
-                       <div>
-                      <StepperTitle class="w-full text-left">
-                        <span class="font-medium text-sm text-[#060E1F]">
-                          Picked Up
-                        </span>
-                      </StepperTitle>
+                      <div>
+                        <StepperTitle class="w-full text-left">
+                          <span class="font-medium text-sm text-[#060E1F]">
+                            Picked Up
+                          </span>
+                        </StepperTitle>
 
-                      <StepperDescription class="w-full lg:w-[83%]">
+                        <StepperDescription class="w-full lg:w-[83%]">
 
-                        <section class="font-normal text-xs leading-5 text-[#475467] text-left">
-                          The package has been collected by the courier and is en route.
-                        </section>
+                          <section class="font-normal text-xs leading-5 text-[#475467] text-left">
+                            The package has been collected by the courier and is en route.
+                          </section>
 
-                        <section
-                          class="mt-1 flex justify-between items-center font-normal text-xs leading-5 text-[#37404D80] text-left">
-                          <span>23 July, 6:00pm</span>
-                          <Ellipse />
-                          <span>ETA</span>
-                          <Ellipse />
-                          <span>34km</span>
-                        </section>
+                          <section
+                            class="mt-1 flex justify-between items-center font-normal text-xs leading-5 text-[#37404D80] text-left">
+                            <span>23 July, 6:00pm</span>
+                            <Ellipse />
+                            <span>ETA</span>
+                            <Ellipse />
+                            <span>34km</span>
+                          </section>
 
-                      </StepperDescription>
-                    </div>
+                        </StepperDescription>
+                      </div>
                     </StepperTrigger>
                   </StepperItem>
 
                   <StepperItem :step="3" class="w-full lg:w-[25%]">
-                    <StepperTrigger @click="selectStepperValue(stepperValueThree)" class="p-0 flex flex-row  items-start gap-x-5 lg:block">
+                    <StepperTrigger @click="selectStepperValue(stepperValueThree)"
+                      class="p-0 flex flex-row  items-start gap-x-5 lg:block">
 
                       <div class="flex flex-col lg:flex-row lg:w-full justify-start">
 
@@ -511,7 +505,8 @@ const selectStepperValue = (value) => {
                           </div>
                         </StepperIndicator>
 
-                        <div class="h-[70px] flex flex-col justify-start items-center flex-grow lg:flex-row lg:justify-center lg:h-auto">
+                        <div
+                          class="h-[70px] flex flex-col justify-start items-center flex-grow lg:flex-row lg:justify-center lg:h-auto">
 
                           <div
                             :class="[selectedStepperValue === stepperValueThree || selectedStepperValue === stepperValueFour ? 'flex-grow border border-[#13BD96]' : 'flex-grow border']">
@@ -524,35 +519,36 @@ const selectStepperValue = (value) => {
                         </div>
 
                       </div>
-                        <div>
-                      <StepperTitle class="w-full text-left">
-                        <span class="font-medium text-sm text-[#060E1F]">
-                          In Transit
-                        </span>
-                      </StepperTitle>
+                      <div>
+                        <StepperTitle class="w-full text-left">
+                          <span class="font-medium text-sm text-[#060E1F]">
+                            In Transit
+                          </span>
+                        </StepperTitle>
 
-                      <StepperDescription class="w-full lg:w-[83%]">
+                        <StepperDescription class="w-full lg:w-[83%]">
 
-                        <section class="font-normal text-xs leading-5 text-[#475467] text-left">
-                          The package is actively moving toward its destination.
-                        </section>
+                          <section class="font-normal text-xs leading-5 text-[#475467] text-left">
+                            The package is actively moving toward its destination.
+                          </section>
 
-                        <section
-                          class="mt-1 invisible flex justify-between items-center font-normal text-xs leading-5 text-[#37404D80] text-left">
-                          <span>23 July, 6:00pm</span>
-                          <Ellipse />
-                          <span>ETA</span>
-                          <Ellipse />
-                          <span>34km</span>
-                        </section>
+                          <section
+                            class="mt-1 invisible flex justify-between items-center font-normal text-xs leading-5 text-[#37404D80] text-left">
+                            <span>23 July, 6:00pm</span>
+                            <Ellipse />
+                            <span>ETA</span>
+                            <Ellipse />
+                            <span>34km</span>
+                          </section>
 
-                      </StepperDescription>
-                       </div>
+                        </StepperDescription>
+                      </div>
                     </StepperTrigger>
                   </StepperItem>
 
                   <StepperItem :step="4" class="w-full lg:w-[25%] ">
-                    <StepperTrigger @click="selectStepperValue(stepperValueFour)" class="p-0 flex flex-row  items-start gap-x-5 lg:block">
+                    <StepperTrigger @click="selectStepperValue(stepperValueFour)"
+                      class="p-0 flex flex-row  items-start gap-x-5 lg:block">
 
                       <div class="flex flex-col lg:flex-row lg:w-full justify-start">
                         <StepperIndicator
@@ -563,37 +559,37 @@ const selectStepperValue = (value) => {
                         </StepperIndicator>
                       </div>
                       <div>
-                      <StepperTitle class="w-full text-left">
-                        <span class="font-medium text-sm text-[#060E1F]">
-                          Delivered
-                        </span>
-                      </StepperTitle>
+                        <StepperTitle class="w-full text-left">
+                          <span class="font-medium text-sm text-[#060E1F]">
+                            Delivered
+                          </span>
+                        </StepperTitle>
 
-                      <StepperDescription class="w-[83%]">
+                        <StepperDescription class="w-[83%]">
 
-                        <section class="font-normal text-xs leading-5 text-[#475467] text-left">
-                          The package has arrived at the recipient’s location.
-                        </section>
+                          <section class="font-normal text-xs leading-5 text-[#475467] text-left">
+                            The package has arrived at the recipient’s location.
+                          </section>
 
-                        <section
-                          class="mt-1 flex justify-between items-center font-normal text-xs leading-5 text-[#37404D80] text-left">
-                          <span>24 July, 9:00am</span>
-                          <Ellipse />
-                          <span>ETA</span>
-                          <Ellipse />
-                          <span>91km</span>
-                        </section>
+                          <section
+                            class="mt-1 flex justify-between items-center font-normal text-xs leading-5 text-[#37404D80] text-left">
+                            <span>24 July, 9:00am</span>
+                            <Ellipse />
+                            <span>ETA</span>
+                            <Ellipse />
+                            <span>91km</span>
+                          </section>
 
-                      </StepperDescription>
-                        </div>
+                        </StepperDescription>
+                      </div>
                     </StepperTrigger>
                   </StepperItem>
 
                 </Stepper>
               </div>
-                <div class="hidden lg:block">
-                  <info-tab-component class="border border-[#E4E7EC] info-tab-shadow" />
-                </div>
+              <div class="hidden lg:block">
+                <info-tab-component class="border border-[#E4E7EC] info-tab-shadow" />
+              </div>
 
             </div>
           </TabsContent>
