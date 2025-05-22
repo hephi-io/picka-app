@@ -1,5 +1,5 @@
 import { createRouter, createWebHistory } from "vue-router";
-import LandingPage from "../components/LandingPage.vue";
+import LandingPage from "@/views/landing-page.vue";
 import NewAuthPage from "@/components/NewAuthPage.vue";
 import OTPVerification from "@/components/OTPVerification.vue";
 import OTPVerificationStatus from "@/components/OTPVerificationStatus.vue";
@@ -18,6 +18,11 @@ import { token } from "@/utils";
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
   routes: [
+    {
+      path: "/landing-page",
+      name: "landing-page",
+      component: LandingPage,
+    },
     {
       path: "/auth",
       name: "auth",
