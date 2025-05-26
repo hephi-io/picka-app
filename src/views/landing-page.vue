@@ -1,10 +1,14 @@
 <script setup>
-import Navbar from "@/components/landing-page/navbar/navbar.vue"
+import Navbar from "@/components/landing-page/navbar/navbar.vue";
+import Hero from "@/components/landing-page/hero/hero.vue";
+import About from "@/components/landing-page/about/about.vue";
 </script>
 
 <template>
-  <div class="py-12 bg-[#110E09]">
+  <div class="bg-[#110E09]">
     <Navbar />
+    <Hero />
+    <About />
   </div>
 </template>
 
