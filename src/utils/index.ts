@@ -1,3 +1,4 @@
+
 export const token = {
   getToken() {
     return localStorage.getItem("token"); // Assuming the token is stored in localStorage
@@ -12,3 +13,18 @@ export const token = {
     localStorage.removeItem("token"); // Clear token on logout
   },
 };
+
+
+
+
+
+
+export const testSavedAcc =  {
+  getTestToken() {
+    const token = localStorage.getItem("userAuthCode");
+    return token ? JSON.parse(token) : null;
+  },
+   savedTestToken(token: string){
+     localStorage.setItem("userAuthCode", JSON.stringify(token))
+   }
+}

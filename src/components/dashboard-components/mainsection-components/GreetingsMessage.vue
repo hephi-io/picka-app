@@ -1,4 +1,8 @@
-<script setup lang="ts">
+<script setup>
+import { useAuthStore } from "@/stores/auth";
+
+
+const authStore = useAuthStore();
 </script>
 
 <template>
@@ -7,7 +11,7 @@
     <section class="mb-2">
       <!-- <span>{{ `Hi ${person.firstName}` }}</span> -->
       <span class="space-mono font-medium text-sm leading-[14px] tracking-[-3%] text-[#676767]">
-        Hi Melody,
+        Hi {{ authStore.user?.first_name }},
       </span>
     </section>
 

@@ -16,6 +16,9 @@ import AddCard from "@/assets/svgs/add-card.svg";
 import WalletTrend from "@/assets/svgs/wallet-trend.svg";
 import ZSearchInput from "@/components/shared/z-search-input.vue";
 
+import { useAuthStore } from "@/stores/auth";
+const authStore = useAuthStore();
+
 const data = ref<Shipping[]>([]);
 
 async function getData(): Promise<Shipping[]> {
@@ -38,7 +41,7 @@ onMounted(async () => {
     <header class="hidden md:flex justify-between mb-10 pt-6 animation-slide-up">
       <div class="">
         <div class="text-sm leading-[14px] tracking-[-3%] text-[#676767] mb-2.5">
-          Hello Melody,
+          Hello {{ authStore.user?.first_name }},
         </div>
 
         <h1 class="space-mono font-semibold text-[26px] leading-[26px] tracking-[-3%] text-[#242424]">

@@ -70,37 +70,61 @@ type TResponse = {
   message: string;
 };
 
-type TLoginResponse = {
-  id: string;
-  created_at: string;
-  updated_at: string;
-  name: string;
-  phone_number: string;
-  email: string;
-  website: string;
-  address: string;
-  reg_number: string;
-  country: string;
-  webhook_url: string;
-  verification_url: string;
-  active: boolean;
-  logo: string;
-  sandbox_credential: {
-    secret_key: string;
-    public_key: string;
-  };
-  production_credential: {
-    secret_key: string;
-    public_key: string;
-  };
-  token: string;
-};
+// type TLoginResponse = {
+//   id: string;
+//   created_at: string;
+//   updated_at: string;
+//   name: string;
+//   phone_number: string;
+//   email: string;
+//   website: string;
+//   address: string;
+//   reg_number: string;
+//   country: string;
+//   webhook_url: string;
+//   verification_url: string;
+//   active: boolean;
+//   logo: string;
+//   sandbox_credential: {
+//     secret_key: string;
+//     public_key: string;
+//   };
+//   production_credential: {
+//     secret_key: string;
+//     public_key: string;
+//   };
+//   token: string;
+// };
 
-const API = axios.create({ baseURL: "https://api.zipkod.ng" });
+type TLoginResponse = {
+  activation_code: string,
+  created_at: string,
+  email: string,
+  first_name: string,
+  id: string,
+  is_active: true,
+  last_name: string,
+  org_id: string,
+  profile_image: {},
+  role: {
+    description: string,
+    id: 0,
+    level: 0,
+    name: string
+  },
+  role_id: string,
+  updated_at: string,
+  username: string
+}
+
+
+
+const API = axios.create({ baseURL: import.meta.env.VITE_API_BASE_URL });
 
 export const login = (payload: { email: string; password: string }) => {
   return API.post<TResponse & { data: TLoginResponse }>(
-    "/business/login",
+    "auth/login",
     payload
   );
 };
+

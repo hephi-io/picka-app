@@ -49,7 +49,7 @@ const faqWindows = ref(
           <div class="flex justify-between mb-9">
 
             <div class="flex items-center tt-firs-neue-bold font-bold text-lg text-[#FF7830] md:text-xl">
-              How do I sign up for ZipKod’s services?
+              How do I sign up for Picka’s services?
             </div>
 
             <div>
@@ -62,7 +62,7 @@ const faqWindows = ref(
           </div>
 
           <div class="tt-firs-neue-medium font-medium text-lg leading-[23.4px] text-[#737373]">
-          Signing up with ZipKod is easy. Simply visit our website and fill out the registration form under the "Sign Up" section. Our team will then guide you through the setup process to integrate our logistics platform into your business operations.
+          Signing up with Picka is easy. Simply visit our website and fill out the registration form under the "Sign Up" section. Our team will then guide you through the setup process to integrate our logistics platform into your business operations.
           </div>
 
         </div>

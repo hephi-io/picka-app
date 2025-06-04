@@ -30,7 +30,7 @@
         <div class="md:h-[500px] md:box-border">
 
           <div class="tt-firs-neue-medium font-medium text-base leading-[20.8px] text-[#737373] mb-6 lg:text-lg lg:leading-[23.4px]">
-            ZipKod is your ultimate logistics partner, committed to delivering excellence one mile at a time. Born from a passion to streamline and innovate the delivery process, we’ve grown into a trusted name in logistics. Our dynamic team of experts and tech enthusiasts work tirelessly to provide fast, reliable, and customer-focused delivery solutions. With ZipKod, experience a seamless blend of efficiency, innovation, and unparalleled service that keeps your business moving forward. Join us on our journey to redefine the future of logistics.
+            Picka is your ultimate logistics partner, committed to delivering excellence one mile at a time. Born from a passion to streamline and innovate the delivery process, we’ve grown into a trusted name in logistics. Our dynamic team of experts and tech enthusiasts work tirelessly to provide fast, reliable, and customer-focused delivery solutions. With Picka, experience a seamless blend of efficiency, innovation, and unparalleled service that keeps your business moving forward. Join us on our journey to redefine the future of logistics.
           </div>
 
           <div class="md:h-[49.5%] lg:h-[48.5%]">
