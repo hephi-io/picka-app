@@ -26,11 +26,11 @@ const selectVerticalTab = (value) => {
 <template>
   <Tabs 
     :default-value="verticalTabValue1" 
-    class="absolute left-4 bottom-4 w-[528px] h-[280px] flex gap-x-4 rounded-lg p-4 bg-white"
+    class=" w-full bottom-0 md:left-4  absolute  md:bottom-4   md:w-[500px] lg:w-[528px] ml-0  h-[280px] flex gap-x-4 p-4  rounded-lg  bg-white"
     orientation="vertical"
   >
 
-    <TabsList class="w-[159px] block bg-white pr-4 border-r rounded-none">
+    <TabsList class="md:w-[159px] block bg-white md:pr-4 border-r rounded-none ">
 
       <TabsTrigger 
         :value="verticalTabValue1" 
@@ -77,9 +77,9 @@ const selectVerticalTab = (value) => {
       value="order-info"
       class="m-0"
     >
-      <ScrollArea class="w-[321px] h-[248px]" >
+      <ScrollArea class="w-full md:w-[321px] h-[248px] " >
 
-        <section>
+        <section class="">
 
           <div class="font-normal text-sm leading-[16.8px] text-[#999999] mb-2">
             Order ID
@@ -97,7 +97,7 @@ const selectVerticalTab = (value) => {
             Pickup address:
           </div>
 
-          <span class="font-normal text-sm leading-[16.8px] text-[#101828]">
+          <span class="break-words font-normal text-[13px] md:text-sm leading-[16.8px] text-[#101828]">
             17, Ogunyemi strt, Magodo.
           </span>
 
@@ -109,7 +109,7 @@ const selectVerticalTab = (value) => {
             Drop-off address:
           </div>
 
-          <span class="font-normal text-sm leading-[16.8px] text-[#101828]">
+          <span class="font-normal text-[13px] md:text-sm leading-[16.8px] text-[#101828]">
             Shop 10/644 GorgerSt, Sydney NSW 2000
           </span>
 
@@ -157,8 +157,8 @@ const selectVerticalTab = (value) => {
             Drop-Off Notes
           </div>
 
-          <span class="font-normal text-sm leading-[16.8px] text-[#101828]">
-            Kindly leave package with the gateman
+          <span class=" break-words font-normal text-sm leading-[16.8px] text-[#101828]">
+            <!-- Kindly leave package with the gateman -->
           </span>
 
         </section>
@@ -168,9 +168,9 @@ const selectVerticalTab = (value) => {
 
     <TabsContent 
       value="driver-info"
-      class="m-0 p-0"
+      class="m-0 p-0 w-full lg:w-auto"
     >
-      <ScrollArea class="w-[321px] h-[248px]" >
+      <ScrollArea class="w-full md:w-[321px] h-[248px]" >
 
         <section>
 
@@ -210,7 +210,7 @@ const selectVerticalTab = (value) => {
               Phone Number
             </div>
 
-            <span class="font-normal text-sm leading-[16.8px] text-[#101828]">
+            <span class="font-normal text-xs sm:text-sm leading-[16.8px] text-[#101828]">
               +2348023456789
             </span>
 
@@ -254,9 +254,9 @@ const selectVerticalTab = (value) => {
 
     <TabsContent 
       value="customer-info"
-      class="m-0 p-0"
+      class="m-0 p-0 w-full lg:w-auto"
     >
-      <ScrollArea class="w-[321px] h-[248px]" >
+      <ScrollArea class="w-full md:w-[321px] h-[248px]" >
 
         <section>
 
@@ -280,11 +280,11 @@ const selectVerticalTab = (value) => {
 
           <div>
 
-            <div class="font-normal text-sm leading-[16.8px] text-[#999999] mb-2">
+            <div class="font-normal text-sm leading-[16.8px] text-[#999999] md:mb-2">
               Reciever’s Number:
             </div>
 
-            <span class="font-normal text-sm leading-[16.8px] text-[#101828]">
+            <span class="font-normal  text-xs sm:text-sm leading-[16.8px] text-[#101828]">
               +2348023456789
             </span>
 

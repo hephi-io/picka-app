@@ -5,7 +5,7 @@
     <div class="flex mt-4">
       <side-bar />
 
-      <div class="flex-grow pl-6">
+      <div class="md:flex-grow lg:pl-6 w-full ">
         <router-view />
       </div>
     </div>

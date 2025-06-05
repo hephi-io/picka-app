@@ -12,7 +12,7 @@
         <div>
 
           <div class="w-5/6 tt-firs-neue-black font-black text-2xl leading-[30.96px] text-white mb-4 md:w-full lg:text-4xl lg:leading-[46.44px]">
-            Elevate Your Deliveries with ZipKod
+            Elevate Your Deliveries with Picka
           </div>
 
           <div class="tt-firs-neue-medium font-medium text-base leading-[20.64px] tracking-[-3%] text-white mb-10 lg:text-lg lg:leading-[23.22px]">

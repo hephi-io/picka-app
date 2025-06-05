@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { useRouter } from "vue-router"; 
+import { useRouter } from "vue-router";
 
 import ChevronLeft from "@/assets/svgs/chevron-down-sharp.svg";
 import ArrowForward from "@/assets/svgs/arrow-forward.svg";
@@ -100,30 +100,25 @@ const handleSubmit = () => {
       <section>
 
         <button
-          class="w-11 h-11 rounded-md border border-[#E5E5E5] p-[14px] transition-all duration-75 ease-in hover:bg-[#E5E5E5] mr-4"
-        >
+          class="w-11 h-11 rounded-md border border-[#E5E5E5] p-[14px] transition-all duration-75 ease-in hover:bg-[#E5E5E5] mr-4">
           <ChevronLeft />
         </button>
 
-        <span
-          class="font-semibold text-xl leading-5 tracking-[-0.03em] text-[#060E1F] text-left"
-        >
+        <span class="font-semibold text-xl leading-5 tracking-[-0.03em] text-[#060E1F] text-left">
           Create bulk shipment
         </span>
 
       </section>
 
-      <section>
+      <section class="hidden md:block">
 
         <Button variant="outline" class="mr-4">
-          <span
-            class="font-medium text-sm leading-[16.94px] text-left text-[#404D61]"
-          >
+          <span class="font-medium text-sm leading-[16.94px] text-left text-[#404D61] px-3">
             Cancel
           </span>
         </Button>
 
-        <Button @click="handleSubmit">
+        <Button @click="handleSubmit" class="px-3 py-2">
           Submit
           <ArrowForward class="ml-2" />
         </Button>
@@ -142,60 +137,43 @@ const handleSubmit = () => {
           </span>
         </section>
 
-        <section class="flex justify-between items-center px-6 pt-2 pb-6">
+        <section class="flex flex-col md:flex-row justify-between items-center px-6 pt-2 pb-6">
 
-          <section class="w-[32.54%]">
+          <section class="w-full md:w-[32.54%]">
 
-            <Label
-              class="font-normal text-xs leading-[14.4px] mb-2"
-              for="pickup-address"
-            >
+            <Label class="font-normal text-xs leading-[14.4px] mb-2" for="pickup-address">
               Pickup Address <span class="text-red-600">*</span>
             </Label>
 
-            <Input 
-              id="pickup-address"
+            <Input id="pickup-address"
               class="rounded-md border border-[#E4E7EC] px-4 py-3 outline-none font-normal text-sm leading-[18.2px] text-[#999999]"
-              type="text"
-              placeholder="e.g. 17, Ogunyemi strt, Magodo."
-            />
+              type="text" placeholder="e.g. 17, Ogunyemi strt, Magodo." />
 
           </section>
 
-          <section class="w-[32.54%]">
+          <section class="w-full md:w-[32.54%]">
 
-            <Label
-              class="font-normal text-xs leading-[14.4px] mb-2"
-              for="booking-notes"
-            >
+            <Label class="font-normal text-xs leading-[14.4px] mb-2" for="booking-notes">
               Booking Notes <span class="text-red-600">*</span>
             </Label>
 
-            <Input 
-              id="booking-notes"
-              class="rounded-md border border-[#E4E7EC] px-4 py-3 outline-none font-normal text-sm leading-[18.2px] text-[#999999]"
-              type="text"
-              placeholder="e.g. Kindly pickup from the gateman"
-            />
+            <Input id="booking-notes"
+              class="rounded-md border border-[#E4E7EC] px-4 py-3 outline-none font-normal text-sm leading-[18.2px] text-[#999999] my-2"
+              type="text" placeholder="e.g. Kindly pickup from the gateman" />
 
           </section>
 
-          <section class="w-[32.54%]">
+          <section class="w-full md:w-[32.54%]">
 
-            <Label
-              class="font-normal text-xs leading-[14.4px] mb-2"
-              for="pickup-option"
-            >
+            <Label class="font-normal text-xs leading-[14.4px] mb-2" for="pickup-option">
               Pickup Option <span class="text-red-600">*</span>
             </Label>
 
             <Select>
 
               <SelectTrigger>
-                <SelectValue 
-                  class="font-normal text-sm leading-[18.2px] text-[#999999] focus:outline"
-                  placeholder="Choose an option" 
-                />
+                <SelectValue class="font-normal text-sm leading-[18.2px] text-[#999999] focus:outline"
+                  placeholder="Choose an option" />
               </SelectTrigger>
 
               <SelectContent>
@@ -236,34 +214,34 @@ const handleSubmit = () => {
 
       </section>
 
-      <Tabs 
-        default-value="recipient-info"
-        class="rounded-xl border border-[#E4E7EC] shadow-sm shadow-[#1018280D]"
-      >
+      <Tabs default-value="recipient-info" class="rounded-xl border border-[#E4E7EC] shadow-sm shadow-[#1018280D]">
 
         <div class="px-6 pt-4 mb-4">
-
-          <span class="font-semibold text-base leading-7 text-[#101828]">
-            Bulk Shipment Info
-          </span>
+          <div class="flex justify-between items-center mb-4">
+            <span class="font-semibold text-base leading-7 text-[#101828]">
+              Bulk Shipment Info
+            </span>
+            <Button class="lg:hidden border border-[#E4E4E4EE] px-3 py-2 gap-x-2 bg-white" variant="secondary">
+              <UploadIcon />
+              <span>Upload csv</span>
+            </Button>
+          </div>
 
           <div class="flex justify-between items-center mt-2">
 
-            <TabsList class="w-[373.99px] h-[42px] rounded-lg p-[5px] bg-[#F5F7FA]">
+            <TabsList class="w-full md:w-[373.99px] h-[42px] rounded-lg p-[5px] bg-[#F5F7FA]">
 
               <TabsTrigger
-                class="w-[183.99px] rounded-[3px] px-3 py-[6px] active:bg-white active:shadow-[0px_3px_1px_0px_#0000000A,_0px_3px_8px_0px_#0000001F]" 
-                value="recipient-info"
-              >
+                class=" w-full md:w-[183.99px] rounded-[3px] px-3 py-[6px] active:bg-white active:shadow-[0px_3px_1px_0px_#0000000A,_0px_3px_8px_0px_#0000001F]"
+                value="recipient-info">
                 <span class="font-medium text-sm text-[#0F172A]">
                   Recipient Info
                 </span>
               </TabsTrigger>
 
               <TabsTrigger
-                class="w-[183.99px] rounded-[3px] px-3 py-[6px] active:bg-white active:shadow-[0px_3px_1px_0px_#0000000A,_0px_3px_8px_0px_#0000001F]" 
-                value="item-details"
-              >
+                class=" w-full md:w-[183.99px] rounded-[3px] px-3 py-[6px] active:bg-white active:shadow-[0px_3px_1px_0px_#0000000A,_0px_3px_8px_0px_#0000001F]"
+                value="item-details">
                 <span class="font-medium text-sm text-[#0F172A]">
                   Item details
                 </span>
@@ -273,10 +251,7 @@ const handleSubmit = () => {
 
             <div class="flex gap-x-4 items-center">
 
-              <Button 
-                class="border border-[#E4E4E4EE] px-3 py-2 gap-x-2 bg-white"
-                variant="secondary"
-              >
+              <Button class="hidden lg:flex border border-[#E4E4E4EE] px-3 py-2 gap-x-2 bg-white" variant="secondary">
                 <UploadIcon />
                 <span>Upload csv</span>
               </Button>
@@ -284,10 +259,7 @@ const handleSubmit = () => {
               <DropdownMenu>
 
                 <DropdownMenuTrigger>
-                  <Button
-                    class="p-0 rounded-full" 
-                    variant="ghost"
-                  >
+                  <Button class="hidden md:inline-flex p-0 rounded-full" variant="ghost">
                     <DotsVertical />
                   </Button>
                 </DropdownMenuTrigger>
@@ -313,29 +285,26 @@ const handleSubmit = () => {
 
         <div class="border-t border-t-[#E4E7EC]"></div>
 
-        <TabsContent 
-          value="recipient-info"
-          class="m-0 p-0"
-        >
+        <TabsContent value="recipient-info" class="m-0 p-0">
           <Table>
 
             <TableHeader>
               <TableRow class="bg-[#F9FAFB]">
 
-                <TableHead class="w-[5.18%]"></TableHead>
-                <TableHead class="w-[12.72%] py-3">Recipient Name</TableHead>
-                <TableHead class="w-[5.75%] py-3">Parcel No</TableHead>
-                <TableHead class="w-[15.53%] py-3">Delivery Email</TableHead>
-                <TableHead class="w-[11.14%] py-3">Phone Number</TableHead>
-                <TableHead class="w-[17.33%] py-3">Drop-Off Address</TableHead>
-                <TableHead class="w-[22%] py-3">Delivery Notes</TableHead>
-                <TableHead class="w-[5.18%]"></TableHead>
-                <TableHead class="w-[5.18%]"></TableHead>
+                <TableHead class="lg:w-[5.18%]"></TableHead>
+                <TableHead class="w-[12.72%]">Recipient Name</TableHead>
+                <TableHead class="lg:w-[5.75%] py-3 ">Parcel No</TableHead>
+                <TableHead class="lg:w-[15.53%] py-3 ">Delivery Email</TableHead>
+                <TableHead class="lg:w-[11.14%] py-3 ">Phone Number</TableHead>
+                <TableHead class="lg:w-[17.33%] py-3 ">Drop-Off Address</TableHead>
+                <TableHead class="lg:w-[22%] py-3 ">Delivery Notes</TableHead>
+                <TableHead class="lg:w-[5.18%]  "></TableHead>
+                <TableHead class="lg:w-[5.18%] "></TableHead>
 
               </TableRow>
             </TableHeader>
 
-            <TableBody>
+            <TableBody >
 
               <TableRow v-for="(recipientInfo, index) in recipientInfos" :key="index">
 
@@ -346,20 +315,22 @@ const handleSubmit = () => {
                 </TableCell>
 
                 <TableCell>
-                  <div class="rounded-md border border-[#E4E7EC] px-4 py-3">
-                    <span class="font-normal text-sm leading-[18.2px] text-[#101828]">{{ recipientInfo.recipientName }}</span>
+                  <div class="rounded-md border border-[#E4E7EC] px-2 w-[120px] lg:w-auto  md:px-4 py-3">
+                    <span class="font-normal text-sm leading-[18.2px] text-[#101828]">{{ recipientInfo.recipientName
+                      }}</span>
                   </div>
                 </TableCell>
 
                 <TableCell>
-                  <div class="rounded-md border border-[#E4E7EC] px-4 py-3">
+                  <div class="rounded-md border border-[#E4E7EC] w-[100px] lg:w-auto px-4 py-3">
                     <span class="font-normal text-sm leading-[18.2px] text-[#101828]">2</span>
                   </div>
                 </TableCell>
 
                 <TableCell>
                   <div class="rounded-md border border-[#E4E7EC] px-4 py-3">
-                    <span class="font-normal text-sm leading-[18.2px] text-[#101828]">{{ recipientInfo.deliveryEmail }}</span>
+                    <span class="font-normal text-sm leading-[18.2px] text-[#101828]">{{ recipientInfo.deliveryEmail
+                      }}</span>
                   </div>
                 </TableCell>
 
@@ -370,14 +341,15 @@ const handleSubmit = () => {
                 </TableCell>
 
                 <TableCell>
-                  <div class="rounded-md border border-[#E4E7EC] px-4 py-3">
+                  <div class="rounded-md border border-[#E4E7EC] w-[140px] lg:w-auto px-4 py-3">
                     <span class="font-normal text-sm leading-[18.2px] text-[#101828]">17, Ogunyemi strt, Magodo</span>
                   </div>
                 </TableCell>
 
                 <TableCell>
-                  <div class="rounded-md border border-[#E4E7EC] px-4 py-3">
-                    <span class="font-normal text-sm leading-[18.2px] text-[#101828]">Tell the gateman that package is...</span>
+                  <div class="rounded-md border border-[#E4E7EC] w-[200px] lg:w-auto px-4 py-3">
+                    <span class="font-normal text-sm leading-[18.2px] text-[#101828]">Tell the gateman that package
+                      is...</span>
                   </div>
                 </TableCell>
 
@@ -400,11 +372,8 @@ const handleSubmit = () => {
           </Table>
         </TabsContent>
 
-        <TabsContent 
-          value="item-details"
-          class="p-6"
-        >
-          <div class="w-[60.09%]">
+        <TabsContent value="item-details" class="p-6">
+          <div class="w-full lg:w-[60.09%]">
 
             <section class="flex justify-between items-center mb-4">
 
@@ -417,10 +386,8 @@ const handleSubmit = () => {
                 <Select>
 
                   <SelectTrigger>
-                    <SelectValue 
-                      class="font-normal text-sm leading-[18.2px] text-[#999999] focus:outline"
-                      placeholder="Select an option" 
-                    />
+                    <SelectValue class="font-normal text-sm leading-[18.2px] text-[#999999] focus:outline"
+                      placeholder="Select an option" />
                   </SelectTrigger>
 
                   <SelectContent>
@@ -447,9 +414,7 @@ const handleSubmit = () => {
 
                 <Input
                   class="rounded-md border border-[#E4E7EC] px-4 py-3 outline-none font-normal text-sm leading-[18.2px] text-[#999999]"
-                  type="text"
-                  placeholder="2"
-                />
+                  type="text" placeholder="2" />
 
               </section>
 
@@ -461,15 +426,10 @@ const handleSubmit = () => {
                 Choose your package size or type your package size in the L x W x H custom field below
               </Label>
 
-              <ToggleGroup 
-                type="single"
-                class="justify-start gap-x-6 mt-4"
-              >
+              <ToggleGroup type="single" class="flex-wrap lg:flex-nowrap gap-2 justify-start lg:gap-x-6 mt-4">
 
-                <ToggleGroupItem 
-                  value="standard-size"
-                  class="w-[253px] h-[178.01px] rounded-xl border border-[#D9D9D9] py-4 bg-[#F7F8FA] toggle-focus"
-                >
+                <ToggleGroupItem value="standard-size"
+                  class=" w-[130.67px] md:w-[253px] h-[178.01px] rounded-xl border border-[#D9D9D9] py-4 bg-[#F7F8FA] toggle-focus">
                   <div>
 
                     <section>
@@ -486,17 +446,15 @@ const handleSubmit = () => {
 
                     </section>
 
-                    <section class="flex justify-center items-center mt-7">
+                    <section class="flex justify-center items-center md:mt-7">
                       <parcel-box />
                     </section>
 
                   </div>
                 </ToggleGroupItem>
 
-                <ToggleGroupItem 
-                  value="medium-size"
-                  class="w-[253px] h-[178.01px] rounded-xl border border-[#D9D9D9] py-4 bg-[#F7F8FA] toggle-focus"
-                >
+                <ToggleGroupItem value="medium-size"
+                  class="w-[130.67px] md:w-[253px] h-[178.01px] rounded-xl border border-[#D9D9D9] py-4 bg-[#F7F8FA] toggle-focus">
                   <div>
 
                     <section>
@@ -513,17 +471,15 @@ const handleSubmit = () => {
 
                     </section>
 
-                    <section class="flex justify-center items-center mt-7">
+                    <section class="flex justify-center items-center md:mt-7">
                       <medium-box />
                     </section>
 
                   </div>
                 </ToggleGroupItem>
 
-                <ToggleGroupItem 
-                  value="mini-size"
-                  class="w-[253px] h-[178.01px] rounded-xl border border-[#D9D9D9] py-4 bg-[#F7F8FA] toggle-focus"
-                >
+                <ToggleGroupItem value="mini-size"
+                  class="w-[130.67px] md:w-[253px] h-[178.01px] rounded-xl border border-[#D9D9D9] py-4 bg-[#F7F8FA] toggle-focus">
                   <div>
 
                     <section>
@@ -540,7 +496,7 @@ const handleSubmit = () => {
 
                     </section>
 
-                    <section class="flex justify-center items-center mt-7">
+                    <section class="flex justify-center items-center md:mt-7">
                       <mini-box />
                     </section>
 
@@ -551,7 +507,7 @@ const handleSubmit = () => {
 
             </section>
 
-            <section class="flex justify-between items-center">
+            <section class="flex gap-4 justify-between items-center lg:gap-0">
 
               <section class="w-[32.01]">
 
@@ -561,9 +517,7 @@ const handleSubmit = () => {
 
                 <Input
                   class="rounded-md border border-[#E4E7EC] px-4 py-3 outline-none font-normal text-sm leading-[18.2px] text-[#999999]"
-                  type="text"
-                  placeholder="38"
-                />
+                  type="text" placeholder="38" />
 
               </section>
 
@@ -575,9 +529,7 @@ const handleSubmit = () => {
 
                 <Input
                   class="rounded-md border border-[#E4E7EC] px-4 py-3 outline-none font-normal text-sm leading-[18.2px] text-[#999999]"
-                  type="text"
-                  placeholder="33"
-                />
+                  type="text" placeholder="33" />
 
               </section>
 
@@ -589,9 +541,7 @@ const handleSubmit = () => {
 
                 <Input
                   class="rounded-md border border-[#E4E7EC] px-4 py-3 outline-none font-normal text-sm leading-[18.2px] text-[#999999]"
-                  type="text"
-                  placeholder="20"
-                />
+                  type="text" placeholder="20" />
 
               </section>
 
@@ -601,7 +551,11 @@ const handleSubmit = () => {
         </TabsContent>
 
       </Tabs>
-      
+      <Button class="md:hidden w-full rounded-md border border-[#D8D8D8] px-4 py-3 gap-x-2 bg-[#1E1E1E] my-4">
+          <span class="font-semibold text-sm leading-[16.8px] text-white">
+            Continue
+          </span>
+        </Button>
     </main>
 
   </div>

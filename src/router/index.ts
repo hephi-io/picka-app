@@ -21,11 +21,13 @@ const router = createRouter({
     {
       path: "/auth",
       name: "auth",
+    
       component: AuthPage,
     },
     {
       path: "/auth/onboarding",
       name: "onboarding",
+      
       // route level code-splitting
       // this generates a separate chunk (About.[hash].js) for this route
       // which is lazy-loaded when the route is visited.
@@ -49,6 +51,7 @@ const router = createRouter({
     },
     {
       path: "/",
+      meta: { requiresAuth: true },
       component: DashboardLayout,
       // meta: { requiresAuth: true },
 
@@ -66,6 +69,7 @@ const router = createRouter({
       path: "/shipments/order/:name",
       component: PaymentLayout,
       name: "payment",
+      meta: { requiresAuth: true },
       children: [
 
         { 
@@ -91,12 +95,12 @@ const router = createRouter({
   ],
 });
 
-// router.beforeEach((to, from, next) => {
-//   if (to.meta.requiresAuth && !token.isAuthenticated()) {
-//     next("/auth"); // Redirect to login if the route requires authentication
-//   } else {
-//     next(); // Proceed to route
-//   }
-// });
+router.beforeEach((to, from, next) => {
+  if (to.meta.requiresAuth && !token.isAuthenticated()) {
+    next("/auth"); // Redirect to login if the route requires authentication
+  } else {
+    next(); // Proceed to route
+  }
+});
 
 export default router;

@@ -8,7 +8,7 @@
       </h1>
     </header>
 
-    <section class="flex gap-x-6 animation-slide-up">
+    <section class="flex gap-x-6 animation-slide-up ">
       <div
         class="w-[359px] border border-[#e4e7ec] rounded-lg h-[437px] px-6 py-5"
       >
@@ -195,7 +195,7 @@
       </div>
 
       <div
-        class="w-[359px] border border-[#e4e7ec] rounded-lg h-[437px] px-6 py-5"
+        class=" w-[359px] border border-[#e4e7ec] rounded-lg h-[437px] px-6 py-5 hidden md:block"
       >
         <div
           class="text-base border-b border-[#E4E7EC] pb-2.5 mb-4 font-semibold"
@@ -508,7 +508,7 @@
           </svg>
         </div>
 
-        <section class="mt-7">
+        <section class="mt-7 ">
           <Button
             class="w-full bg-[#F9F9F9] text-[##101828] border border-[#D8D8D8]"
           >
@@ -547,15 +547,15 @@
     </section>
 
     <section
-      class="mt-10 rounded-xl border border-[#E4E7EC] animation-slide-up"
+      class="mt-10 rounded-xl  animation-slide-up  "
     >
       <section class="px-6 py-5">
         <div class="mb-5 font-semibold">Recent Transaction History</div>
 
         <div class="flex justify-between">
-          <div>
-            <Tabs default-value="all" class="w-[400px]">
-              <TabsList>
+          <div class="w-full md:inline-block">
+            <Tabs default-value="all" class="md:w-[400px]">
+              <TabsList class="flex items-center justify-between">
                 <TabsTrigger
                   :value="tab.id"
                   class="w-[121px]"
@@ -567,8 +567,8 @@
             </Tabs>
           </div>
 
-          <div class="flex items-center gap-x-14">
-            <div class="relative">
+          <div class="md:flex items-center gap-x-14 hidden  ">
+            <div class="relative hidden lg:block">
               <svg
                 width="18"
                 height="18"
@@ -628,7 +628,7 @@
         <DataTable :columns="columns" :data="[]" />
       </section>
 
-      <section class="h-[68px] flex items-center justify-center border-t px-4">
+      <section class=" hidden h-[68px] md:flex items-center justify-center border-t px-4">
         <z-pagination />
       </section>
     </section>

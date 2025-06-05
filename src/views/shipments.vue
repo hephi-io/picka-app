@@ -47,15 +47,15 @@ onMounted(async () => {
         Shipments
       </h1>
 
-      <section class="flex gap-x-4">
+      <section class=" hidden md:flex gap-x-4">
         <WeekButton />
 
         <NewShipment />
       </section>
     </header>
 
-    <section class="flex justify-between mb-10 animation-slide-up">
-      <shipment-card :icon="Package" title="Total shipment">
+    <section class="flex justify-between  mb-10 animation-slide-up  gap-3.5 md:gap-4 flex-wrap md:flex-nowrap">
+      <shipment-card :icon="Package" title="Total shipment" class=" flex-1 shrink-0 relative">
         <div class="flex">
           <section class="mr-[15px]">
             <span
@@ -65,12 +65,12 @@ onMounted(async () => {
             </span>
           </section>
 
-          <section class="flex items-center">
+          <section class="flex items-center absolute top-5 right-2  md:relative md:top-0 md:right-0 ">
             <section class="h-[41%] flex items-center mr-[6px]">
               <ArrowUp />
             </section>
 
-            <section class="flex items-center">
+            <section class="flex items-center ">
               <div>
                 <span
                   class="space-mono font-semibold text-xs leading-3 text-[#307AE4]"
@@ -88,7 +88,7 @@ onMounted(async () => {
         </div>
       </shipment-card>
 
-      <shipment-card :icon="DeliveryTruck" title="In transit">
+      <shipment-card :icon="DeliveryTruck" title="In transit" class=" flex-1 shrink-0">
         <span
           class="space-mono font-bold text-2xl leading-6 tracking-[-3%] text-[#242424]"
         >
@@ -96,7 +96,7 @@ onMounted(async () => {
         </span>
       </shipment-card>
 
-      <shipment-card :icon="PackageProcess" title="Pending packages">
+      <shipment-card :icon="PackageProcess" title="Pending packages" class="flex-1 shrink-0">
         <span
           class="space-mono font-bold text-2xl leading-6 tracking-[-3%] text-[#242424]"
         >
@@ -104,7 +104,7 @@ onMounted(async () => {
         </span>
       </shipment-card>
 
-      <shipment-card :icon="DeliveryBox" title="Delivered">
+      <shipment-card :icon="DeliveryBox" title="Delivered" class="flex-1 shrink-0 ">
         <span
           class="space-mono font-bold text-2xl leading-6 tracking-[-3%] text-[#242424]"
         >
@@ -117,17 +117,18 @@ onMounted(async () => {
       <section class="px-6 py-5 flex items-center justify-between">
         <div class="font-semibold text-lg text-[#101828]">Recent Shipments</div>
 
-        <z-search-input />
+        <z-search-input  />
       </section>
 
       <section>
         <DataTable :columns="columns" :data="data" />
       </section>
 
-      <section class="h-[68px] flex items-center justify-center border-t px-6">
+      <section class=" hidden h-[68px] md:flex items-center justify-center border-t px-6">
         <z-pagination />
       </section>
     </section>
+  
   </main>
 </template>
 

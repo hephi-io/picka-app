@@ -2,7 +2,7 @@
   <div class="relative">
     <Search />
 
-    <Input placeholder="Search..." class="w-[238px] pl-[34px]" />
+    <Input placeholder="Search..." class="md:w-[238px] pl-[34px]" />
   </div>
 </template>
 

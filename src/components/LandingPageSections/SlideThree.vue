@@ -11,7 +11,7 @@ const serviceWindows = ref(
       alt: "Bike man",
       heading: "Last-Mile Delivery",
       paragraph: `
-        At Zipkod, we understand that the last mile is a critical phase in moving goods. That's why we ensure that your items reach their final destination quickly and securely.
+        At Picka, we understand that the last mile is a critical phase in moving goods. That's why we ensure that your items reach their final destination quickly and securely.
       `
     },
 
@@ -41,7 +41,7 @@ const serviceWindows = ref(
       alt: "Warehouse",
       heading: "Bulk Ordering",
       paragraph: `
-        At Zipkod, our bulk order feature streamlines the creation of multiple orders and offers discounted rates, saving businesses time and money
+        At Picka, our bulk order feature streamlines the creation of multiple orders and offers discounted rates, saving businesses time and money
       `
     }
   ]

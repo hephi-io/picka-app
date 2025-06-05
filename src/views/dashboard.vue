@@ -16,6 +16,9 @@ import AddCard from "@/assets/svgs/add-card.svg";
 import WalletTrend from "@/assets/svgs/wallet-trend.svg";
 import ZSearchInput from "@/components/shared/z-search-input.vue";
 
+import { useAuthStore } from "@/stores/auth";
+const authStore = useAuthStore();
+
 const data = ref<Shipping[]>([]);
 
 async function getData(): Promise<Shipping[]> {
@@ -35,28 +38,21 @@ onMounted(async () => {
 
 <template>
   <main>
-    <header class="flex justify-between mb-10 pt-6 animation-slide-up">
-      <div>
-        <div
-          class="text-sm leading-[14px] tracking-[-3%] text-[#676767] mb-2.5"
-        >
-          Hello Melody,
+    <header class="hidden md:flex justify-between mb-10 pt-6 animation-slide-up">
+      <div class="">
+        <div class="text-sm leading-[14px] tracking-[-3%] text-[#676767] mb-2.5">
+          Hello {{ authStore.user?.first_name }},
         </div>
 
-        <h1
-          class="space-mono font-semibold text-[26px] leading-[26px] tracking-[-3%] text-[#242424]"
-        >
+        <h1 class="space-mono font-semibold text-[26px] leading-[26px] tracking-[-3%] text-[#242424]">
           Good Morning
         </h1>
       </div>
-
       <NewShipment />
     </header>
 
-    <section class="w-[420px] animation-slide-up">
-      <section
-        class="flex flex-col rounded-lg border border-[#E5E5E5] px-5 pt-4 pb-5 bg-[#F9F9F9]"
-      >
+    <section class="w-full lg:w-[420px] animation-slide-up ">
+      <section class="flex flex-col rounded-lg border border-[#E5E5E5] px-5 pt-4 pb-5 bg-[#F9F9F9]">
         <section class="mb-[30px] flex items-center justify-between">
           <Money />
 
@@ -72,47 +68,48 @@ onMounted(async () => {
         </div>
       </section>
 
-      <section class="flex gap-x-3.5 mt-4">
+      <section class="flex gap-x-2 md:gap-x-3.5 mt-4">
         <Button
-          class="flex-grow bg-[#F9F9F9] text-[##101828] border border-[#D8D8D8] hover:bg-black hover:border-black hover:text-white"
-        >
+          class="flex-grow  bg-[#F9F9F9] text-[##101828] border border-[#D8D8D8] hover:bg-black hover:border-black hover:text-white">
           <Plus />
 
           <span class="ml-1.5">Top up</span>
         </Button>
 
         <Button
-          class="flex-grow bg-[#F9F9F9] text-[##101828] border border-[#D8D8D8] hover:bg-black hover:border-black hover:text-white"
-        >
+          class="flex-grow bg-[#F9F9F9] text-[##101828] border border-[#D8D8D8] hover:bg-black hover:border-black hover:text-white">
           <Withdraw />
 
           <span class="ml-1.5">Withdraw</span>
         </Button>
 
         <Button
-          class="flex-grow bg-[#F9F9F9] text-[##101828] border border-[#D8D8D8] hover:bg-black hover:border-black hover:text-white"
-        >
+          class="flex-grow bg-[#F9F9F9] text-[##101828] border border-[#D8D8D8] hover:bg-black hover:border-black hover:text-white">
           <AddCard />
 
-          <span class="ml-1.5">Add new card</span>
+          <span class=" ml-1.5">Add new card</span>
         </Button>
       </section>
     </section>
+    <section class="">
+      <section class="mt-9   rounded-xl border border-[#E4E7EC] animation-slide-up">
+        <section class="px-2 lg:px-6 py-5 flex items-center justify-between ">
+          <div class="font-semibold  text-sm md:text-lg">Recent Shipments</div>
+          <z-search-input />
+        </section>
 
-    <section class="mt-9 rounded-xl border border-[#E4E7EC] animation-slide-up">
-      <section class="px-6 py-5 flex items-center justify-between">
-        <div class="font-semibold text-lg">Recent Shipments</div>
+        <section class="">
+          <DataTable :columns="columns" :data="data" />
+        </section>
 
-        <z-search-input />
+        <section class="hidden h-[68px] md:flex items-center justify-center border-t px-6">
+          <z-pagination />
+        </section>
       </section>
-
-      <section>
-        <DataTable :columns="columns" :data="data" />
+      <section class="hidden">
+        <NewShipment class="" />
       </section>
-
-      <section class="h-[68px] flex items-center justify-center border-t px-6">
-        <z-pagination />
-      </section>
+      
     </section>
   </main>
 </template>

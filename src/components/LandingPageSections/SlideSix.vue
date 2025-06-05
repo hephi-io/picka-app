@@ -58,7 +58,7 @@ const contacts = ref(
 
     {
       id: idThree++,
-      item: "hello@zipkod.com"
+      item: "hello@Picka.com"
     },
 
     {

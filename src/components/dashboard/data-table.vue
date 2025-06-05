@@ -125,14 +125,13 @@ const table = useVueTable({
       <Table>
         <TableHeader class="bg-[#F9FAFB] border-t border-[#E4E7EC]">
           <TableRow
-            class=""
             v-for="headerGroup in table.getHeaderGroups()"
             :key="headerGroup.id"
           >
             <TableHead
               v-for="header in headerGroup.headers"
               :key="header.id"
-              class="text-[#475467] h-[44px]"
+              class="text-[#475467] h-[44px] "
             >
               <FlexRender
                 v-if="!header.isPlaceholder"
@@ -154,7 +153,7 @@ const table = useVueTable({
                     :render="cell.column.columnDef.cell"
                     :props="cell.getContext()"
                   />
-                </TableCell>
+                </TableCell> 
               </TableRow>
 
               <TableRow v-if="row.getIsExpanded()">
