@@ -154,7 +154,9 @@ export const columns: ColumnDef<Shipping>[] = [
         "span",
         {
           class: `text-[#475467] text-xs h-[30px] flex items-center justify-center rounded-[6px] font-medium w-[77px] ${
-            statusMap[(data.getValue() as TStatusMap).toLowerCase()]
+            statusMap[
+              (data.getValue() as TStatusMap).toLowerCase() as TStatusMap
+            ]
           }`,
         },
         data.getValue() as any
