@@ -1,20 +1,34 @@
 <script setup>
-import { ref, onMounted } from 'vue';
+import { ref } from 'vue';
+import { Loader2 } from "lucide-vue-next";
+import VueGoogleAutocomplete from "vue-google-autocomplete";
 
 import CheckIcon from '@/assets/svgs/CheckIcon.vue';
 import UncheckedIcon from '@/assets/svgs/UncheckedIcon.vue';
 import ArrowDown from '@/assets/svgs/ArrowDown.vue';
+
+//router
+import { useRouter } from "vue-router";
+
+//token
+import { testSavedAcc, token } from "@/utils";
+
 import { Button } from './ui/button';
 
 // Define business options for the select dropdown
 import { businessOptions } from '@/services';
+import axios from 'axios';
 
+
+const router = useRouter();
 
 
 
 // RADIO BUTTONS
 let isBusinessAccount = ref(true);
 let isPersonalAccount = ref(false);
+let isSubmitting = ref(false);
+let errorMessage = ref("");
 
 const checkedStyle = "w-[48.2%] flex rounded-xl border border-[#E3573E] px-4 py-3";
 const uncheckedStyle = "w-[48.2%] flex rounded-xl border border-[#9F9F9F] px-4 py-3";
@@ -28,7 +42,10 @@ const handleClickForPersonal = () => {
   isPersonalAccount.value = true;
   isBusinessAccount.value = false;
 }
-
+// longitude and latitude
+const latitude = ref("");
+const longitude = ref("");
+const address = ref("");
 
 // FLAG DROPDOWN
 const isDropDownOpen = ref(false);
@@ -50,25 +67,68 @@ const closeDropdownOnScreenClick = () => {
   isDropDownOpen.value = false;
 };
 
-// BUSINESS OPTIONS
+
 
 // FOR SELECT BUSINESS TYPE
 const selectedBusinessType = ref("");
 
 
+
+function getAddressData(addressData, placeResultData, id) {
+  address.value = placeResultData.formatted_address || addressData;
+  latitude.value = placeResultData.geometry.location.lat().toString();
+  longitude.value = placeResultData.geometry.location.lng().toString();
+}
+
 const organizations = ref({
-  business_address: "",
+  address,
   business_type: selectedBusinessType,
-  business_email: "",
-  latitude: "",
-  longitude: "",
-  business_name: "",
-  Busines_phone_no: "",
+  email: "",
+  latitude,
+  longitude,
+  name: "",
+  phone_no: "",
 })
 
-const handleSubmit = () => {
- console.log('Form submitted with data:', organizations.value);
 
+const handleSubmit = async () => {
+  // Validation
+  if (!organizations.value.name ||  !selectedBusinessType.value || !organizations.value.email ||  !organizations.value.phone_no ||  !latitude.value ||  !longitude.value || !organizations.value.address) {
+    if (!organizations.value.name) {
+      errorMessage.value = "Business name is required.";
+    } else if (!selectedBusinessType.value) {
+      errorMessage.value = "Business type is required.";
+    } else if (!organizations.value.email) {
+      errorMessage.value = "Business email is required.";
+    } else if (!organizations.value.phone_no) {
+      errorMessage.value = "Phone number is required.";
+    } else if (!latitude.value || !longitude.value) {
+      errorMessage.value = "Business address is required.";
+    }
+    console.error("Validation failed:", errorMessage.value);
+    return;
+  }
+  console.log("Form data before submission:", organizations.value);
+  try {
+    isSubmitting.value = true;
+    const response = await axios.post(
+      import.meta.env.VITE_API_BASE_URL + "orgs",
+      organizations.value,
+      {
+        headers: {
+          Authorization: `Bearer ${token.getToken()}`
+        }
+      }
+    );
+    console.log("Form submitted successfully:", response.data);
+    router.push("/");
+  } catch (error) {
+    console.error("Error submitting form:", error);
+    errorMessage.value = "An error occurred while submitting the form. Please try again.";
+  } finally {
+    // Reset the form
+    isSubmitting.value = false;
+  }
 }
 </script>
 
@@ -128,7 +188,7 @@ const handleSubmit = () => {
                   class="outfit-medium font-medium text-base leading-[19.36px] text-[#26203B] mb-2">Business
                   name</label>
               </div>
-              <input type="text" name="business-name" placeholder="Enter name" v-model="organizations.business_name"
+              <input type="text" name="business-name" placeholder="Enter name" v-model="organizations.name"
                 class="w-full h-12 rounded-xl border border-[#9F9F9F] outline-none focus:border-[#E3573E] px-4 py-2 outfit-normal font-normal text-sm leading-[16.94px] text-[#9C9AA5]">
             </section>
 
@@ -156,7 +216,7 @@ const handleSubmit = () => {
                   email</label>
               </div>
               <input type="email" name="business-email" placeholder="Enter business email"
-                v-model="organizations.business_email"
+                v-model="organizations.email"
                 class="w-full h-12 rounded-xl border border-[#9F9F9F] outline-none focus:border-[#E3573E] px-4 py-2 outfit-normal font-normal text-sm leading-[16.94px] text-[#9C9AA5]">
             </section>
 
@@ -204,8 +264,8 @@ const handleSubmit = () => {
                 </section>
 
                 <section class="w-[67.3%]">
-                  <input type="number" name="phone-number" placeholder="1234567890"
-                    v-model="organizations.Busines_phone_no"
+                  <input type="text" name="phone-number" placeholder="1234567890"
+                    v-model="organizations.phone_no"
                     class="w-full h-12 rounded-xl border border-[#9F9F9F] outline-none focus:border-[#E3573E] px-4 py-2 outfit-normal font-normal text-sm leading-[16.94px] text-[#9C9AA5]">
                 </section>
 
@@ -219,16 +279,18 @@ const handleSubmit = () => {
                 <label for="business-address"
                   class="outfit-medium font-medium text-base leading-[19.36px] text-[#26203B] mb-2">Address</label>
               </div>
-              <input type="text" name="last-name" v-model="organizations.business_address"
-                class="w-full h-12 rounded-xl border border-[#9F9F9F] outline-none focus:border-[#E3573E] px-4 py-2 outfit-normal font-normal text-sm leading-[16.94px] text-[#9C9AA5]">
+              <vue-google-autocomplete id="map"
+                class="w-full h-12 rounded-xl border border-[#9F9F9F] outline-none focus:border-[#E3573E] px-4 py-2 outfit-normal font-normal text-sm leading-[16.94px] text-[#9C9AA5]"
+                placeholder="Enter business address" v-on:placechanged="getAddressData">
+              </vue-google-autocomplete>
             </section>
-
 
 
           </section>
 
           <button type="submit"
             class="w-full h-12 rounded-full px-5 py-[10px] bg-gradient-to-r from-[#FF7C33] to-[#FA3105]">
+             <Loader2 class="w-5 h-5 mr-2 inline-flex animate-spin text-white" v-if="isSubmitting" />
             <span class="outfit-bold font-bold text-base leading-[19.36px] text-white">Finish Setup</span>
           </button>
           <div>

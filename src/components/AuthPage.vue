@@ -90,7 +90,7 @@ const handleLogin = async (values) => {
     console.log(response);
     token.login(response.data.data.token);
     authStore.setUser(response.data.data);
-    router.push("/");
+    router.push("/auth/onboarding");
   } catch (error) {
     console.log(error);
   } finally {

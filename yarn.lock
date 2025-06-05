@@ -559,6 +559,11 @@
   resolved "https://registry.npmjs.org/@types/estree/-/estree-1.0.5.tgz"
   integrity sha512-/kYRxGDLWzHOB7q+wtSUQlFrtcdUccpfy+X+9iMBpHK8QLLhx2wIPYuS5DYtR9Wa/YlZAbIovy7qVdB1Aq6Lyw==
 
+"@types/googlemaps@^3.43.3":
+  version "3.43.3"
+  resolved "https://registry.npmjs.org/@types/googlemaps/-/googlemaps-3.43.3.tgz"
+  integrity sha512-ZWNoz/O8MPEpiajvj7QiqCY8tTLFNqNZ/a+s+zTV58wFVNAvvqV4bdGfnsjTb5Cs4V6wEsLrX8XRhmnyYJ2Tdg==
+
 "@types/jsdom@^21.1.7":
   version "21.1.7"
   resolved "https://registry.npmjs.org/@types/jsdom/-/jsdom-21.1.7.tgz"
@@ -2849,7 +2854,7 @@ vue-tsc@^2.0.21:
     "@vue/language-core" "2.0.24"
     semver "^7.5.4"
 
-"vue@^2.6.14 || ^3.3.0", "vue@^2.7.0 || ^3.0.0", vue@^3, vue@^3.0.0, "vue@^3.0.0-0 || ^2.6.0", vue@^3.2.0, vue@^3.2.25, vue@^3.4.26, vue@^3.4.29, "vue@>= 3.2.0", vue@>=2, vue@>=3, vue@>=3.0.1, vue@>=3.2, vue@>=3.2.13, vue@3.4.31:
+"vue@^2.6.14 || ^3.3.0", "vue@^2.7.0 || ^3.0.0", vue@^3, vue@^3.0.0, "vue@^3.0.0-0 || ^2.6.0", vue@^3.2.0, vue@^3.2.25, vue@^3.3.4, vue@^3.4.26, vue@^3.4.29, "vue@>= 3.2.0", vue@>=2, vue@>=3, vue@>=3.0.1, vue@>=3.2, vue@>=3.2.13, vue@3.4.31:
   version "3.4.31"
   resolved "https://registry.npmjs.org/vue/-/vue-3.4.31.tgz"
   integrity sha512-njqRrOy7W3YLAlVqSKpBebtZpDVg21FPoaq1I7f/+qqBThK9ChAIjkRWgeP6Eat+8C+iia4P3OYqpATP21BCoQ==
@@ -2859,6 +2864,14 @@ vue-tsc@^2.0.21:
     "@vue/runtime-dom" "3.4.31"
     "@vue/server-renderer" "3.4.31"
     "@vue/shared" "3.4.31"
+
+vue3-google-autocomplete@^0.0.5:
+  version "0.0.5"
+  resolved "https://registry.npmjs.org/vue3-google-autocomplete/-/vue3-google-autocomplete-0.0.5.tgz"
+  integrity sha512-97RwONpznKCEUunWhfOGef+LyN+lVW9TyJg09STkazByCt1ed3nhfHqrOggF6FwIaQaKYQniYNGMc3tKG1nwXg==
+  dependencies:
+    "@types/googlemaps" "^3.43.3"
+    vue "^3.3.4"
 
 vue3-google-map@^0.22.0:
   version "0.22.0"
