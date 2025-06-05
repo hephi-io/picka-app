@@ -28,3 +28,6 @@ export const testSavedAcc =  {
      localStorage.setItem("userAuthCode", JSON.stringify(token))
    }
 }
+
+
+// Business TYPES

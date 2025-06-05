@@ -70,6 +70,42 @@ type TResponse = {
   message: string;
 };
 
+// Business Type 
+export type BusinessType = {
+  label: string;
+  value: string;
+};
+
+// List of business types
+export const businessOptions: BusinessType[] = [
+  { label: 'Sole Proprietorship', value: 'sole_proprietorship' },
+  { label: 'Partnership', value: 'partnership' },
+  { label: 'Limited Liability Company (LLC)', value: 'llc' },
+  { label: 'Corporation (C Corp)', value: 'corporation_c_corp' },
+  { label: 'S Corporation (S Corp)', value: 's_corporation' },
+  { label: 'Nonprofit Organization', value: 'nonprofit' },
+  { label: 'Franchise', value: 'franchise' },
+  { label: 'Cooperative', value: 'cooperative' },
+  { label: 'Joint Venture', value: 'joint_venture' },
+  { label: 'Holding Company', value: 'holding_company' },
+  { label: 'Freelance/Independent Contractor', value: 'freelance' },
+  { label: 'E-commerce Store', value: 'ecommerce_store' },
+  { label: 'Brick-and-Mortar Retail', value: 'brick_and_mortar_retail' },
+  { label: 'Online Marketplace Seller', value: 'online_marketplace_seller' },
+  { label: 'Manufacturing', value: 'manufacturing' },
+  { label: 'Wholesale Distributor', value: 'wholesale_distributor' },
+  { label: 'Service-Based Business', value: 'service_based' },
+  { label: 'Consulting Firm', value: 'consulting_firm' },
+  { label: 'Startup', value: 'startup' },
+  { label: 'Tech Company', value: 'tech_company' },
+  { label: 'Real Estate Agency', value: 'real_estate_agency' },
+  { label: 'Import/Export Business', value: 'import_export' },
+  { label: 'Dropshipping Business', value: 'dropshipping' },
+  { label: 'Home-Based Business', value: 'home_based' },
+  { label: 'Subscription Box Business', value: 'subscription_box' }
+];
+
+
 // type TLoginResponse = {
 //   id: string;
 //   created_at: string;
@@ -128,3 +164,5 @@ export const login = (payload: { email: string; password: string }) => {
   );
 };
 
+//SamanthaGreen@gmail.com
+//PickaTestApp2305
