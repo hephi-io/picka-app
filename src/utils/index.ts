@@ -1,33 +1,14 @@
-
 export const token = {
   getToken() {
-    return localStorage.getItem("token"); // Assuming the token is stored in localStorage
+    return localStorage.getItem("token");
   },
   isAuthenticated() {
     return !!this.getToken();
   },
   login(token: string) {
-    localStorage.setItem("token", token); // Store token after login
+    localStorage.setItem("token", token);
   },
   logout() {
-    localStorage.removeItem("token"); // Clear token on logout
+    localStorage.removeItem("token");
   },
 };
-
-
-
-
-
-
-export const testSavedAcc =  {
-  getTestToken() {
-    const token = localStorage.getItem("userAuthCode");
-    return token ? JSON.parse(token) : null;
-  },
-   savedTestToken(token: string){
-     localStorage.setItem("userAuthCode", JSON.stringify(token))
-   }
-}
-
-
-// Business TYPES

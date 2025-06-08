@@ -1,3 +1,4 @@
+import { token } from "@/utils";
 import axios from "axios";
 
 export interface Shipping {
@@ -65,12 +66,13 @@ export const shippings: Shipping[] = [
   // ...
 ];
 
-type TResponse = {
-  status: boolean;
+export type TResponse<T> = {
+  statusCode: number;
   message: string;
+  data: T;
 };
 
-// Business Type 
+// Business Type
 export type BusinessType = {
   label: string;
   value: string;
@@ -78,33 +80,32 @@ export type BusinessType = {
 
 // List of business types
 export const businessOptions: BusinessType[] = [
-  { label: 'Sole Proprietorship', value: 'sole_proprietorship' },
-  { label: 'Partnership', value: 'partnership' },
-  { label: 'Limited Liability Company (LLC)', value: 'llc' },
-  { label: 'Corporation (C Corp)', value: 'corporation_c_corp' },
-  { label: 'S Corporation (S Corp)', value: 's_corporation' },
-  { label: 'Nonprofit Organization', value: 'nonprofit' },
-  { label: 'Franchise', value: 'franchise' },
-  { label: 'Cooperative', value: 'cooperative' },
-  { label: 'Joint Venture', value: 'joint_venture' },
-  { label: 'Holding Company', value: 'holding_company' },
-  { label: 'Freelance/Independent Contractor', value: 'freelance' },
-  { label: 'E-commerce Store', value: 'ecommerce_store' },
-  { label: 'Brick-and-Mortar Retail', value: 'brick_and_mortar_retail' },
-  { label: 'Online Marketplace Seller', value: 'online_marketplace_seller' },
-  { label: 'Manufacturing', value: 'manufacturing' },
-  { label: 'Wholesale Distributor', value: 'wholesale_distributor' },
-  { label: 'Service-Based Business', value: 'service_based' },
-  { label: 'Consulting Firm', value: 'consulting_firm' },
-  { label: 'Startup', value: 'startup' },
-  { label: 'Tech Company', value: 'tech_company' },
-  { label: 'Real Estate Agency', value: 'real_estate_agency' },
-  { label: 'Import/Export Business', value: 'import_export' },
-  { label: 'Dropshipping Business', value: 'dropshipping' },
-  { label: 'Home-Based Business', value: 'home_based' },
-  { label: 'Subscription Box Business', value: 'subscription_box' }
+  { label: "Sole Proprietorship", value: "sole_proprietorship" },
+  { label: "Partnership", value: "partnership" },
+  { label: "Limited Liability Company (LLC)", value: "llc" },
+  { label: "Corporation (C Corp)", value: "corporation_c_corp" },
+  { label: "S Corporation (S Corp)", value: "s_corporation" },
+  { label: "Nonprofit Organization", value: "nonprofit" },
+  { label: "Franchise", value: "franchise" },
+  { label: "Cooperative", value: "cooperative" },
+  { label: "Joint Venture", value: "joint_venture" },
+  { label: "Holding Company", value: "holding_company" },
+  { label: "Freelance/Independent Contractor", value: "freelance" },
+  { label: "E-commerce Store", value: "ecommerce_store" },
+  { label: "Brick-and-Mortar Retail", value: "brick_and_mortar_retail" },
+  { label: "Online Marketplace Seller", value: "online_marketplace_seller" },
+  { label: "Manufacturing", value: "manufacturing" },
+  { label: "Wholesale Distributor", value: "wholesale_distributor" },
+  { label: "Service-Based Business", value: "service_based" },
+  { label: "Consulting Firm", value: "consulting_firm" },
+  { label: "Startup", value: "startup" },
+  { label: "Tech Company", value: "tech_company" },
+  { label: "Real Estate Agency", value: "real_estate_agency" },
+  { label: "Import/Export Business", value: "import_export" },
+  { label: "Dropshipping Business", value: "dropshipping" },
+  { label: "Home-Based Business", value: "home_based" },
+  { label: "Subscription Box Business", value: "subscription_box" },
 ];
-
 
 // type TLoginResponse = {
 //   id: string;
@@ -132,37 +133,78 @@ export const businessOptions: BusinessType[] = [
 //   token: string;
 // };
 
-type TLoginResponse = {
-  activation_code: string,
-  created_at: string,
-  email: string,
-  first_name: string,
-  id: string,
-  is_active: true,
-  last_name: string,
-  org_id: string,
-  profile_image: {},
-  role: {
-    description: string,
-    id: 0,
-    level: 0,
-    name: string
-  },
-  role_id: string,
-  updated_at: string,
-  username: string
-}
+export type TNullable<T> = T | null;
 
+type TUser = {
+  id: string;
+  org_id: TNullable<string>;
+  username: TNullable<string>;
+  first_name: string;
+  last_name: string;
+  email: string;
+  profile_image: TNullable<string>;
+  has_onboarded: boolean;
+  created_at: string;
+  updated_at: string;
+  is_active: boolean;
+};
 
+const endpoints = {
+  login: "/auth/login",
+  signup: "/auth/signup",
+  get_user_profile: "/users/me",
+  activate_account: (code: string) => `/users/activate/${code}`,
+};
 
-const API = axios.create({ baseURL: import.meta.env.VITE_API_BASE_URL });
+export const API = axios.create({ baseURL: import.meta.env.VITE_API_BASE_URL });
+
+API.interceptors.request.use((config) => {
+  if (token.getToken()) {
+    config.headers.Authorization = `Bearer ${token.getToken()}`;
+  }
+
+  return config;
+});
+
+// API.interceptors.response.use(
+//   (response) => response,
+//   (error) => {
+//     if (error.response.status === 401) {
+//       token.logout();
+//       window.location.href = "/login";
+//     }
+//     return Promise.reject(error);
+//   }
+// );
 
 export const login = (payload: { email: string; password: string }) => {
-  return API.post<TResponse & { data: TLoginResponse }>(
-    "auth/login",
+  return API.post<TResponse<TUser & { token: string }>>(
+    endpoints.login,
+    payload
+  );
+};
+
+type TSignupPayload = {
+  email: string;
+  password: string;
+  first_name: string;
+  last_name: string;
+};
+
+export const signup = (payload: TSignupPayload) => {
+  return API.post<TResponse<TUser & { activation_code: string }>>(
+    endpoints.signup,
     payload
   );
 };
 
 //SamanthaGreen@gmail.com
 //PickaTestApp2305
+
+export const getUserProfile = () => {
+  return API.get<TResponse<TUser>>(endpoints.get_user_profile);
+};
+
+export const activateAccount = (code: string) => {
+  return API.put(endpoints.activate_account(code));
+};
