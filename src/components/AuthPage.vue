@@ -82,7 +82,7 @@ const handleLogin = async (values) => {
     isSubmitting.value = true;
     const payload = { email: values.email, password: values.password };
     const response = await login(payload);
-    console.log(response);
+
     token.login(response.data.data.token);
     authStore.setUser(response.data.data);
 
@@ -93,7 +93,7 @@ const handleLogin = async (values) => {
     }
 
     return router.push({
-      name: "home",
+      name: "dashboard",
     });
   } catch (error) {
     console.log(error);
