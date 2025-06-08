@@ -12,6 +12,7 @@ node_modules
 dist
 dist-ssr
 coverage
+*.local
 
 yarn.lock
 package-lock.json
