@@ -1,6 +1,6 @@
 <template>
   <aside
-    class="hidden  w-[92px] h-[850px] rounded-lg border border-[#E5E5E5] bg-white py-6 lg:flex flex-col justify-between"
+    class="w-[92px] h-[850px] rounded-lg border border-[#E5E5E5] bg-white py-6 lg:flex flex-col justify-between"
   >
 
     <section class="mb-2 flex flex-col items-center">
@@ -40,7 +40,7 @@
 
       </div>
 
-      <div class="border-b border-b-[#E5E5E5] mb-5 mt-5 w-[44px]"></div>
+      <div class="border-b border-b-[#E5E5E5] mb-5 mt-10 w-[44px]"></div>
 
       <div
         class="font-medium text-[10px] tracking-[0.4px] text-[#757575] text-center mb-2"
@@ -48,7 +48,14 @@
         SETTINGS
       </div>
 
-      <button class="z-10 h-[44px] w-[44px] flex items-center justify-center">
+      <button
+        @click="
+          $router.push('/settings');
+          selectedNavItemOffset = 297;
+        "
+        class="z-10 h-[44px] w-[44px] flex items-center justify-center"
+        :class="selectedNavItemOffset === 297 ? 'text-[#FF7830]' : 'text-[#757575]'"
+      >
         <Settings />
       </button>
 
@@ -96,6 +103,7 @@ const mainNavItems = [
   { name: "Wallet", icon: Wallet, href: "/wallets", offset: 56 },
   { name: "Shipments", icon: Shipments, href: "/shipments", offset: 112 },
   { name: "Tracking", icon: Tracking, href: "/tracking", offset: 168 },
+  // { name: "settings", icon: Settings, href: "/settings", offset: 168 },
 ];
 
 const handleLogout = () => {

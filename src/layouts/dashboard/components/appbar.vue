@@ -37,7 +37,7 @@
             class="h-full flex items-center m-0 p-0 hover:bg-gray-100 rounded-md"
           >
             <section
-              class="h-full flex justify-center items-center bg-[#D9D9D9] rounded-full border-2 border-[#34A9FF] mr-4"
+              class="w-[39px] h-[38px] flex justify-center items-center bg-[#D9D9D9] rounded-full border-2 border-[#34A9FF] mr-4"
             >
               <Memoji />
             </section>

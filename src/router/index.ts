@@ -13,7 +13,14 @@ import PaymentLayout from "@/layouts/payment/index.vue";
 import SingleShipment from "@/views/single-shipment.vue";
 import BulkShipment from "@/views/bulk-shipment.vue";
 import CheckoutComponent from "@/views/checkout-component.vue";
+import settings from "@/layouts/settings/index.vue"
+import profile from "@/views/profile.vue";  
+import appsetting from "@/views/appsetting.vue";
+import integrations from "@/views/integrations.vue";
+import notification from "@/views/notification.vue";
+import billing from "@/views/billing.vue";
 import { token } from "@/utils";
+import danger from "@/views/danger.vue"
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -63,6 +70,16 @@ const router = createRouter({
         { name: "shipments", path: "shipments", component: Shipments },
         { name: "wallets", path: "wallets", component: Wallets },
         { name: "tracking", path: "tracking", component: Tracking },
+        { name: "settings", path: "settings", component: settings, redirect: { name: "profile" },
+           children: [
+            { name: "profile", path: "profile",  component: profile },
+            { name: "appsetting", path: "appsetting", component: appsetting },
+            { name: "integrations", path: "integrations", component: integrations },
+            { name: "billing", path: "billing", component: billing },
+            { name: "notifcation", path: "notification", component: notification },
+            { name: "danger", path: "danger", component: danger },
+           ]
+         },
       ],
     },
     {

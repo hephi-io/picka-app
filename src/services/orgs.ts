@@ -29,8 +29,13 @@ type TOrg = {
 
 const endpoints = {
   create_org: "/orgs",
+  get_root_user_orgs: "/orgs/me"
 };
 
 export const createOrg = (payload: TCreateOrgPayload) => {
   return API.post<TResponse<TOrg>>(endpoints.create_org, payload);
 };
+
+export const getRootUserOrg =() => {
+  return API.get<TResponse<TOrg>>(endpoints.get_root_user_orgs)
+}
