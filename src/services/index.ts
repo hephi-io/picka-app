@@ -198,7 +198,7 @@ export const signup = (payload: TSignupPayload) => {
   );
 };
 
-//SamanthaGreen@gmail.com
+
 //PickaTestApp2305
 
 export const getUserProfile = () => {
