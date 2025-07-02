@@ -225,7 +225,7 @@
 </template>
 
 <script setup>
-import { ref,  onMounted } from "vue";
+import { ref, reactive,  onMounted } from "vue";
 
 const showCurrentPassword = ref(false);
 const showNewPassword = ref(false);
@@ -253,16 +253,16 @@ onMounted(async () => {
     orgs.value = orgResponse.data;
 });
 
-// const form = reactive({
-//     firstName: 'Melody',
-//     lastName: 'Ezeani',
-//     businessName: 'Kinco LLC',
-//     location: '19th, California street',
-//     phoneNumber: '+23140123456789',
-//     email: 'ezeanimelody@email.com',
-//     currentPassword: 'picka2024.ng',
-//     newPassword: ''
-// });
+const form = reactive({
+    // firstName: 'Melody',
+    // lastName: 'Ezeani',
+    // businessName: 'Kinco LLC',
+    // location: '19th, California street',
+    // phoneNumber: '+23140123456789',
+    // email: 'ezeanimelody@email.com',
+    currentPassword: 'picka2024.ng',
+    newPassword: ''
+});
 
 
 

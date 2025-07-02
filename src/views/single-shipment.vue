@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import { ref } from "vue";
 import { useRouter } from "vue-router";
 
 import ChevronLeft from "@/assets/svgs/chevron-down-sharp.svg";
@@ -39,16 +40,47 @@ import {
 } from '@/components/ui/accordion';
 import { Checkbox } from '@/components/ui/checkbox';
 import { ToggleGroup, ToggleGroupItem } from '@/components/ui/toggle-group';
+import { createShipment } from "@/services/shipment";
+const router = useRouter()
+const singleshipment = ref({
+  amount: 300,
+  category: "",
+  description: "",
+  drop_off_location: "",
+  pickup_location: "",
+  pickup_option: "",
+  recipient_address: "",
+  recipient_email: "",
+  recipient_name: "",
+  recipient_phone: "",
+  weight: 0
+})
 
-const router = useRouter();
+const handleSubmit = async () => {
+  const shipment = singleshipment.value;
 
-const handleSubmit = () => {
-  router.push(
-    {
-      name: "checkout",
-      params: { name: "single" }
-    }
-  )
+  const payload = {
+    amount: shipment.amount,
+    category: shipment.category,
+    description: shipment.description,
+    drop_off_location: shipment.drop_off_location,
+    pickup_location: shipment.pickup_location,
+    pickup_option: shipment.pickup_option,
+    recipient_address: shipment.pickup_location,
+    recipient_email: shipment.recipient_email,
+    recipient_name: shipment.recipient_name,
+    recipient_phone: shipment.recipient_phone,
+    weight: shipment.weight
+  };
+
+  try {
+    await createShipment(payload);
+
+    router.push("/");
+  } catch (error) {
+    console.error("Error creating shipment:", error);
+  }
+
 }
 </script>
 
@@ -130,7 +162,8 @@ const handleSubmit = () => {
                             Pickup Address <span class="text-red-600">*</span>
                           </Label>
 
-                          <Input id="pickup-address" type="text" placeholder="e.g. 17, Ogunyemi strt, Magodo."
+                          <Input v-model="singleshipment.pickup_location" id="pickup-address" type="text"
+                            placeholder="e.g. 17, Ogunyemi strt, Magodo."
                             class="font-normal text-sm leading-[18.2px]" />
 
                         </section>
@@ -154,13 +187,15 @@ const handleSubmit = () => {
                           Pickup Option <span class="text-red-600">*</span>
                         </Label>
 
-                        <Select>
+                        <Select v-model="singleshipment.category">
 
                           <SelectTrigger>
                             <SelectValue placeholder="Choose an option" class="text-[#999999]" />
                           </SelectTrigger>
-
                           <SelectContent>
+                            <SelectItem value="fragile">
+                              fragile
+                            </SelectItem>
                           </SelectContent>
 
                         </Select>
@@ -179,8 +214,8 @@ const handleSubmit = () => {
                             Receiver's Name <span class="text-red-600">*</span>
                           </Label>
 
-                          <Input id="receiver-name" type="text" placeholder="e.g. John"
-                            class="font-normal text-sm leading-[18.2px]" />
+                          <Input v-model="singleshipment.recipient_name" id="receiver-name" type="text"
+                            placeholder="e.g. John" class="font-normal text-sm leading-[18.2px]" />
 
                         </section>
 
@@ -190,7 +225,8 @@ const handleSubmit = () => {
                             Drop-Off <span class="text-red-600">*</span>
                           </Label>
 
-                          <Input id="drop-off" type="text" placeholder="e.g. 17, Ogunyemi strt, Magodo."
+                          <Input v-model="singleshipment.drop_off_location" id="drop-off" type="text"
+                            placeholder="e.g. 17, Ogunyemi strt, Magodo."
                             class="font-normal text-sm leading-[18.2px]" />
 
                         </section>
@@ -201,7 +237,8 @@ const handleSubmit = () => {
                             Delivery Notes <span class="text-red-600">*</span>
                           </Label>
 
-                          <Input id="delivery-notes" type="text" placeholder="e.g. Kindly pickup from the gateman"
+                          <Input id="delivery-notes" v-model="singleshipment.description" type="text"
+                            placeholder="e.g. Kindly pickup from the gateman"
                             class="mb-4 font-normal text-sm leading-[18.2px] lg:mb-0" />
 
                         </section>
@@ -216,8 +253,8 @@ const handleSubmit = () => {
                             Delivery Email <span class="text-red-600">*</span>
                           </Label>
 
-                          <Input id="delivery-email" type="email" placeholder="e.g. Johndoe@email.com"
-                            class="font-normal text-sm leading-[18.2px]" />
+                          <Input v-model="singleshipment.recipient_email" id="delivery-email" type="email"
+                            placeholder="e.g. Johndoe@email.com" class="font-normal text-sm leading-[18.2px]" />
 
                         </div>
 
@@ -242,12 +279,14 @@ const handleSubmit = () => {
 
                           <FlagDropdown />
 
-                          <NumberField :default-value="8023456789" class="w-[73.24%]">
+                          <!-- <NumberField  :default-value="8023456789"  class="w-[73.24%]">
                             <NumberFieldContent>
-                              <NumberFieldInput class="rounded-s-none px-2 py-6 text-left" />
+                              <NumberFieldInput   class="rounded-s-none px-2 py-6 text-left" />
                             </NumberFieldContent>
-                          </NumberField>
+                          </NumberField> -->
 
+                          <Input placeholder="8023456789" v-model="singleshipment.recipient_phone" type="text"
+                            class="font-normal text-sm leading-[18.2px] w-[73.24%]  rounded-s-none px-2 py-6 text-left" />
                         </div>
 
                       </section>
@@ -274,7 +313,7 @@ const handleSubmit = () => {
                           Item Category<span class="text-red-600"> *</span>
                         </Label>
 
-                        <Select>
+                        <Select v-model="singleshipment.pickup_option">
 
                           <SelectTrigger>
                             <SelectValue placeholder="Select an Option"
@@ -282,12 +321,15 @@ const handleSubmit = () => {
                           </SelectTrigger>
 
                           <SelectContent>
-                            <!-- <SelectGroup>
-                              <SelectLabel>Fruits</SelectLabel>
-                              <SelectItem value="apple">
-                                Apple
+                            <SelectGroup>
+                              <!-- <SelectLabel>Fruits</SelectLabel> -->
+                              <SelectItem value="dropoff">
+                                drop off
                               </SelectItem>
-                            </SelectGroup> -->
+                              <SelectItem value="pickup">
+                                pick up
+                              </SelectItem>
+                            </SelectGroup>
                           </SelectContent>
 
                         </Select>
@@ -300,8 +342,11 @@ const handleSubmit = () => {
                           Package Weight (kg)<span class="text-red-600"> *</span>
                         </Label>
 
-                        <Input id="package-weight" class="font-normal text-sm leading-[18.2px] text-[#999999] mt-1"
-                          type="text" placeholder="2" />
+                        <Input v-model="singleshipment.weight" id="package-weight"
+                          class="font-normal text-sm leading-[18.2px] text-[#999999] mt-1" type="number"
+                          placeholder="2" />
+
+
 
                       </section>
 
@@ -506,3 +551,31 @@ const handleSubmit = () => {
 </template>
 
 <style lang="css" scoped></style>
+
+
+
+<!-- {
+
+  amount: 300.8,
+
+  category: 'fragile',
+
+  description: 'from me to you ',
+
+  drop_off_location: '15 Adeola Odeku Street, ikorodu Island, Lagos',
+
+  pickup_location: 'ojota',
+
+  pickup_option: '15 Adeola Odeku Street, ikorodu Island, Lagos',
+
+  recipient_address: 'ojota',
+
+  recipient_email: 'paulolutosoye@gmail.com',
+
+  recipient_name: 'john',
+  
+  recipient_phone: '',
+
+  weight: '7'
+
+} -->
