@@ -8,6 +8,7 @@ const authStore = useAuthStore();
 onMounted(() => {
   authStore.authenticateUser();
 });
+
 </script>
 
 <template>

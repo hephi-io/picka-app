@@ -30,7 +30,7 @@ export const createShipment = (payload: TCreateShipmentPayload) => {
   );
 };
 
-export const getRootShipment = () => {
+export const getRootShipments = () => {
   return API.get<TResponse<TCreateShipmentPayload>>(
     endpoints.get_root_shipment
   );
@@ -43,3 +43,4 @@ export const getShipmentOrgs = (id: string) => {
 export const getShipmentActivities = (id: string) => {
   return API.get(endpoints.get_shipmentId_activities(id));
 };
+

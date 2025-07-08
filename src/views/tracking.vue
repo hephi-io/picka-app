@@ -1,6 +1,6 @@
 <script setup>
 
-import { ref } from "vue";
+import { onMounted, ref } from "vue";
 
 import { Input } from "@/components/ui/input";
 import {
@@ -47,6 +47,7 @@ import OrderConfirmedIcon from "@/assets/svgs/order-confirmed-icon.svg";
 import PickedUpIcon from "@/assets/svgs/picked-up-icon.svg";
 import InTransitIcon from "@/assets/svgs/in-transit-icon.svg";
 import PackageDelivered from "@/assets/svgs/package-delivered.svg";
+import { getRootShipments } from "@/services/shipment";
 
 
 
@@ -59,6 +60,10 @@ const people = [
   { value: "damien-03", name: "Damien Smith" },
 ];
 
+  const userShipments = ref([])
+
+
+
 const notSelectedToggleTabStyle = "scroll-snap-center box-border  flex-shrink-0 w-[284px] h-full bg-white rounded-lg mx-auto lg:w-full lg:h-[200px] rounded-lg border border-[#E4E7EC] p-4 mb-6  ";
 const selectedToggleTabStyle = "scroll-snap-center box-border flex-shrink-0 w-[284px] h-full bg-white rounded-lg mx-auto lg:w-full lg:h-[200px] rounded-lg border border-[#F1C49B] p-4 mb-6  toggle";
 
@@ -66,7 +71,7 @@ const selectedToggleTab = ref("coco");
 
 const selectToggleTab = (value) => {
   selectedToggleTab.value = value;
-  console.log(selectedToggleTab.value);
+  // console.log(selectedToggleTab.value);
 }
 
 
@@ -91,6 +96,12 @@ const selectedStepperValue = ref("order-confirmed");
 const selectStepperValue = (value) => {
   selectedStepperValue.value = value;
 } 
+
+onMounted(async () => {
+  const { data: rootShipmentsResponse } = await getRootShipments();
+  userShipments.value = rootShipmentsResponse.data;
+  // console.log("Root Shipments Response:", rootShipmentsResponse.data);
+})
 </script>
 
 <template>
@@ -217,16 +228,16 @@ const selectStepperValue = (value) => {
         <ToggleGroup type="single"
           class="flex items-center justify-start gap-4  w-full lg:w-auto lg:overflow-visible lg:scroll-snap-none overflow-x-scroll   hide-scrollbar lg:block">
 
-          <ToggleGroupItem :value="person.value"
-            :class="[selectedToggleTab === person.value ? selectedToggleTabStyle : notSelectedToggleTabStyle]"
-            v-for="(person, index) in people" :key="index" @click="selectToggleTab(person.value)">
+          <ToggleGroupItem :value="user.id"
+            :class="[selectedToggleTab === user.id ? selectedToggleTabStyle : notSelectedToggleTabStyle]"
+            v-for="(user) in userShipments" :key="user.id" @click="selectToggleTab(user.id)">
             <div class="w-full h-full">
 
               <section class="flex justify-between items-center mb-2">
 
                 <div class="rounded border border-[#E4E7EC] p-1 bg-[#F9FAFB] flex gap-x-2 items-center tag">
                   <span class="font-normal text-xs leading-5 text-[#475467]">
-                    #DR3E4478
+                    {{ user.id }}
                   </span>
                   <copy />
                 </div>
@@ -244,7 +255,7 @@ const selectStepperValue = (value) => {
                     <div class="flex gap-x-2 items-center">
                       <Navigation />
                       <span class="font-medium text-sm text-[#475467]">
-                        {{ person.name }}
+                        {{ user.recipient_name }}
                       </span>
                     </div>
 
@@ -259,7 +270,7 @@ const selectStepperValue = (value) => {
                     <div class="flex gap-x-2 items-center mb-1">
                       <PinLocation />
                       <span class="font-normal text-xs leading-[15.6px] text-[#475467]">
-                        17, Ogunyemi strt, Magodo.
+                        {{ user.pickup_location }}
                       </span>
                     </div>
 
@@ -268,7 +279,7 @@ const selectStepperValue = (value) => {
                     <div class="flex gap-x-2 items-center mb-1">
                       <LocationIcon />
                       <span class="font-normal text-xs leading-[15.6px] text-[#475467]">
-                        Shop 10/644 GorgerSt, Sydney NSW 2000
+                        {{ user.drop_off_location }}
                       </span>
                     </div>
 

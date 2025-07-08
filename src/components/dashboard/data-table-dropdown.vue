@@ -14,6 +14,7 @@ defineEmits<{
 }>()
 
 function copy(id: string) {
+  // console.log('Copying payment ID:', id)
   navigator.clipboard.writeText(id)
 }
 </script>
