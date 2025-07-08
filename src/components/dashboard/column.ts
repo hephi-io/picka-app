@@ -36,7 +36,7 @@ export const columns: ColumnDef<Shipping>[] = [
     enableHiding: false,
   },
   {
-    accessorKey: "orderId",
+    accessorKey: "id",
     header: () =>
       h(
         "div",
@@ -62,7 +62,7 @@ export const columns: ColumnDef<Shipping>[] = [
     // },
   },
   {
-    accessorKey: "name",
+    accessorKey: "recipient_name",
     header: () =>
       h(
         "div",
@@ -78,7 +78,7 @@ export const columns: ColumnDef<Shipping>[] = [
     },
   },
   {
-    accessorKey: "emailAddress",
+    accessorKey: "recipient_email",
     header: () =>
       h(
         "div",
@@ -126,7 +126,7 @@ export const columns: ColumnDef<Shipping>[] = [
     },
   },
   {
-    accessorKey: "fee",
+    accessorKey: "amount",
     header: () =>
       h(
         "div",
@@ -137,7 +137,8 @@ export const columns: ColumnDef<Shipping>[] = [
       return h(
         "div",
         { class: "text-[#475467] text-sm" },
-        `₦ ${(data.getValue() as any).toLocaleString()}`
+        `₦ ${(data.getValue() as string)}`
+        // `₦ ${(data.getValue() as number).toFixed(2)}`
       );
     },
   },
@@ -152,19 +153,19 @@ export const columns: ColumnDef<Shipping>[] = [
     cell: (data) => {
       return h(
         "span",
-        {
+         {
           class: `text-[#475467] text-xs h-[30px] flex items-center justify-center rounded-[6px] font-medium w-[77px] ${
             statusMap[
               (data.getValue() as TStatusMap).toLowerCase() as TStatusMap
             ]
           }`,
         },
-        data.getValue() as any
+data.getValue() as any
       );
     },
   },
   {
-    accessorKey: "date",
+    accessorKey: "created_at",
     header: () =>
       h(
         "div",
@@ -175,7 +176,7 @@ export const columns: ColumnDef<Shipping>[] = [
       return h(
         "div",
         { class: "text-[#475467] text-sm" },
-        data.getValue() as any
+        (data.getValue() as string).slice(0, 10) // Format date to YYYY-MM-DD
       );
     },
   },

@@ -110,6 +110,7 @@ const handleSubmit = async () => {
   try {
     isSubmitting.value = true;
     await createOrg(organizations.value);
+    orgStore
 
     router.push("/");
   } catch (error) {

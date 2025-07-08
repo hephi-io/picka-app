@@ -21,12 +21,9 @@ import DeliveryBox from "@/assets/svgs/delivery-box-02.svg";
 
 const data = ref<Shipping[]>([]);
 
-async function getData(): Promise<Shipping[]> {
-  return shippings;
-}
 
 onMounted(async () => {
-  data.value = await getData();
+  
 
   animate(
     ".animation-slide-up",
@@ -121,7 +118,9 @@ onMounted(async () => {
       </section>
 
       <section>
-        <DataTable :columns="columns" :data="data" />
+        <!-- <DataTable
+         :columns="columns" :data="data"
+          /> -->
       </section>
 
       <section class=" hidden h-[68px] md:flex items-center justify-center border-t px-6">

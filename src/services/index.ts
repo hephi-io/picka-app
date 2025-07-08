@@ -1,18 +1,41 @@
 import { token } from "@/utils";
 import axios from "axios";
 
+// export interface Shipping {
+//   orderId: string;
+//   amount: number;
+//   category: string;
+//   created_at: string;
+//   description: string;
+//   drop_off_location: string;
+//   id: string;
+//   org_id: string;
+//   pickup_location: string;
+//   pickup_option: string;
+//   recipient_address: string;
+//   recipient_email: string;
+//   recipient_name: string;
+//   recipient_phone: string;
+//   shipment_ref: string;
+//   status: string;
+//   updated_at: string;
+//   user_id: string;
+//   weight: number;
+
+// }
+
 export interface Shipping {
-  orderId: string;
-  name: string;
-  emailAddress: string;
+  id: string;
+  recipient_name: string;
+  recipient_email: string;
   category: string;
-  weight: string;
-  fee: number;
+  weight: number;
+  amount: number;
   status: string;
-  date: string;
+  created_at: string;
 }
 
-export const shippings: Shipping[] = [
+export const shippings = [
   {
     orderId: "#DR3E4478",
     name: "Olivia Rhye",
