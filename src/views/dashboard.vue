@@ -17,16 +17,55 @@ import WalletTrend from "@/assets/svgs/wallet-trend.svg";
 import ZSearchInput from "@/components/shared/z-search-input.vue";
 
 import { useAuthStore } from "@/stores/auth";
+import { getRootUserOrg } from "@/services/orgs";
+import { getShipmentOrgs } from "@/services/shipment";
 const authStore = useAuthStore();
 
 const data = ref<Shipping[]>([]);
 
-async function getData(): Promise<Shipping[]> {
-  return shippings;
+onMounted(async () => {
+const { data: orgResponse } = await getRootUserOrg();
+
+const { data: shipmentOrgsResponse } = await getShipmentOrgs(orgResponse.data.id);
+
+// console.log(shipmentOrgsResponse.data, 'shipmentOrgsResponse');
+
+// Ensure data exists and map only required fields
+if (shipmentOrgsResponse.data && shipmentOrgsResponse.data.length > 0) {
+  data.value = shipmentOrgsResponse.data.map((item: Shipping) => {
+    const {
+      id,
+      recipient_name,
+      recipient_email,
+      category,
+      weight,
+      amount,
+      status,
+      created_at
+    } = item;
+
+    return {
+      id,
+      recipient_name,
+      recipient_email,
+      category,
+      weight,
+      amount,
+      status,
+      created_at
+    };
+  });
+
+
+} else {
+  // console.warn("No shipment data found.");
 }
 
-onMounted(async () => {
-  data.value = await getData();
+
+// Check if the response contains at least one item
+
+
+
 
   animate(
     ".animation-slide-up",
@@ -109,7 +148,7 @@ onMounted(async () => {
       <section class="hidden">
         <NewShipment class="" />
       </section>
-      
+
     </section>
   </main>
 </template>

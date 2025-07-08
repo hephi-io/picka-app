@@ -5,7 +5,7 @@ import { Button } from '@/components/ui/button'
 
 defineProps<{
   shipping: {
-    orderId: string
+    id: string
   }
 }>()
 
@@ -34,7 +34,7 @@ function copy(id: string) {
 
       <DropdownMenuLabel>Actions</DropdownMenuLabel>
 
-      <DropdownMenuItem @click="copy(shipping.orderId)">
+      <DropdownMenuItem @click="copy(shipping.id)">
         Copy payment ID
       </DropdownMenuItem>
 

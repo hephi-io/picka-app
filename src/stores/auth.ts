@@ -5,6 +5,7 @@ import { getUserProfile } from "@/services";
 import router from "@/router";
 
 export const useAuthStore = defineStore("auth", () => {
+  
   const user = ref({
     id: "",
     org_id: "",
