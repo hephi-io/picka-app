@@ -1,4 +1,4 @@
-import { API, type TResponse } from ".";
+import { API, shippings, type TResponse } from ".";
 
 type TCreateShipmentPayload = {
   amount: number
@@ -20,7 +20,8 @@ const endpoints = {
   get_shipment_org: (id: string) => `/shipments/org/${id}`,
   get_shipmentId_activities: (shipmentId: string) =>
     `/shipments/${shipmentId}/activities`,
-};
+  cancel_root_shipment:(shipmentID: string) => `/shipments/${shipmentID}/cancel`
+}
 
 
 export const createShipment = (payload: TCreateShipmentPayload) => {
@@ -44,3 +45,6 @@ export const getShipmentActivities = (id: string) => {
   return API.get(endpoints.get_shipmentId_activities(id));
 };
 
+export  const cancelShipment = (shipmentID : string) => {
+ return API.patch(endpoints.cancel_root_shipment(shipmentID), null)
+}

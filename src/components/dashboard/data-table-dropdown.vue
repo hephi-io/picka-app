@@ -2,6 +2,7 @@
 import { MoreHorizontal } from 'lucide-vue-next'
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuLabel, DropdownMenuSeparator, DropdownMenuTrigger } from '../ui/dropdown-menu'
 import { Button } from '@/components/ui/button'
+import { cancelShipment } from '@/services/shipment';
 
 defineProps<{
   shipping: {
@@ -13,9 +14,9 @@ defineEmits<{
   (e: 'expand'): void
 }>()
 
-function copy(id: string) {
-  // console.log('Copying payment ID:', id)
-  navigator.clipboard.writeText(id)
+async function  cancel (shipmentId: string) {
+   const response = cancelShipment(shipmentId)
+   console.log(response)
 }
 </script>
 
@@ -35,17 +36,17 @@ function copy(id: string) {
 
       <DropdownMenuLabel>Actions</DropdownMenuLabel>
 
-      <DropdownMenuItem @click="copy(shipping.id)">
-        Copy payment ID
+      <DropdownMenuItem @click="cancel(shipping.id)">
+        Cancel
       </DropdownMenuItem>
 
-      <DropdownMenuItem @click="$emit('expand')">
+      <!-- <DropdownMenuItem @click="$emit('expand')">
         Expand
       </DropdownMenuItem>
 
       <DropdownMenuSeparator />
       <DropdownMenuItem>View customer</DropdownMenuItem>
-      <DropdownMenuItem>View payment details</DropdownMenuItem>
+      <DropdownMenuItem>View payment details</DropdownMenuItem> -->
 
     </DropdownMenuContent>
 
