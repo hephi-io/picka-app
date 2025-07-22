@@ -4,7 +4,6 @@ import NewAuthPage from "@/components/NewAuthPage.vue";
 import OTPVerification from "@/components/OTPVerification.vue";
 import OTPVerificationStatus from "@/components/OTPVerificationStatus.vue";
 import DashboardPage from "@/views/dashboard.vue";
-import AuthPage from "@/components/AuthPage.vue";
 import DashboardLayout from "@/layouts/dashboard/index.vue";
 import Shipments from "@/views/shipments.vue";
 import Wallets from "@/views/wallets.vue";
@@ -13,14 +12,15 @@ import PaymentLayout from "@/layouts/payment/index.vue";
 import SingleShipment from "@/views/single-shipment.vue";
 import BulkShipment from "@/views/bulk-shipment.vue";
 import CheckoutComponent from "@/views/checkout-component.vue";
-import settings from "@/layouts/settings/index.vue"
-import profile from "@/views/profile.vue";  
+import settings from "@/layouts/settings/index.vue";
+import profile from "@/views/profile.vue";
 import appsetting from "@/views/appsetting.vue";
 import integrations from "@/views/integrations.vue";
 import notification from "@/views/notification.vue";
 import billing from "@/views/billing.vue";
 import { token } from "@/utils";
-import danger from "@/views/danger.vue"
+import danger from "@/views/danger.vue";
+import Auth from "@/views/auth/index.vue";
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -28,13 +28,13 @@ const router = createRouter({
     {
       path: "/auth",
       name: "auth",
-    
-      component: AuthPage,
+
+      component: Auth,
     },
     {
       path: "/auth/onboarding",
       name: "onboarding",
-      
+
       // route level code-splitting
       // this generates a separate chunk (About.[hash].js) for this route
       // which is lazy-loaded when the route is visited.
@@ -70,16 +70,28 @@ const router = createRouter({
         { name: "shipments", path: "shipments", component: Shipments },
         { name: "wallets", path: "wallets", component: Wallets },
         { name: "tracking", path: "tracking", component: Tracking },
-        { name: "settings", path: "settings", component: settings, redirect: { name: "profile" },
-           children: [
-            { name: "profile", path: "profile",  component: profile },
+        {
+          name: "settings",
+          path: "settings",
+          component: settings,
+          redirect: { name: "profile" },
+          children: [
+            { name: "profile", path: "profile", component: profile },
             { name: "appsetting", path: "appsetting", component: appsetting },
-            { name: "integrations", path: "integrations", component: integrations },
+            {
+              name: "integrations",
+              path: "integrations",
+              component: integrations,
+            },
             { name: "billing", path: "billing", component: billing },
-            { name: "notifcation", path: "notification", component: notification },
+            {
+              name: "notifcation",
+              path: "notification",
+              component: notification,
+            },
             { name: "danger", path: "danger", component: danger },
-           ]
-         },
+          ],
+        },
       ],
     },
     {
@@ -88,27 +100,25 @@ const router = createRouter({
       name: "payment",
       meta: { requiresAuth: true },
       children: [
-
-        { 
+        {
           name: "single-shipment",
-          path: "/single-shipment", 
-          component: SingleShipment, 
+          path: "/single-shipment",
+          component: SingleShipment,
         },
 
-        { 
+        {
           name: "bulk-shipment",
-          path: "/bulk-shipment", 
-          component: BulkShipment, 
+          path: "/bulk-shipment",
+          component: BulkShipment,
         },
 
-        { 
+        {
           name: "checkout",
-          path: "/checkout/:name", 
-          component: CheckoutComponent, 
+          path: "/checkout/:name",
+          component: CheckoutComponent,
         },
-
       ],
-    }, 
+    },
   ],
 });
 
