@@ -4,10 +4,10 @@
 
     <div class="flex mt-4">
       <side-bar />
-      <settings />
-      
 
-      <div class="md:flex-grow lg:pl-6 w-full ">
+      <settings />
+
+      <div class="md:flex-grow lg:pl-6 w-full">
         <router-view />
       </div>
     </div>
