@@ -78,7 +78,7 @@
           <section
             class="h-full flex justify-center items-center rounded-full border-2 border-[#34A9FF] mr-4"
           >
-            <Memoji />
+            <Memoji class="h-[50.2px] w-[50.2px] md:w-full" />
           </section>
           <div class="text-left">
             <h1 class="font-normal text-[13px] text-[#242424]">
