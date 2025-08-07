@@ -1,6 +1,6 @@
 <script setup>
 
-import { onMounted, ref } from "vue";
+import { computed, onMounted, ref, watch } from "vue";
 
 import { Input } from "@/components/ui/input";
 import {
@@ -47,32 +47,80 @@ import OrderConfirmedIcon from "@/assets/svgs/order-confirmed-icon.svg";
 import PickedUpIcon from "@/assets/svgs/picked-up-icon.svg";
 import InTransitIcon from "@/assets/svgs/in-transit-icon.svg";
 import PackageDelivered from "@/assets/svgs/package-delivered.svg";
-import { getRootShipments } from "@/services/shipment";
+import { getRootShipments, getShipmentActivities } from "@/services/shipment";
 
 
 
 
-// TOGGLE
-const people = [
-  { value: "coco", name: "Coco's Bespoke" },
-  { value: "damien-01", name: "Damien Smith" },
-  { value: "damien-02", name: "Damien Smith" },
-  { value: "damien-03", name: "Damien Smith" },
-];
 
-  const userShipments = ref([])
+const userShipments = ref([])
+const shipmentActivities = ref([])
 
+const currentStepIndex = computed(() => {
+  const lastStatus = shipmentActivities.value.at(-1)?.status;
+  return statusOrder.indexOf(lastStatus);
+});
+
+function formatDate(dateString) {
+  const date = new Date(dateString);
+  return date.toLocaleString('en-GB', {
+    day: '2-digit',
+    month: 'short',
+    hour: '2-digit',
+    minute: '2-digit',
+  });
+}
+
+
+const statusOrder = ['pending', 'shipping', 'in transit', 'delivered'];
+
+
+
+function getDescription(status) {
+  switch (status) {
+    case statusOrder[0]:
+      return 'The order has been successfully placed and confirmed';
+    case statusOrder[1]:
+      return 'The package has been collected by the courier and is en route.';
+    case statusOrder[2]:
+      return 'The package is actively moving toward its destination.';
+    case statusOrder[3]:
+      return 'The package has arrived at the recipient’s location.';
+    default:
+      return '';
+  }
+}
 
 
 const notSelectedToggleTabStyle = "scroll-snap-center box-border  flex-shrink-0 w-[284px] h-full bg-white rounded-lg mx-auto lg:w-full lg:h-[200px] rounded-lg border border-[#E4E7EC] p-4 mb-6  ";
 const selectedToggleTabStyle = "scroll-snap-center box-border flex-shrink-0 w-[284px] h-full bg-white rounded-lg mx-auto lg:w-full lg:h-[200px] rounded-lg border border-[#F1C49B] p-4 mb-6  toggle";
 
-const selectedToggleTab = ref("coco");
+const selectedToggleTab = ref("");
 
-const selectToggleTab = (value) => {
-  selectedToggleTab.value = value;
-  // console.log(selectedToggleTab.value);
+
+// STEPPER
+const stepperValues = ["order-confirmed", "picked-up ", "in-transit", "delivered"];
+
+
+// const selectedStepperValue = ref("order-confirmed");
+
+
+const selectedStepperValue = computed(() => currentStepIndex.value + 1)
+
+
+const selectToggleTab = async (id) => {
+  selectedToggleTab.value = id;
+
+  try {
+    const { data: activitiesResponse } = await getShipmentActivities(id);
+    shipmentActivities.value = activitiesResponse.data.reverse();
+
+  } catch (error) {
+    console.error('Error fetching shipment activities:', error);
+  }
 }
+
+
 
 
 // HORIZONTAL TAB
@@ -84,23 +132,15 @@ const notSelectedHorizontalTabStyle = "w-full md:w-[181.99px] rounded px-2 py-[6
 
 const selectHorizotalTab = (value) => {
   selectedHorizontalTab.value = value;
-  console.log(selectedHorizontalTab.value);
 }
 
 
-// STEPPER
-const stepperValues = ["order-confirmed", "picked-up", "in-transit", "delivered"];
-const [stepperValueOne, stepperValueTwo, stepperValueThree, stepperValueFour] = stepperValues;
-const selectedStepperValue = ref("order-confirmed");
 
-const selectStepperValue = (value) => {
-  selectedStepperValue.value = value;
-} 
+
 
 onMounted(async () => {
   const { data: rootShipmentsResponse } = await getRootShipments();
   userShipments.value = rootShipmentsResponse.data;
-  // console.log("Root Shipments Response:", rootShipmentsResponse.data);
 })
 </script>
 
@@ -113,7 +153,7 @@ onMounted(async () => {
       </span>
     </header>
 
-    <section class="lg:flex gap-x-6 items-center ">
+    <section class="lg:flex gap-x-6 ">
       <section class="lg:flex-1">
 
         <section class=" hidden md:flex gap-x-2 items-center mb-4  ">
@@ -351,12 +391,12 @@ onMounted(async () => {
           <TabsContent value="map-based-tracking">
             <div class="relative">
               <!-- <img src="../assets/pngs/mapsicle-map.png" class="object-cover border-t min-h-[70vh]" /> -->
-               <div class="lg:min-w-[34rem]">
+              <div class="lg:min-w-[34rem]">
 
-                 <Map />
-               </div>
+                <Map />
+              </div>
 
-               <info-tab-component />
+              <!-- <info-tab-component  :shipmentActivities="shipmentActivities"/> -->
 
 
               <!-- <div class="absolute right-4 bottom-4 w-[34.51px] h-[115.63px] hidden md:block">
@@ -393,217 +433,108 @@ onMounted(async () => {
             </div>
           </TabsContent>
 
+
+
+          <!-- <div class="absolute right-4 bottom-4 w-[34.51px] h-[115.63px] hidden md:block">
+
+                <section class="w-[33px] h-[70.13px] flex flex-col items-center bg-white rounded">
+
+                  <Button 
+                    variant="ghost"
+                    class="w-full h-1/2 m-0 p-0"   
+                  >
+                    <plus-sign />
+                  </Button>
+
+                  <div class="w-[70%] border-b"></div>
+
+                  <Button 
+                    variant="ghost"
+                    class="w-full h-1/2 m-0 p-0"
+                  >
+                    <minus-sign />
+                  </Button>
+
+                </section>
+
+                <Button
+                  variant="ghost" 
+                  class="w-[34.51px] h-[34.51px] flex justify-center items-center rounded-full border border-[#F4F4F4] bg-white mt-[11px] p-0"
+                >
+                  <rectangle-icon />
+                </Button>
+
+              </div> -->
+
+
+
           <TabsContent value="status-based-tracking">
             <div class="h-[636px] relative lg:min-w-[34rem]">
-
               <div class="px-4 py-[52px] border-t ">
                 <Stepper class="flex  lg:items-start flex-col gap-x-0  lg:flex-row">
-
-                  <StepperItem :step="1" class="w-full lg:w-[25%]">
-                    <StepperTrigger @click="selectStepperValue(stepperValueOne)"
-                      class="p-0 flex flex-row  items-start gap-x-5 lg:block">
-
+                  <StepperItem v-for="(activity, index) in shipmentActivities" :key="activity.id" :step="index + 1"
+                    class="w-full lg:w-[25%]">
+                    <StepperTrigger class="p-0 flex flex-row items-start gap-x-5 lg:block">
                       <div class="flex flex-col lg:flex-row lg:w-full justify-start">
-
-                        <StepperIndicator
-                          :class="[selectedStepperValue === stepperValueOne || selectedStepperValue === stepperValueTwo || selectedStepperValue === stepperValueThree || selectedStepperValue === stepperValueFour ? 'border-2 border-[#13BD96]' : 'border border-[#E4E7EC]']">
+                        <StepperIndicator :class="[
+                          selectedStepperValue >= index + 1
+                            ? 'border-2 border-[#13BD96]'
+                            : 'border border-[#E4E7EC]'
+                        ]">
                           <div class="w-full h-full flex justify-center items-center rounded-full bg-white">
-                            <order-confirmed-icon />
+                            <order-confirmed-icon v-if="activity.status === 'pending'" />
+                            <picked-up-icon v-else-if="activity.status === 'shipping'" />
+                            <in-transit-icon v-else-if="activity.status === 'in transit'" />
+                            <package-delivered v-else-if="activity.status === 'delivered'" />
+                            <order-confirmed-icon v-else />
                           </div>
                         </StepperIndicator>
 
                         <div
                           class="h-[70px] flex flex-col justify-start items-center flex-grow lg:flex-row lg:justify-center lg:h-auto">
-
-                          <div
-                            :class="[selectedStepperValue === stepperValueOne || selectedStepperValue === stepperValueTwo || selectedStepperValue === stepperValueThree || selectedStepperValue === stepperValueFour ? 'flex-grow border border-[#13BD96]' : 'flex-grow border']">
-                          </div>
-
-                          <div
-                            :class="[selectedStepperValue === stepperValueTwo || selectedStepperValue === stepperValueThree || selectedStepperValue === stepperValueFour ? 'flex-grow border border-[#13BD96]' : 'flex-grow border']">
-                          </div>
-
+                          <div :class="[
+                            selectedStepperValue > index
+                              ? 'flex-grow border border-[#13BD96]'
+                              : 'flex-grow border'
+                          ]"></div>
+                          <div :class="[
+                            selectedStepperValue > index + 1
+                              ? 'flex-grow border border-[#13BD96]'
+                              : 'flex-grow border'
+                          ]"></div>
                         </div>
-
                       </div>
+
                       <div>
                         <StepperTitle class="w-full text-left">
                           <span class="font-medium text-sm text-[#060E1F]">
-                            Order Confirmed
+                            {{ activity.status }}
                           </span>
                         </StepperTitle>
 
                         <StepperDescription class="w-full lg:w-[83%]">
-
                           <section class="font-normal text-xs leading-5 text-[#475467] text-left">
-                            The order has been successfully placed and confirmed
+                            {{ getDescription(activity.status) }}
                           </section>
-
                           <section class="mt-1 font-normal text-xs leading-5 text-[#37404D80] text-left">
-                            23 July, 12:00pm
+                            {{ formatDate(activity.created_at) }}
                           </section>
-
                         </StepperDescription>
                       </div>
                     </StepperTrigger>
                   </StepperItem>
-
-
-                  <StepperItem :step="2" class="w-full lg:w-[25%]">
-                    <StepperTrigger @click="selectStepperValue(stepperValueTwo)"
-                      class="p-0 flex flex-row  items-start gap-x-5 lg:block">
-
-                      <div class="flex flex-col lg:flex-row lg:w-full justify-start">
-
-                        <StepperIndicator
-                          :class="[selectedStepperValue === stepperValueTwo || selectedStepperValue === stepperValueThree || selectedStepperValue === stepperValueFour ? 'border-2 border-[#13BD96]' : 'border border-[#E4E7EC]']">
-                          <div class="w-full h-full flex justify-center items-center rounded-full bg-white">
-                            <picked-up-icon />
-                          </div>
-                        </StepperIndicator>
-
-                        <div
-                          class="h-[70px] flex flex-col justify-start items-center flex-grow lg:flex-row lg:justify-center lg:h-auto">
-
-                          <div
-                            :class="[selectedStepperValue === stepperValueTwo || selectedStepperValue === stepperValueThree || selectedStepperValue === stepperValueFour ? 'flex-grow border border-[#13BD96]' : 'flex-grow border']">
-                          </div>
-
-                          <div
-                            :class="[selectedStepperValue === stepperValueThree || selectedStepperValue === stepperValueFour ? 'flex-grow border border-[#13BD96]' : 'flex-grow border']">
-                          </div>
-
-                        </div>
-
-                      </div>
-                      <div>
-                        <StepperTitle class="w-full text-left">
-                          <span class="font-medium text-sm text-[#060E1F]">
-                            Picked Up
-                          </span>
-                        </StepperTitle>
-
-                        <StepperDescription class="w-full lg:w-[83%]">
-
-                          <section class="font-normal text-xs leading-5 text-[#475467] text-left">
-                            The package has been collected by the courier and is en route.
-                          </section>
-
-                          <section
-                            class="mt-1 flex justify-between items-center font-normal text-xs leading-5 text-[#37404D80] text-left">
-                            <span>23 July, 6:00pm</span>
-                            <Ellipse />
-                            <span>ETA</span>
-                            <Ellipse />
-                            <span>34km</span>
-                          </section>
-
-                        </StepperDescription>
-                      </div>
-                    </StepperTrigger>
-                  </StepperItem>
-
-                  <StepperItem :step="3" class="w-full lg:w-[25%]">
-                    <StepperTrigger @click="selectStepperValue(stepperValueThree)"
-                      class="p-0 flex flex-row  items-start gap-x-5 lg:block">
-
-                      <div class="flex flex-col lg:flex-row lg:w-full justify-start">
-
-                        <StepperIndicator
-                          :class="[selectedStepperValue === stepperValueThree || selectedStepperValue === stepperValueFour ? 'border-2 border-[#13BD96]' : 'border border-[#E4E7EC]']">
-                          <div class="w-full h-full flex justify-center items-center rounded-full bg-white">
-                            <in-transit-icon />
-                          </div>
-                        </StepperIndicator>
-
-                        <div
-                          class="h-[70px] flex flex-col justify-start items-center flex-grow lg:flex-row lg:justify-center lg:h-auto">
-
-                          <div
-                            :class="[selectedStepperValue === stepperValueThree || selectedStepperValue === stepperValueFour ? 'flex-grow border border-[#13BD96]' : 'flex-grow border']">
-                          </div>
-
-                          <div
-                            :class="[selectedStepperValue === stepperValueFour ? 'flex-grow border border-[#13BD96]' : 'flex-grow border']">
-                          </div>
-
-                        </div>
-
-                      </div>
-                      <div>
-                        <StepperTitle class="w-full text-left">
-                          <span class="font-medium text-sm text-[#060E1F]">
-                            In Transit
-                          </span>
-                        </StepperTitle>
-
-                        <StepperDescription class="w-full lg:w-[83%]">
-
-                          <section class="font-normal text-xs leading-5 text-[#475467] text-left">
-                            The package is actively moving toward its destination.
-                          </section>
-
-                          <section
-                            class="mt-1 invisible flex justify-between items-center font-normal text-xs leading-5 text-[#37404D80] text-left">
-                            <span>23 July, 6:00pm</span>
-                            <Ellipse />
-                            <span>ETA</span>
-                            <Ellipse />
-                            <span>34km</span>
-                          </section>
-
-                        </StepperDescription>
-                      </div>
-                    </StepperTrigger>
-                  </StepperItem>
-
-                  <StepperItem :step="4" class="w-full lg:w-[25%] ">
-                    <StepperTrigger @click="selectStepperValue(stepperValueFour)"
-                      class="p-0 flex flex-row  items-start gap-x-5 lg:block">
-
-                      <div class="flex flex-col lg:flex-row lg:w-full justify-start">
-                        <StepperIndicator
-                          :class="[selectedStepperValue === stepperValueFour ? 'border-2 border-[#13BD96]' : 'border border-[#E4E7EC]']">
-                          <div class="w-full h-full flex justify-center items-center rounded-full bg-white">
-                            <package-delivered />
-                          </div>
-                        </StepperIndicator>
-                      </div>
-                      <div>
-                        <StepperTitle class="w-full text-left">
-                          <span class="font-medium text-sm text-[#060E1F]">
-                            Delivered
-                          </span>
-                        </StepperTitle>
-
-                        <StepperDescription class="w-[83%]">
-
-                          <section class="font-normal text-xs leading-5 text-[#475467] text-left">
-                            The package has arrived at the recipient’s location.
-                          </section>
-
-                          <section
-                            class="mt-1 flex justify-between items-center font-normal text-xs leading-5 text-[#37404D80] text-left">
-                            <span>24 July, 9:00am</span>
-                            <Ellipse />
-                            <span>ETA</span>
-                            <Ellipse />
-                            <span>91km</span>
-                          </section>
-
-                        </StepperDescription>
-                      </div>
-                    </StepperTrigger>
-                  </StepperItem>
-
                 </Stepper>
               </div>
+
               <div class="hidden lg:block">
                 <info-tab-component class="border border-[#E4E7EC] info-tab-shadow" />
               </div>
 
             </div>
           </TabsContent>
+
+
+
 
         </Tabs>
       </section>

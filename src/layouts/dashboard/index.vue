@@ -3,7 +3,7 @@
     <app-bar />
 
     <div class="flex mt-4">
-      <side-bar />
+      <side-bar/>
       <settings />
       
 

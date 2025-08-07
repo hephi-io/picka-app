@@ -11,16 +11,23 @@ import CustomerInfoIcon from "@/assets/svgs/customer-info-icon.svg";
 import CopyTwo from "@/assets/svgs/copy-02.svg";
 
 
+
+
+
+
 const selectedVerticalTab = ref("order-info");
 const verticalTabValues = [ "order-info", "driver-info", "customer-info" ];
 const [ verticalTabValue1, verticalTabValue2, verticalTabValue3 ] = verticalTabValues;
 const selectedVerticalTabStyle = "w-full block rounded p-2 mt-4 info";
 const notSelectedVerticalTabStyle = "w-full block rounded p-2 mt-4";
 
+
 const selectVerticalTab = (value) => {
   selectedVerticalTab.value = value;
   console.log(selectedVerticalTab.value);
 }
+
+
 </script>
 
 <template>
