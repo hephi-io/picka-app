@@ -1,5 +1,8 @@
 <script setup lang="ts">
 import { animate, stagger } from "motion";
+import Paystack from "@paystack/inline-js";
+import { AxiosError } from "axios";
+
 import NewShipment from "@/components/shared/NewShipment.vue";
 
 import { Button } from "@/components/ui/button";
@@ -19,53 +22,55 @@ import ZSearchInput from "@/components/shared/z-search-input.vue";
 import { useAuthStore } from "@/stores/auth";
 import { getRootUserOrg } from "@/services/orgs";
 import { getShipmentOrgs } from "@/services/shipment";
+import { addCard, initializeTransaction } from "@/services/payments";
+import { useToast } from "@/components/ui/toast";
+
 const authStore = useAuthStore();
+const { toast } = useToast();
+
+const popup = new Paystack();
 
 const data = ref<Shipping[]>([]);
 
 onMounted(async () => {
-const { data: orgResponse } = await getRootUserOrg();
+  const { data: orgResponse } = await getRootUserOrg();
 
-const { data: shipmentOrgsResponse } = await getShipmentOrgs(orgResponse.data.id);
+  const { data: shipmentOrgsResponse } = await getShipmentOrgs(
+    orgResponse.data.id
+  );
 
-// console.log(shipmentOrgsResponse.data, 'shipmentOrgsResponse');
+  // console.log(shipmentOrgsResponse.data, 'shipmentOrgsResponse');
 
-// Ensure data exists and map only required fields
-if (shipmentOrgsResponse.data && shipmentOrgsResponse.data.length > 0) {
-  data.value = shipmentOrgsResponse.data.map((item: Shipping) => {
-    const {
-      id,
-      recipient_name,
-      recipient_email,
-      category,
-      weight,
-      amount,
-      status,
-      created_at
-    } = item;
+  // Ensure data exists and map only required fields
+  if (shipmentOrgsResponse.data && shipmentOrgsResponse.data.length > 0) {
+    data.value = shipmentOrgsResponse.data.map((item: Shipping) => {
+      const {
+        id,
+        recipient_name,
+        recipient_email,
+        category,
+        weight,
+        amount,
+        status,
+        created_at,
+      } = item;
 
-    return {
-      id,
-      recipient_name,
-      recipient_email,
-      category,
-      weight,
-      amount,
-      status,
-      created_at
-    };
-  });
+      return {
+        id,
+        recipient_name,
+        recipient_email,
+        category,
+        weight,
+        amount,
+        status,
+        created_at,
+      };
+    });
+  } else {
+    // console.warn("No shipment data found.");
+  }
 
-
-} else {
-  // console.warn("No shipment data found.");
-}
-
-
-// Check if the response contains at least one item
-
-
-
+  // Check if the response contains at least one item
 
   animate(
     ".animation-slide-up",
@@ -73,67 +78,108 @@ if (shipmentOrgsResponse.data && shipmentOrgsResponse.data.length > 0) {
     { duration: 0.5, delay: stagger(0.1) }
   );
 });
+
+const resumePaystackTransaction = (access_code: string) => {
+  return new Promise<void>((resolve, reject) => {
+    popup.resumeTransaction(access_code, {
+      onSuccess: () => resolve(),
+      onCancel: () => reject(new Error("Transaction cancelled")),
+      onError: (err: any) => reject(err),
+    });
+  });
+};
+
+const handleAddCard = async () => {
+  try {
+    const { data: response } = await initializeTransaction();
+
+    const { access_code, reference } = response.data;
+
+    await resumePaystackTransaction(access_code);
+
+    await addCard(reference);
+  } catch (error) {
+    if (error instanceof AxiosError) {
+      toast({
+        title: "Uh oh! Something went wrong.",
+        description: error.response?.data.error,
+        variant: "destructive",
+      });
+    }
+  }
+};
 </script>
 
 <template>
   <main>
-    <header class="hidden md:flex justify-between mb-10 pt-6 animation-slide-up">
+    <header
+      class="hidden md:flex justify-between mb-10 pt-6 animation-slide-up"
+    >
       <div class="">
-        <div class="text-sm leading-[14px] tracking-[-3%] text-[#676767] mb-2.5">
+        <p class="text-sm leading-[14px] tracking-[-3%] text-[#676767] mb-2.5">
           Hello {{ authStore.user?.first_name }},
-        </div>
+        </p>
 
-        <h1 class="space-mono font-semibold text-[26px] leading-[26px] tracking-[-3%] text-[#242424]">
+        <h1
+          class="font-semibold text-[26px] leading-[26px] tracking-[-3%] text-[#242424]"
+        >
           Good Morning
         </h1>
       </div>
       <NewShipment />
     </header>
 
-    <section class="w-full lg:w-[420px] animation-slide-up ">
-      <section class="flex flex-col rounded-lg border border-[#E5E5E5] px-5 pt-4 pb-5 bg-[#F9F9F9]">
+    <section class="w-full lg:w-[420px] animation-slide-up">
+      <section
+        class="flex flex-col rounded-lg border border-[#E5E5E5] px-5 pt-4 pb-5 bg-[#F9F9F9]"
+      >
         <section class="mb-[30px] flex items-center justify-between">
           <Money />
 
           <WalletTrend />
         </section>
 
-        <div class="text-xs text-[#475467] text-opacity-80 mb-0.5">
+        <p class="text-xs text-[#475467] text-opacity-80 mb-0.5">
           Available balance
-        </div>
+        </p>
 
-        <div class="space-mono font-bold text-2xl text-[#101828]">
+        <div class="hubot-san font-bold text-2xl text-[#101828]">
           40,000 <span class="text-[#9098A3] font-medium text-xs">NGN</span>
         </div>
       </section>
 
       <section class="flex gap-x-2 md:gap-x-3.5 mt-4">
         <Button
-          class="flex-grow  bg-[#F9F9F9] text-[##101828] border border-[#D8D8D8] hover:bg-black hover:border-black hover:text-white">
+          class="flex-grow bg-[#F9F9F9] text-[##101828] border border-[#D8D8D8] hover:bg-black hover:border-black hover:text-white"
+        >
           <Plus />
 
           <span class="ml-1.5">Top up</span>
         </Button>
 
         <Button
-          class="flex-grow bg-[#F9F9F9] text-[##101828] border border-[#D8D8D8] hover:bg-black hover:border-black hover:text-white">
+          class="flex-grow bg-[#F9F9F9] text-[##101828] border border-[#D8D8D8] hover:bg-black hover:border-black hover:text-white"
+        >
           <Withdraw />
 
           <span class="ml-1.5">Withdraw</span>
         </Button>
 
         <Button
-          class="flex-grow bg-[#F9F9F9] text-[##101828] border border-[#D8D8D8] hover:bg-black hover:border-black hover:text-white">
+          class="flex-grow bg-[#F9F9F9] text-[##101828] border border-[#D8D8D8] hover:bg-black hover:border-black hover:text-white"
+        >
           <AddCard />
 
-          <span class=" ml-1.5">Add new card</span>
+          <span class="ml-1.5" @click="handleAddCard">Add new card</span>
         </Button>
       </section>
     </section>
     <section class="">
-      <section class="mt-9   rounded-xl border border-[#E4E7EC] animation-slide-up">
-        <section class="px-2 lg:px-6 py-5 flex items-center justify-between ">
-          <div class="font-semibold  text-sm md:text-lg">Recent Shipments</div>
+      <section
+        class="mt-9 rounded-xl border border-[#E4E7EC] animation-slide-up"
+      >
+        <section class="px-2 lg:px-6 py-5 flex items-center justify-between">
+          <div class="font-semibold text-sm md:text-lg">Recent Shipments</div>
           <z-search-input />
         </section>
 
@@ -141,14 +187,15 @@ if (shipmentOrgsResponse.data && shipmentOrgsResponse.data.length > 0) {
           <DataTable :columns="columns" :data="data" />
         </section>
 
-        <section class="hidden h-[68px] md:flex items-center justify-center border-t px-6">
+        <section
+          class="hidden h-[68px] md:flex items-center justify-center border-t px-6"
+        >
           <z-pagination />
         </section>
       </section>
       <section class="hidden">
         <NewShipment class="" />
       </section>
-
     </section>
   </main>
 </template>

@@ -31,3 +31,4 @@ package-lock.json
 *.sw?
 
 *.tsbuildinfo
+pnpm-lock.yaml
