@@ -14,6 +14,9 @@ import Plus from "@/assets/svgs/plus-sign-1.svg";
 import Withdraw from "@/assets/svgs/withdraw.svg";
 import AddCard from "@/assets/svgs/add-card.svg";
 import WalletTrend from "@/assets/svgs/wallet-trend.svg";
+import RevealingEye from "@/assets/svgs/revealing-eye.svg"
+import NotificationsIcon from "@/assets/svgs/notification.svg";
+import Meme from "@/components/dashboard/memoji.vue"
 import ZSearchInput from "@/components/shared/z-search-input.vue";
 
 import { useAuthStore } from "@/stores/auth";
@@ -24,45 +27,45 @@ const authStore = useAuthStore();
 const data = ref<Shipping[]>([]);
 
 onMounted(async () => {
-const { data: orgResponse } = await getRootUserOrg();
+  const { data: orgResponse } = await getRootUserOrg();
 
-const { data: shipmentOrgsResponse } = await getShipmentOrgs(orgResponse.data.id);
+  const { data: shipmentOrgsResponse } = await getShipmentOrgs(orgResponse.data.id);
 
-// console.log(shipmentOrgsResponse.data, 'shipmentOrgsResponse');
+  // console.log(shipmentOrgsResponse.data, 'shipmentOrgsResponse');
 
-// Ensure data exists and map only required fields
-if (shipmentOrgsResponse.data && shipmentOrgsResponse.data.length > 0) {
-  data.value = shipmentOrgsResponse.data.map((item: Shipping) => {
-    const {
-      id,
-      recipient_name,
-      recipient_email,
-      category,
-      weight,
-      amount,
-      status,
-      created_at
-    } = item;
+  // Ensure data exists and map only required fields
+  if (shipmentOrgsResponse.data && shipmentOrgsResponse.data.length > 0) {
+    data.value = shipmentOrgsResponse.data.map((item: Shipping) => {
+      const {
+        id,
+        recipient_name,
+        recipient_email,
+        category,
+        weight,
+        amount,
+        status,
+        created_at
+      } = item;
 
-    return {
-      id,
-      recipient_name,
-      recipient_email,
-      category,
-      weight,
-      amount,
-      status,
-      created_at
-    };
-  });
-
-
-} else {
-  // console.warn("No shipment data found.");
-}
+      return {
+        id,
+        recipient_name,
+        recipient_email,
+        category,
+        weight,
+        amount,
+        status,
+        created_at
+      };
+    });
 
 
-// Check if the response contains at least one item
+  } else {
+    // console.warn("No shipment data found.");
+  }
+
+
+  // Check if the response contains at least one item
 
 
 
@@ -77,78 +80,106 @@ if (shipmentOrgsResponse.data && shipmentOrgsResponse.data.length > 0) {
 
 <template>
   <main>
-    <header class="hidden md:flex justify-between mb-10 pt-6 animation-slide-up">
-      <div class="">
-        <div class="text-sm leading-[14px] tracking-[-3%] text-[#676767] mb-2.5">
-          Hello {{ authStore.user?.first_name }},
+    <header class="flex justify-between items-center animation-slide-up mb-6 md:mb-9 lg:mb-10">
+      <div class="flex gap-x-2 items-center">
+        <div class="w-[37.87px] h-[37.87px] rounded-full border-2 border-[#34A9FF] overflow-hidden md:hidden">
+          <Meme />
         </div>
-
-        <h1 class="space-mono font-semibold text-[26px] leading-[26px] tracking-[-3%] text-[#242424]">
-          Good Morning
-        </h1>
+        <div>
+          <div 
+            class="filson-pro text-[13px] leading-[130%] tracking-[-3%] text-[#676767] md:font-medium md:text-sm md:leading-[100%] lg:leading-[14px] mb-1 md:mb-2 lg:mb-2.5"
+          >
+            Hello {{ authStore.user?.first_name }},
+          </div>
+          <h1 
+            class="font-semibold text-base leading-[130%] tracking-[-3%] text-[#676767] md:text-[26px] md:leading-[100%] md:text-[#242424] lg:leading-[26px]"
+          >
+            Good Morning
+          </h1>
+        </div>
       </div>
-      <NewShipment />
+      <div class="hidden md:block">
+        <NewShipment />
+      </div>
+      <div class="w-10 h-10 flex justify-center items-center rounded-lg bg-[#F8F8F8] hover:cursor-pointer md:hidden">
+        <NotificationsIcon />
+      </div>
     </header>
-
-    <section class="w-full lg:w-[420px] animation-slide-up ">
-      <section class="flex flex-col rounded-lg border border-[#E5E5E5] px-5 pt-4 pb-5 bg-[#F9F9F9]">
-        <section class="mb-[30px] flex items-center justify-between">
-          <Money />
-
-          <WalletTrend />
-        </section>
-
-        <div class="text-xs text-[#475467] text-opacity-80 mb-0.5">
-          Available balance
-        </div>
-
-        <div class="space-mono font-bold text-2xl text-[#101828]">
-          40,000 <span class="text-[#9098A3] font-medium text-xs">NGN</span>
+    <section class="w-full lg:w-[420px] animation-slide-up">
+      <section class="h-[148px] md:h-[218px] rounded-lg border border-[#E5E5E5] bg-gradient-to-br from-[#43352A] to-[#3B5EB9] py-[22px]">
+        <div class="w-[88.83%] h-full flex flex-col justify-between md:w-[94.91%] lg:w-[90.48%] mx-auto">
+          <section class="flex items-center justify-between">
+            <Money class="text-white" />
+            <div class="w-[62px] h-6 flex justify-center items-center rounded-full bg-[#FFFFFF14]">
+              <WalletTrend class="text-white" />
+            </div>
+          </section>
+          <div class="flex justify-between items-end">
+            <div>
+              <div class="filson-pro font-medium text-xs leading-[100%] -tracking-[3%] text-[#FFFFFFCC] md:font-normal mb-2 lg:mb-0.5">
+                Available balance
+              </div>
+              <div class="flex gap-x-2 items-end">
+                <div class="hubot-sans font-bold text-2xl leading-[100%] -tracking-[3%] text-white">
+                  40,000 
+                </div>
+                <span class="font-medium text-xs leading-[100%] -tracking-[3%] text-white">
+                  NGN
+                </span>
+              </div>
+            </div>
+            <div>
+              <revealing-eye />
+            </div>
+          </div>
         </div>
       </section>
-
-      <section class="flex gap-x-2 md:gap-x-3.5 mt-4">
+      <section class="h-[42px] flex gap-x-2 md:gap-x-4 lg:gap-x-2 mt-4">
         <Button
-          class="flex-grow  bg-[#F9F9F9] text-[##101828] border border-[#D8D8D8] hover:bg-black hover:border-black hover:text-white">
+          class="flex-grow rounded-md border border-[#D8D8D8] bg-[#F9F9F9] text-[#101828] hover:border-black hover:bg-black hover:text-white"
+        >
           <Plus />
-
-          <span class="ml-1.5">Top up</span>
+          <span class="font-medium text-[15px] leading-[100%] tracking-[0%] ml-2 lg:ml-1.5">Top up</span>
         </Button>
-
+        <!-- 
+          <Button
+            class="flex-grow bg-[#F9F9F9] text-[##101828] border border-[#D8D8D8] hover:bg-black hover:border-black hover:text-white"
+          >
+            <Withdraw />
+            <span class="ml-1.5">Withdraw</span>
+          </Button> 
+        -->
         <Button
-          class="flex-grow bg-[#F9F9F9] text-[##101828] border border-[#D8D8D8] hover:bg-black hover:border-black hover:text-white">
-          <Withdraw />
-
-          <span class="ml-1.5">Withdraw</span>
-        </Button>
-
-        <Button
-          class="flex-grow bg-[#F9F9F9] text-[##101828] border border-[#D8D8D8] hover:bg-black hover:border-black hover:text-white">
+          class="flex-grow rounded-md border border-[#D8D8D8] bg-[#F9F9F9] text-[#101828] hover:border-black hover:bg-black hover:text-white"
+        >
           <AddCard />
-
-          <span class=" ml-1.5">Add new card</span>
+          <span class="font-medium text-[15px] leading-[100%] tracking-[0%] ml-2 lg:ml-1.5">Add new card</span>
         </Button>
       </section>
     </section>
-    <section class="">
-      <section class="mt-9   rounded-xl border border-[#E4E7EC] animation-slide-up">
-        <section class="px-2 lg:px-6 py-5 flex items-center justify-between ">
-          <div class="font-semibold  text-sm md:text-lg">Recent Shipments</div>
-          <z-search-input />
+    <section class="mt-4 md:mt-9">
+      <section class="rounded-xl border border-[#E4E7EC] animation-slide-up">
+        <section class="py-5">
+          <div class="w-[93.89%] flex justify-between items-center mx-auto">
+            <div class="hubot-sans font-semibold text-sm leading-7 tracking-[0%] text-[#101828] md:text-base">
+              Recent Shipments
+            </div>
+            <z-search-input />
+          </div>
         </section>
-
-        <section class="">
-          <DataTable :columns="columns" :data="data" />
+        <section>
+          <DataTable 
+            :columns="columns" 
+            :data="data" 
+          />
         </section>
-
-        <section class="hidden h-[68px] md:flex items-center justify-center border-t px-6">
+        <section class="hidden h-[68px] md:flex justify-center items-center border-t px-6">
           <z-pagination />
         </section>
       </section>
       <section class="hidden">
         <NewShipment class="" />
       </section>
-
     </section>
   </main>
 </template>

@@ -1,6 +1,6 @@
 <template>
   <header
-    class="sticky top-[1.25rem] z-10 w-full h-16 flex justify-between items-center rounded-lg border border-[#E4E9EE] px-2 md:pr-7 md:pl-5 py-3 bg-white"
+    class="sticky top-[1.25rem] z-10 w-full h-16 flex justify-between items-center rounded-lg border border-[#E4E9EE] bg-white px-4 py-3 md:pr-7 md:pl-5"
   >
     <section class="flex justify-start items-center">
       <svg
@@ -16,7 +16,6 @@
         />
       </svg>
     </section>
-
     <section class="hidden h-full md:flex justify-center items-center">
       <DropdownMenu>
         <DropdownMenuTrigger>
@@ -27,10 +26,8 @@
             <NotificationsIcon />
           </button>
         </DropdownMenuTrigger>
-
         <DropdownMenuContent> </DropdownMenuContent>
       </DropdownMenu>
-
       <DropdownMenu>
         <DropdownMenuTrigger>
           <button
@@ -41,66 +38,27 @@
             >
               <Memoji />
             </section>
-
             <section class="h-full flex items-center mr-[19px]">
               <span
                 class="font-normal text-sm leading-[21px] tracking-[-3%] text-[#433F52]"
               >
                 {{ authStore.user?.first_name }}
-                {{ authStore.user?.last_name }}</span
-              >
+                {{ authStore.user?.last_name }}
+              </span>
             </section>
-
             <!-- Icon -->
             <section class="h-full flex items-center">
               <ArrowDown />
             </section>
           </button>
         </DropdownMenuTrigger>
-
         <DropdownMenuContent> </DropdownMenuContent>
       </DropdownMenu>
     </section>
-
     <section class="md:hidden flex justify-start items-center">
       <Menu class="cursor-pointer" />
     </section>
   </header>
-
-  <section
-    class="md:hidden h-full flex justify-between items-center py-3 mt-4 md:mt-0"
-  >
-    <DropdownMenu>
-      <DropdownMenuTrigger>
-        <button
-          class="h-full flex items-center m-0 p-0 md:hover:bg-gray-100 rounded-md"
-        >
-          <section
-            class="h-full flex justify-center items-center rounded-full border-2 border-[#34A9FF] mr-4"
-          >
-            <Memoji class="h-[50.2px] w-[50.2px] md:w-full" />
-          </section>
-          <div class="text-left">
-            <h1 class="font-normal text-[13px] text-[#242424]">
-              Good Morning,
-            </h1>
-            <div
-              class="font-semibold text-[17px] tracking-[-3%] text-[#433F52]"
-            >
-              {{ authStore.user?.first_name }} {{ authStore.user?.last_name }}
-            </div>
-          </div>
-        </button>
-      </DropdownMenuTrigger>
-
-      <!-- Notification -->
-      <button
-        class="w-10 h-10 flex justify-center items-center rounded-lg bg-[#F8F8F8]"
-      >
-        <NotificationsIcon />
-      </button>
-    </DropdownMenu>
-  </section>
 </template>
 
 <script setup lang="ts">
@@ -114,9 +72,9 @@ import {
 } from "@/components/ui/dropdown-menu";
 import { Button } from "@/components/ui/button";
 import NotificationsIcon from "@/assets/svgs/notification.svg";
-import Memoji from "@/assets/svgs/memoji.svg";
 import ArrowDown from "@/assets/svgs/Arrow---Down-2.svg";
 import Menu from "@/assets/svgs/menu.svg";
+import Memoji from "@/assets/svgs/memoji.svg";
 import { useAuthStore } from "@/stores/auth";
 
 const height = ref("27.62");

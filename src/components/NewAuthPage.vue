@@ -38,7 +38,7 @@ const checkedStyle =
   "w-[48.88%] flex gap-x-2 items-center rounded-md border border-[#E3573E] hover:cursor-pointer md:w-[48.53%] md:gap-x-4 lg:w-[48.2%] lg:rounded-xl p-2 md:px-4 md:py-3";
 const uncheckedStyle =
   "w-[48.88%] flex gap-x-2 items-center rounded-md border border-[#9F9F9F] hover:cursor-pointer md:w-[48.53%] md:gap-x-4 lg:w-[48.2%] lg:rounded-xl p-2 md:px-4 md:py-3";
-
+//******************************************* */
 
 // longitude and latitude
 const latitude = ref("");
@@ -46,13 +46,6 @@ const longitude = ref("");
 const address = ref("");
 
 // FLAG DROPDOWN
-const isDropDownOpen = ref(false);
-const selectedOptionIcon = ref(null);
-const selectedOptionNumber = ref(null);
-const options = ref([
-  { icon: "/src/assets/svgs/nigerian-flag.svg", number: "+234" },
-]);
-
 const toggleDropdown = () => {
   isDropDownOpen.value = !isDropDownOpen.value;
 };
@@ -66,6 +59,14 @@ const selectOptionAndCloseDropdown = (option) => {
 const closeDropdownOnScreenClick = () => {
   isDropDownOpen.value = false;
 };
+
+const isDropDownOpen = ref(false);
+const selectedOptionIcon = ref(null);
+const selectedOptionNumber = ref(null);
+const options = ref([
+  { icon: "/src/assets/svgs/nigerian-flag.svg", number: "+234" },
+]);
+//***************************************************** */
 
 // FOR SELECT BUSINESS TYPE
 const selectedBusinessType = ref("");
@@ -274,6 +275,40 @@ const handleSubmit = async () => {
                   {{ option.label }}
                 </option>
               </select>
+            </section>
+            <section class="mb-4 md:mb-8">
+              <div class="mb-2">
+                <label
+                  for="business-address"
+                  class="outfit-medium font-medium text-sm leading-[100%] tracking-[0%] text-[#26203B] md:text-base lg:leading-[19.36px]"
+                >
+                  Business address
+                </label>
+              </div>
+              <vue-google-autocomplete 
+                id="map" 
+                classname="w-full h-10 rounded-md border border-[#0F0F0F66] outline-none outfit-normal text-sm leading-[100%] tracking-[0px] text-[#9C9AA5] focus:border-[#E3573E] md:h-12 md:border-[#9F9F9F] lg:rounded-xl lg:leading-[16.94px] px-3 md:px-4" 
+                placeholder="Enter address" 
+                v-on:placechanged="getAddressData"
+              >
+              </vue-google-autocomplete>
+            </section>
+            <section class="mb-4 md:mb-8">
+              <div class="mb-2">
+                <label
+                  for="business-email"
+                  class="outfit-medium font-medium text-sm leading-[100%] tracking-[0%] text-[#26203B] md:text-base lg:leading-[19.36px]"
+                >
+                  Business email
+                </label>
+              </div>
+              <input
+                type="text"
+                name="business-email"
+                placeholder="Enter email"
+                v-model="organizations.email"
+                class="w-full h-10 rounded-md border border-[#0F0F0F66] outline-none outfit-normal text-sm leading-[100%] tracking-[0px] text-[#9C9AA5] focus:border-[#E3573E] md:h-12 md:border-[#9F9F9F] lg:rounded-xl lg:leading-[16.94px] px-3 md:px-4"
+              />
             </section>
             <section class="mb-4 md:mb-8">
               <section class="mb-1.5 lg:mb-2">
