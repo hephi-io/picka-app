@@ -157,29 +157,27 @@ onMounted(async () => {
         </Button>
       </section>
     </section>
-    <section class="mt-4 md:mt-9">
-      <section class="rounded-xl border border-[#E4E7EC] animation-slide-up">
-        <section class="py-5">
-          <div class="w-[93.89%] flex justify-between items-center mx-auto">
-            <div class="hubot-sans font-semibold text-sm leading-7 tracking-[0%] text-[#101828] md:text-base">
-              Recent Shipments
-            </div>
-            <z-search-input />
+    <section class="rounded-xl border border-[#E4E7EC] animation-slide-up mt-4 md:mt-9">
+      <section class="py-5">
+        <div class="w-[93.89%] flex justify-between items-center mx-auto">
+          <div class="hubot-sans font-semibold text-sm leading-7 tracking-[0%] text-[#101828] md:text-base">
+            Recent Shipments
           </div>
-        </section>
-        <section>
-          <DataTable 
-            :columns="columns" 
-            :data="data" 
-          />
-        </section>
-        <section class="hidden h-[68px] md:flex justify-center items-center border-t px-6">
-          <z-pagination />
-        </section>
+          <z-search-input />
+        </div>
       </section>
-      <section class="hidden">
-        <NewShipment class="" />
+      <section>
+        <DataTable 
+          :columns="columns" 
+          :data="data" 
+        />
       </section>
+      <section class="hidden h-[68px] md:flex justify-center items-center border-t px-6">
+        <z-pagination />
+      </section>
+    </section>
+    <section class="h-[54px] flex justify-center items-center border-t-[0.4px] border-t-[#DAD8D9] md:hidden mt-2">
+      <NewShipment />
     </section>
   </main>
 </template>

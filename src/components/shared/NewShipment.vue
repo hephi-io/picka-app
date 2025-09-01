@@ -34,8 +34,8 @@ const handlePath = () => {
 
 <template>
   <Dialog>
-    <DialogTrigger>
-      <Button class="rounded-md gap-x-2 px-4 py-2.5 lg:py-3">
+    <DialogTrigger class="w-full">
+      <Button class="w-[81.54%] rounded-md gap-x-2 md:w-fit px-4 py-2.5 lg:py-3">
         <!-- <PlusSign /> -->
         <svg
           class="w-[10.64px] h-[10.64px] lg:w-4 lg:h-4"

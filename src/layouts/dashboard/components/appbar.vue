@@ -16,7 +16,7 @@
         />
       </svg>
     </section>
-    <section class="hidden h-full md:flex justify-center items-center">
+    <section class="hidden h-full justify-center items-center lg:flex">
       <DropdownMenu>
         <DropdownMenuTrigger>
           <!-- Notification -->
@@ -55,7 +55,7 @@
         <DropdownMenuContent> </DropdownMenuContent>
       </DropdownMenu>
     </section>
-    <section class="md:hidden flex justify-start items-center">
+    <section class="flex justify-start items-center lg:hidden">
       <Menu class="cursor-pointer" />
     </section>
   </header>
