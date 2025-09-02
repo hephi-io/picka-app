@@ -53,7 +53,7 @@ import { getRootShipments, getShipmentActivities } from "@/services/shipment";
 
 
 
-const userShipments = ref([])
+const shipments = ref([])
 const shipmentActivities = ref([])
 
 const currentStepIndex = computed(() => {
@@ -96,6 +96,8 @@ const notSelectedToggleTabStyle = "scroll-snap-center box-border  flex-shrink-0 
 const selectedToggleTabStyle = "scroll-snap-center box-border flex-shrink-0 w-[284px] h-full bg-white rounded-lg mx-auto lg:w-full lg:h-[200px] rounded-lg border border-[#F1C49B] p-4 mb-6  toggle";
 
 const selectedToggleTab = ref("");
+const currentShipment = ref(null)
+
 
 
 // STEPPER
@@ -108,19 +110,17 @@ const stepperValues = ["order-confirmed", "picked-up ", "in-transit", "delivered
 const selectedStepperValue = computed(() => currentStepIndex.value + 1)
 
 
-const selectToggleTab = async (id) => {
-  selectedToggleTab.value = id;
-
+const selectToggleTab = async (shipment) => {
+  selectedToggleTab.value = shipment.id;
+  currentShipment.value = shipment
   try {
-    const { data: activitiesResponse } = await getShipmentActivities(id);
+    const { data: activitiesResponse } = await getShipmentActivities(shipment.id);
     shipmentActivities.value = activitiesResponse.data.reverse();
 
   } catch (error) {
     console.error('Error fetching shipment activities:', error);
   }
 }
-
-
 
 
 // HORIZONTAL TAB
@@ -134,14 +134,15 @@ const selectHorizotalTab = (value) => {
   selectedHorizontalTab.value = value;
 }
 
+const initializeShipments = async () => {
+    const { data: rootShipmentsResponse } = await getRootShipments()
+    shipments.value = rootShipmentsResponse.data || []
+}
 
-
-
-
-onMounted(async () => {
-  const { data: rootShipmentsResponse } = await getRootShipments();
-  userShipments.value = rootShipmentsResponse.data;
+onMounted( () => {
+  initializeShipments()
 })
+
 </script>
 
 <template>
@@ -268,16 +269,16 @@ onMounted(async () => {
         <ToggleGroup type="single"
           class="flex items-center justify-start gap-4  w-full lg:w-auto lg:overflow-visible lg:scroll-snap-none overflow-x-scroll   hide-scrollbar lg:block">
 
-          <ToggleGroupItem :value="user.id"
-            :class="[selectedToggleTab === user.id ? selectedToggleTabStyle : notSelectedToggleTabStyle]"
-            v-for="(user) in userShipments" :key="user.id" @click="selectToggleTab(user.id)">
+          <ToggleGroupItem :value="shipment.id"
+            :class="[selectedToggleTab === shipment.id ? selectedToggleTabStyle : notSelectedToggleTabStyle]"
+            v-for="(shipment) in shipments" :key="shipment.id" @click="selectToggleTab(shipment)">
             <div class="w-full h-full">
 
               <section class="flex justify-between items-center mb-2">
 
                 <div class="rounded border border-[#E4E7EC] p-1 bg-[#F9FAFB] flex gap-x-2 items-center tag">
                   <span class="font-normal text-xs leading-5 text-[#475467]">
-                    {{ user.id }}
+                    {{ shipment.id }}
                   </span>
                   <copy />
                 </div>
@@ -295,7 +296,7 @@ onMounted(async () => {
                     <div class="flex gap-x-2 items-center">
                       <Navigation />
                       <span class="font-medium text-sm text-[#475467]">
-                        {{ user.recipient_name }}
+                        {{ shipment.recipient_name }}
                       </span>
                     </div>
 
@@ -310,7 +311,7 @@ onMounted(async () => {
                     <div class="flex gap-x-2 items-center mb-1">
                       <PinLocation />
                       <span class="font-normal text-xs leading-[15.6px] text-[#475467]">
-                        {{ user.pickup_location }}
+                        {{ shipment.pickup_location }}
                       </span>
                     </div>
 
@@ -319,7 +320,7 @@ onMounted(async () => {
                     <div class="flex gap-x-2 items-center mb-1">
                       <LocationIcon />
                       <span class="font-normal text-xs leading-[15.6px] text-[#475467]">
-                        {{ user.drop_off_location }}
+                        {{ shipment.drop_off_location }}
                       </span>
                     </div>
 
@@ -527,7 +528,7 @@ onMounted(async () => {
               </div>
 
               <div class="hidden lg:block">
-                <info-tab-component class="border border-[#E4E7EC] info-tab-shadow" />
+                <info-tab-component :currentShipment="currentShipment" class="border border-[#E4E7EC] info-tab-shadow" />
               </div>
 
             </div>
