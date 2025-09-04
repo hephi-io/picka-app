@@ -1,5 +1,4 @@
 <script setup>
-
 import { computed, onMounted, ref, watch } from "vue";
 
 import { Input } from "@/components/ui/input";
@@ -50,9 +49,6 @@ import PackageDelivered from "@/assets/svgs/package-delivered.svg";
 import { getRootShipments, getShipmentActivities } from "@/services/shipment";
 
 
-
-
-
 const userShipments = ref([])
 const shipmentActivities = ref([])
 
@@ -71,10 +67,7 @@ function formatDate(dateString) {
   });
 }
 
-
 const statusOrder = ['pending', 'shipping', 'in transit', 'delivered'];
-
-
 
 function getDescription(status) {
   switch (status) {
@@ -91,22 +84,16 @@ function getDescription(status) {
   }
 }
 
-
-const notSelectedToggleTabStyle = "scroll-snap-center box-border  flex-shrink-0 w-[284px] h-full bg-white rounded-lg mx-auto lg:w-full lg:h-[200px] rounded-lg border border-[#E4E7EC] p-4 mb-6  ";
-const selectedToggleTabStyle = "scroll-snap-center box-border flex-shrink-0 w-[284px] h-full bg-white rounded-lg mx-auto lg:w-full lg:h-[200px] rounded-lg border border-[#F1C49B] p-4 mb-6  toggle";
+const notSelectedToggleTabStyle = "scroll-snap-center box-border  flex-shrink-0 w-[284px] h-full bg-white rounded-lg mx-auto lg:w-full lg:h-[200px] rounded-lg border border-[#E4E7EC] p-4 mb-6";
+const selectedToggleTabStyle = "scroll-snap-center box-border flex-shrink-0 w-[284px] h-full bg-white rounded-lg mx-auto lg:w-full lg:h-[200px] rounded-lg border border-[#F1C49B] p-4 mb-6 toggle";
 
 const selectedToggleTab = ref("");
-
 
 // STEPPER
 const stepperValues = ["order-confirmed", "picked-up ", "in-transit", "delivered"];
 
-
 // const selectedStepperValue = ref("order-confirmed");
-
-
 const selectedStepperValue = computed(() => currentStepIndex.value + 1)
-
 
 const selectToggleTab = async (id) => {
   selectedToggleTab.value = id;
@@ -120,9 +107,6 @@ const selectToggleTab = async (id) => {
   }
 }
 
-
-
-
 // HORIZONTAL TAB
 const selectedHorizontalTab = ref("map-based-tracking");
 const horizontalTabValues = ["map-based-tracking", "status-based-tracking"]
@@ -134,10 +118,6 @@ const selectHorizotalTab = (value) => {
   selectedHorizontalTab.value = value;
 }
 
-
-
-
-
 onMounted(async () => {
   const { data: rootShipmentsResponse } = await getRootShipments();
   userShipments.value = rootShipmentsResponse.data;
@@ -146,187 +126,144 @@ onMounted(async () => {
 
 <template>
   <div>
-
-    <header class="py-3 mb-9 hidden md:block">
-      <span class="space-mono font-semibold text-2xl leading-6 tracking-[-0.03em] text-[#060E1F]">
+    <header class="hidden md:block py-3 mb-9">
+      <h1 class="font-semibold text-2xl leading-6 tracking-[-0.03em] text-[#060E1F]">
         Tracking
-      </span>
+      </h1>
     </header>
-
-    <section class="lg:flex gap-x-6 ">
+    <section class="gap-x-6 lg:flex">
       <section class="lg:flex-1">
-
-        <section class=" hidden md:flex gap-x-2 items-center mb-4  ">
-
+        <section class=" hidden md:flex gap-x-2 items-center mb-4">
           <div class="relative w-[129px] items-center">
-
-            <Input id="search" type="text" placeholder="Search..."
-              class="rounded border border-[#D4D4D4] pl-8 pr-[10px] py-[10px] font-normal text-sm leading-[14px] tracking-[-0.03em] text-[#C9C8CF]" />
-
+            <Input 
+              id="search" 
+              type="text" 
+              placeholder="Search..."
+              class="rounded border border-[#D4D4D4] pl-8 pr-[10px] py-[10px] font-normal text-sm leading-[14px] tracking-[-0.03em] text-[#C9C8CF]" 
+            />
             <span class="absolute start-0 inset-y-0 flex items-center justify-center pl-2">
               <MagnifyingGlassIcon class="text-muted-foreground" />
             </span>
-
           </div>
-
           <DropdownMenu>
-
             <DropdownMenuTrigger>
               <Button variant="outline" class="rounded border border-[#D4D4D4] px-3 py-2 gap-x-2 bg-white">
-
                 <ArrowDataTransfer />
-
                 <span class="font-medium text-sm leading-[21px] text-[#404D61]">
                   Status
                 </span>
-
                 <ChevronDown class="-rotate-90" />
-
               </Button>
             </DropdownMenuTrigger>
-
             <DropdownMenuContent>
-
               <DropdownMenuLabel>My Account</DropdownMenuLabel>
               <DropdownMenuSeparator />
               <DropdownMenuItem>Profile</DropdownMenuItem>
               <DropdownMenuItem>Billing</DropdownMenuItem>
               <DropdownMenuItem>Team</DropdownMenuItem>
               <DropdownMenuItem>Subscription</DropdownMenuItem>
-
             </DropdownMenuContent>
-
           </DropdownMenu>
-
           <DropdownMenu>
-
             <DropdownMenuTrigger>
               <Button variant="outline" class="rounded border border-[#D4D4D4] px-3 py-2 bg-white">
                 <FunnelSimple />
               </Button>
             </DropdownMenuTrigger>
-
             <DropdownMenuContent>
-
               <DropdownMenuLabel>My Account</DropdownMenuLabel>
               <DropdownMenuSeparator />
               <DropdownMenuItem>Profile</DropdownMenuItem>
               <DropdownMenuItem>Billing</DropdownMenuItem>
               <DropdownMenuItem>Team</DropdownMenuItem>
               <DropdownMenuItem>Subscription</DropdownMenuItem>
-
             </DropdownMenuContent>
-
           </DropdownMenu>
-
         </section>
-
         <section class="flex gap-x-2 justify-between items-center mb-4 md:hidden">
           <header class="py-3">
-            <span class="space-mono font-semibold text-2xl leading-6 tracking-[-0.03em] text-[#060E1F]">
+            <h1 class="font-semibold text-2xl leading-6 tracking-[-0.03em] text-[#060E1F]">
               Tracking
-            </span>
+            </h1>
           </header>
           <div class="flex gap-x-2 justify-between items-center">
             <div class="relative w-[129px] items-center">
-
-              <Input id="search" type="text" placeholder="Search..."
-                class="rounded border border-[#D4D4D4] pl-8 pr-[10px] py-[10px] font-normal text-sm leading-[14px] tracking-[-0.03em] text-[#C9C8CF]" />
-
+              <Input 
+                id="search" 
+                type="text" 
+                placeholder="Search..."
+                class="rounded border border-[#D4D4D4] pl-8 pr-[10px] py-[10px] font-normal text-sm leading-[14px] tracking-[-0.03em] text-[#C9C8CF]" 
+              />
               <span class="absolute start-0 inset-y-0 flex items-center justify-center pl-2">
                 <MagnifyingGlassIcon class="text-muted-foreground" />
               </span>
-
             </div>
-
-
-
             <DropdownMenu>
-
               <DropdownMenuTrigger>
                 <Button variant="outline" class="rounded border border-[#D4D4D4] px-3 py-2 bg-white">
                   <FunnelSimple />
                 </Button>
               </DropdownMenuTrigger>
-
               <DropdownMenuContent>
-
                 <DropdownMenuLabel>My Account</DropdownMenuLabel>
                 <DropdownMenuSeparator />
                 <DropdownMenuItem>Profile</DropdownMenuItem>
                 <DropdownMenuItem>Billing</DropdownMenuItem>
                 <DropdownMenuItem>Team</DropdownMenuItem>
                 <DropdownMenuItem>Subscription</DropdownMenuItem>
-
               </DropdownMenuContent>
-
             </DropdownMenu>
           </div>
-
         </section>
-
-        <ToggleGroup type="single"
-          class="flex items-center justify-start gap-4  w-full lg:w-auto lg:overflow-visible lg:scroll-snap-none overflow-x-scroll   hide-scrollbar lg:block">
-
+        <ToggleGroup 
+          type="single"
+          class="flex items-center justify-start gap-4  w-full lg:w-auto lg:overflow-visible lg:scroll-snap-none overflow-x-scroll hide-scrollbar lg:block"
+        >
           <ToggleGroupItem :value="user.id"
             :class="[selectedToggleTab === user.id ? selectedToggleTabStyle : notSelectedToggleTabStyle]"
-            v-for="(user) in userShipments" :key="user.id" @click="selectToggleTab(user.id)">
+            v-for="(user) in userShipments" 
+            :key="user.id" 
+            @click="selectToggleTab(user.id)"
+          >
             <div class="w-full h-full">
-
               <section class="flex justify-between items-center mb-2">
-
                 <div class="rounded border border-[#E4E7EC] p-1 bg-[#F9FAFB] flex gap-x-2 items-center tag">
                   <span class="font-normal text-xs leading-5 text-[#475467]">
                     {{ user.id }}
                   </span>
                   <copy />
                 </div>
-
                 <LocationShare class="icon" />
-
               </section>
-
               <section>
-
                 <section class="mb-4">
-
                   <section class="flex justify-between items-center mb-4">
-
                     <div class="flex gap-x-2 items-center">
                       <Navigation />
                       <span class="font-medium text-sm text-[#475467]">
                         {{ user.recipient_name }}
                       </span>
                     </div>
-
                     <span class="font-normal text-xs leading-5 text-[#475467]">
                       91km
                     </span>
-
                   </section>
-
                   <section>
-
                     <div class="flex gap-x-2 items-center mb-1">
                       <PinLocation />
                       <span class="font-normal text-xs leading-[15.6px] text-[#475467]">
                         {{ user.pickup_location }}
                       </span>
                     </div>
-
                     <VerticalDivider class="mb-1" />
-
                     <div class="flex gap-x-2 items-center mb-1">
                       <LocationIcon />
                       <span class="font-normal text-xs leading-[15.6px] text-[#475467]">
                         {{ user.drop_off_location }}
                       </span>
                     </div>
-
                   </section>
-
                 </section>
-
                 <section class="flex gap-x-2 items-center">
                   <span class="font-normal text-xs leading-5 text-[#37404D80]">
                     2h 23m
@@ -336,138 +273,106 @@ onMounted(async () => {
                     34km
                   </span>
                 </section>
-
               </section>
-
             </div>
           </ToggleGroupItem>
-
         </ToggleGroup>
-
       </section>
-
       <section class="flex-grow  rounded-xl border border-[#E4E7EC] shadow-sm shadow-[#1018280D]">
         <Tabs :default-value="horizontalTabValue1">
-
           <div class="px-2 md:px-6 py-5">
-
             <section class="flex justify-between items-center mb-4">
-
               <div class="font-semibold text-base leading-7 text-[#101828]">
                 Order Number: <span class="font-normal">#DR3E4478</span>
               </div>
-
-              <Badge variant="secondary"
-                class="rounded-md border border-[#E8F4FF] px-4 py-2 bg-[#F0F4F9] shadow-sm shadow-[#1018280D]">
+              <Badge 
+                variant="secondary"
+                class="rounded-md border border-[#E8F4FF] px-4 py-2 bg-[#F0F4F9] shadow-sm shadow-[#1018280D]"
+              >
                 <span class="font-medium text-sm leading-[18px] text-center text-[#309BFF]">
                   In transit
                 </span>
               </Badge>
-
             </section>
-
             <TabsList class="w-full md:w-[373.99px] rounded-lg p-[5px] bg-[#F5F7FA]">
-
-              <TabsTrigger :value="horizontalTabValue1"
+              <TabsTrigger 
+                :value="horizontalTabValue1"
                 :class="selectedHorizontalTab === horizontalTabValue1 ? selectedHorizontalTabStyle : notSelectedHorizontalTabStyle"
-                @click="selectHorizotalTab(horizontalTabValue1)">
+                @click="selectHorizotalTab(horizontalTabValue1)"
+              >
                 <span class="font-medium text-sm text-[#878FA1]">
                   Map-Based Tracking
                 </span>
               </TabsTrigger>
-
-              <TabsTrigger :value="horizontalTabValue2"
+              <TabsTrigger 
+                :value="horizontalTabValue2"
                 :class="selectedHorizontalTab === horizontalTabValue2 ? selectedHorizontalTabStyle : notSelectedHorizontalTabStyle"
-                @click="selectHorizotalTab(horizontalTabValue2)">
+                @click="selectHorizotalTab(horizontalTabValue2)"
+              >
                 <span class="font-medium text-sm text-[#878FA1]">
                   Status-Based Tracking
                 </span>
               </TabsTrigger>
-
             </TabsList>
-
           </div>
-
           <TabsContent value="map-based-tracking">
             <div class="relative">
               <!-- <img src="../assets/pngs/mapsicle-map.png" class="object-cover border-t min-h-[70vh]" /> -->
               <div class="lg:min-w-[34rem]">
-
                 <Map />
               </div>
-
               <!-- <info-tab-component  :shipmentActivities="shipmentActivities"/> -->
-
-
-              <!-- <div class="absolute right-4 bottom-4 w-[34.51px] h-[115.63px] hidden md:block">
-
+              <!-- 
+              <div class="absolute right-4 bottom-4 w-[34.51px] h-[115.63px] hidden md:block">
                 <section class="w-[33px] h-[70.13px] flex flex-col items-center bg-white rounded">
-
                   <Button 
                     variant="ghost"
                     class="w-full h-1/2 m-0 p-0"   
                   >
                     <plus-sign />
                   </Button>
-
                   <div class="w-[70%] border-b"></div>
-
                   <Button 
                     variant="ghost"
                     class="w-full h-1/2 m-0 p-0"
                   >
                     <minus-sign />
                   </Button>
-
                 </section>
-
                 <Button
                   variant="ghost" 
                   class="w-[34.51px] h-[34.51px] flex justify-center items-center rounded-full border border-[#F4F4F4] bg-white mt-[11px] p-0"
                 >
                   <rectangle-icon />
                 </Button>
-
-              </div> -->
-
+              </div> 
+              -->
             </div>
           </TabsContent>
-
-
-
-          <!-- <div class="absolute right-4 bottom-4 w-[34.51px] h-[115.63px] hidden md:block">
-
-                <section class="w-[33px] h-[70.13px] flex flex-col items-center bg-white rounded">
-
-                  <Button 
-                    variant="ghost"
-                    class="w-full h-1/2 m-0 p-0"   
-                  >
-                    <plus-sign />
-                  </Button>
-
-                  <div class="w-[70%] border-b"></div>
-
-                  <Button 
-                    variant="ghost"
-                    class="w-full h-1/2 m-0 p-0"
-                  >
-                    <minus-sign />
-                  </Button>
-
-                </section>
-
-                <Button
-                  variant="ghost" 
-                  class="w-[34.51px] h-[34.51px] flex justify-center items-center rounded-full border border-[#F4F4F4] bg-white mt-[11px] p-0"
-                >
-                  <rectangle-icon />
-                </Button>
-
-              </div> -->
-
-
-
+          <!-- 
+          <div class="absolute right-4 bottom-4 w-[34.51px] h-[115.63px] hidden md:block">
+            <section class="w-[33px] h-[70.13px] flex flex-col items-center bg-white rounded">
+              <Button 
+                variant="ghost"
+                class="w-full h-1/2 m-0 p-0"   
+              >
+                <plus-sign />
+              </Button>
+              <div class="w-[70%] border-b"></div>
+              <Button 
+                variant="ghost"
+                class="w-full h-1/2 m-0 p-0"
+              >
+                <minus-sign />
+              </Button>
+            </section>
+            <Button
+              variant="ghost" 
+              class="w-[34.51px] h-[34.51px] flex justify-center items-center rounded-full border border-[#F4F4F4] bg-white mt-[11px] p-0"
+            >
+              <rectangle-icon />
+            </Button>
+          </div> -->
           <TabsContent value="status-based-tracking">
             <div class="h-[636px] relative lg:min-w-[34rem]">
               <div class="px-4 py-[52px] border-t ">
@@ -489,9 +394,9 @@ onMounted(async () => {
                             <order-confirmed-icon v-else />
                           </div>
                         </StepperIndicator>
-
                         <div
-                          class="h-[70px] flex flex-col justify-start items-center flex-grow lg:flex-row lg:justify-center lg:h-auto">
+                          class="h-[70px] flex flex-col justify-start items-center flex-grow lg:flex-row lg:justify-center lg:h-auto"
+                        >
                           <div :class="[
                             selectedStepperValue > index
                               ? 'flex-grow border border-[#13BD96]'
@@ -504,14 +409,12 @@ onMounted(async () => {
                           ]"></div>
                         </div>
                       </div>
-
                       <div>
                         <StepperTitle class="w-full text-left">
                           <span class="font-medium text-sm text-[#060E1F]">
                             {{ activity.status }}
                           </span>
                         </StepperTitle>
-
                         <StepperDescription class="w-full lg:w-[83%]">
                           <section class="font-normal text-xs leading-5 text-[#475467] text-left">
                             {{ getDescription(activity.status) }}
@@ -525,22 +428,14 @@ onMounted(async () => {
                   </StepperItem>
                 </Stepper>
               </div>
-
               <div class="hidden lg:block">
                 <info-tab-component class="border border-[#E4E7EC] info-tab-shadow" />
               </div>
-
             </div>
           </TabsContent>
-
-
-
-
         </Tabs>
       </section>
-
     </section>
-
   </div>
 </template>
 

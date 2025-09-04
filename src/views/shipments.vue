@@ -18,6 +18,7 @@ import Package from "@/assets/svgs/package.svg";
 import DeliveryTruck from "@/assets/svgs/delivery-truck-01.svg";
 import PackageProcess from "@/assets/svgs/delivery-box-02.svg";
 import DeliveryBox from "@/assets/svgs/delivery-box-02.svg";
+import FilterDropdown from "@/components/shipments/filter-dropdown.vue";
 
 const data = ref<Shipping[]>([]);
 
@@ -36,98 +37,98 @@ onMounted(async () => {
 <template>
   <main>
     <header
-      class="flex justify-between items-center mb-10 pt-4 animation-slide-up"
+      class="flex justify-between items-center animation-slide-up"
     >
       <h1
-        class="space-mono font-semibold text-[26px] leading-[26px] tracking-[-3%] text-[#242424]"
+        class="font-semibold text-lg leading-[100%] tracking-[-3%] text-[#060E1F] md:text-2xl"
       >
         Shipments
       </h1>
-
-      <section class=" hidden md:flex gap-x-4">
+      <section class="hidden gap-x-4 md:flex">
         <WeekButton />
-
         <NewShipment />
       </section>
+      <div class="md:hidden">
+        <filter-dropdown />
+      </div>
     </header>
-
-    <section class="flex justify-between  mb-10 animation-slide-up  gap-3.5 md:gap-4 flex-wrap md:flex-nowrap">
-      <shipment-card :icon="Package" title="Total shipment" class=" flex-1 shrink-0 relative">
-        <div class="flex">
-          <section class="mr-[15px]">
-            <span
-              class="space-mono font-bold text-2xl leading-6 tracking-[-3%] text-[#242424]"
-            >
-              19,329
-            </span>
-          </section>
-
-          <section class="flex items-center absolute top-5 right-2  md:relative md:top-0 md:right-0 ">
-            <section class="h-[41%] flex items-center mr-[6px]">
-              <ArrowUp />
-            </section>
-
-            <section class="flex items-center ">
-              <div>
-                <span
-                  class="space-mono font-semibold text-xs leading-3 text-[#307AE4]"
-                >
-                  758
-                </span>
-                <span
-                  class="font-normal text-[11px] leading-[11px] text-[#8B9293]"
-                >
-                  Items
-                </span>
-              </div>
-            </section>
-          </section>
+    <section class="grid grid-cols-2 gap-2 animation-slide-up md:grid-cols-4 md:gap-4 mt-6 md:mt-9">
+      <shipment-card 
+        :icon="Package" 
+        title="Total shipment" 
+      >
+        <div class="flex gap-x-[15px] items-end">
+          <span
+            class="font-bold text-2xl leading-[100%] tracking-[-3%] text-[#242424]"
+          >
+            19,329
+          </span>
+          <div class="flex gap-x-1.5 items-end">
+            <ArrowUp class="relative bottom-1.5" />
+            <div>
+              <span
+                class="font-semibold text-xs leading-[100%] -tracking-[3%] text-[#307AE4]"
+              >
+                758
+              </span>
+              <span
+                class="text-[11px] leading-[100%] -tracking-[3%] text-[#8B9293]"
+              >
+                Items
+              </span>
+            </div>
+          </div>
         </div>
       </shipment-card>
-
-      <shipment-card :icon="DeliveryTruck" title="In transit" class=" flex-1 shrink-0">
+      <shipment-card 
+        :icon="DeliveryTruck" 
+        title="In transit"
+      >
         <span
-          class="space-mono font-bold text-2xl leading-6 tracking-[-3%] text-[#242424]"
+          class="font-bold text-2xl leading-[100%] tracking-[-3%] text-[#242424]"
         >
           12,000
         </span>
       </shipment-card>
-
-      <shipment-card :icon="PackageProcess" title="Pending packages" class="flex-1 shrink-0">
+      <shipment-card 
+        :icon="PackageProcess" 
+        title="Pending packages"
+      >
         <span
-          class="space-mono font-bold text-2xl leading-6 tracking-[-3%] text-[#242424]"
+          class="font-bold text-2xl leading-[100%] tracking-[-3%] text-[#242424]"
         >
           800
         </span>
       </shipment-card>
-
-      <shipment-card :icon="DeliveryBox" title="Delivered" class="flex-1 shrink-0 ">
+      <shipment-card 
+        :icon="DeliveryBox" 
+        title="Delivered"
+      >
         <span
-          class="space-mono font-bold text-2xl leading-6 tracking-[-3%] text-[#242424]"
+          class="font-bold text-2xl leading-[100%] tracking-[-3%] text-[#242424]"
         >
           657
         </span>
       </shipment-card>
     </section>
-
-    <section class="rounded-xl border border-[#E4E7EC] animation-slide-up">
-      <section class="px-6 py-5 flex items-center justify-between">
-        <div class="font-semibold text-lg text-[#101828]">Recent Shipments</div>
-
+    <section class="rounded-xl border border-[#E4E7EC] animation-slide-up mt-4 md:mt-9">
+      <section class="flex items-center justify-between border-b border-b-[#E4E7EC] px-6 py-5">
+        <div class="hubot-sans font-semibold text-base leading-7 tracking-[0%] text-[#101828]">Recent Shipments</div>
         <z-search-input  />
       </section>
-
       <section>
-        <!-- <DataTable
-         :columns="columns" :data="data"
-          /> -->
+        <DataTable
+          :columns="columns" 
+          :data="data"
+        />
       </section>
-
-      <section class=" hidden h-[68px] md:flex items-center justify-center border-t px-6">
+      <section class="h-[68px] flex items-center justify-center border-t border-t-[#E4E7EC] px-1 md:px-6">
         <z-pagination />
       </section>
     </section>
-  
+    <section class="h-[54px] flex justify-center items-center border-t-[0.4px] border-t-[#DAD8D9] md:hidden mt-2">
+      <NewShipment />
+    </section>
   </main>
 </template>
 
