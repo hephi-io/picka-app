@@ -157,13 +157,13 @@ const handleAddCard = async () => {
           <span class="ml-1.5">Top up</span>
         </Button>
 
-        <Button
+        <!-- <Button
           class="flex-grow bg-[#F9F9F9] text-[##101828] border border-[#D8D8D8] hover:bg-black hover:border-black hover:text-white"
         >
           <Withdraw />
 
           <span class="ml-1.5">Withdraw</span>
-        </Button>
+        </Button> -->
 
         <Button
           class="flex-grow bg-[#F9F9F9] text-[##101828] border border-[#D8D8D8] hover:bg-black hover:border-black hover:text-white"
