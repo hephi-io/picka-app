@@ -21,6 +21,13 @@ import billing from "@/views/billing.vue";
 import { token } from "@/utils";
 import danger from "@/views/danger.vue";
 import Auth from "@/views/auth/index.vue";
+import BulkShipmentCheckout from "@/views/bulk-shipment-checkout.vue";
+import OrderSummaryView from "@/views/order-summary-view.vue";
+import ForgotPasswordLayout from "@/layouts/forgot-password-layout/index.vue";
+import ForgotPassword from "@/views/forgot-password/forgot-password.vue";
+import PasswordVerification from "@/views/forgot-password/verification.vue";
+import ResetPassword from "@/views/forgot-password/reset-password.vue";
+import PasswordVerificationStatus from "@/views/forgot-password/verification-status.vue";
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -55,6 +62,32 @@ const router = createRouter({
       // this generates a separate chunk (About.[hash].js) for this route
       // which is lazy-loaded when the route is visited.
       component: OTPVerificationStatus,
+    },
+    {
+      path: "/forgot-password",
+      component: ForgotPasswordLayout,
+      children: [
+        {
+          path: "",
+          component: ForgotPassword,
+          name: "forgot-password",
+        },
+        {
+          path: "verification",
+          component: PasswordVerification,
+          name: "password-verification",
+        },
+        {
+          path: "reset-password",
+          component: ResetPassword,
+          name: "reset-password",
+        },
+        {
+          path: "verification-status",
+          component: PasswordVerificationStatus,
+          name: "password-verification-status",
+        },
+      ],
     },
     {
       path: "/",
@@ -95,27 +128,39 @@ const router = createRouter({
       ],
     },
     {
-      path: "/shipments/order/:name",
+      path: "/shipments/shipment-type",
       component: PaymentLayout,
       name: "payment",
       meta: { requiresAuth: true },
       children: [
         {
           name: "single-shipment",
-          path: "/single-shipment",
+          path: "single-shipment",
           component: SingleShipment,
         },
 
         {
+          path: "single-shipment/order-summary",
+          component: OrderSummaryView,
+          name: "order-summary",
+        },
+
+        {
+          name: "single-shipment-checkout",
+          path: "single-shipment/checkout",
+          component: CheckoutComponent,
+        },
+
+        {
           name: "bulk-shipment",
-          path: "/bulk-shipment",
+          path: "bulk-shipment",
           component: BulkShipment,
         },
 
         {
-          name: "checkout",
-          path: "/checkout/:name",
-          component: CheckoutComponent,
+          path: "bulk-shipment/checkout",
+          component: BulkShipmentCheckout,
+          name: "bulk-shipment-checkout",
         },
       ],
     },

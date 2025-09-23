@@ -1,5 +1,9 @@
 <template>
-  <Button variant="outline" class="w-11 h-11 rounded-md border border-[#E5E5E5] md:hidden">
+  <Button 
+    variant="outline" 
+    class="w-11 h-11 rounded-md border border-[#E5E5E5]"
+    @click="$router.go(-1)"
+  >
     <chevron-down-sharp />
   </Button>
 </template>
