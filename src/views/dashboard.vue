@@ -8,7 +8,7 @@ import NewShipment from "@/components/shared/NewShipment.vue";
 import { Button } from "@/components/ui/button";
 import { onMounted, ref } from "vue";
 import { columns } from "@/components/dashboard/column";
-import { type Shipping, shippings } from "@/services/index";
+import { getUserProfile, type Shipping, shippings } from "@/services/index";
 import DataTable from "@/components/dashboard/data-table.vue";
 import ZPagination from "@/components/shared/z-pagination.vue";
 import Money from "@/assets/svgs/money-02.svg";
@@ -24,6 +24,8 @@ import { getRootUserOrg } from "@/services/orgs";
 import { getShipmentOrgs } from "@/services/shipment";
 import { addCard, initializeTransaction } from "@/services/payments";
 import { useToast } from "@/components/ui/toast";
+import { getWallets } from "@/services/wallets";
+
 
 const authStore = useAuthStore();
 const { toast } = useToast();
@@ -31,6 +33,7 @@ const { toast } = useToast();
 const popup = new Paystack();
 
 const data = ref<Shipping[]>([]);
+const userBalance = ref("")
 
 onMounted(async () => {
   const { data: orgResponse } = await getRootUserOrg();
@@ -77,6 +80,14 @@ onMounted(async () => {
     { y: [20, 0], opacity: [0, 1] },
     { duration: 0.5, delay: stagger(0.1) }
   );
+ const user = await getUserProfile()
+     const response = await getWallets(user.data.data.id);
+
+  const walletData = response.data?.data?.wallet;
+
+  if (walletData) {
+    userBalance.value = walletData.balance
+  }
 });
 
 const resumePaystackTransaction = (access_code: string) => {
@@ -144,7 +155,7 @@ const handleAddCard = async () => {
         </p>
 
         <div class="hubot-san font-bold text-2xl text-[#101828]">
-          40,000 <span class="text-[#9098A3] font-medium text-xs">NGN</span>
+          {{ userBalance }} <span class="text-[#9098A3] font-medium text-xs">NGN</span>
         </div>
       </section>
 

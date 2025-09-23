@@ -1,8 +1,8 @@
 import axios from "axios";
 
 const endpoints = {
-  initialize_transaction: "/api/paystack/initialize",
-  add_card: "/api/addCard",
+  initialize_transaction: "/api/payments/initialize",
+  add_card: "/api/cards",
 };
 
 const API = axios.create({
