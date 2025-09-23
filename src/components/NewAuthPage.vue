@@ -15,17 +15,12 @@ import { createOrg } from "@/services/orgs";
 
 const router = useRouter();
 
-// RADIO BUTTONS
-let isBusinessAccount = ref(true);
-let isPersonalAccount = ref(false);
+
 let isSubmitting = ref(false);
 let errorMessage = ref("");
 
-const checkedStyle =
-  "w-[48.2%] flex rounded-xl border border-[#E3573E] px-4 py-3";
-const uncheckedStyle =
-  "w-[48.2%] flex rounded-xl border border-[#9F9F9F] px-4 py-3";
 
+// RADIO BUTTONS
 const handleClickForBusiness = () => {
   isBusinessAccount.value = true;
   isPersonalAccount.value = false;
@@ -35,19 +30,33 @@ const handleClickForPersonal = () => {
   isPersonalAccount.value = true;
   isBusinessAccount.value = false;
 };
+
+let isBusinessAccount = ref(true);
+let isPersonalAccount = ref(false);
+
+const checkedStyle =
+  "w-[48.88%] flex gap-x-2 items-center rounded-md border border-[#E3573E] hover:cursor-pointer md:w-[48.53%] md:gap-x-4 lg:w-[48.2%] lg:rounded-xl p-2 md:px-4 md:py-3";
+const uncheckedStyle =
+  "w-[48.88%] flex gap-x-2 items-center rounded-md border border-[#9F9F9F] hover:cursor-pointer md:w-[48.53%] md:gap-x-4 lg:w-[48.2%] lg:rounded-xl p-2 md:px-4 md:py-3";
+//*****************/
+
+// LABEL, INPUT AND SELECT STYLE
+const labelStyle = "font-medium text-sm leading-[100%] tracking-[0%] text-[#26203B] md:text-base lg:leading-[19.36px]"
+const labelStyleTwo = labelStyle.replace(" lg:leading-[19.36px]", " lg:leading-[16.94px]")
+
+const inputStyleOne = "w-full h-10 rounded-md border border-[#9F9F9F] outline-none text-sm leading-[100%] tracking-[0%] text-[#9C9AA5] focus:border-[#E3573E] md:h-12 lg:rounded-xl lg:leading-[16.94px] px-3 md:px-4"
+const inputStyleTwo = inputStyleOne.replace(" border-[#9F9F9F]", " md:border-[#9F9F9F]") +  " border-[#0F0F0F66]"
+const inputStyleThree = inputStyleOne.replace(" leading-[100%]", " leading-[150%]")
+
+const selectStyle = inputStyleOne.replace(" border-[#9F9F9F]", " border-[#0F0F0F66]") + " appearance-none lg:border-[#9F9F9F] lg:text-[#26203B]"
+//******************************/ 
+
 // longitude and latitude
 const latitude = ref("");
 const longitude = ref("");
 const address = ref("");
 
 // FLAG DROPDOWN
-const isDropDownOpen = ref(false);
-const selectedOptionIcon = ref(null);
-const selectedOptionNumber = ref(null);
-const options = ref([
-  { icon: "/src/assets/svgs/nigerian-flag.svg", number: "+234" },
-]);
-
 const toggleDropdown = () => {
   isDropDownOpen.value = !isDropDownOpen.value;
 };
@@ -61,6 +70,14 @@ const selectOptionAndCloseDropdown = (option) => {
 const closeDropdownOnScreenClick = () => {
   isDropDownOpen.value = false;
 };
+
+const isDropDownOpen = ref(false);
+const selectedOptionIcon = ref(null);
+const selectedOptionNumber = ref(null);
+const options = ref([
+  { icon: "/src/assets/svgs/nigerian-flag.svg", number: "+234" },
+]);
+//***************************************************** */
 
 // FOR SELECT BUSINESS TYPE
 const selectedBusinessType = ref("");
@@ -80,6 +97,30 @@ const organizations = ref({
   name: "",
   phone_no: "",
 });
+
+//*********************************************************** */
+
+//*********************************************************** */
+const businessName = {
+  type: "text",
+  name: "business-name",
+  placeHolder: "Enter name",
+  class: inputStyleTwo,
+}
+
+const businessEmail = {
+  type: "text",
+  name: "business-email",
+  placeHolder: "Enter email",
+  class: inputStyleTwo,
+}
+
+const phoneNumber = {
+  type: "text",
+  name: "phone-number",
+  placeHolder: "1234567890",
+  class: inputStyleThree,
+}
 
 const handleSubmit = async () => {
   // Validation
@@ -125,10 +166,10 @@ const handleSubmit = async () => {
 </script>
 
 <template>
-  <div class="p-8">
-    <main class="flex justify-center">
-      <section class="w-[36.3%]">
-        <header class="flex justify-center mb-[60px]">
+  <div class="p-4 md:p-8">
+    <main class="md:flex md:justify-center">
+      <section class="md:w-[83.12%] lg:max-w-[640px]">
+        <header class="hidden md:flex md:justify-center md:mb-[60px]">
           <svg
             width="91"
             height="33"
@@ -142,83 +183,121 @@ const handleSubmit = async () => {
             />
           </svg>
         </header>
-
         <form
-          class="rounded-2xl border border-[#DFDFDF] p-6"
+          class="md:rounded-2xl md:border md:border-[#DFDFDF] md:p-12 lg:p-6"
           @submit.prevent="handleSubmit"
         >
-          <header class="mb-[60px]">
+          <header class="mb-9 md:mb-10 lg:mb-[60px]">
             <h1
-              class="space-mono-bold font-semibold text-2xl leading-[32.25px] text-[#1B1B1B] mb-1"
+              class="font-semibold text-lg leading-[134%] tracking-[0%] text-center text-[#1B1B1B] md:text-xl lg:text-2xl lg:leading-[32.25px] mb-4 lg:mb-1"
             >
               Account setup
             </h1>
-
             <p
-              class="outfit-normal font-normal text-base leading-[19.36px] text-[#26203B]"
+              class="text-sm leading-[100%] tracking-[0%] text-center text-[#26203B] lg:text-base lg:leading-[19.36px]"
             >
-              To proceed with your account setup, we require additional
-              information to complete the verification process.
+              To proceed with your account setup, we require additional information.
             </p>
           </header>
-
-          <section class="mb-[60px]">
-            <section class="flex justify-between mb-8">
-              <button
-                :class="[isBusinessAccount ? checkedStyle : uncheckedStyle]"
-                @click="handleClickForBusiness"
-              >
-                <CheckIcon class="mr-4" v-if="isBusinessAccount"></CheckIcon>
-                <UncheckedIcon class="mr-4" v-else></UncheckedIcon>
-                <span
-                  class="outfit-medium font-medium text-sm leading-[22px] text-[#262626]"
-                  >Business account</span
+          <section class="mb-[102px] md:mb-10 lg:mb-[60px]">
+            <section class="mb-4 md:mb-8">
+              <div class="mb-[10px] lg:mb-2">
+                <label
+                  for="account-type"
+                  :class="labelStyle"
                 >
-              </button>
-
-              <button
-                disabled
-                :class="[isPersonalAccount ? checkedStyle : uncheckedStyle]"
-                @click="handleClickForPersonal"
-              >
-                <CheckIcon class="mr-4" v-if="isPersonalAccount"></CheckIcon>
-                <UncheckedIcon class="mr-4" v-else></UncheckedIcon>
-                <span
-                  class="outfit-medium font-medium text-sm leading-[22px] text-[#262626]"
-                  >Personal account</span
+                  Select account type
+                </label>
+              </div>
+              <div class="flex justify-between">
+                <button
+                  :class="[isBusinessAccount ? checkedStyle : uncheckedStyle]"
+                  @click="handleClickForBusiness"
                 >
-              </button>
+                  <CheckIcon v-if="isBusinessAccount"></CheckIcon>
+                  <UncheckedIcon v-else></UncheckedIcon>
+                  <span
+                    class="outfit-medium font-medium text-sm leading-[22px] tracking-[0%] text-[#262626]"
+                  >
+                    Business account
+                  </span>
+                </button>
+                <button
+                  disabled
+                  :class="[isPersonalAccount ? checkedStyle : uncheckedStyle]"
+                  @click="handleClickForPersonal"
+                >
+                  <CheckIcon v-if="isPersonalAccount"></CheckIcon>
+                  <UncheckedIcon v-else></UncheckedIcon>
+                  <span
+                    class="outfit-medium font-medium text-sm leading-[22px] tracking-[0%] text-[#262626]"
+                    >Personal account</span
+                  >
+                </button>
+              </div>
             </section>
-
-            <section :class="[isBusinessAccount ? 'mb-8' : 'hidden']">
-              <div>
+            <section class="flex justify-between mb-4 md:mb-8">
+              <div class="w-[48.88%] md:w-[48.53%]">
+                <div>
+                  <label 
+                    for="first-name"
+                    :class="labelStyleTwo"
+                  >
+                    First name
+                  </label>
+                </div>
+                <div class="mt-2">
+                  <input
+                    :class="inputStyleOne" 
+                    type="text" 
+                    name="first-name"
+                  >
+                </div>
+              </div>
+              <div class="w-[48.88%] md:w-[48.53%]">
+                <div>
+                  <label 
+                    for="last-name"
+                    :class="labelStyleTwo"
+                  >
+                    Last name
+                  </label>
+                </div>
+                <div class="mt-2">
+                  <input
+                    :class="inputStyleOne" 
+                    type="text" 
+                    name="last-name"
+                  >
+                </div>
+              </div>
+            </section>
+            <section :class="[isBusinessAccount ? 'mb-4 md:mb-8' : 'hidden']">
+              <div class="mb-2">
                 <label
                   for="business-name"
-                  class="outfit-medium font-medium text-base leading-[19.36px] text-[#26203B] mb-2"
-                  >Business name</label
+                  :class="labelStyle"
                 >
+                  Business name
+                </label>
               </div>
               <input
-                type="text"
-                name="business-name"
-                placeholder="Enter name"
+                v-bind="businessName"
                 v-model="organizations.name"
-                class="w-full h-12 rounded-xl border border-[#9F9F9F] outline-none focus:border-[#E3573E] px-4 py-2 outfit-normal font-normal text-sm leading-[16.94px] text-[#9C9AA5]"
               />
             </section>
-
-            <section :class="[isBusinessAccount ? 'mb-8' : 'hidden']">
-              <div>
+            <section :class="[isBusinessAccount ? 'mb-4 md:mb-8' : 'hidden']">
+              <div class="mb-2">
                 <label
                   for="business-type"
-                  class="outfit-medium font-medium text-base leading-[19.36px] text-[#26203B] mb-2"
+                  :class="labelStyle"
                 >
                   Type of business
                 </label>
               </div>
               <select
                 id="business-type"
-                class="w-full h-12 rounded-xl border border-[#9F9F9F] outline-none focus:border-[#E3573E] px-4 py-2 outfit-normal font-normal text-sm leading-[16.94px] text-[#26203B] appearance-none"
+                :class="selectStyle"
                 v-model="selectedBusinessType"
               >
                 <option disabled value="">Select an option</option>
@@ -231,138 +310,126 @@ const handleSubmit = async () => {
                 </option>
               </select>
             </section>
-
-            <section :class="[isBusinessAccount ? 'mb-8' : 'hidden']">
-              <div>
+            <section class="mb-4 md:mb-8">
+              <div class="mb-2">
+                <label
+                  for="business-address"
+                  :class="labelStyle"
+                >
+                  Business address
+                </label>
+              </div>
+              <vue-google-autocomplete 
+                id="map" 
+                :class="inputStyleTwo" 
+                placeholder="Enter business address" 
+                v-on:placechanged="getAddressData"
+              >
+              </vue-google-autocomplete>
+            </section>
+            <section class="mb-4 md:mb-8">
+              <div class="mb-2">
                 <label
                   for="business-email"
-                  class="outfit-medium font-medium text-base leading-[19.36px] text-[#26203B] mb-2"
-                  >Business email</label
+                  :class="labelStyle"
                 >
+                  Business email
+                </label>
               </div>
               <input
-                type="email"
-                name="business-email"
-                placeholder="Enter business email"
+                v-bind="businessEmail"
                 v-model="organizations.email"
-                class="w-full h-12 rounded-xl border border-[#9F9F9F] outline-none focus:border-[#E3573E] px-4 py-2 outfit-normal font-normal text-sm leading-[16.94px] text-[#9C9AA5]"
               />
             </section>
-
-            <section class="mb-8">
-              <section>
+            <section class="mb-4 md:mb-8">
+              <section class="mb-1.5 lg:mb-2">
                 <label
                   for="phone-number"
-                  class="outfit-medium font-medium text-base leading-[19.36px] text-[#26203B] mb-2"
-                  >Phone Number</label
+                  :class="`${labelStyle} md:leading-6`"
                 >
+                  Phone Number
+                </label>
               </section>
-
               <section class="flex justify-between">
-                <section class="w-[31.4%] relative">
+                <section class="w-[39.66%] md:w-[26.10%] relative lg:w-[31.4%]">
                   <div
                     tabindex="0"
-                    class="h-full px-4 py-[10px] rounded-lg border border-[#9F9F9F] outline-none focus:border-[#E3573E] cursor-pointer"
+                    class="h-10 md:h-full rounded-md border border-[#9F9F9F] outline-none cursor-pointer focus:border-[#E3573E] lg:rounded-xl px-3 py-1.5 md:px-4 md:py-[10px]"
                     @click="toggleDropdown"
                   >
-                    <div class="flex items-center justify-between">
-                      <img
-                        v-if="selectedOptionIcon"
-                        :src="selectedOptionIcon"
-                      />
-
-                      <section>
-                        <span
-                          class="outfit-normal font-normal text-sm leading-[21px] text-[#ABAFB1]"
-                        >
-                          {{ selectedOptionNumber || "" }}
-                        </span>
-                      </section>
-
+                    <div class="flex justify-between items-center">
+                      <div class="flex gap-x-2 items-center">
+                        <img
+                          v-if="selectedOptionIcon"
+                          :src="selectedOptionIcon"
+                        />
+                        <section>
+                          <span
+                            class="outfit-normal text-sm leading-[150%] tracking-[0%] text-[#ABAFB1] lg:leading-[21px]"
+                          >
+                            {{ selectedOptionNumber || "" }}
+                          </span>
+                        </section>
+                      </div>
                       <ArrowDown :class="{ 'mt-1': !selectedOptionIcon }" />
                     </div>
                   </div>
-
                   <ul
-                    v-if="isDropDownOpen"
-                    class="bg-white w-full px-4 py-[10px] absolute z-10 list-none border border-[#9F9F9F] rounded-lg"
+                    v-if="isDropDownOpen" 
+                    class="absolute z-10 w-full bg-white list-none border border-[#9F9F9F] rounded-lg px-4 py-[10px]"
                   >
                     <li
                       v-for="(option, index) in options"
                       :key="index"
-                      class="cursor-pointer hover:bg-[#F0F0F0] flex"
+                      class="flex gap-x-2 items-center cursor-pointer hover:bg-[#F0F0F0]"
                       @click="selectOptionAndCloseDropdown(option)"
                     >
                       <img :src="option.icon" class="mr-1" />
                       <span
-                        class="outfit-normal font-normal text-sm leading-[21px] text-[#ABAFB1]"
+                        class="outfit-normal text-sm leading-[150%] tracking-[0%] text-[#ABAFB1] lg:leading-[21px]"
                       >
                         {{ option.number }}
                       </span>
                     </li>
                   </ul>
                 </section>
-
-                <section class="w-[67.3%]">
+                <section class="w-[58.66%] md:w-[72.79%] lg:w-[67.3%]">
                   <input
-                    type="text"
-                    name="phone-number"
-                    placeholder="1234567890"
+                    v-bind="phoneNumber"
                     v-model="organizations.phone_no"
-                    class="w-full h-12 rounded-xl border border-[#9F9F9F] outline-none focus:border-[#E3573E] px-4 py-2 outfit-normal font-normal text-sm leading-[16.94px] text-[#9C9AA5]"
                   />
                 </section>
               </section>
             </section>
-
-            <section :class="[isBusinessAccount ? 'mb-8' : 'hidden']">
-              <div>
-                <label
-                  for="business-address"
-                  class="outfit-medium font-medium text-base leading-[19.36px] text-[#26203B] mb-2"
-                  >Address</label
-                >
-              </div>
-              <vue-google-autocomplete
-                id="map"
-                class="w-full h-12 rounded-xl border border-[#9F9F9F] outline-none focus:border-[#E3573E] px-4 py-2 outfit-normal font-normal text-sm leading-[16.94px] text-[#9C9AA5]"
-                placeholder="Enter business address"
-                v-on:placechanged="getAddressData"
-              >
-              </vue-google-autocomplete>
-            </section>
           </section>
-
           <button
             type="submit"
-            class="w-full h-12 rounded-full px-5 py-[10px] bg-gradient-to-r from-[#FF7C33] to-[#FA3105]"
+            class="w-full h-9 flex justify-center items-center rounded-md bg-[#1E1E1E] md:h-12 lg:rounded-full"
           >
             <Loader2
               class="w-5 h-5 mr-2 inline-flex animate-spin text-white"
               v-if="isSubmitting"
             />
             <span
-              class="outfit-bold font-bold text-base leading-[19.36px] text-white"
+              class="outfit-bold font-bold text-sm leading-[100%] tracking-[0%] text-white  md:text-base lg:leading-[19.36px]"
               >Finish Setup</span
             >
           </button>
-          <div></div>
         </form>
       </section>
     </main>
-
-    <footer class="h-[53px] mt-5 flex justify-between items-end">
+    <footer class="hidden md:h-[53px] md:flex md:justify-between md:items-end">
       <div>
         <span
-          class="outfit-normal font-normal text-sm leading-[21px] text-[#4F4D55]"
-          >©2024 Picka.ng</span
+          class="outfit-normal font-normal text-sm leading-[150%] tracking-normal text-[#4F4D55] lg:leading-[21px]"
         >
+          ©2024 Picka.ng
+        </span>
       </div>
-
       <div>
         <a
           href="#"
-          class="outfit-normal font-normal text-sm leading-[21px] text-[#4F4D55]"
+          class="filson-pro text-sm leading-[150%] tracking-normal text-[#4F4D55] lg:leading-[21px]"
           >Privacy policy</a
         >
       </div>

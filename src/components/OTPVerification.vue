@@ -60,10 +60,10 @@ onMounted(() => {
 </script>
 
 <template>
-  <div class="p-8">
-    <main class="flex justify-center">
-      <section class="w-[36.3%]">
-        <header class="flex justify-center mb-[60px]">
+  <div class="relative h-screen p-4 md:p-8">
+    <main class="h-full md:h-[92.33%] flex justify-center lg:h-[88.57%] lg:items-center">
+      <section class="md:w-[83.12%] lg:w-[36.3%]">
+        <header class="hidden md:flex justify-center mb-[60px] lg:mb-10">
           <svg
             width="91"
             height="33"
@@ -77,108 +77,85 @@ onMounted(() => {
             />
           </svg>
         </header>
-
         <form
-          class="rounded-2xl md:border border-[#DFDFDF] p-6"
+          class="h-full flex flex-col justify-between md:h-fit md:rounded-2xl md:border md:border-[#DFDFDF] md:p-12 lg:p-6"
           @submit="handleSubmit"
         >
-          <header class="mb-[60px]">
-            <h1
-              class="space-mono-bold font-semibold text-2xl leading-[32.25px] text-[#1B1B1B] mb-1"
+          <div class="mb-[60px]">
+            <header class="mb-[62px] md:mb-[60px]">
+              <h1
+                class="font-semibold text-xl leading-[134%] tracking-[0%] text-[#1B1B1B] text-center lg:text-2xl lg:leading-[32.25px] mb-4 lg:mb-1"
+              >
+                Verification
+              </h1>
+              <p
+                class="font-normal text-sm leading-[100%] tracking-[0%] text-center text-[#26203BCC] md:text-base lg:leading-[19.36px] lg:text-[#26203B]"
+              >
+                An OTP has been sent to the phone number linked to your account.
+              </p>
+            </header>
+            <section
+              class="h-[62px] flex justify-between items-center gap-x-2 mb-6 md:mb-[60px]"
             >
-              Verification
-            </h1>
-
-            <p
-              class="text-center outfit-normal font-normal text-base leading-[19.36px] text-[#26203B]"
-            >
-              An OTP has been sent to the phone number linked to your account.
-            </p>
-          </header>
-
-          <section
-            class="h-[62px] flex justify-between items-center gap-2 mb-[60px]"
-          >
-            <input
-              v-for="(__, index) in Activiation_code"
-              :key="index"
-              v-model="Activiation_code[index]"
-              type="text"
-              maxlength="1"
-              @input="moveToNext(index)"
-              ref="inputs"
-              class="w-[13.72%] h-full rounded-xl bg-[#F1F0EF] text-center appearance-none focus:bg-white focus:border focus:border-[#E3573E] focus:shadow outline-none"
-            />
-
-            <!-- <div class="w-[13.72%]">
-              <input type="text" maxlength="1" class="w-full h-full rounded-xl bg-[#F1F0EF] text-center appearance-none focus:bg-white focus:border focus:border-[#E3573E] focus:shadow outline-none" />
-            </div> -->
-          </section>
-
-          <section class="flex justify-between mb-[60px]">
-            <section>
-              <button class="h-5 flex rounded-full px-2 py-1 bg-[#F4F4F4]">
-                <section class="h-full flex items-center mr-1">
-                  <img src="../../src/assets/svgs/refresh-circle-outline.svg" />
-                </section>
-
-                <section class="h-full flex items-center">
+              <input
+                v-for="(__, index) in Activiation_code"
+                :key="index"
+                v-model="Activiation_code[index]"
+                type="text"
+                maxlength="1"
+                @input="moveToNext(index)"
+                ref="inputs"
+                class="w-[14.80%] md:w-[13.72%] h-full rounded-lg bg-[#F1F0EF] text-center appearance-none focus:bg-white focus:border focus:border-[#E3573E] focus:shadow outline-none lg:rounded-xl"
+              />
+            </section>
+            <section class="flex justify-between">
+              <section>
+                <button class="h-6 flex gap-x-1 items-center rounded-full bg-[#F4F4F4] lg:h-5 px-2">
+                  <section>
+                    <img src="../../src/assets/svgs/refresh-circle-outline.svg" />
+                  </section>
                   <span
-                    class="outfit-normal font-normal text-sm leading-[16.94px] text-[#26203B]"
+                    class="font-normal text-xs leading-[100%] tracking-[0%] text-[#26203B] lg:text-sm lg:leading-[16.94px]"
                   >
                     Resend code
                   </span>
-                </section>
-              </button>
+                </button>
+              </section>
+              <section>
+                <span
+                  class="font-semibold text-[13px] leading-[100%] tracking-[0%] text-[#FA3507] lg:text-[10px] lg:leading-[12.1px] lg:text-[#FA3105]"
+                  >00.30s</span
+                >
+              </section>
             </section>
-
-            <section>
-              <span
-                class="outfit-normal font-normal text-[10px] leading-[12.1px]"
-                >in
-              </span>
-              <span
-                class="outfit-semibold font-semibold text-[10px] leading-[12.1px] text-[#FA3105]"
-                >00.30s</span
-              >
-            </section>
-          </section>
-
+          </div>
           <button
             type="submit"
-            class="w-full h-12 rounded-full px-5 py-[10px] bg-gradient-to-r from-[#FF7C33] to-[#FA3105] flex items-center justify-center"
+            class="w-full h-9 flex items-center justify-center rounded-md bg-[#1E1E1E] md:h-12 lg:h-11"
           >
             <Loader2
               v-if="isSubmitting"
               class="w-5 h-5 mr-2 animate-spin text-white"
             />
             <span
-              class="outfit-bold font-bold text-base leading-[19.36px] text-white"
+              class="font-bold text-base leading-[100%] tracking-[0%] text-white lg:leading-[19.36px]"
               >Verify account</span
             >
           </button>
         </form>
-
-        <!-- <div v-if="ErrMessage" class="my-4 text-center">
-          <span class="font-normal text-sm leading-[21px] text-red-500">
-            {{ ErrMessage }}
-          </span>
-        </div> -->
       </section>
     </main>
-
-    <footer class="h-[53px] mt-5 flex justify-between items-end">
+    <footer class="hidden absolute right-0 left-0 bottom-8 w-[92.33%] h-[53px] justify-between items-end md:flex lg:w-[95.56%] mx-auto">
       <section>
         <span
-          class="outfit-normal font-normal text-sm leading-[21px] text-[#4F4D55]"
+          class="font-normal text-sm leading-[150%] tracking-[0%] text-[#4F4D55] lg:leading-[21px]"
           >©2024 Picka.ng</span
         >
       </section>
-
       <section>
         <a
           href="#"
-          class="outfit-normal font-normal text-sm leading-[21px] text-[#4F4D55]"
+          class="font-normal text-sm leading-[150%] tracking-[0%] text-[#4F4D55] lg:leading-[21px]"
           >Privacy policy</a
         >
       </section>

@@ -1,8 +1,8 @@
 <script setup>
 import { ref } from "vue";
 
-import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
-import { ScrollArea } from '@/components/ui/scroll-area';
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { ScrollArea } from "@/components/ui/scroll-area";
 import { Button } from "@/components/ui/button";
 import OrderInfoIcon from "@/assets/svgs/order-info-icon.svg";
 import DriverInfoIcon from "@/assets/svgs/driver-info-icon.svg";
@@ -28,7 +28,6 @@ const [verticalTabValue1, verticalTabValue2, verticalTabValue3] = verticalTabVal
 const selectedVerticalTabStyle = "w-full block rounded p-2 mt-4 info";
 const notSelectedVerticalTabStyle = "w-full block rounded p-2 mt-4";
 
-
 const selectVerticalTab = (value) => {
   selectedVerticalTab.value = value;
 }
@@ -46,11 +45,10 @@ const selectVerticalTab = (value) => {
       <TabsTrigger :value="verticalTabValue1"
         :class="selectedVerticalTab === verticalTabValue1 ? selectedVerticalTabStyle : notSelectedVerticalTabStyle"
         @click="selectVerticalTab(verticalTabValue1)">
+
         <div class="flex gap-x-2 items-center">
           <order-info-icon />
-          <span class="font-medium text-sm text-[#757575]">
-            Order Info
-          </span>
+          <span class="font-medium text-sm text-[#757575]"> Order Info </span>
         </div>
       </TabsTrigger>
 
@@ -59,9 +57,7 @@ const selectVerticalTab = (value) => {
         @click="selectVerticalTab(verticalTabValue2)">
         <div class="flex gap-x-2 items-center">
           <driver-info-icon />
-          <span class="font-medium text-sm text-[#757575]">
-            Driver Info
-          </span>
+          <span class="font-medium text-sm text-[#757575]"> Driver Info </span>
         </div>
       </TabsTrigger>
 
@@ -75,7 +71,6 @@ const selectVerticalTab = (value) => {
           </span>
         </div>
       </TabsTrigger>
-
     </TabsList>
 
     <TabsContent value="order-info" class="m-0">
@@ -89,16 +84,15 @@ const selectVerticalTab = (value) => {
     <TabsContent value="customer-info" class="m-0 p-0 w-full lg:w-auto">
       <CustomerInfo :customerinfo="customerinfo" />
     </TabsContent>
-
   </Tabs>
 </template>
 
 <style scoped>
 .info {
-  background-color: #F0F0F0;
+  background-color: #f0f0f0;
 
   span {
-    color: #060E1F;
+    color: #060e1f;
   }
 }
 </style>
