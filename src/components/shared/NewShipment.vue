@@ -23,19 +23,20 @@ const router = useRouter();
 const radioGroupValue = ref("single");
 
 const handlePath = () => {
-  router.push(
-    { 
-      name: "payment", 
-      params: { name: radioGroupValue.value },
-    },
-  );
-}
+  if (radioGroupValue.value === "single") {
+    router.push({ name: "single-shipment" });
+  } else {
+    router.push({ name: "bulk-shipment" });
+  }
+};
 </script>
 
 <template>
   <Dialog>
     <DialogTrigger class="w-full">
-      <Button class="w-[81.54%] rounded-md gap-x-2 md:w-fit px-4 py-2.5 lg:py-3">
+      <Button
+        class="w-[81.54%] rounded-md gap-x-2 md:w-fit px-4 py-2.5 lg:py-3"
+      >
         <!-- <PlusSign /> -->
         <svg
           class="w-[10.64px] h-[10.64px] lg:w-4 lg:h-4"
@@ -84,9 +85,7 @@ const handlePath = () => {
         >
           <section class="mb-2">
             <Button
-              :variant="
-                radioGroupValue === 'single' ? 'outline' : 'ghost'
-              "
+              :variant="radioGroupValue === 'single' ? 'outline' : 'ghost'"
               class="w-full justify-between"
             >
               <div class="flex items-center gap-x-4">
@@ -110,9 +109,7 @@ const handlePath = () => {
 
           <section>
             <Button
-              :variant="
-                radioGroupValue === 'bulk' ? 'outline' : 'ghost'
-              "
+              :variant="radioGroupValue === 'bulk' ? 'outline' : 'ghost'"
               class="w-full justify-between"
             >
               <div class="flex items-center gap-x-4">

@@ -98,6 +98,12 @@ const handleLogin = async (values: any) => {
 
           <ErrorMessage name="password" class="text-red-500 text-sm mt-1" />
         </div>
+
+        <div class="flex justify-end mt-2">
+          <RouterLink :to="'/forgot-password'" class="text-xs leading-[100%] tracking-[0%] align-middle text-[#5A5A5A]">
+            Forget Password
+          </RouterLink>
+        </div>
       </div>
 
       <button
