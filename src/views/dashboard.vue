@@ -223,19 +223,18 @@ const handleAddCard = async () => {
           class="flex-grow rounded-md border border-[#D8D8D8] bg-[#F9F9F9] text-[#101828] hover:border-black hover:bg-black hover:text-white"
         >
           <Plus />
-          <span
-            class="font-medium text-[15px] leading-[100%] tracking-[0%] ml-2 lg:ml-1.5"
-            >Top up</span
-          >
+
+          <span class="ml-1.5">Top up</span>
         </Button>
-        <!-- 
-          <Button
-            class="flex-grow bg-[#F9F9F9] text-[##101828] border border-[#D8D8D8] hover:bg-black hover:border-black hover:text-white"
-          >
-            <Withdraw />
-            <span class="ml-1.5">Withdraw</span>
-          </Button> 
-        -->
+
+        <!-- <Button
+          class="flex-grow bg-[#F9F9F9] text-[##101828] border border-[#D8D8D8] hover:bg-black hover:border-black hover:text-white"
+        >
+          <Withdraw />
+
+          <span class="ml-1.5">Withdraw</span>
+        </Button> -->
+
         <Button
           class="flex-grow rounded-md border border-[#D8D8D8] bg-[#F9F9F9] text-[#101828] hover:border-black hover:bg-black hover:text-white"
         >
