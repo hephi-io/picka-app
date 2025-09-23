@@ -1,6 +1,6 @@
 <template>
   <aside
-    class="sticky top-[100px] w-[92px] h-[80vh] rounded-lg border border-[#E5E5E5] bg-white py-6 lg:flex flex-col justify-between"
+    class="hidden sticky top-[100px] w-[92px] h-[80vh] rounded-lg border border-[#E5E5E5] bg-white py-6 lg:flex flex-col justify-between shrink-0"
   >
     <section class="mb-2 flex flex-col items-center">
       <div

@@ -1,23 +1,18 @@
 <template>
-  
-    <div class="flex flex-col ">
-       <header class="py-[12px]  mb-[32px]">
-        <h3 class="font-inter font-semibold text-2xl  leading-6 tracking-[-0.03em] text-[#060E1F]">
-            Settings
-        </h3>
+  <div>
+    <header class="hidden py-[12px] md:block">
+      <h3 class="font-semibold text-2xl leading-[100%] tracking-[-3%] text-[#060E1F]">
+        Settings
+      </h3>
     </header>
-    <div class="flex max-w-[1275px] h-[1161.2px] mt-2">
-
-
+    <div class="md:flex md:mt-9">
+      <div class="hidden w-[248px] min-h-screen shrink-0 md:block">
         <side-bar />
-      <!-- </div> -->
-      
-
-      <div class="md:flex-grow lg:pl-6 w-full  ">
+      </div>
+      <div class="w-full md:pl-8 md:py-4 lg:pl-6">
         <router-view />
       </div>
     </div>
-
   </div>
 </template>
 

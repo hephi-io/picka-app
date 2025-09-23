@@ -38,7 +38,18 @@ const checkedStyle =
   "w-[48.88%] flex gap-x-2 items-center rounded-md border border-[#E3573E] hover:cursor-pointer md:w-[48.53%] md:gap-x-4 lg:w-[48.2%] lg:rounded-xl p-2 md:px-4 md:py-3";
 const uncheckedStyle =
   "w-[48.88%] flex gap-x-2 items-center rounded-md border border-[#9F9F9F] hover:cursor-pointer md:w-[48.53%] md:gap-x-4 lg:w-[48.2%] lg:rounded-xl p-2 md:px-4 md:py-3";
+//*****************/
 
+// LABEL, INPUT AND SELECT STYLE
+const labelStyle = "font-medium text-sm leading-[100%] tracking-[0%] text-[#26203B] md:text-base lg:leading-[19.36px]"
+const labelStyleTwo = labelStyle.replace(" lg:leading-[19.36px]", " lg:leading-[16.94px]")
+
+const inputStyleOne = "w-full h-10 rounded-md border border-[#9F9F9F] outline-none text-sm leading-[100%] tracking-[0%] text-[#9C9AA5] focus:border-[#E3573E] md:h-12 lg:rounded-xl lg:leading-[16.94px] px-3 md:px-4"
+const inputStyleTwo = inputStyleOne.replace(" border-[#9F9F9F]", " md:border-[#9F9F9F]") +  " border-[#0F0F0F66]"
+const inputStyleThree = inputStyleOne.replace(" leading-[100%]", " leading-[150%]")
+
+const selectStyle = inputStyleOne.replace(" border-[#9F9F9F]", " border-[#0F0F0F66]") + " appearance-none lg:border-[#9F9F9F] lg:text-[#26203B]"
+//******************************/ 
 
 // longitude and latitude
 const latitude = ref("");
@@ -46,13 +57,6 @@ const longitude = ref("");
 const address = ref("");
 
 // FLAG DROPDOWN
-const isDropDownOpen = ref(false);
-const selectedOptionIcon = ref(null);
-const selectedOptionNumber = ref(null);
-const options = ref([
-  { icon: "/src/assets/svgs/nigerian-flag.svg", number: "+234" },
-]);
-
 const toggleDropdown = () => {
   isDropDownOpen.value = !isDropDownOpen.value;
 };
@@ -66,6 +70,14 @@ const selectOptionAndCloseDropdown = (option) => {
 const closeDropdownOnScreenClick = () => {
   isDropDownOpen.value = false;
 };
+
+const isDropDownOpen = ref(false);
+const selectedOptionIcon = ref(null);
+const selectedOptionNumber = ref(null);
+const options = ref([
+  { icon: "/src/assets/svgs/nigerian-flag.svg", number: "+234" },
+]);
+//***************************************************** */
 
 // FOR SELECT BUSINESS TYPE
 const selectedBusinessType = ref("");
@@ -85,6 +97,30 @@ const organizations = ref({
   name: "",
   phone_no: "",
 });
+
+//*********************************************************** */
+
+//*********************************************************** */
+const businessName = {
+  type: "text",
+  name: "business-name",
+  placeHolder: "Enter name",
+  class: inputStyleTwo,
+}
+
+const businessEmail = {
+  type: "text",
+  name: "business-email",
+  placeHolder: "Enter email",
+  class: inputStyleTwo,
+}
+
+const phoneNumber = {
+  type: "text",
+  name: "phone-number",
+  placeHolder: "1234567890",
+  class: inputStyleThree,
+}
 
 const handleSubmit = async () => {
   // Validation
@@ -132,7 +168,7 @@ const handleSubmit = async () => {
 <template>
   <div class="p-4 md:p-8">
     <main class="md:flex md:justify-center">
-      <section class="md:w-[83.12%] lg:w-[36.3%]">
+      <section class="md:w-[83.12%] lg:max-w-[640px]">
         <header class="hidden md:flex md:justify-center md:mb-[60px]">
           <svg
             width="91"
@@ -168,7 +204,7 @@ const handleSubmit = async () => {
               <div class="mb-[10px] lg:mb-2">
                 <label
                   for="account-type"
-                  class="outfit-medium font-medium text-sm leading-[100%] tracking-[0%] text-[#26203B] md:text-base lg:leading-[19.36px]"
+                  :class="labelStyle"
                 >
                   Select account type
                 </label>
@@ -182,8 +218,9 @@ const handleSubmit = async () => {
                   <UncheckedIcon v-else></UncheckedIcon>
                   <span
                     class="outfit-medium font-medium text-sm leading-[22px] tracking-[0%] text-[#262626]"
-                    >Business account</span
                   >
+                    Business account
+                  </span>
                 </button>
                 <button
                   disabled
@@ -204,14 +241,14 @@ const handleSubmit = async () => {
                 <div>
                   <label 
                     for="first-name"
-                    class="outfit-medium font-medium text-sm leading-[100%] tracking-[0%] text-[#26203B] md:text-base lg:leading-[16.94px]"
+                    :class="labelStyleTwo"
                   >
                     First name
                   </label>
                 </div>
                 <div class="mt-2">
                   <input
-                    class="w-full h-10 rounded-md border border-[#9F9F9F] outline-none outfit-normal text-sm leading-[100%] tracking-[0%] text-[#9C9AA5] focus:border-[#E3573E] md:h-12 lg:rounded-xl lg:leading-[16.94px] px-3 md:px-4" 
+                    :class="inputStyleOne" 
                     type="text" 
                     name="first-name"
                   >
@@ -221,14 +258,14 @@ const handleSubmit = async () => {
                 <div>
                   <label 
                     for="last-name"
-                    class="outfit-medium font-medium text-sm leading-[100%] tracking-[0%] text-[#26203B] md:text-base lg:leading-[16.94px]"
+                    :class="labelStyleTwo"
                   >
                     Last name
                   </label>
                 </div>
                 <div class="mt-2">
                   <input
-                    class="w-full h-10 rounded-md border border-[#9F9F9F] outline-none outfit-normal text-sm leading-[100%] tracking-[0%] text-[#9C9AA5] focus:border-[#E3573E] md:h-12 lg:rounded-xl lg:leading-[16.94px] px-4" 
+                    :class="inputStyleOne" 
                     type="text" 
                     name="last-name"
                   >
@@ -239,30 +276,28 @@ const handleSubmit = async () => {
               <div class="mb-2">
                 <label
                   for="business-name"
-                  class="outfit-medium font-medium text-sm leading-[100%] tracking-[0%] text-[#26203B] md:text-base lg:leading-[19.36px]"
-                  >Business name</label
+                  :class="labelStyle"
                 >
+                  Business name
+                </label>
               </div>
               <input
-                type="text"
-                name="business-name"
-                placeholder="Enter name"
+                v-bind="businessName"
                 v-model="organizations.name"
-                class="w-full h-10 rounded-md border border-[#0F0F0F66] outline-none outfit-normal text-sm leading-[100%] tracking-[0px] text-[#9C9AA5] focus:border-[#E3573E] md:h-12 md:border-[#9F9F9F] lg:rounded-xl lg:leading-[16.94px] px-3 md:px-4"
               />
             </section>
             <section :class="[isBusinessAccount ? 'mb-4 md:mb-8' : 'hidden']">
               <div class="mb-2">
                 <label
                   for="business-type"
-                  class="outfit-medium font-medium text-sm leading-[100%] tracking-[0%] text-[#26203B] md:text-base lg:leading-[19.36px]"
+                  :class="labelStyle"
                 >
                   Type of business
                 </label>
               </div>
               <select
                 id="business-type"
-                class="w-full h-10 rounded-md border border-[#0F0F0F66] outline-none outfit-normal text-sm leading-[100%] tracking-[0%] text-[#9C9AA5] appearance-none focus:border-[#E3573E] md:h-12 lg:rounded-xl lg:border-[#9F9F9F] lg:leading-[16.94px] lg:text-[#26203B] px-3 md:px-4"
+                :class="selectStyle"
                 v-model="selectedBusinessType"
               >
                 <option disabled value="">Select an option</option>
@@ -276,12 +311,44 @@ const handleSubmit = async () => {
               </select>
             </section>
             <section class="mb-4 md:mb-8">
+              <div class="mb-2">
+                <label
+                  for="business-address"
+                  :class="labelStyle"
+                >
+                  Business address
+                </label>
+              </div>
+              <vue-google-autocomplete 
+                id="map" 
+                :class="inputStyleTwo" 
+                placeholder="Enter business address" 
+                v-on:placechanged="getAddressData"
+              >
+              </vue-google-autocomplete>
+            </section>
+            <section class="mb-4 md:mb-8">
+              <div class="mb-2">
+                <label
+                  for="business-email"
+                  :class="labelStyle"
+                >
+                  Business email
+                </label>
+              </div>
+              <input
+                v-bind="businessEmail"
+                v-model="organizations.email"
+              />
+            </section>
+            <section class="mb-4 md:mb-8">
               <section class="mb-1.5 lg:mb-2">
                 <label
                   for="phone-number"
-                  class="outfit-medium font-medium text-sm leading-[100%] tracking-[0%] text-[#26203B] md:text-base md:leading-6 lg:leading-[19.36px]"
-                  >Phone Number</label
+                  :class="`${labelStyle} md:leading-6`"
                 >
+                  Phone Number
+                </label>
               </section>
               <section class="flex justify-between">
                 <section class="w-[39.66%] md:w-[26.10%] relative lg:w-[31.4%]">
@@ -328,11 +395,8 @@ const handleSubmit = async () => {
                 </section>
                 <section class="w-[58.66%] md:w-[72.79%] lg:w-[67.3%]">
                   <input
-                    type="text"
-                    name="phone-number"
-                    placeholder="1234567890"
+                    v-bind="phoneNumber"
                     v-model="organizations.phone_no"
-                    class="w-full h-10 md:h-12 rounded-md border border-[#9F9F9F] outline-none outfit-normal text-sm leading-[150%] tracking-[0%] text-[#9C9AA5] focus:border-[#E3573E] lg:rounded-xl lg:leading-[16.94px] px-3 md:px-4"
                   />
                 </section>
               </section>
@@ -358,8 +422,9 @@ const handleSubmit = async () => {
       <div>
         <span
           class="outfit-normal font-normal text-sm leading-[150%] tracking-normal text-[#4F4D55] lg:leading-[21px]"
-          >©2024 Picka.ng</span
         >
+          ©2024 Picka.ng
+        </span>
       </div>
       <div>
         <a

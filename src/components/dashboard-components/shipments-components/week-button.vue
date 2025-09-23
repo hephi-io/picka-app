@@ -11,24 +11,16 @@ import { Button } from '@/components/ui/button'
 <template>
   <div>
     <DropdownMenu>
-
       <DropdownMenuTrigger>
-        <Button class="bg-white border border-[#D8D8D8] hover:bg-[#D8D8D8]">
-
-          <div class="mr-2">
-            <img src="../../../assets/svgs/Arrow---Down-2.svg">
-          </div>
-
-          <span class="font-medium text-[15px] leading-[18.15px] text-[#404D61]">
+        <Button class="gap-x-2 rounded-md border border-[#D8D8D8] bg-white hover:bg-[#D8D8D8] px-4">
+          <img src="../../../assets/svgs/Arrow---Down-2.svg">
+          <span class="font-medium text-[15px] leading-[100%] tracking-[0%] text-[#404D61]">
             Week
           </span>
-
         </Button>
       </DropdownMenuTrigger>
-
       <DropdownMenuContent>
       </DropdownMenuContent>
-
     </DropdownMenu>
   </div>
 </template>

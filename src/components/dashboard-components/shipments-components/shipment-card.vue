@@ -4,23 +4,19 @@ defineProps<{ imageUrl?: string; title: string; icon: any }>();
 
 <template>
   <div
-    class="w-[173.5%] md:w-[23.58%] rounded-lg px-5 py-[22px] bg-[#F9F9F9] border border-[#E4E7EC]"
+    class="rounded-lg border border-[#E4E7EC] bg-[#F9F9F9] px-3 py-4 lg:px-5 lg:py-[22px]"
   >
     <section class="mb-[30px]">
       <component :is="icon" />
     </section>
-
-    <section>
-      <section class="mb-2">
-        <span
-          class="font-medium text-xs leading-3 tracking-[-3%] text-[#8B9293]"
-        >
-          {{ title }}
-        </span>
-      </section>
-
-      <slot />
+    <section class="mb-2">
+      <span
+        class="font-medium text-xs leading-[100%] tracking-[-3%] text-[#8B9293]"
+      >
+        {{ title }}
+      </span>
     </section>
+    <slot />
   </div>
 </template>
 

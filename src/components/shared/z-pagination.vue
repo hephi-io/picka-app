@@ -25,7 +25,7 @@ import {
       class="flex items-center justify-between gap-1 w-full"
     >
       <PaginationPrev
-        class="w-[111px] flex items-center gap-x-2 pagination-btn"
+        class="w-[111px] flex items-center gap-x-2 pagination-btn px-2"
       >
         <svg
           width="12"
@@ -42,10 +42,8 @@ import {
             stroke-linejoin="round"
           />
         </svg>
-
         <span class="text-sm">Previous</span>
       </PaginationPrev>
-
       <div class="flex items-center">
         <template v-for="(item, index) in items">
           <PaginationListItem
@@ -55,7 +53,7 @@ import {
             as-child
           >
             <Button
-              class="w-10 h-10 p-0 hover:text-white"
+              class="filson-pro w-10 h-10 p-0 hover:text-white"
               :class="[
                 item.value === page
                   ? 'bg-[#F9FAFB] text-[#1D2939]'
@@ -65,14 +63,11 @@ import {
               {{ item.value }}
             </Button>
           </PaginationListItem>
-
           <PaginationEllipsis v-else :key="item.type" :index="index" />
         </template>
       </div>
-
       <PaginationNext class="w-[84px] gap-x-2 pagination-btn">
         <span class="text-sm">Next</span>
-
         <svg
           width="12"
           height="12"
