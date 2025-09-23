@@ -27,7 +27,7 @@ const data = ref<Shipping[]>([]);
 onMounted(async () => {
   const { data: orgResponse } = await getRootUserOrg();
   const { data: shipmentOrgsResponse } = await getShipmentOrgs(orgResponse.data.id);
- if (shipmentOrgsResponse.data && shipmentOrgsResponse.data.length > 0) {
+  if (shipmentOrgsResponse.data && shipmentOrgsResponse.data.length > 0) {
     data.value = shipmentOrgsResponse.data.map((item: Shipping) => {
       const {
         id,
