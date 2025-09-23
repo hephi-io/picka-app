@@ -19,13 +19,41 @@ import DeliveryTruck from "@/assets/svgs/delivery-truck-01.svg";
 import PackageProcess from "@/assets/svgs/delivery-box-02.svg";
 import DeliveryBox from "@/assets/svgs/delivery-box-02.svg";
 import FilterDropdown from "@/components/shipments/filter-dropdown.vue";
+import { getRootUserOrg } from "@/services/orgs";
+import { getShipmentOrgs } from "@/services/shipment";
 
 const data = ref<Shipping[]>([]);
 
-
 onMounted(async () => {
-  
+  const { data: orgResponse } = await getRootUserOrg();
+  const { data: shipmentOrgsResponse } = await getShipmentOrgs(
+    orgResponse.data.id
+  );
+  if (shipmentOrgsResponse.data && shipmentOrgsResponse.data.length > 0) {
+    data.value = shipmentOrgsResponse.data.map((item: Shipping) => {
+      const {
+        id,
+        recipient_name,
+        recipient_email,
+        category,
+        weight,
+        amount,
+        status,
+        created_at,
+      } = item;
 
+      return {
+        id,
+        recipient_name,
+        recipient_email,
+        category,
+        weight,
+        amount,
+        status,
+        created_at,
+      };
+    });
+  }
   animate(
     ".animation-slide-up",
     { y: [20, 0], opacity: [0, 1] },
@@ -36,9 +64,7 @@ onMounted(async () => {
 
 <template>
   <main>
-    <header
-      class="flex justify-between items-center animation-slide-up"
-    >
+    <header class="flex justify-between items-center animation-slide-up">
       <h1
         class="font-semibold text-lg leading-[100%] tracking-[-3%] text-[#060E1F] md:text-2xl"
       >
@@ -52,11 +78,10 @@ onMounted(async () => {
         <filter-dropdown />
       </div>
     </header>
-    <section class="grid grid-cols-2 gap-2 animation-slide-up md:grid-cols-4 md:gap-4 mt-6 md:mt-9">
-      <shipment-card 
-        :icon="Package" 
-        title="Total shipment" 
-      >
+    <section
+      class="grid grid-cols-2 gap-2 animation-slide-up md:grid-cols-4 md:gap-4 mt-6 md:mt-9"
+    >
+      <shipment-card :icon="Package" title="Total shipment">
         <div class="flex gap-x-[15px] items-end">
           <span
             class="font-bold text-2xl leading-[100%] tracking-[-3%] text-[#242424]"
@@ -80,30 +105,21 @@ onMounted(async () => {
           </div>
         </div>
       </shipment-card>
-      <shipment-card 
-        :icon="DeliveryTruck" 
-        title="In transit"
-      >
+      <shipment-card :icon="DeliveryTruck" title="In transit">
         <span
           class="font-bold text-2xl leading-[100%] tracking-[-3%] text-[#242424]"
         >
           12,000
         </span>
       </shipment-card>
-      <shipment-card 
-        :icon="PackageProcess" 
-        title="Pending packages"
-      >
+      <shipment-card :icon="PackageProcess" title="Pending packages">
         <span
           class="font-bold text-2xl leading-[100%] tracking-[-3%] text-[#242424]"
         >
           800
         </span>
       </shipment-card>
-      <shipment-card 
-        :icon="DeliveryBox" 
-        title="Delivered"
-      >
+      <shipment-card :icon="DeliveryBox" title="Delivered">
         <span
           class="font-bold text-2xl leading-[100%] tracking-[-3%] text-[#242424]"
         >
@@ -111,22 +127,31 @@ onMounted(async () => {
         </span>
       </shipment-card>
     </section>
-    <section class="rounded-xl border border-[#E4E7EC] animation-slide-up mt-4 md:mt-9">
-      <section class="flex items-center justify-between border-b border-b-[#E4E7EC] px-6 py-5">
-        <div class="hubot-sans font-semibold text-base leading-7 tracking-[0%] text-[#101828]">Recent Shipments</div>
-        <z-search-input  />
+    <section
+      class="rounded-xl border border-[#E4E7EC] animation-slide-up mt-4 md:mt-9"
+    >
+      <section
+        class="flex items-center justify-between border-b border-b-[#E4E7EC] px-6 py-5"
+      >
+        <div
+          class="hubot-sans font-semibold text-base leading-7 tracking-[0%] text-[#101828]"
+        >
+          Recent Shipments
+        </div>
+        <z-search-input />
       </section>
       <section>
-        <DataTable
-          :columns="columns" 
-          :data="data"
-        />
+        <DataTable :columns="columns" :data="data" />
       </section>
-      <section class="h-[68px] flex items-center justify-center border-t border-t-[#E4E7EC] px-1 md:px-6">
+      <section
+        class="h-[68px] flex items-center justify-center border-t border-t-[#E4E7EC] px-1 md:px-6"
+      >
         <z-pagination />
       </section>
     </section>
-    <section class="h-[54px] flex justify-center items-center border-t-[0.4px] border-t-[#DAD8D9] md:hidden mt-2">
+    <section
+      class="h-[54px] flex justify-center items-center border-t-[0.4px] border-t-[#DAD8D9] md:hidden mt-2"
+    >
       <NewShipment />
     </section>
   </main>

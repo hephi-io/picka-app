@@ -1,5 +1,5 @@
 <script setup lang="js">
-import { ref } from "vue";
+import { onMounted, ref } from "vue";
 import { useRoute, useRouter } from "vue-router";
 
 import ChevronLeft from "@/assets/svgs/chevron-down-sharp.svg";
@@ -26,6 +26,7 @@ import {
   AlertDialogTitle,
   AlertDialogTrigger,
 } from '@/components/ui/alert-dialog';
+
 import Checkbox from "@/components/ui/checkbox/Checkbox.vue";
 
 /* */
@@ -34,6 +35,7 @@ const isAddNewCard = ref(false);
 const addNewCard = () => {
   isAddNewCard.value = true;
 };
+
 
 const closeAddNewCard = () => {
   isAddNewCard.value = false;
@@ -44,6 +46,16 @@ const route = useRoute();
 const router = useRouter();
 
 const checkoutType = ref(route.params.name);
+onMounted(async () => {
+  const user = await getUserProfile()
+  const response = await getWallets(user.data.data.id);
+
+  const walletData = response.data?.data?.wallet;
+
+  if (walletData) {
+    userBalance.value = walletData.balance
+  }
+})
 </script>
 
 <template>
@@ -55,6 +67,7 @@ const checkoutType = ref(route.params.name);
       Checkout
     </span>
   </header>
+
   <div class="md:flex md:justify-between mb-24 md:mb-0">
     <div class="rounded-xl border border-[#E4E7EC] bg-white shadow-sm shadow-[#1018280D] md:w-[53.31%] lg:w-[70%] p-4 md:px-6 md:pt-4 md:pb-6">
       <h2 class="font-semibold text-base leading-7 text-[#101828] mb-1">
@@ -192,6 +205,7 @@ const checkoutType = ref(route.params.name);
                 </defs>
               </svg>
             </div>
+            
             <div class="w-full flex justify-between items-center mt-4">
               <span class="font-medium text-[14.11px] leading-[18.34px] text-[#373B41]">
                 1/3
@@ -216,7 +230,6 @@ const checkoutType = ref(route.params.name);
               variant="secondary"
               @click="addNewCard"
             >
-
               <add-credit-card />
               <span class="font-medium text-[15px] leading-[18.15px] text-[#101828]">
                 Add new card
