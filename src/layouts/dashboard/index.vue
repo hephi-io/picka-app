@@ -3,7 +3,7 @@
     <app-bar />
     <div class="flex mt-7 lg:mt-4">
       <side-bar />
-      <div class="md:flex-grow lg:pl-6 w-full">
+      <div class="lg:pl-6 w-full">
         <router-view />
       </div>
     </div>
@@ -13,6 +13,7 @@
 <script setup lang="ts">
 import AppBar from "./components/appbar.vue";
 import SideBar from "./components/sidebar.vue";
+//md:flex-grow
 </script>
 
 <style scoped></style>
