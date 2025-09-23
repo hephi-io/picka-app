@@ -34,12 +34,11 @@ const handlePath = () => {
 
 <template>
   <Dialog>
-    <DialogTrigger>
-      <Button class="px-4 py-3 gap-x-2">
+    <DialogTrigger class="w-full">
+      <Button class="w-[81.54%] rounded-md gap-x-2 md:w-fit px-4 py-2.5 lg:py-3">
         <!-- <PlusSign /> -->
         <svg
-          width="16"
-          height="17"
+          class="w-[10.64px] h-[10.64px] lg:w-4 lg:h-4"
           viewBox="0 0 16 17"
           fill="none"
           xmlns="http://www.w3.org/2000/svg"
@@ -52,10 +51,9 @@ const handlePath = () => {
             stroke-linejoin="round"
           />
         </svg>
-
         <div>
           <span
-            class="outfit-medium font-medium text-[15px] leading-[18.15px] text-white"
+            class="font-medium text-[15px] leading-[100%] text-white lg:leading-[18.15px]"
           >
             New Shipments
           </span>

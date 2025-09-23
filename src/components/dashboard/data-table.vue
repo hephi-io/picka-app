@@ -133,7 +133,7 @@ const table = useVueTable({
             <TableHead
               v-for="header in headerGroup.headers"
               :key="header.id"
-              class="text-[#475467] h-[44px] "
+              class="filson-pro text-[#475467] h-[44px] "
             >
               <FlexRender
                 v-if="!header.isPlaceholder"
@@ -168,7 +168,7 @@ const table = useVueTable({
 
           <template v-else>
             <TableRow>
-              <TableCell :colspan="columns.length" class="h-24 text-center">
+              <TableCell :colspan="columns.length" class="filson-pro h-24 text-center">
                 No results.
               </TableCell>
             </TableRow>

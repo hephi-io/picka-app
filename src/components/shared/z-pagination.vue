@@ -55,7 +55,7 @@ import {
             as-child
           >
             <Button
-              class="w-10 h-10 p-0 hover:text-white"
+              class="filson-pro w-10 h-10 p-0 hover:text-white"
               :class="[
                 item.value === page
                   ? 'bg-[#F9FAFB] text-[#1D2939]'
