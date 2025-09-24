@@ -2,35 +2,25 @@
   <main>
     <header class="flex justify-between animation-slide-up lg:pt-6">
       <h1
-        class="hidden font-semibold text-2xl leading-[100%] tracking-[-3%] text-[#060E1F] lg:text-[26px] lg:leading-[26px] lg:text-[#242424] md:block"
-      >
+        class="hidden font-semibold text-2xl leading-[100%] tracking-[-3%] text-[#060E1F] lg:text-[26px] lg:leading-[26px] lg:text-[#242424] md:block">
         Wallets
       </h1>
       <h1 class="font-semibold text-lg leading-[100%] -tracking-[-3%] text-[#060E1F] md:hidden">
         Payment
       </h1>
     </header>
-    
+
     <div class="rounded-lg border border-[#E4E7EC] p-4 mt-6 md:hidden">
       <Tabs default-value="wallet">
         <TabsList class="w-full">
-          <TabsTrigger 
-            class="flex-grow"
-            value="wallet"
-          >
+          <TabsTrigger class="flex-grow" value="wallet">
             Wallet
           </TabsTrigger>
-          <TabsTrigger 
-            class="flex-grow"
-            value="card"
-          >
+          <TabsTrigger class="flex-grow" value="card">
             Card
           </TabsTrigger>
         </TabsList>
-        <TabsContent
-          class="mt-4"
-          value="wallet"
-        >
+        <TabsContent class="mt-4" value="wallet">
           <div>
             <Select>
               <SelectTrigger class="bg-[#F4F4F5] border border-[#E7E7E7]">
@@ -44,58 +34,28 @@
               </SelectContent>
             </Select>
           </div>
-          <div
-            class="w-full h-[218px] flex flex-col justify-between rounded-lg card-bg-color p-5 mt-[15px] mx-auto"
-          >
+          <div class="w-full h-[218px] flex flex-col justify-between rounded-lg card-bg-color p-5 mt-[15px] mx-auto">
             <div class="flex items-center justify-between">
-              <svg
-                width="22"
-                height="19"
-                viewBox="0 0 22 19"
-                fill="none"
-                xmlns="http://www.w3.org/2000/svg"
-              >
+              <svg width="22" height="19" viewBox="0 0 22 19" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path
                   d="M13.5 9.50008C13.5 10.8808 12.3807 12.0001 11 12.0001C9.61929 12.0001 8.5 10.8808 8.5 9.50008C8.5 8.11937 9.61929 7.00008 11 7.00008C12.3807 7.00008 13.5 8.11937 13.5 9.50008Z"
-                  stroke="white"
-                  stroke-width="1.5"
-                />
+                  stroke="white" stroke-width="1.5" />
                 <path
                   d="M18 8.64156C17.6749 8.59448 17.341 8.5586 17 8.53475M5 10.4654C4.65897 10.4415 4.32511 10.4056 4 10.3586"
-                  stroke="white"
-                  stroke-width="1.5"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                />
+                  stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
                 <path
                   d="M11 17C9.66746 17.6224 7.91707 18 6 18C4.93408 18 3.91969 17.8833 3 17.6726C1.49957 17.3289 1 16.4264 1 14.886V4.11397C1 3.12914 2.04003 2.45273 3 2.6726C3.91969 2.88325 4.93408 3 6 3C7.91707 3 9.66746 2.62236 11 2C12.3325 1.37764 14.0829 1 16 1C17.0659 1 18.0803 1.11675 19 1.3274C20.5817 1.68968 21 2.62036 21 4.11397V14.886C21 15.8709 19.96 16.5473 19 16.3274C18.0803 16.1167 17.0659 16 16 16C14.0829 16 12.3325 16.3776 11 17Z"
-                  stroke="white"
-                  stroke-width="1.5"
-                />
+                  stroke="white" stroke-width="1.5" />
               </svg>
-              <svg
-                width="62"
-                height="24"
-                viewBox="0 0 62 24"
-                fill="none"
-                xmlns="http://www.w3.org/2000/svg"
-              >
+              <svg width="62" height="24" viewBox="0 0 62 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <g clip-path="url(#clip0_1524_4496)">
-                  <rect
-                    width="62"
-                    height="24"
-                    rx="12"
-                    fill="white"
-                    fill-opacity="0.08"
-                  />
+                  <rect width="62" height="24" rx="12" fill="white" fill-opacity="0.08" />
                   <path
                     d="M9.46967 17.4697C9.17678 17.7626 9.17678 18.2374 9.46967 18.5303C9.76256 18.8232 10.2374 18.8232 10.5303 18.5303L9.46967 17.4697ZM17.3978 13.1183L16.9293 13.7039L17.3978 13.1183ZM19.5173 14.8138L19.0488 15.3995L19.5173 14.8138ZM22.2615 14.5808L21.7009 14.0825L22.2615 14.5808ZM29.5606 7.49827C29.8357 7.18869 29.8079 6.71463 29.4983 6.43944C29.1887 6.16425 28.7146 6.19214 28.4394 6.50173L29.5606 7.49827ZM20.9679 15.6225L21.0314 16.3698L21.0314 16.3698L20.9679 15.6225ZM16.0189 12.3415L16.0604 13.0904H16.0604L16.0189 12.3415ZM26 5.25C25.5858 5.25 25.25 5.58579 25.25 6C25.25 6.41421 25.5858 6.75 26 6.75V5.25ZM29.25 10C29.25 10.4142 29.5858 10.75 30 10.75C30.4142 10.75 30.75 10.4142 30.75 10H29.25ZM29.7071 6.29289L30.2374 5.76256V5.76256L29.7071 6.29289ZM10.5303 18.5303L15.2645 13.7961L14.2039 12.7355L9.46967 17.4697L10.5303 18.5303ZM16.9293 13.7039L19.0488 15.3995L19.9858 14.2282L17.8663 12.5326L16.9293 13.7039ZM22.8221 15.0791L29.5606 7.49827L28.4394 6.50173L21.7009 14.0825L22.8221 15.0791ZM19.0488 15.3995C19.3837 15.6674 19.6914 15.9155 19.9687 16.0832C20.2644 16.262 20.6129 16.4053 21.0314 16.3698L20.9045 14.8751C20.9039 14.8752 20.9038 14.8752 20.9042 14.8752C20.9045 14.8752 20.9047 14.8752 20.9045 14.8752C20.9045 14.8752 20.9002 14.8748 20.8905 14.8718C20.8689 14.8652 20.8239 14.8475 20.7448 14.7996C20.5717 14.6949 20.3529 14.5219 19.9858 14.2282L19.0488 15.3995ZM21.7009 14.0825C21.3886 14.4339 21.2022 14.6414 21.0491 14.7738C20.9792 14.8343 20.9379 14.8593 20.9177 14.8695C20.9086 14.874 20.9045 14.8752 20.9045 14.8752C20.9043 14.8752 20.9045 14.8752 20.9048 14.8751C20.9051 14.8751 20.9051 14.8751 20.9045 14.8751L21.0314 16.3698C21.4499 16.3342 21.7692 16.1343 22.0306 15.9081C22.2756 15.6961 22.5371 15.3996 22.8221 15.0791L21.7009 14.0825ZM15.2645 13.7961C15.5797 13.481 15.7665 13.2962 15.9178 13.1793C15.9868 13.126 16.027 13.1042 16.0467 13.0955C16.0556 13.0915 16.0597 13.0905 16.06 13.0904C16.0601 13.0904 16.0597 13.0904 16.0604 13.0904L15.9774 11.5927C15.5769 11.6149 15.2627 11.7899 15.0007 11.9923C14.7556 12.1817 14.4908 12.4485 14.2039 12.7355L15.2645 13.7961ZM17.8663 12.5326C17.5495 12.2791 17.2569 12.0432 16.9924 11.882C16.7096 11.7098 16.378 11.5705 15.9774 11.5927L16.0604 13.0904C16.061 13.0903 16.0607 13.0904 16.0608 13.0904C16.0611 13.0904 16.0653 13.091 16.0746 13.0939C16.0951 13.1005 16.1375 13.1177 16.2119 13.163C16.3752 13.2625 16.5813 13.4255 16.9293 13.7039L17.8663 12.5326ZM26 6.75H28V5.25H26V6.75ZM29.25 8V10H30.75V8H29.25ZM28 6.75C28.4926 6.75 28.7866 6.75159 28.9973 6.77992C29.0939 6.79291 29.1423 6.8082 29.164 6.81716C29.1691 6.81923 29.1724 6.82085 29.1743 6.82186C29.1762 6.82286 29.1771 6.82341 29.1772 6.82347C29.1772 6.82351 29.177 6.82335 29.1767 6.82307C29.1763 6.82279 29.1763 6.82277 29.1768 6.82322L30.2374 5.76256C29.9284 5.45354 29.5527 5.34109 29.1972 5.2933C28.8633 5.24841 28.4502 5.25 28 5.25V6.75ZM30.75 8C30.75 7.5498 30.7516 7.1367 30.7067 6.80279C30.6589 6.44731 30.5465 6.07159 30.2374 5.76256L29.1768 6.82322C29.1772 6.82368 29.1772 6.8237 29.1769 6.82335C29.1766 6.823 29.1765 6.82277 29.1765 6.82283C29.1766 6.82292 29.1771 6.82376 29.1781 6.82567C29.1792 6.8276 29.1808 6.83092 29.1828 6.83596C29.1918 6.85774 29.2071 6.90611 29.2201 7.00266C29.2484 7.21339 29.25 7.50739 29.25 8H30.75Z"
-                    fill="white"
-                  />
+                    fill="white" />
                   <path
                     d="M39.8778 16.1193C39.2443 16.1193 38.6818 16.0128 38.1903 15.7997C37.7017 15.5866 37.3182 15.2955 37.0398 14.9261C36.7642 14.554 36.6278 14.1321 36.6307 13.6605C36.6278 13.294 36.7074 12.9574 36.8693 12.6506C37.0313 12.3438 37.25 12.0881 37.5256 11.8835C37.804 11.6761 38.1136 11.544 38.4545 11.4872V11.4276C38.0057 11.3281 37.642 11.0994 37.3636 10.7415C37.0881 10.3807 36.9517 9.96449 36.9545 9.4929C36.9517 9.04403 37.0767 8.64347 37.3295 8.29119C37.5824 7.93892 37.929 7.66193 38.3693 7.46023C38.8097 7.25568 39.3125 7.15341 39.8778 7.15341C40.4375 7.15341 40.9361 7.25568 41.3736 7.46023C41.8139 7.66193 42.1605 7.93892 42.4134 8.29119C42.669 8.64347 42.7969 9.04403 42.7969 9.4929C42.7969 9.96449 42.6562 10.3807 42.375 10.7415C42.0966 11.0994 41.7372 11.3281 41.2969 11.4276V11.4872C41.6378 11.544 41.9446 11.6761 42.2173 11.8835C42.4929 12.0881 42.7116 12.3438 42.8736 12.6506C43.0384 12.9574 43.1207 13.294 43.1207 13.6605C43.1207 14.1321 42.9815 14.554 42.7031 14.9261C42.4247 15.2955 42.0412 15.5866 41.5526 15.7997C41.0668 16.0128 40.5085 16.1193 39.8778 16.1193ZM39.8778 14.9006C40.2045 14.9006 40.4886 14.8452 40.7301 14.7344C40.9716 14.6207 41.1591 14.4616 41.2926 14.2571C41.4261 14.0526 41.4943 13.8168 41.4972 13.5497C41.4943 13.2713 41.4219 13.0256 41.2798 12.8125C41.1406 12.5966 40.9489 12.4276 40.7045 12.3054C40.4631 12.1832 40.1875 12.1222 39.8778 12.1222C39.5653 12.1222 39.2869 12.1832 39.0426 12.3054C38.7983 12.4276 38.6051 12.5966 38.4631 12.8125C38.3239 13.0256 38.2557 13.2713 38.2585 13.5497C38.2557 13.8168 38.321 14.0526 38.4545 14.2571C38.5881 14.4588 38.7756 14.6165 39.017 14.7301C39.2614 14.8437 39.5483 14.9006 39.8778 14.9006ZM39.8778 10.9247C40.1449 10.9247 40.3807 10.8707 40.5852 10.7628C40.7926 10.6548 40.956 10.5043 41.0753 10.3111C41.1946 10.1179 41.2557 9.89489 41.2585 9.64205C41.2557 9.39205 41.196 9.1733 41.0795 8.9858C40.9631 8.79545 40.8011 8.64915 40.5938 8.54688C40.3864 8.44176 40.1477 8.3892 39.8778 8.3892C39.6023 8.3892 39.3594 8.44176 39.1491 8.54688C38.9418 8.64915 38.7798 8.79545 38.6634 8.9858C38.5497 9.1733 38.4943 9.39205 38.4972 9.64205C38.4943 9.89489 38.5511 10.1179 38.6676 10.3111C38.7869 10.5014 38.9503 10.652 39.1577 10.7628C39.3679 10.8707 39.608 10.9247 39.8778 10.9247ZM49.1879 14.3636V13.9034C49.1879 13.5653 49.2589 13.2543 49.4009 12.9702C49.5458 12.6861 49.756 12.4574 50.0316 12.2841C50.3072 12.1108 50.641 12.0241 51.033 12.0241C51.4364 12.0241 51.7745 12.1108 52.0472 12.2841C52.32 12.4545 52.5259 12.6818 52.6651 12.9659C52.8072 13.25 52.8782 13.5625 52.8782 13.9034V14.3636C52.8782 14.7017 52.8072 15.0128 52.6651 15.2969C52.5231 15.581 52.3143 15.8097 52.0387 15.983C51.766 16.1563 51.4308 16.2429 51.033 16.2429C50.6353 16.2429 50.2987 16.1563 50.0231 15.983C49.7475 15.8097 49.5387 15.581 49.3967 15.2969C49.2575 15.0128 49.1879 14.7017 49.1879 14.3636ZM50.3001 13.9034V14.3636C50.3001 14.5881 50.354 14.794 50.462 14.9815C50.57 15.169 50.7603 15.2628 51.033 15.2628C51.3086 15.2628 51.4975 15.1705 51.5998 14.9858C51.7049 14.7983 51.7575 14.5909 51.7575 14.3636V13.9034C51.7575 13.6761 51.7077 13.4688 51.6083 13.2812C51.5089 13.0909 51.3171 12.9957 51.033 12.9957C50.766 12.9957 50.5771 13.0909 50.4663 13.2812C50.3555 13.4688 50.3001 13.6761 50.3001 13.9034ZM44.7518 9.36932V8.90909C44.7518 8.56818 44.8242 8.25568 44.9691 7.97159C45.114 7.6875 45.3242 7.46023 45.5998 7.28977C45.8754 7.11648 46.2092 7.02983 46.6012 7.02983C47.0018 7.02983 47.3384 7.11648 47.6112 7.28977C47.8867 7.46023 48.0941 7.6875 48.2333 7.97159C48.3725 8.25568 48.4421 8.56818 48.4421 8.90909V9.36932C48.4421 9.71023 48.3711 10.0227 48.229 10.3068C48.0898 10.5881 47.8825 10.8139 47.6069 10.9844C47.3313 11.1548 46.9961 11.2401 46.6012 11.2401C46.2006 11.2401 45.8626 11.1548 45.587 10.9844C45.3143 10.8139 45.1069 10.5866 44.9648 10.3026C44.8228 10.0185 44.7518 9.70739 44.7518 9.36932ZM45.8725 8.90909V9.36932C45.8725 9.59659 45.9251 9.80398 46.0302 9.99148C46.1381 10.1761 46.3285 10.2685 46.6012 10.2685C46.8739 10.2685 47.0614 10.1761 47.1637 9.99148C47.2688 9.80398 47.3214 9.59659 47.3214 9.36932V8.90909C47.3214 8.68182 47.2717 8.47443 47.1722 8.28693C47.0728 8.09659 46.8825 8.00142 46.6012 8.00142C46.3313 8.00142 46.1424 8.09659 46.0344 8.28693C45.9265 8.47727 45.8725 8.68466 45.8725 8.90909ZM45.2376 16L51.2376 7.27273H52.3029L46.3029 16H45.2376Z"
-                    fill="white"
-                  />
+                    fill="white" />
                 </g>
                 <defs>
                   <clipPath id="clip0_1524_4496">
@@ -106,90 +66,39 @@
             </div>
             <div class="flex justify-between">
               <div>
-                <small class="filson-pro text-white text-opacity-80 text-xs font-medium"
-                  >Available balance</small
-                >
+                <small class="filson-pro text-white text-opacity-80 text-xs font-medium">Available balance</small>
                 <div class="hubot-sans font-bold text-white text-2xl">
                   40,000 <span class="text-xs font-medium">NGN</span>
                 </div>
               </div>
-              <svg
-                width="24"
-                height="24"
-                viewBox="0 0 24 24"
-                fill="none"
-                class="self-end"
-              >
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" class="self-end">
                 <path
                   d="M21.544 11.045C21.848 11.4713 22 11.6845 22 12C22 12.3155 21.848 12.5287 21.544 12.955C20.1779 14.8706 16.6892 19 12 19C7.31078 19 3.8221 14.8706 2.45604 12.955C2.15201 12.5287 2 12.3155 2 12C2 11.6845 2.15201 11.4713 2.45604 11.045C3.8221 9.12944 7.31078 5 12 5C16.6892 5 20.1779 9.12944 21.544 11.045Z"
-                  stroke="white"
-                  stroke-opacity="0.8"
-                  stroke-width="1.5"
-                />
+                  stroke="white" stroke-opacity="0.8" stroke-width="1.5" />
                 <path
                   d="M15 12C15 10.3431 13.6569 9 12 9C10.3431 9 9 10.3431 9 12C9 13.6569 10.3431 15 12 15C13.6569 15 15 13.6569 15 12Z"
-                  stroke="white"
-                  stroke-opacity="0.8"
-                  stroke-width="1.5"
-                />
+                  stroke="white" stroke-opacity="0.8" stroke-width="1.5" />
               </svg>
             </div>
           </div>
           <section class="flex gap-x-2 md:gap-x-3.5 mt-4 md:mt-7">
-            <Button
-              class="w-1/2 bg-[#F9F9F9] text-[##101828] border border-[#D8D8D8]"
-            >
-              <svg
-                width="16"
-                height="17"
-                viewBox="0 0 16 17"
-                fill="none"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <path
-                  d="M8.00033 2.8698V13.5365M13.3337 8.20313H2.66699"
-                  stroke="#101828"
-                  stroke-width="1.5"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                />
+            <Button class="w-1/2 bg-[#F9F9F9] text-[##101828] border border-[#D8D8D8]">
+              <svg width="16" height="17" viewBox="0 0 16 17" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M8.00033 2.8698V13.5365M13.3337 8.20313H2.66699" stroke="#101828" stroke-width="1.5"
+                  stroke-linecap="round" stroke-linejoin="round" />
               </svg>
               <span class="ml-1.5">Top up</span>
             </Button>
-            <Button
-              class="w-1/2 bg-[#F9F9F9] text-[##101828] border border-[#D8D8D8]"
-            >
-              <svg
-                width="16"
-                height="17"
-                viewBox="0 0 16 17"
-                fill="none"
-                xmlns="http://www.w3.org/2000/svg"
-              >
+            <Button class="w-1/2 bg-[#F9F9F9] text-[##101828] border border-[#D8D8D8]">
+              <svg width="16" height="17" viewBox="0 0 16 17" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <g clip-path="url(#clip0_1629_2405)">
-                  <path
-                    d="M10.6663 8.20312H5.33301"
-                    stroke="#101828"
-                    stroke-width="1.5"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                  />
-                  <circle
-                    cx="7.99967"
-                    cy="8.20312"
-                    r="6.66667"
-                    stroke="#101828"
-                    stroke-width="1.5"
-                  />
+                  <path d="M10.6663 8.20312H5.33301" stroke="#101828" stroke-width="1.5" stroke-linecap="round"
+                    stroke-linejoin="round" />
+                  <circle cx="7.99967" cy="8.20312" r="6.66667" stroke="#101828" stroke-width="1.5" />
                 </g>
                 <defs>
                   <clipPath id="clip0_1629_2405">
-                    <rect
-                      width="16"
-                      height="16"
-                      fill="white"
-                      transform="translate(0 0.203125)"
-                    />
+                    <rect width="16" height="16" fill="white" transform="translate(0 0.203125)" />
                   </clipPath>
                 </defs>
               </svg>
@@ -197,10 +106,7 @@
             </Button>
           </section>
         </TabsContent>
-        <TabsContent
-          class="mt-4" 
-          value="card"
-        >
+        <TabsContent class="mt-4" value="card">
           <div>
             <Select>
               <SelectTrigger class="bg-[#F4F4F5] border border-[#E7E7E7]">
@@ -218,35 +124,14 @@
             <card />
           </div>
           <section class="mt-4 md:mt-7">
-            <Button
-              class="w-full bg-[#F9F9F9] text-[##101828] border border-[#D8D8D8]"
-            >
-              <svg
-                width="16"
-                height="17"
-                viewBox="0 0 16 17"
-                fill="none"
-                xmlns="http://www.w3.org/2000/svg"
-              >
+            <Button class="w-full bg-[#F9F9F9] text-[##101828] border border-[#D8D8D8]">
+              <svg width="16" height="17" viewBox="0 0 16 17" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path
                   d="M8.33301 13.5365H6.99967C4.49396 13.5365 3.2411 13.5365 2.40465 12.8759C2.27086 12.7702 2.14713 12.6538 2.03487 12.5279C1.33301 11.7406 1.33301 10.5615 1.33301 8.20313C1.33301 5.84481 1.33301 4.66565 2.03487 3.8784C2.14713 3.75248 2.27086 3.63603 2.40465 3.53038C3.2411 2.8698 4.49396 2.8698 6.99967 2.8698H8.99967C11.5054 2.8698 12.7583 2.8698 13.5947 3.53038C13.7285 3.63603 13.8522 3.75248 13.9645 3.8784C14.5592 4.54552 14.65 5.49408 14.6638 7.20313"
-                  stroke="#101828"
-                  stroke-width="1.5"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                />
-                <path
-                  d="M12.3333 13.5365L12.3333 8.8698M10 11.2031H14.6667"
-                  stroke="#101828"
-                  stroke-width="1.5"
-                  stroke-linecap="round"
-                />
-                <path
-                  d="M1.33301 6.20312H14.6663"
-                  stroke="#101828"
-                  stroke-width="1.5"
-                  stroke-linejoin="round"
-                />
+                  stroke="#101828" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+                <path d="M12.3333 13.5365L12.3333 8.8698M10 11.2031H14.6667" stroke="#101828" stroke-width="1.5"
+                  stroke-linecap="round" />
+                <path d="M1.33301 6.20312H14.6663" stroke="#101828" stroke-width="1.5" stroke-linejoin="round" />
               </svg>
               <span class="ml-1.5">Add new card</span>
             </Button>
@@ -255,12 +140,8 @@
       </Tabs>
     </div>
     <section class="hidden gap-x-6 animation-slide-up md:flex mt-6 md:mt-12 lg:mt-10">
-      <div
-        class="w-[359px] border border-[#e4e7ec] rounded-lg h-[437px] px-6 py-5"
-      >
-        <div
-          class="hubot-sans text-base border-b border-[#E4E7EC] pb-2.5 mb-4 font-semibold"
-        >
+      <div class="w-[359px] border border-[#e4e7ec] rounded-lg h-[437px] px-6 py-5">
+        <div class="hubot-sans text-base border-b border-[#E4E7EC] pb-2.5 mb-4 font-semibold">
           Your Wallet
         </div>
         <div class="mb-4">
@@ -276,10 +157,8 @@
             </SelectContent>
           </Select>
         </div>
-        
-        <div
-          class="card-bg-color w-full h-[218px] mx-auto rounded-lg p-5 flex flex-col justify-between"
-        >
+
+        <div class="card-bg-color w-full h-[218px] mx-auto rounded-lg p-5 flex flex-col justify-between">
           <div class="flex items-center justify-between">
             <svg width="22" height="19" viewBox="0 0 22 19" fill="none" xmlns="http://www.w3.org/2000/svg">
               <path
@@ -293,13 +172,7 @@
                 stroke="white" stroke-width="1.5" />
             </svg>
 
-            <svg
-              width="62"
-              height="24"
-              viewBox="0 0 62 24"
-              fill="none"
-              xmlns="http://www.w3.org/2000/svg"
-            >
+            <svg width="62" height="24" viewBox="0 0 62 24" fill="none" xmlns="http://www.w3.org/2000/svg">
               <g clip-path="url(#clip0_1524_4496)">
                 <rect width="62" height="24" rx="12" fill="white" fill-opacity="0.08" />
                 <path
@@ -319,20 +192,12 @@
           <div class="flex justify-between">
             <div>
 
-              <small class="filson-pro text-white text-opacity-80 text-xs font-medium"
-                >Available balance</small
-              >
+              <small class="filson-pro text-white text-opacity-80 text-xs font-medium">Available balance</small>
               <div class="hubot-sans font-bold text-white text-2xl">
                 {{ userBalance }} <span class="text-xs font-medium">NGN</span>
               </div>
             </div>
-            <svg
-              width="24"
-              height="24"
-              viewBox="0 0 24 24"
-              fill="none"
-              class="self-end"
-            >
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" class="self-end">
               <path
                 d="M21.544 11.045C21.848 11.4713 22 11.6845 22 12C22 12.3155 21.848 12.5287 21.544 12.955C20.1779 14.8706 16.6892 19 12 19C7.31078 19 3.8221 14.8706 2.45604 12.955C2.15201 12.5287 2 12.3155 2 12C2 11.6845 2.15201 11.4713 2.45604 11.045C3.8221 9.12944 7.31078 5 12 5C16.6892 5 20.1779 9.12944 21.544 11.045Z"
                 stroke="white" stroke-opacity="0.8" stroke-width="1.5" />
@@ -350,17 +215,9 @@
             </svg>
             <span class="ml-1.5">Top up</span>
           </Button>
-          
-          <Button
-            class="w-1/2 bg-[#F9F9F9] text-[##101828] border border-[#D8D8D8]"
-          >
-            <svg
-              width="16"
-              height="17"
-              viewBox="0 0 16 17"
-              fill="none"
-              xmlns="http://www.w3.org/2000/svg"
-            >
+
+          <Button class="w-1/2 bg-[#F9F9F9] text-[##101828] border border-[#D8D8D8]">
+            <svg width="16" height="17" viewBox="0 0 16 17" fill="none" xmlns="http://www.w3.org/2000/svg">
               <g clip-path="url(#clip0_1629_2405)">
                 <path d="M10.6663 8.20312H5.33301" stroke="#101828" stroke-width="1.5" stroke-linecap="round"
                   stroke-linejoin="round" />
@@ -377,12 +234,8 @@
         </section>
       </div>
 
-      <div
-        class="w-[359px] border border-[#e4e7ec] rounded-lg h-[437px] px-6 py-5"
-      >
-        <div
-          class="hubot-sans text-base border-b border-[#E4E7EC] pb-2.5 mb-4 font-semibold"
-        >
+      <div class="w-[359px] border border-[#e4e7ec] rounded-lg h-[437px] px-6 py-5">
+        <div class="hubot-sans text-base border-b border-[#E4E7EC] pb-2.5 mb-4 font-semibold">
           Your Cards
         </div>
         <div class="mb-4">
@@ -538,8 +391,8 @@
             </defs>
           </svg>
         </div>
-        <section class="mt-7 ">
-          <Button class="w-full bg-[#F9F9F9] text-[##101828] border border-[#D8D8D8]">
+        <section class="mt-7 " >
+          <Button @click="handleAddCard" class="w-full bg-[#F9F9F9] text-[##101828] border border-[#D8D8D8]">
             <svg width="16" height="17" viewBox="0 0 16 17" fill="none" xmlns="http://www.w3.org/2000/svg">
               <path
                 d="M8.33301 13.5365H6.99967C4.49396 13.5365 3.2411 13.5365 2.40465 12.8759C2.27086 12.7702 2.14713 12.6538 2.03487 12.5279C1.33301 11.7406 1.33301 10.5615 1.33301 8.20313C1.33301 5.84481 1.33301 4.66565 2.03487 3.8784C2.14713 3.75248 2.27086 3.63603 2.40465 3.53038C3.2411 2.8698 4.49396 2.8698 6.99967 2.8698H8.99967C11.5054 2.8698 12.7583 2.8698 13.5947 3.53038C13.7285 3.63603 13.8522 3.75248 13.9645 3.8784C14.5592 4.54552 14.65 5.49408 14.6638 7.20313"
@@ -561,12 +414,7 @@
           <div class="w-full md:inline-block">
             <Tabs default-value="all" class="md:w-[400px]">
               <TabsList class="flex items-center justify-between">
-                <TabsTrigger
-                  :value="tab.id"
-                  class="w-[121px]"
-                  v-for="tab in tabs"
-                  :key="tab.id"
-                >
+                <TabsTrigger :value="tab.id" class="w-[121px]" v-for="tab in tabs" :key="tab.id">
                   {{ tab.name }}
                 </TabsTrigger>
               </TabsList>
@@ -591,13 +439,7 @@
             </div>
 
             <Button class="rounded border border-[#E4E4E4EE] bg-white text-[#404D61] px-4">
-              <svg
-                width="16"
-                height="16"
-                viewBox="0 0 16 16"
-                fill="none"
-                class="mr-1.5"
-              >
+              <svg width="16" height="16" viewBox="0 0 16 16" fill="none" class="mr-1.5">
                 <path
                   d="M4.625 6.66669C4.16438 6.67009 3.8872 6.68421 3.66643 6.74267C2.66162 7.00873 1.97369 7.90929 2.00077 8.92316C2.00862 9.21682 2.12041 9.57978 2.344 10.3057C2.88209 12.0527 3.78642 13.5693 5.8123 13.9331C6.18469 14 6.60374 14 7.44183 14L8.55817 14C9.39626 14 9.81531 14 10.1877 13.9331C12.2136 13.5693 13.1179 12.0527 13.656 10.3057C13.8796 9.57978 13.9914 9.21682 13.9992 8.92316C14.0263 7.90929 13.3384 7.00873 12.3336 6.74267C12.1128 6.68421 11.8356 6.6701 11.375 6.66669"
                   stroke="#404D61" stroke-width="1.5" stroke-linecap="round" />
@@ -623,6 +465,11 @@
 <script setup lang="ts">
 import { h, onMounted, ref } from "vue";
 import { animate, stagger } from "motion";
+
+import { addCard, initializeTransaction } from "@/services/payments";
+import Paystack from "@paystack/inline-js";
+import { AxiosError } from "axios";
+import { useToast } from "@/components/ui/toast";
 
 import { Button } from "@/components/ui/button";
 import DataTable from "@/components/dashboard/data-table.vue";
@@ -655,6 +502,10 @@ const tabs = [
   { name: "Card", id: "card" },
   { name: "Wallet", id: "wallet" },
 ];
+
+
+const popup = new Paystack();
+const { toast } = useToast();
 
 type Transaction = {
   invoiceId: string;
@@ -739,6 +590,44 @@ const columns: ColumnDef<Shipping>[] = [
   },
 ];
 
+
+
+
+const resumePaystackTransaction = (access_code: string) => {
+  return new Promise<void>((resolve, reject) => {
+    popup.resumeTransaction(access_code, {
+      onSuccess: () => resolve(),
+      onCancel: () => reject(new Error("Transaction cancelled")),
+      onError: (err: any) => reject(err),
+    });
+  });
+};
+
+
+const handleAddCard = async () => {
+
+  try {
+    const { data: response } = await initializeTransaction(email, userId.value);
+
+    const { access_code, reference } = response.data;
+
+    await resumePaystackTransaction(access_code);
+
+    await addCard(reference, userId.value);
+  } catch (error) {
+    if (error instanceof AxiosError) {
+      toast({
+        title: "Uh oh! Something went wrong.",
+        description: error.response?.data.error,
+        variant: "destructive",
+      });
+    }
+  }
+}
+
+const userId = ref<string>("")
+const email = "test@example.com"
+
 onMounted(async () => {
   animate(
     ".animation-slide-up",
@@ -754,6 +643,11 @@ onMounted(async () => {
     userBalance.value = walletData.balance
   }
 
+  if (!user) {
+    userId.value = "";
+  } else {
+    userId.value = user.data.data.id;
+  }
 
 });
 </script>

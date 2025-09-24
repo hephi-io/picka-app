@@ -37,8 +37,19 @@ const popup = new Paystack();
 
 const data = ref<Shipping[]>([]);
 const userBalance = ref("")
-
+const userId = ref<string>("")
+const email = "test@example.com"
 onMounted(async () => {
+
+  const { data: userResponse } = await getUserProfile();
+
+  if (!userResponse) {
+    userId.value = "";
+  } else {
+    userId.value = userResponse.data.id;
+  }
+
+
   const { data: orgResponse } = await getRootUserOrg();
 
   const { data: shipmentOrgsResponse } = await getShipmentOrgs(
@@ -114,8 +125,8 @@ onMounted(async () => {
     { y: [20, 0], opacity: [0, 1] },
     { duration: 0.5, delay: stagger(0.1) }
   );
- const user = await getUserProfile()
-     const response = await getWallets(user.data.data.id);
+  const user = await getUserProfile()
+  const response = await getWallets(user.data.data.id);
 
   const walletData = response.data?.data?.wallet;
 
@@ -136,13 +147,14 @@ const resumePaystackTransaction = (access_code: string) => {
 
 const handleAddCard = async () => {
   try {
-    const { data: response } = await initializeTransaction();
+    const { data: response } = await initializeTransaction(email, userId.value,);
 
     const { access_code, reference } = response.data;
 
     await resumePaystackTransaction(access_code);
 
-    await addCard(reference);
+    await addCard(reference, userId.value);
+
   } catch (error) {
     if (error instanceof AxiosError) {
       toast({
@@ -157,24 +169,18 @@ const handleAddCard = async () => {
 
 <template>
   <main>
-    <header
-      class="flex justify-between items-center animation-slide-up mb-6 md:mb-9 lg:mb-10"
-    >
+    <header class="flex justify-between items-center animation-slide-up mb-6 md:mb-9 lg:mb-10">
       <div class="flex gap-x-2 items-center">
-        <div
-          class="w-[37.87px] h-[37.87px] rounded-full border-2 border-[#34A9FF] overflow-hidden md:hidden"
-        >
+        <div class="w-[37.87px] h-[37.87px] rounded-full border-2 border-[#34A9FF] overflow-hidden md:hidden">
           <Meme />
         </div>
         <div>
           <div
-            class="filson-pro text-[13px] leading-[130%] tracking-[-3%] text-[#676767] md:font-medium md:text-sm md:leading-[100%] lg:leading-[14px] mb-1 md:mb-2 lg:mb-2.5"
-          >
+            class="filson-pro text-[13px] leading-[130%] tracking-[-3%] text-[#676767] md:font-medium md:text-sm md:leading-[100%] lg:leading-[14px] mb-1 md:mb-2 lg:mb-2.5">
             Hello {{ authStore.user?.first_name }},
           </div>
           <h1
-            class="font-semibold text-base leading-[130%] tracking-[-3%] text-[#676767] md:text-[26px] md:leading-[100%] md:text-[#242424] lg:leading-[26px]"
-          >
+            class="font-semibold text-base leading-[130%] tracking-[-3%] text-[#676767] md:text-[26px] md:leading-[100%] md:text-[#242424] lg:leading-[26px]">
             Good Morning
           </h1>
         </div>
@@ -182,43 +188,31 @@ const handleAddCard = async () => {
       <div class="hidden md:block">
         <NewShipment />
       </div>
-      <div
-        class="w-10 h-10 flex justify-center items-center rounded-lg bg-[#F8F8F8] hover:cursor-pointer md:hidden"
-      >
+      <div class="w-10 h-10 flex justify-center items-center rounded-lg bg-[#F8F8F8] hover:cursor-pointer md:hidden">
         <NotificationsIcon />
       </div>
     </header>
     <section class="w-full lg:w-[420px] animation-slide-up">
       <section
-        class="h-[148px] md:h-[218px] rounded-lg border border-[#E5E5E5] bg-gradient-to-br from-[#43352A] to-[#3B5EB9] py-[22px]"
-      >
-        <div
-          class="w-[88.83%] h-full flex flex-col justify-between md:w-[94.91%] lg:w-[90.48%] mx-auto"
-        >
+        class="h-[148px] md:h-[218px] rounded-lg border border-[#E5E5E5] bg-gradient-to-br from-[#43352A] to-[#3B5EB9] py-[22px]">
+        <div class="w-[88.83%] h-full flex flex-col justify-between md:w-[94.91%] lg:w-[90.48%] mx-auto">
           <section class="flex items-center justify-between">
             <Money class="text-white" />
-            <div
-              class="w-[62px] h-6 flex justify-center items-center rounded-full bg-[#FFFFFF14]"
-            >
+            <div class="w-[62px] h-6 flex justify-center items-center rounded-full bg-[#FFFFFF14]">
               <WalletTrend class="text-white" />
             </div>
           </section>
           <div class="flex justify-between items-end">
             <div>
               <div
-                class="filson-pro font-medium text-xs leading-[100%] -tracking-[3%] text-[#FFFFFFCC] md:font-normal mb-2 lg:mb-0.5"
-              >
+                class="filson-pro font-medium text-xs leading-[100%] -tracking-[3%] text-[#FFFFFFCC] md:font-normal mb-2 lg:mb-0.5">
                 Available balance
               </div>
               <div class="flex gap-x-2 items-end">
-                <div
-                  class="hubot-sans font-bold text-2xl leading-[100%] -tracking-[3%] text-white"
-                >
+                <div class="hubot-sans font-bold text-2xl leading-[100%] -tracking-[3%] text-white">
                   {{ userBalance }}
                 </div>
-                <span
-                  class="font-medium text-xs leading-[100%] -tracking-[3%] text-white"
-                >
+                <span class="font-medium text-xs leading-[100%] -tracking-[3%] text-white">
                   NGN
                 </span>
               </div>
@@ -231,8 +225,7 @@ const handleAddCard = async () => {
       </section>
       <section class="h-[42px] flex gap-x-2 md:gap-x-4 lg:gap-x-2 mt-4">
         <Button
-          class="flex-grow rounded-md border border-[#D8D8D8] bg-[#F9F9F9] text-[#101828] hover:border-black hover:bg-black hover:text-white"
-        >
+          class="flex-grow rounded-md border border-[#D8D8D8] bg-[#F9F9F9] text-[#101828] hover:border-black hover:bg-black hover:text-white">
           <Plus />
 
           <span class="ml-1.5">Top up</span>
@@ -247,24 +240,17 @@ const handleAddCard = async () => {
         </Button> -->
 
         <Button
-          class="flex-grow rounded-md border border-[#D8D8D8] bg-[#F9F9F9] text-[#101828] hover:border-black hover:bg-black hover:text-white"
-        >
+        @click="handleAddCard"
+          class="flex-grow rounded-md border border-[#D8D8D8] bg-[#F9F9F9] text-[#101828] hover:border-black hover:bg-black hover:text-white">
           <AddCard />
-          <span
-            class="font-medium text-[15px] leading-[100%] tracking-[0%] ml-2 lg:ml-1.5"
-            >Add new card</span
-          >
+          <span class="font-medium text-[15px] leading-[100%] tracking-[0%] ml-2 lg:ml-1.5">Add new card</span>
         </Button>
       </section>
     </section>
-    <section
-      class="rounded-xl border border-[#E4E7EC] animation-slide-up mt-4 md:mt-9"
-    >
+    <section class="rounded-xl border border-[#E4E7EC] animation-slide-up mt-4 md:mt-9">
       <section class="py-5">
         <div class="w-[93.89%] flex justify-between items-center mx-auto">
-          <div
-            class="hubot-sans font-semibold text-sm leading-7 tracking-[0%] text-[#101828] md:text-base"
-          >
+          <div class="hubot-sans font-semibold text-sm leading-7 tracking-[0%] text-[#101828] md:text-base">
             Recent Shipments
           </div>
           <z-search-input />
@@ -273,15 +259,11 @@ const handleAddCard = async () => {
       <section>
         <DataTable :columns="columns" :data="data" />
       </section>
-      <section
-        class="hidden h-[68px] md:flex justify-center items-center border-t px-6"
-      >
+      <section class="hidden h-[68px] md:flex justify-center items-center border-t px-6">
         <z-pagination />
       </section>
     </section>
-    <section
-      class="h-[54px] flex justify-center items-center border-t-[0.4px] border-t-[#DAD8D9] md:hidden mt-2"
-    >
+    <section class="h-[54px] flex justify-center items-center border-t-[0.4px] border-t-[#DAD8D9] md:hidden mt-2">
       <NewShipment />
     </section>
   </main>
