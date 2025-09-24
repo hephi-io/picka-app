@@ -15,15 +15,26 @@ type IInitializeTransactionResponse = {
   reference: string;
 };
 
-export const initializeTransaction = (email = "test@example.com") => {
+export const initializeTransaction = (email: string, userId: string) => {
   return API.post<{ data: IInitializeTransactionResponse }>(
     endpoints.initialize_transaction,
+    { email },
     {
-      email,
+      headers: {
+        "x-user-id": userId,
+      },
     }
   );
 };
 
-export const addCard = (paymentReference: string) => {
-  return API.post(endpoints.add_card, { paymentReference });
+export const addCard = (paymentReference: string, userId: string) => {
+  return API.post(
+    endpoints.add_card,
+    { paymentReference },
+    {
+      headers: {
+        "x-user-id": userId,
+      },
+    }
+  );
 };
