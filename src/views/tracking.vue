@@ -127,7 +127,7 @@ const notSelectedHorizontalTabStyle =
 const selectHorizotalTab = (value) => {
   selectedHorizontalTab.value = value;
 };
-
+  const shipments = ref([])
 const initializeShipments = async () => {
   const { data: rootShipmentsResponse } = await getRootShipments();
   shipments.value = rootShipmentsResponse.data || [];
