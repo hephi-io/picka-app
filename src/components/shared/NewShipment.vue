@@ -24,7 +24,7 @@ const radioGroupValue = ref("single");
 
 const handlePath = () => {
   if (radioGroupValue.value === "single") {
-    router.push({ name: "single-shipment" });
+    router.push({ name: "create-shipment" });
   } else {
     router.push({ name: "bulk-shipment" });
   }

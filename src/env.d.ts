@@ -6,3 +6,9 @@ declare module "*.vue" {
   const component: DefineComponent<{}, {}, any>;
   export default component;
 }
+// Extend Vue component props to accept all HTML attributes
+// declare module "@vue/runtime-dom" {
+//   interface ComponentCustomProps {
+//     [key: string]: any;
+//   }
+// }
