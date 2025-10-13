@@ -22,7 +22,7 @@
       name="email or password"
       class="block w-full h-12 rounded-lg border border-[#0F0F0F66] input-shadow text-sm leading-[100%] tracking-[0%] px-4 py-2 mt-2"
     />
-    <Button 
+    <Button
       class="w-full h-[42px] rounded-md bg-[#1E1E1E] mt-[60px]"
       @click="$router.push('/forgot-password/verification')"
     >
@@ -34,7 +34,7 @@
 </template>
 
 <script setup lang="ts">
-import Button from "@/components/ui/button/Button.vue";
+import { Button } from "@/components/ui/button";
 </script>
 
 <style scoped>

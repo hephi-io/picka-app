@@ -28,6 +28,8 @@ import {
 } from '@/components/ui/alert-dialog';
 
 import Checkbox from "@/components/ui/checkbox/Checkbox.vue";
+import { getUserProfile } from "@/services";
+import { getWallets } from "@/services/wallets";
 
 /* */
 const isAddNewCard = ref(false);
@@ -121,25 +123,6 @@ onMounted(async () => {
               <View />
             </section>
           </div>
-          <div class="flex justify-between items-center mt-[16.12px]">
-            <span class="font-medium text-[14.11px] leading-[18.34px] text-[#373B41]">
-              1/3
-            </span>
-            <div class="w-[56.43px] h-[28.21px] flex">
-              <button 
-                class="rounded-[6.05px] rounded-e-none border-[1.01px] border-[#D9D9D9] p-[6px] transition-all duration-150 ease-in hover:bg-[#D9D9D9]"
-                variant="outline"
-              >
-                <ChevronLeft />
-              </button>
-              <button
-                class="rounded-[6.05px] rounded-s-none border-[1.01px] border-s-0 border-[#D9D9D9] p-[6px] transition-all duration-150 hover:bg-[#D9D9D9]"
-                variant="outline"
-              >
-                <ChevronLeft class="rotate-180" />
-              </button>
-            </div>
-          </div>
         </TabsContent>
         <TabsContent
           class="mt-4 md:mt-10" 
@@ -205,7 +188,7 @@ onMounted(async () => {
                 </defs>
               </svg>
             </div>
-            
+<!--             
             <div class="w-full flex justify-between items-center mt-4">
               <span class="font-medium text-[14.11px] leading-[18.34px] text-[#373B41]">
                 1/3
@@ -224,7 +207,7 @@ onMounted(async () => {
                   <ChevronLeft class="rotate-180" />
                 </button>
               </div>
-            </div>
+            </div> -->
             <Button 
               class="w-full rounded-md border border-[#D8D8D8] px-4 py-3 gap-x-2 bg-[#F9F9F9] mt-[16.12px]"
               variant="secondary"

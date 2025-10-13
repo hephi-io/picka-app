@@ -13,7 +13,6 @@
 <script setup lang="ts">
 import AppBar from "./components/appbar.vue";
 import SideBar from "./components/sidebar.vue";
-//md:flex-grow
 </script>
 
 <style scoped></style>

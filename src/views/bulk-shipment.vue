@@ -129,10 +129,12 @@ const recipientInfos = [
               Pickup Address <span class="text-red-600">*</span>
             </Label>
             <Input
-              id="pickup-address"
               class="rounded-md border border-[#E4E7EC] px-4 py-3 outline-none font-normal text-sm leading-[18.2px] text-[#999999]"
-              type="text"
-              placeholder="e.g. 17, Ogunyemi strt, Magodo."
+              v-bind="{
+                type: 'text',
+                placeholder: 'e.g. 17, Ogunyemi strt, Magodo.',
+                id: 'pickup-address',
+              }"
             />
           </section>
           <section class="w-full md:w-[32.54%]">
@@ -143,10 +145,12 @@ const recipientInfos = [
               Booking Notes <span class="text-red-600">*</span>
             </Label>
             <Input
-              id="booking-notes"
               class="rounded-md border border-[#E4E7EC] px-4 py-3 outline-none font-normal text-sm leading-[18.2px] text-[#999999] my-2"
-              type="text"
-              placeholder="e.g. Kindly pickup from the gateman"
+              v-bind="{
+                type: 'text',
+                placeholder: 'e.g. Kindly pickup from the gateman',
+                id: 'booking-notes',
+              }"
             />
           </section>
           <section class="w-full md:w-[32.54%]">
@@ -384,8 +388,7 @@ const recipientInfos = [
                 </Label>
                 <Input
                   class="rounded-md border border-[#E4E7EC] px-4 py-3 outline-none font-normal text-sm leading-[18.2px] text-[#999999]"
-                  type="text"
-                  placeholder="2"
+                  v-bind="{ type: 'text', placeholder: '2' }"
                 />
               </section>
             </section>
@@ -481,8 +484,7 @@ const recipientInfos = [
                 </Label>
                 <Input
                   class="rounded-md border border-[#E4E7EC] px-4 py-3 outline-none font-normal text-sm leading-[18.2px] text-[#999999]"
-                  type="text"
-                  placeholder="38"
+                  v-bind="{ type: 'text', placeholder: '38' }"
                 />
               </section>
               <section>
@@ -491,8 +493,7 @@ const recipientInfos = [
                 </Label>
                 <Input
                   class="rounded-md border border-[#E4E7EC] px-4 py-3 outline-none font-normal text-sm leading-[18.2px] text-[#999999]"
-                  type="text"
-                  placeholder="33"
+                  v-bind="{ type: 'text', placeholder: '33' }"
                 />
               </section>
               <section>
@@ -501,8 +502,7 @@ const recipientInfos = [
                 </Label>
                 <Input
                   class="rounded-md border border-[#E4E7EC] px-4 py-3 outline-none font-normal text-sm leading-[18.2px] text-[#999999]"
-                  type="text"
-                  placeholder="20"
+                  v-bind="{ type: 'text', placeholder: '20' }"
                 />
               </section>
             </section>

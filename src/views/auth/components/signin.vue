@@ -67,8 +67,7 @@ const handleLogin = async (values: any) => {
         <div>
           <Field
             name="email"
-            type="email"
-            placeholder="Your Email"
+            v-bind="{ type: 'email', placeholder: 'Your Email' }"
             v-model="user.email"
             class="w-full rounded-lg px-4 h-[42px] border border-[#0F0F0F40] shadow-sm"
             :class="{ 'border-red-500': errors.email }"
@@ -89,8 +88,7 @@ const handleLogin = async (values: any) => {
         <div>
           <Field
             name="password"
-            type="password"
-            placeholder="Enter Password"
+            v-bind="{ type: 'password', placeholder: 'Enter Password' }"
             v-model="user.password"
             class="w-full rounded-lg px-4 py-2 h-[42px] border border-[#0F0F0F40] shadow-sm"
             :class="{ 'border-red-500': errors.password }"
@@ -100,7 +98,10 @@ const handleLogin = async (values: any) => {
         </div>
 
         <div class="flex justify-end mt-2">
-          <RouterLink :to="'/forgot-password'" class="text-xs leading-[100%] tracking-[0%] align-middle text-[#5A5A5A]">
+          <RouterLink
+            :to="'/forgot-password'"
+            class="text-xs leading-[100%] tracking-[0%] align-middle text-[#5A5A5A]"
+          >
             Forget Password
           </RouterLink>
         </div>

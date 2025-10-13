@@ -1,10 +1,22 @@
 <script setup>
-import { RouterView } from "vue-router";
 import { useAuthStore } from "@/stores/auth";
-import { onMounted } from "vue";
+import { useRoute } from "vue-router";
+import { onMounted, computed } from "vue";
 import { Toaster } from "./components/ui/toast";
+import { ShipmentLayout } from "@/layouts/shipment-layout";
+import { DashboardLayout } from "@/layouts/dashboard-layout";
+import { DefaultLayout } from "@/layouts";
 
 const authStore = useAuthStore();
+const route = useRoute();
+
+const layouts = {
+  ShipmentLayout,
+  DashboardLayout,
+  DefaultLayout,
+};
+
+const layout = computed(() => layouts[route.meta.layout] || DefaultLayout);
 
 onMounted(() => {
   authStore.authenticateUser();
@@ -14,7 +26,9 @@ onMounted(() => {
 <template>
   <Toaster />
 
-  <RouterView></RouterView>
+  <component :is="layout">
+    <router-view />
+  </component>
 </template>
 
 <style scoped></style>

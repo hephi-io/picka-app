@@ -1,7 +1,10 @@
 <template>
   <div class="relative">
     <Search />
-    <Input placeholder="Search..." class="filson-pro md:w-[238px] pl-[34px]" />
+    <Input
+      v-bind="{ placeholder: 'Search...' }"
+      class="filson-pro md:w-[238px] pl-[34px]"
+    />
   </div>
 </template>
 

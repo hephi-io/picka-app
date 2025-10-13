@@ -19,7 +19,7 @@ import AddCard from "@/assets/svgs/add-card.svg";
 import WalletTrend from "@/assets/svgs/wallet-trend.svg";
 import RevealingEye from "@/assets/svgs/revealing-eye.svg";
 import NotificationsIcon from "@/assets/svgs/notification.svg";
-import Meme from "@/components/dashboard/memoji.vue";
+import Meme from "@/assets/svgs/memoji.svg";
 import ZSearchInput from "@/components/shared/z-search-input.vue";
 
 import { useAuthStore } from "@/stores/auth";
@@ -29,14 +29,13 @@ import { addCard, initializeTransaction } from "@/services/payments";
 import { useToast } from "@/components/ui/toast";
 import { getWallets } from "@/services/wallets";
 
-
 const authStore = useAuthStore();
 const { toast } = useToast();
 
 const popup = new Paystack();
 
 const data = ref<Shipping[]>([]);
-const userBalance = ref("")
+const userBalance = ref("");
 
 onMounted(async () => {
   const { data: orgResponse } = await getRootUserOrg();
@@ -114,13 +113,13 @@ onMounted(async () => {
     { y: [20, 0], opacity: [0, 1] },
     { duration: 0.5, delay: stagger(0.1) }
   );
- const user = await getUserProfile()
-     const response = await getWallets(user.data.data.id);
+  const user = await getUserProfile();
+  const response = await getWallets(user.data.data.id);
 
   const walletData = response.data?.data?.wallet;
 
   if (walletData) {
-    userBalance.value = walletData.balance
+    userBalance.value = walletData.balance;
   }
 });
 

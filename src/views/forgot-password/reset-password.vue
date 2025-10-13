@@ -78,6 +78,7 @@
 <script setup lang="ts">
 import check from "@/assets/svgs/orange-check.svg";
 import eyeOff from "@/assets/svgs/eye-off.svg";
+import { Button } from "@/components/ui/button";
 </script>
 
 <style scoped></style>
