@@ -9,12 +9,13 @@ interface Props extends PrimitiveProps {
   size?: ButtonVariants["size"];
   class?: HTMLAttributes["class"];
   type?: "button" | "submit" | "reset";
-  onClick?: (event: MouseEvent) => void;
+  onClick?: (event: any) => void;
 }
 
 const props = withDefaults(defineProps<Props>(), {
   as: "button",
   type: "button",
+  onClick: () => {},
 });
 </script>
 
@@ -23,7 +24,7 @@ const props = withDefaults(defineProps<Props>(), {
     :as="as"
     :as-child="asChild"
     :class="cn(buttonVariants({ variant, size }), props.class)"
-    v-bind="$attrs"
+    v-bind="{ ...$attrs, onClick }"
   >
     <slot />
   </Primitive>
