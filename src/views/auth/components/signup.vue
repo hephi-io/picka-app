@@ -56,7 +56,7 @@ const signupHandler = async (values: any) => {
       <div>
         <Field
           name="first_name"
-          placeholder="Your First Name"
+          v-bind="{ type: 'text', placeholder: 'Your First Name' }"
           v-model="user.first_name"
           class="w-full rounded-lg px-4 h-[42px] border border-[#0F0F0F40] shadow-sm"
           :class="{ 'border-red-500': errors.first_name }"
@@ -77,7 +77,7 @@ const signupHandler = async (values: any) => {
       <div>
         <Field
           name="last_name"
-          placeholder="Your Last Name"
+          v-bind="{ type: 'text', placeholder: 'Your Last Name' }"
           v-model="user.last_name"
           class="w-full rounded-lg px-4 h-[42px] border border-[#0F0F0F40] shadow-sm"
           :class="{ 'border-red-500': errors.last_name }"
@@ -98,7 +98,7 @@ const signupHandler = async (values: any) => {
       <div>
         <Field
           name="email"
-          placeholder="Your Email"
+          v-bind="{ type: 'email', placeholder: 'Your Email' }"
           v-model="user.email"
           class="w-full rounded-lg px-4 h-[42px] border border-[#0F0F0F40] shadow-sm"
           :class="{ 'border-red-500': errors.email }"
@@ -119,8 +119,7 @@ const signupHandler = async (values: any) => {
       <div>
         <Field
           name="password"
-          type="password"
-          placeholder="Enter Password"
+          v-bind="{ type: 'password', placeholder: 'Enter Password' }"
           v-model="user.password"
           class="w-full rounded-lg px-4 h-[42px] border border-[#0F0F0F40] shadow-sm"
           :class="{ 'border-red-500': errors.password }"

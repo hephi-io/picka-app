@@ -8,10 +8,13 @@ interface Props extends PrimitiveProps {
   variant?: ButtonVariants["variant"];
   size?: ButtonVariants["size"];
   class?: HTMLAttributes["class"];
+  type?: "button" | "submit" | "reset";
+  onClick?: (event: MouseEvent) => void;
 }
 
 const props = withDefaults(defineProps<Props>(), {
   as: "button",
+  type: "button",
 });
 </script>
 

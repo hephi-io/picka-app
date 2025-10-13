@@ -8,14 +8,11 @@
     <p
       class="text-base leading-5 tracking-[0%] text-[#1E1E1E] text-center mt-4"
     >
-      Verification successful. Experience the efficiency of Zipkod. Click 'Login' to access your dashboard.
+      Verification successful. Experience the efficiency of Zipkod. Click
+      'Login' to access your dashboard.
     </p>
     <div class="w-[166px] h-[183.63px] mx-auto mt-[60px]">
-      <img 
-        :src="success" 
-        alt="success" 
-        class="w-full h-full object-cover"
-      />
+      <img :src="success" alt="success" class="w-full h-full object-cover" />
     </div>
     <Button
       class="w-full h-[42px] rounded-md bg-[#1E1E1E] mt-[60px]"
@@ -29,7 +26,8 @@
 </template>
 
 <script setup lang="ts">
-import success from "@/assets/gifs/success.gif"
+import success from "@/assets/gifs/success.gif";
+import { Button } from "@/components/ui/button";
 </script>
 
 <style scoped></style>
