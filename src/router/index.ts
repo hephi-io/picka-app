@@ -52,6 +52,7 @@ const router = createRouter({
     {
       path: "/forgot-password",
       component: ForgotPassword,
+      meta: { layout: "ForgotPasswordLayout" },
       name: "forgot-password",
     },
     {
@@ -60,9 +61,10 @@ const router = createRouter({
       name: "password-verification",
     },
     {
-      path: "/forgot-password/reset-password",
+      path: "/reset-password/:token",
       component: ResetPassword,
       name: "reset-password",
+      meta: { layout: "ForgotPasswordLayout" },
     },
     {
       path: "/forgot-password/verification-status",
