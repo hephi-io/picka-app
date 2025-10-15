@@ -177,6 +177,10 @@ const endpoints = {
   signup: "/auth/signup",
   get_user_profile: "/users/me",
   activate_account: (code: string) => `/users/activate/${code}`,
+  forgot_password: "/auth/forgot-password",
+  validate_reset_token: (token: string) =>
+    `/auth/validate-reset-token/${token}`,
+  reset_password: (token: string) => `/auth/reset-password/${token}`,
 };
 
 export const API = axios.create({ baseURL: import.meta.env.VITE_API_BASE_URL });
@@ -221,7 +225,6 @@ export const signup = (payload: TSignupPayload) => {
   );
 };
 
-
 //PickaTestApp2305
 
 export const getUserProfile = () => {
@@ -230,4 +233,26 @@ export const getUserProfile = () => {
 
 export const activateAccount = (code: string) => {
   return API.put(endpoints.activate_account(code));
+};
+
+// Forgot Password API functions
+export const forgotPassword = (email: string) => {
+  return API.post<TResponse<null>>(endpoints.forgot_password, { email });
+};
+
+export const validateResetToken = (token: string) => {
+  return API.get<
+    TResponse<{ first_name: string; last_name: string; email: string }>
+  >(endpoints.validate_reset_token(token));
+};
+
+export const resetPassword = (
+  token: string,
+  password: string,
+  confirmPassword: string
+) => {
+  return API.post<TResponse<null>>(endpoints.reset_password(token), {
+    password,
+    confirm_password: confirmPassword,
+  });
 };
