@@ -35,9 +35,13 @@ const {
   itemDetailsErrors,
   recipientName,
   pickupLocationAddress,
+  pickupLocationLongitude,
+  pickupLocationLatitude,
   pickupOption,
   bookingNotes,
   dropOffLocationAddress,
+  dropOffLocationLongitude,
+  dropOffLocationLatitude,
   deliveryNotes,
   recipientEmail,
   recipientPhone,
@@ -82,6 +86,8 @@ const handleSubmit = async () => {
       width: itemDetailsForm.values.width,
       height: itemDetailsForm.values.height,
     };
+
+    console.log(payload);
 
     // await createShipment(payload)
   } catch (error) {}
@@ -165,9 +171,13 @@ const handleSubmit = async () => {
                   <delivery-info
                     v-model:recipientName="recipientName"
                     v-model:pickupLocationAddress="pickupLocationAddress"
+                    v-model:pickupLocationLongitude="pickupLocationLongitude"
+                    v-model:pickupLocationLatitude="pickupLocationLatitude"
                     v-model:pickupOption="pickupOption"
                     v-model:bookingNotes="bookingNotes"
                     v-model:dropOffLocationAddress="dropOffLocationAddress"
+                    v-model:dropOffLocationLongitude="dropOffLocationLongitude"
+                    v-model:dropOffLocationLatitude="dropOffLocationLatitude"
                     v-model:deliveryNotes="deliveryNotes"
                     v-model:recipientEmail="recipientEmail"
                     v-model:recipientPhone="recipientPhone"
