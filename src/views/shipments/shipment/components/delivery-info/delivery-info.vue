@@ -1,13 +1,14 @@
 <template>
   <div class="grid grid-cols-1 lg:grid-cols-2 lg:gap-4">
     <div>
-      <p-input
+      <p-google-autocomplete-input
         required
         label="Pickup Address"
         name="pickup_location_address"
         type="text"
         placeholder="e.g. 17, Ogunyemi strt, Magodo."
-        v-model="pickupLocationAddress as string"
+        :modelValue="pickupLocationAddress"
+        @update:modelValue="getPickupAddressData"
         :hasError="!!errors.pickup_location_address"
       />
 
@@ -56,12 +57,13 @@
     </div>
 
     <div>
-      <p-input
+      <p-google-autocomplete-input
         required
         label="Drop-Off"
         type="text"
         placeholder="e.g. 17, Ogunyemi strt, Magodo."
-        v-model="dropOffLocationAddress as string"
+        :modelValue="dropOffLocationAddress"
+        @update:modelValue="getDropOffAddressData"
         :hasError="!!errors.drop_off_location_address"
       />
 
@@ -121,13 +123,20 @@
 <script setup lang="ts">
 import { PInput } from "@/components/shared/p-input";
 import { PSelect } from "@/components/shared/p-select";
+import { PGoogleAutocompleteInput } from "@/components/shared/p-google-autocomplete-input";
 import { PICKUP_OPTION_OPTIONS } from "./constants";
 import { PFormErrorMessage } from "@/components/shared/p-form-error-message";
 
 const pickupLocationAddress = defineModel<string>("pickupLocationAddress");
+const pickupLocationLongitude = defineModel<number>("pickupLocationLongitude");
+const pickupLocationLatitude = defineModel<number>("pickupLocationLatitude");
 const pickupOption = defineModel<string>("pickupOption");
 const bookingNotes = defineModel<string>("bookingNotes");
 const dropOffLocationAddress = defineModel<string>("dropOffLocationAddress");
+const dropOffLocationLongitude = defineModel<number>(
+  "dropOffLocationLongitude"
+);
+const dropOffLocationLatitude = defineModel<number>("dropOffLocationLatitude");
 const deliveryNotes = defineModel<string>("deliveryNotes");
 const recipientName = defineModel<string>("recipientName");
 const recipientEmail = defineModel<string>("recipientEmail");
@@ -136,6 +145,18 @@ const recipientPhone = defineModel<string>("recipientPhone");
 defineProps<{
   errors: Record<string, any>;
 }>();
+
+const getPickupAddressData = (place: any) => {
+  pickupLocationAddress.value = place.formatted_address;
+  pickupLocationLongitude.value = place.geometry.location.lng();
+  pickupLocationLatitude.value = place.geometry.location.lat();
+};
+
+const getDropOffAddressData = (place: any) => {
+  dropOffLocationAddress.value = place.formatted_address;
+  dropOffLocationLongitude.value = place.geometry.location.lng();
+  dropOffLocationLatitude.value = place.geometry.location.lat();
+};
 </script>
 
 <style scoped></style>

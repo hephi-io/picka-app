@@ -14,10 +14,22 @@ export const useShipmentForm = () => {
   const [pickupLocationAddress] = deliveryInfoForm.defineField(
     "pickup_location_address"
   );
+  const [pickupLocationLongitude] = deliveryInfoForm.defineField(
+    "pickup_location_longitude"
+  );
+  const [pickupLocationLatitude] = deliveryInfoForm.defineField(
+    "pickup_location_latitude"
+  );
   const [pickupOption] = deliveryInfoForm.defineField("pickup_option");
   const [bookingNotes] = deliveryInfoForm.defineField("booking_notes");
   const [dropOffLocationAddress] = deliveryInfoForm.defineField(
     "drop_off_location_address"
+  );
+  const [dropOffLocationLongitude] = deliveryInfoForm.defineField(
+    "drop_off_location_longitude"
+  );
+  const [dropOffLocationLatitude] = deliveryInfoForm.defineField(
+    "drop_off_location_latitude"
   );
   const [deliveryNotes] = deliveryInfoForm.defineField("delivery_notes");
   const [recipientEmail] = deliveryInfoForm.defineField("recipient_email");
@@ -44,9 +56,13 @@ export const useShipmentForm = () => {
     deliveryInfoErrors,
     recipientName,
     pickupLocationAddress,
+    pickupLocationLongitude,
+    pickupLocationLatitude,
     pickupOption,
     bookingNotes,
     dropOffLocationAddress,
+    dropOffLocationLongitude,
+    dropOffLocationLatitude,
     deliveryNotes,
     recipientEmail,
     recipientPhone,
